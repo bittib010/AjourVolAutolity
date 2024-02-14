@@ -1,0 +1,257 @@
+---
+- name: Setup AzVolAutolity
+  hosts: localhost
+  vars_files:
+  - ansible_vars.yml
+  tasks:
+
+    - name: Update System
+      shell: |
+        sudo apt-get update -y && sudo apt-get upgrade -y
+      become: yes
+      ignore_errors: yes
+
+    # https://medium.com/@cmendibl3/installing-azure-cli-and-ansible-on-ubuntu-4fcabb7176b4
+    - name: Install Azure CLI and kusto extension
+      shell: |
+        AZ_REPO=$(lsb_release -cs)
+        echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \ sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+        curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+        sudo apt-get install apt-transport-https
+        sudo apt-get update && sudo apt-get install azure-cli
+        az extension add -n kusto
+        az login --identity
+      become: yes
+
+    - name: "Install apt packages"
+      apt:
+        pkg: 
+          - python3
+          - python3-pip
+          - git
+          - clamav
+          - build-essential
+          - libssl-dev
+          - libfuse2
+          - regripper
+          - reglookup
+          - inotify-tools
+        update_cache: yes
+        state: present
+      become: yes
+      ignore_errors: yes
+
+    - name: Update package lists
+      ansible.builtin.apt:
+        update_cache: yes
+      become: yes 
+
+    - name: Check if Volatility directory exists
+      ansible.builtin.stat:
+        path: /opt/volatility3
+      register: volatility_dir
+
+    - name: Cloning Volatility repo
+      ansible.builtin.git:
+        repo: "https://github.com/volatilityfoundation/volatility3.git"
+        dest: /opt/volatility3
+      when: not volatility_dir.stat.exists
+      become: yes
+
+    - name: Chmod vol.py
+      shell: |
+        chmod +x /opt/volatility3/vol.py
+      become: yes
+
+    - name: Check PATH
+      shell: echo $PATH
+      register: echo_path
+      become: yes
+
+    - name: Show PATH
+      debug:
+        var: echo_path.stdout
+
+    - name: Install Volatility requirements
+      shell: |
+        export PATH=$PATH:/usr/local/bin
+        pip3 install -r /opt/volatility3/requirements.txt
+      args:
+        executable: /bin/bash
+      become: yes
+
+    - name: Install Volatility requirements DEV
+      shell: |
+        export PATH=$PATH:/usr/local/bin
+        pip3 install -r /opt/volatility3/requirements-dev.txt
+      args:
+        executable: /bin/bash
+      become: yes
+
+    - name: Create or update link file for vol.py
+      ansible.builtin.file:
+        src: /opt/volatility3/vol.py
+        dest: /usr/bin/vol.py
+        state: link
+        force: yes
+      become: yes
+
+    - name: Install pip packages
+      ansible.builtin.pip:
+        name: 
+          - pyyaml
+          - pandas
+          - azure-kusto-data
+          - azure-kusto-ingest
+          - azure-identity
+          - azure-mgmt-kusto
+          - azure-common
+          - azure-mgmt-resource
+          - azure-mgmt-eventgrid
+          - azure-storage-blob
+
+      become: yes
+
+    # Blobfuse section
+    ##################
+    - name: Download Microsoft packages configuration for Ubuntu 20.04
+      ansible.builtin.get_url:
+        url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+        dest: /tmp/packages-microsoft-prod.deb
+      become: yes
+      ignore_errors: yes
+
+
+    - name: Install Microsoft packages configuration
+      ansible.builtin.apt:
+        deb: /tmp/packages-microsoft-prod.deb
+      become: yes
+      ignore_errors: yes
+
+
+    - name: Update package lists
+      ansible.builtin.apt:
+        update_cache: yes
+      become: yes
+      ignore_errors: yes
+
+    - name: Install blobfuse
+      ansible.builtin.apt:
+        name: blobfuse
+        state: present
+      become: yes
+      ignore_errors: yes
+
+    - name: Create /mnt/ramdisk directory
+      ansible.builtin.file:
+        path: /mnt/ramdisk
+        state: directory
+        mode: '0755'
+      become: yes
+      ignore_errors: yes
+
+    - name: Mount tmpfs to /mnt/ramdisk
+      ansible.builtin.mount:
+        path: /mnt/ramdisk
+        src: tmpfs
+        fstype: tmpfs
+        opts: size=32g
+        state: mounted
+      become: yes
+      ignore_errors: yes
+
+    - name: Create /mnt/ramdisk/blobfusetmp directory
+      ansible.builtin.file:
+        path: /mnt/ramdisk/blobfusetmp
+        state: directory
+        mode: '0755'
+      become: yes
+      ignore_errors: yes
+
+    - name: Change ownership of /mnt/ramdisk/blobfusetmp to root
+      ansible.builtin.file:
+        path: /mnt/ramdisk/blobfusetmp
+        owner: root
+        group: root
+        state: directory
+      become: yes
+      ignore_errors: yes
+
+    - name: Create mount directory for blobfuse
+      ansible.builtin.file:
+        path: "{{ dump_path }}"
+        state: directory
+        mode: '0755'
+      become: yes
+
+    - name: Change ownership to root
+      ansible.builtin.file:
+        path: "{{ dump_path }}"
+        owner: root
+        group: root
+        state: directory
+      become: yes
+      ignore_errors: yes
+
+    - name: Create Blobfuse configuration file
+      template:
+        src: fuse_connection.cfg.j2
+        dest: /etc/blobfuse.cfg
+        owner: root
+        group: root
+        mode: '0600'
+      become: yes
+
+    - name: Mount Azure Blob Storage container
+      ansible.builtin.shell: |
+        mkdir -p /mnt/blobfusetmp
+        blobfuse {{ dump_path }} --tmp-path=/mnt/blobfusetmp --config-file=/etc/blobfuse.cfg -o attr_timeout=240 -o entry_timeout=240 -o negative_timeout=120
+      become: yes
+      ignore_errors: yes
+
+    # Volatility runner section
+    - name: Ensure the target directory exists
+      ansible.builtin.file:
+        path: "/opt/volatility3/volatility3/symbols"
+        state: directory
+        mode: '0755'
+
+    # - name: Download Windows symbols
+    #   ansible.builtin.get_url:
+    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip
+    #     dest: "/opt/volatility3/volatility3/symbols/windows.zip"
+    #     mode: '0644'
+    #   become: yes
+    #   ignore_errors: yes
+
+    # - name: Download Mac symbols
+    #   ansible.builtin.get_url:
+    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip
+    #     dest: "/opt/volatility3/volatility3/symbols/mac.zip"
+    #     mode: '0644'
+    #   become: yes
+    #   ignore_errors: yes
+
+    # - name: Download Linux symbols
+    #   ansible.builtin.get_url:
+    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip
+    #     dest: "/opt/volatility3/volatility3/symbols/linux.zip"
+    #     mode: '0644'
+    #   become: yes
+    #   ignore_errors: yes
+
+    - name: Change mode of VolatilityRunner script
+      ansible.builtin.shell: chmod +x {{ project_path }}/bash_volatility_runner.sh
+      become: yes
+      ignore_errors: yes
+
+    - name: Run VolatilityRunner script in the background
+      ansible.builtin.shell: "{{ project_path }}/bash_volatility_runner.sh > /dev/null 2>&1 &"
+      become: yes
+
+    - name: Move any test samples to analysis folder
+      ansible.builtin.shell: cp {{ project_path }}/sample/* /mnt/memorydumps
+      become: yes
+      ignore_errors: yes
