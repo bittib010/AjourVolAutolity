@@ -41,8 +41,8 @@ variable "linux-username" {
 variable "linux-size" {
   type        = string
   description = "The machine size of VM. Too big size might not be feasible and generate errors based on tenant limitations."
-  #default     = "Standard_B8ms"
-  default     = "Standard_DS1_v2"
+  default     = "Standard_B8ms"
+  #default     = "Standard_DS1_v2"
 }
 
 variable "path_to_public_key" {
@@ -54,4 +54,16 @@ variable "path_to_private_key" {
   type        = string
   description = "The path to private key for SSH login"
   default     = "C:\\Users\\<USERNAME>\\.ssh\\id_rsa"
+}
+
+# Expand logic if needed for more resources. Is based on autodeletion, to prevent it from happening if present.
+# Use these variables if you have an auto deletion for a test lab setup
+variable "deletion_days" {
+  description = "Number of days before the resource group should be deleted"
+  default     = 14
+}
+
+locals {
+  current_timestamp = timestamp()
+  deletion_date = formatdate("YYYY-MM-DD", timeadd(local.current_timestamp, format("%dh", var.deletion_days * 24)))
 }

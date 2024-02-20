@@ -11,7 +11,7 @@ The goal of this project is
 This is set up in such a way that allows us to upload as many dumps as we need to. Every Volatility session will be linked with it's dump which will be stored into it's own separate database.
 
 > [!NOTE]  
-> This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome.  
+> This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Currently limited to focus only on Windows.
 
 ### Workflow 
 The analysor spins up the terraform setup, sends the uploading links/commands to the person acquiring the image(s), who then uploads. The analysor waits until ingestion has been made and starts actively querying the data. Hands-off from upload to querying.
@@ -263,6 +263,9 @@ A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID
 - https://github.com/Azure/azure-kusto-python
 - https://www.techbrothersit.com/2022/02/how-to-create-single-or-multiple-tables.html
 - https://ansibledaily.com/execute-detached-process-with-ansible/
+- https://www.huuhka.net/devops-for-azure-workbooks/
+- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations
+- https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations
 
 
 # Memory dumps for testing

@@ -7,6 +7,9 @@ resource "random_id" "randomId" {
 resource "azurerm_resource_group" "myrg" {
   name     = "${var.investigator_initials}-${random_id.randomId.hex}-rg"
   location = var.resource_group_location
+  tags     = {
+    "deletiondate" = local.deletion_date
+  }
 }
 
 resource "local_file" "ansible_vars" {
@@ -63,15 +66,10 @@ resource "local_file" "adx_vars_bash" {
     cluster_ingestion_uri="${azurerm_kusto_cluster.adxc.data_ingestion_uri}"
     cluster_name="${azurerm_kusto_cluster.adxc.name}"
     resource_group_name="${azurerm_resource_group.myrg.name}"
-    sas_token="${data.azurerm_storage_account_sas.sasas.sas}"
-    container_name="${azurerm_storage_container.sc.name}"
-    azure_storage_account_name="${azurerm_storage_account.sa.name}"
     azurerm_location="${azurerm_resource_group.myrg.location}"
-    subscription_id="${data.azurerm_subscription.current.subscription_id}"
     CLIENT_ID="${azuread_service_principal.aad_sp.client_id}"
     CLIENT_SECRET="${azuread_service_principal_password.aad_sp_pass.value}"
-    MOUNTING_POINT="${var.mounting_point}"
-    PROJECT_ROOT="/home/${var.linux-username}"
+    PROJECT_ROOT="/home/${var.linux-username}/${var.project_path}"
   EOF
   filename = "${path.module}/VolAutolity/adx_vars_bash.sh"
 }

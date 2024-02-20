@@ -185,6 +185,7 @@
         state: directory
         mode: '0755'
       become: yes
+      ignore_errors: yes
 
     - name: Change ownership to root
       ansible.builtin.file:
@@ -207,9 +208,12 @@
     - name: Mount Azure Blob Storage container
       ansible.builtin.shell: |
         mkdir -p /mnt/blobfusetmp
-        blobfuse {{ dump_path }} --tmp-path=/mnt/blobfusetmp --config-file=/etc/blobfuse.cfg -o attr_timeout=240 -o entry_timeout=240 -o negative_timeout=120
+        blobfuse {{ dump_path }} --tmp-path=/mnt/blobfusetmp --config-file=/etc/blobfuse.cfg -o attr_timeout=240 -o entry_timeout=240 -o negative_timeout=120 --log-level=LOG_INFO
       become: yes
       ignore_errors: yes
+
+    # - name: Rebooting the cloud server/bare metal box
+    #   reboot:
 
     # Volatility runner section
     - name: Ensure the target directory exists
@@ -253,5 +257,19 @@
 
     - name: Move any test samples to analysis folder
       ansible.builtin.shell: cp {{ project_path }}/sample/* /mnt/memorydumps
+      become: yes
+      ignore_errors: yes
+
+    - name: Change mode of blobfuse hack script
+      ansible.builtin.shell: chmod +x {{ project_path }}/blobfuse_trick.sh
+      become: yes
+      ignore_errors: yes
+
+    - name: Run blob script cron
+      ansible.builtin.cron:
+        name: "blobhack"
+        minute: "*"
+        hour: "*"
+        job: "{{ project_path }}/blobfuse_trick.sh"
       become: yes
       ignore_errors: yes
