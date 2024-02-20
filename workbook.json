@@ -1,0 +1,206 @@
+{
+    "version" : "Notebook/1.0",
+    "items" : [
+      {
+        "type" : 9,
+        "content" : {
+          "version" : "KqlParameterItem/1.0",
+          "crossComponentResources" : [
+            "${resource_group_id}"
+          ],
+          "parameters" : [
+            {
+              "id" : "6f003957-6d95-4638-88e8-5305b8acbe17",
+              "version" : "KqlParameterItem/1.0",
+              "name" : "Clustername",
+              "type" : 1,
+              "description" : "Clustername",
+              "isRequired" : true,
+              "isHiddenWhenLocked" : true,
+              "timeContext" : {
+                "durationMs" : 86400000
+              },
+              "value" : "${cluster_url}"
+            }
+          ],
+          "style" : "formVertical",
+          "queryType" : 0,
+          "resourceType" : "microsoft.operationalinsights/workspaces"
+        },
+        "name" : "parameters - 2"
+      },
+      {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "70d1b13f-3247-4dd2-9aea-d86ff92d8ff8",
+            "version": "KqlParameterItem/1.0",
+            "name": "Databases",
+            "type": 2,
+            "description": "Choose the database you need insight into",
+            "isRequired": true,
+            "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\".show databases\\r\\n| project DatabaseName\",\"clusterName\":\"{Clustername}\"}",
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1"
+              ],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 9,
+            "value": null
+          }
+        ],
+        "style": "above",
+        "queryType": 9
+      },
+      "name": "parameters - 3"
+    },
+      {
+        "type" : 3,
+        "content" : {
+          "version" : "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"// Counts by table names\\nunion withsource=[\\\"$TableName\\\"] *\\n| summarize Count=count() by TableName=[\\\"$TableName\\\"]\\n| render barchart\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size" : 0,
+          "title" : "Amount of data available",
+          "noDataMessage" : "No data for this query available yet",
+          "queryType" : 9
+        },
+        "name" : "query - 0"
+      },
+      {
+        "type" : 3,
+        "content" : {
+          "version" : "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| extend meta = parse_json(foreign_add)\\r\\n| extend lat = meta[\\\"latitude\\\"], lon = meta[\\\"longitude\\\"]\\r\\n| project lon, lat\\r\\n| render scatterchart with (kind = map)\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size" : 0,
+          "title" : "IPs from netscan",
+          "noDataMessage" : "No available IPs in the dataset",
+          "queryType" : 9,
+          "mapSettings" : {
+            "locInfo" : "LatLong"
+          }
+        },
+        "name" : "query - 2"
+      },
+      {
+        "type": 3,
+        "content": {
+          "version": "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size": 0,
+          "queryType": 9,
+          "visualization": "table",
+          "gridSettings": {
+            "formatters": [
+              {
+                "columnMatch": "PPID",
+                "formatter": 5
+              },
+              {
+                "columnMatch": "PID",
+                "formatter": 5
+              }
+            ],
+            "rowLimit": 750,
+            "hierarchySettings": {
+              "idColumn": "PID",
+              "parentColumn": "PPID",
+              "treeType": 0,
+              "expanderColumn": "ImageFileName",
+              "expandTopLevel": true
+            },
+            "sortBy": [
+              {
+                "itemKey": "ImageFileName",
+                "sortOrder": 1
+              }
+            ]
+          },
+          "sortBy": [
+            {
+              "itemKey": "ImageFileName",
+              "sortOrder": 1
+            }
+          ]
+        },
+        "name": "query - 5"
+      },
+      {
+        "type": 1,
+        "content": {
+          "json": "# Top IPs repeated in strings table"
+        },
+        "name": "text - 7"
+      },
+      {
+        "type": 3,
+        "content": {
+          "version": "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend IPaddr = extract(\\\"((?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]))\\\", 1, String)\\r\\n| where IPaddr != \\\"\\\"\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(IPaddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, IPaddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size": 0,
+          "queryType": 9,
+          "visualization": "map",
+          "mapSettings": {
+            "locInfo": "LatLong",
+            "latitude": "lat",
+            "longitude": "lon",
+            "sizeSettings": "ordernum",
+            "sizeAggregation": "Sum",
+            "opacity": 0.7,
+            "labelSettings": "IPaddr",
+            "legendMetric": "lat",
+            "legendAggregation": "Sum",
+            "itemColorSettings": {
+              "nodeColorField": "ordernum",
+              "colorAggregation": "Sum",
+              "type": "heatmap",
+              "heatmapPalette": "purpleBlueGreen"
+            }
+          }
+        },
+        "name": "query - 4"
+      },
+      {
+        "type": 3,
+        "content": {
+          "version": "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| where ForeignAddr !in (\\\"::\\\", \\\"0.0.0.0\\\", \\\"*\\\")\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(ForeignAddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, ForeignAddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size": 0,
+          "title": "IPs from netscan",
+          "noDataMessage": "No available IPs in the dataset",
+          "queryType": 9,
+          "visualization": "map",
+          "mapSettings": {
+            "locInfo": "LatLong",
+            "latitude": "lat",
+            "longitude": "lon",
+            "sizeSettings": "ordernum",
+            "sizeAggregation": "Sum",
+            "labelSettings": "ForeignAddr",
+            "legendMetric": "ordernum",
+            "legendAggregation": "Sum",
+            "itemColorSettings": null
+          }
+        },
+        "conditionalVisibility": {
+          "parameterName": "{Databases}",
+          "comparison": "isEqualTo",
+          "value": ""
+        },
+        "name": "query - 2",
+        "styleSettings": {
+          "margin": "2",
+          "padding": "2"
+        }
+      }
+    ],
+    "fallbackResourceIds" : [
+      "${fallback_resource_id}"
+    ],
+    "$schema" : "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+  }
