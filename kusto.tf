@@ -4,6 +4,7 @@ resource "azurerm_kusto_cluster" "adxc" {
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
   sku {
+    # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kusto_cluster#name
     name     = "Standard_D11_v2"
     capacity = 4
   }
