@@ -233,9 +233,31 @@ A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID
 
 "Error: remote-exec provisioner error" Sometimes happen. Try a re-run with this error as well. 
 
+# Memory dumps for testing
+https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
+https://www.osforensics.com/tools/volatility-workbench.html 
 
 
-#### Nice resources:
+## Time notes (give or take)
+ADX cluster often takes around 13-15 minutes setting up. (most often around 13:20)
+VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
+
+
+
+# TODO
+- A listener for new CSV files in use for ingestion might be better than what is currently implemented. Reduces code as well. Or consider running ingestions concurrently in the current setup.
+- Create a workbook with premade queries for triaging:
+    - Singletons
+    - Parent/child relation
+    - Executable injection
+    - Map of all found IP-addresses
+    - and many more queries that makes it easy and quick to see where investigation should start out
+- ClamAV run
+- Map out all IP addresses found in a dump on a map
+- Make an entry in README about Cost of running this in the cloud.
+
+
+<details><summary>Resources: </summary>
 - https://github.com/hashicorp/terraform-provider-azurerm/issues/15649
 - https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli 
 - https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-managed-identity
@@ -266,27 +288,4 @@ A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID
 - https://www.huuhka.net/devops-for-azure-workbooks/
 - https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations
 - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations
-
-
-# Memory dumps for testing
-https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
-https://www.osforensics.com/tools/volatility-workbench.html 
-
-
-## Time notes (give or take)
-ADX cluster often takes around 13-15 minutes setting up. (most often around 13:20)
-VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
-
-
-
-# TODO
-- A listener for new CSV files in use for ingestion might be better than what is currently implemented. Reduces code as well. Or consider running ingestions concurrently in the current setup.
-- Create a workbook with premade queries for triaging:
-    - Singletons
-    - Parent/child relation
-    - Executable injection
-    - Map of all found IP-addresses
-    - and many more queries that makes it easy and quick to see where investigation should start out
-- ClamAV run
-- Map out all IP addresses found in a dump on a map
-- Make an entry in README about Cost of running this in the cloud.
+</details>
