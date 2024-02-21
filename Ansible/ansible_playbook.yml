@@ -216,11 +216,11 @@
     #   reboot:
 
     # Volatility runner section
-    - name: Ensure the target directory exists
-      ansible.builtin.file:
-        path: "/opt/volatility3/volatility3/symbols"
-        state: directory
-        mode: '0755'
+    # - name: Ensure the target directory exists
+    #   ansible.builtin.file:
+    #     path: "/opt/volatility3/volatility3/symbols"
+    #     state: directory
+    #     mode: '0755'
 
     # - name: Download Windows symbols
     #   ansible.builtin.get_url:
@@ -251,25 +251,21 @@
       become: yes
       ignore_errors: yes
 
-    - name: Run VolatilityRunner script in the background
-      ansible.builtin.shell: "{{ project_path }}/bash_volatility_runner.sh > /dev/null 2>&1 &"
-      become: yes
-
     - name: Move any test samples to analysis folder
       ansible.builtin.shell: cp {{ project_path }}/sample/* /mnt/memorydumps
       become: yes
       ignore_errors: yes
 
-    - name: Change mode of blobfuse hack script
-      ansible.builtin.shell: chmod +x {{ project_path }}/blobfuse_trick.sh
+    - name: Change mode of main.sh
+      ansible.builtin.shell: chmod +x {{ project_path }}/main.sh
       become: yes
       ignore_errors: yes
 
-    - name: Run blob script cron
+    - name: Run main.sh script cronjob every minute
       ansible.builtin.cron:
-        name: "blobhack"
+        name: "main"
         minute: "*"
         hour: "*"
-        job: "{{ project_path }}/blobfuse_trick.sh"
+        job: "{{ project_path }}/main.sh"
       become: yes
       ignore_errors: yes

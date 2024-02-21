@@ -56,7 +56,7 @@ variable "path_to_private_key" {
   default     = "C:\\Users\\<USERNAME>\\.ssh\\id_rsa"
 }
 
-# Expand logic if needed for more resources. Is based on autodeletion, to prevent it from happening if present.
+# Expand logic if needed for more resources. THis is based on autodeletion, to prevent it from happening if present in your subscription.
 # Use these variables if you have an auto deletion for a test lab setup
 variable "deletion_days" {
   description = "Number of days before the resource group should be deleted"

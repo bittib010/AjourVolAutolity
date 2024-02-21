@@ -6,45 +6,19 @@ source "${script_dir}/adx_vars_bash.sh"
 DIRECTORY_TO_WATCH="/mnt/memorydumps"
 BASE_OUTPUT_DIRECTORY="/mnt/memorydumps/output"
 
-# Allowed file extensions (add more...)
-declare -a allowed_extensions=("dd" "raw" "mem" "vmem" "dump" "dmp")
-
-validate_file() {
-    local file_name="$1"
-    local extension="${file_name##*.}"
-    local os_type="${file_name%%_*}"
-
-    if [[ ! " ${allowed_extensions[@]} " =~ " ${extension} " ]]; then
-        echo "File extension not supported for memory analysis: $extension"
-        return 1
-    fi
-
-    case "$os_type" in
-        "win")
-            echo "Processing Windows memory dump"
-            ;;
-        "linux"|"osx")
-            echo "Placeholder for future OS support. Skipping file: $file_name"
-            return 1
-            ;;
-        *)
-            echo "Unknown OS type in filename. Skipping file: $file_name"
-            return 1
-            ;;
-    esac
-
-    return 0
-}
-
-# Function to run Windows commands directly
-run_windows_commands() {
+run_os_commands() {
     local dump="$1"
     local unique_output_directory="$2"
-    local database_name="$3" # TODO: replace dots with _? Especially in need for the registry csv's?
+    local os_type="$3" # This is now passed in
+    local database_name="$4"
     local log_file="$unique_output_directory/command_log.txt"
 
-    # Define commands
-    local commands=(
+    # Initialize an empty commands array
+    local commands=()
+
+    # Define Windows commands
+    if [[ "$os_type" == "win" ]]; then
+        commands+=(
         # CREATE DATABASE
         "echo 'Creating the database'"
         "az kusto database create --cluster-name $cluster_name --database-name $database_name --resource-group $resource_group_name --read-write-database location=\"$azurerm_location\""
@@ -106,127 +80,129 @@ run_windows_commands() {
         virtmap (TreeDepth:int32,Region:string,Startoffset:string,Endoffset:string)\""
 
         "echo 'Starting to run Volatility commands. lowercase statistics seems preserved by Kusto'"
-        "strings -a -td $dump > $unique_output_directory/strings.txt && strings -a -td -el $dump  > $unique_output_directory/strings.txt && vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.strings.Strings --strings-file $unique_output_directory/strings.txt > $unique_output_directory/strings.csv"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.info > $unique_output_directory/info.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv timeliner > $unique_output_directory/timeliner.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.bigpools > $unique_output_directory/bigpools.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.cachedump > $unique_output_directory/cachedump.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.callbacks.Callbacks > $unique_output_directory/callbacks.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.cmdline.CmdLine > $unique_output_directory/cmdline.csv"
-        #"vol.py -f {crashdump} --log $unique_output_directory/Volatility.log -q -r csv windows.crashinfo.Crashinfo > $unique_output_directory/crashinfo.csv"
+        "strings -a -td $dump > $unique_output_directory/strings.txt && strings -a -td -el $dump  > $unique_output_directory/strings.txt && vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.strings.Strings --strings-file $unique_output_directory/strings.txt > $unique_output_directory/strings.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv timeliner > $unique_output_directory/timeliner.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.bigpools > $unique_output_directory/bigpools.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.cachedump > $unique_output_directory/cachedump.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.callbacks.Callbacks > $unique_output_directory/callbacks.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.cmdline.CmdLine > $unique_output_directory/cmdline.csv &"
+        #"vol.py -f {crashdump} --log $unique_output_directory/Volatility.log -q -r csv windows.crashinfo.Crashinfo > $unique_output_directory/crashinfo.csv &"
         #"az kusto script create --cluster-name $cluster_name --database-name $database_name --name crashinfo-script --resource-group $resource_group_name --script-content \".create table crashinfo (NotCreatedYet:string)\""
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.devicetree.DeviceTree > $unique_output_directory/devicetree.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dlllist.DllList > $unique_output_directory/dlllist.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverirp.DriverIrp > $unique_output_directory/driverirp.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.drivermodule.DriverModule > $unique_output_directory/drivermodule.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverscan.DriverScan > $unique_output_directory/driverscan.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.devicetree.DeviceTree > $unique_output_directory/devicetree.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dlllist.DllList > $unique_output_directory/dlllist.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverirp.DriverIrp > $unique_output_directory/driverirp.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.drivermodule.DriverModule > $unique_output_directory/drivermodule.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverscan.DriverScan > $unique_output_directory/driverscan.csv &"
         "mkdir $unique_output_directory/dumpfiles"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles/ windows.dumpfiles.DumpFiles &"
         # LOGIC TO RUN CLAMAV
         
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dumpfiles.DumpFiles > $unique_output_directory/dumpfiles.csv"        
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.envars.Envars > $unique_output_directory/envars.csv"        
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.filescan.FileScan > $unique_output_directory/filescan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getservicesids.GetServiceSIDs > $unique_output_directory/getservicesids.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getsids.GetSIDs > $unique_output_directory/getsids.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.handles.Handles > $unique_output_directory/handles.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.hashdump.Hashdump > $unique_output_directory/hashdump.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.joblinks.JobLinks > $unique_output_directory/joblinks.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ldrmodules.LdrModules > $unique_output_directory/ldrmodules.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.lsadump.Lsadump > $unique_output_directory/lsadump.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.malfind.Malfind > $unique_output_directory/malfind.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mbrscan.MBRScan > $unique_output_directory/mbrscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.memmap.Memmap > $unique_output_directory/memmap.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mftscan.MFTScan > $unique_output_directory/mftscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.modscan.ModScan > $unique_output_directory/modscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.modules.Modules > $unique_output_directory/modules.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mutantscan.MutantScan > $unique_output_directory/mutantscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.netscan.NetScan > $unique_output_directory/netscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.netstat.NetStat > $unique_output_directory/netstat.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.poolscanner.PoolScanner > $unique_output_directory/poolscanner.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.privileges.Privs > $unique_output_directory/privileges.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv"
-        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pstree.PsTree > $unique_output_directory/pstree.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dumpfiles.DumpFiles > $unique_output_directory/dumpfiles.csv &"        
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.envars.Envars > $unique_output_directory/envars.csv &"        
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.filescan.FileScan > $unique_output_directory/filescan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getservicesids.GetServiceSIDs > $unique_output_directory/getservicesids.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getsids.GetSIDs > $unique_output_directory/getsids.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.handles.Handles > $unique_output_directory/handles.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.hashdump.Hashdump > $unique_output_directory/hashdump.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.joblinks.JobLinks > $unique_output_directory/joblinks.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ldrmodules.LdrModules > $unique_output_directory/ldrmodules.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.lsadump.Lsadump > $unique_output_directory/lsadump.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.malfind.Malfind > $unique_output_directory/malfind.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mbrscan.MBRScan > $unique_output_directory/mbrscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.memmap.Memmap > $unique_output_directory/memmap.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mftscan.MFTScan > $unique_output_directory/mftscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.modscan.ModScan > $unique_output_directory/modscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.modules.Modules > $unique_output_directory/modules.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mutantscan.MutantScan > $unique_output_directory/mutantscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.netscan.NetScan > $unique_output_directory/netscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.netstat.NetStat > $unique_output_directory/netstat.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.poolscanner.PoolScanner > $unique_output_directory/poolscanner.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.privileges.Privs > $unique_output_directory/privileges.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv &"
+        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pstree.PsTree > $unique_output_directory/pstree.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv &"
         "mkdir $unique_output_directory/regdumps"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv -o $unique_output_directory/regdumps/ windows.registry.hivelist.HiveList &"
         # LOGIC NEEDED
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivescan.HiveScan > $unique_output_directory/registry_hivescan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.printkey.PrintKey > $unique_output_directory/registry_printkey.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.userassist.UserAssist > $unique_output_directory/registry_userassist.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.sessions.Sessions > $unique_output_directory/sessions.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivescan.HiveScan > $unique_output_directory/registry_hivescan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.printkey.PrintKey > $unique_output_directory/registry_printkey.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.userassist.UserAssist > $unique_output_directory/registry_userassist.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.sessions.Sessions > $unique_output_directory/sessions.csv &"
         #"az kusto script create --cluster-name $cluster_name --database-name $database_name --name sessions-script --resource-group $resource_group_name --script-content \".create table sessions (TreeDepth:int32,SessionID:string,SessionType:string,ProcessID:string,Process:string,UserName:string,CreateTime:string)\""
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.skeleton_key_check.Skeleton_Key_Check > $unique_output_directory/skeleton_key_check.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ssdt.SSDT > $unique_output_directory/ssdt.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.statistics.Statistics > $unique_output_directory/statistics.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.svcscan.SvcScan > $unique_output_directory/svcscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.symlinkscan.SymlinkScan > $unique_output_directory/symlinkscan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadinfo.VadInfo > $unique_output_directory/vadinfo.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadwalk.VadWalk > $unique_output_directory/vadwalk.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadyarascan.VadYaraScan > $unique_output_directory/vadyarascan.csv"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.verinfo.VerInfo > $unique_output_directory/verinfo.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.skeleton_key_check.Skeleton_Key_Check > $unique_output_directory/skeleton_key_check.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ssdt.SSDT > $unique_output_directory/ssdt.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.statistics.Statistics > $unique_output_directory/Statistics.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.svcscan.SvcScan > $unique_output_directory/svcscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.symlinkscan.SymlinkScan > $unique_output_directory/symlinkscan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadinfo.VadInfo > $unique_output_directory/vadinfo.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadwalk.VadWalk > $unique_output_directory/vadwalk.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadyarascan.VadYaraScan > $unique_output_directory/vadyarascan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.verinfo.VerInfo > $unique_output_directory/verinfo.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.virtmap.VirtMap > $unique_output_directory/virtmap.csv"
 
-        "inotifywait -m \"$unique_output_directory\" -e close_write --format '%w%f' |
-            while IFS= read -r new_file; do
-                if [[ \"$new_file\" =~ \.csv$ ]]; then
-                    echo \"New file detected: $new_file\"
-                    # Extract filename without path and extension for table name
-                    filename=$(basename -- \"$new_file\")
-                    tablename=\"${filename%.*}\"
-                    python3 /home/AzVolAutolity/VolAutolity/file_ingestion.py --file_path \"$new_file\" --database \"$database_name\" --table \"$tablename\" --tenant_id \"$TENANT_ID\" --client_id \"$CLIENT_ID\" --client_secret \"$CLIENT_SECRET\" --cluster_ingestion_uri \"$cluster_ingestion_uri\"
-                fi
-            done"
+        "monitor_output_directory "$unique_output_directory" "$database_name" &"
         )
+        elif [[ "$os_type" == "linux" ]]; then
+            commands+=("echo 'Linux-specific command'")
+            # Add Linux-specific commands here
+        elif [[ "$os_type" == "osx" ]]; then
+            commands+=("echo 'macOS-specific command'")
+            # Add macOS-specific commands here
+        else
+            echo "Unsupported OS type: $os_type" | tee -a "$log_file"
+            return 1 # Unsupported OS
+        fi
 
-  # Strings to check in the output that would trigger a rerun
-    declare -a rerun_if_contains=("A symbol table requirement was not fulfilled." "Unsatisfied requirement plugins.")
 
-    # Execute each command
     for cmd in "${commands[@]}"; do
         echo "Executing: $cmd" | tee -a "$log_file"
-
-        if [[ $cmd == vol.py* ]]; then
-            # Temporary file to hold command output for inspection
-            local temp_output="$(mktemp)"
-            eval "$cmd" &> "$temp_output"
-            cat "$temp_output" >> "$log_file" # Append the output to the log file
-
-            # Check if output contains any of the rerun strings
-            for rerun_string in "${rerun_if_contains[@]}"; do
-                if grep -q "$rerun_string" "$temp_output"; then
-                    echo "Output contains '$rerun_string', rerunning command: $cmd" | tee -a "$log_file"
-                    eval "$cmd" &>> "$log_file" # Rerun command and append both stdout and stderr to log
-                    break # Break after rerun, assuming only one rerun is needed
-                fi
-            done
-
-            # Clean up temporary file
-            rm "$temp_output"
-        else
-            # For non-vol.py commands, execute normally
-            if ! eval "$cmd" &>> "$log_file"; then
-                echo "Command encountered an error, but continuing: $cmd" >> "$log_file"
-            fi
-        fi
+        eval "$cmd" &>> "$log_file"
     done
+}
+
+monitor_output_directory() {
+    local unique_output_directory="$1"
+    local database_name="$2"
+    local log_file="$unique_output_directory/command_log.txt"
+    
+    echo "Starting to monitor $unique_output_directory for new CSV files..."
+
+    inotifywait -m "$unique_output_directory" -e close_write --format '%w%f' |
+        while IFS= read -r new_file; do
+            if [[ "$new_file" =~ \.csv$ ]]; then
+                echo "New CSV file detected: $new_file" | tee -a "$log_file"
+                # Extract filename without path and extension for table name
+                filename=$(basename -- "$new_file")
+                tablename="${filename%.*}"
+                python3 /home/AzVolAutolity/VolAutolity/file_ingestion.py --file_path "$new_file" --database "$database_name" --table "$tablename" --tenant_id "$TENANT_ID" --client_id "$CLIENT_ID" --client_secret "$CLIENT_SECRET" --cluster_ingestion_uri "$cluster_ingestion_uri"
+            fi
+        done
+}
+
+determine_os() {
+    local file_name="$1"
+    local os_type="${file_name%%_*}"
+    echo "$os_type"
 }
 
 # Function to process a new file with all specified Volatility commands
 process_new_file() {
     local dump_path="$1"
     local dump_name=$(basename "$dump_path")
+    # Removing extension for the folder name
     local dump_name_no_ext="${dump_name%.*}"
+    local os_type=$(determine_os "$dump_name")
 
-    if ! validate_file "$dump_name"; then
+    if [[ $? -ne 0 ]]; then
+        echo "File validation failed or unsupported OS type for file: $dump_name"
         return
     fi
 
     local unique_output_directory="$BASE_OUTPUT_DIRECTORY/$dump_name_no_ext"
     mkdir -p "$unique_output_directory"
-
-    # Run Windows commands
-    run_windows_commands "$dump_path" "$unique_output_directory" "$dump_name_no_ext"
+    run_os_commands "$dump_path" "$unique_output_directory" "$os_type" "$dump_name_no_ext"
 }
+
