@@ -91,7 +91,7 @@
         "type": 3,
         "content": {
           "version": "KqlItem/1.0",
-          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| distinct *\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
           "size": 0,
           "queryType": 9,
           "visualization": "table",
@@ -106,7 +106,7 @@
                 "formatter": 5
               }
             ],
-            "rowLimit": 750,
+            "rowLimit": 2000,
             "hierarchySettings": {
               "idColumn": "PID",
               "parentColumn": "PPID",
