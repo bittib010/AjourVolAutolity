@@ -114,8 +114,9 @@
 
       become: yes
 
+    #####################
     # Blobfuse section
-    ##################
+    #####################
     - name: Download Microsoft packages configuration for Ubuntu 20.04
       ansible.builtin.get_url:
         url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
@@ -123,13 +124,11 @@
       become: yes
       ignore_errors: yes
 
-
     - name: Install Microsoft packages configuration
       ansible.builtin.apt:
         deb: /tmp/packages-microsoft-prod.deb
       become: yes
       ignore_errors: yes
-
 
     - name: Update package lists
       ansible.builtin.apt:
@@ -212,7 +211,7 @@
       become: yes
       ignore_errors: yes
 
-    # - name: Rebooting the cloud server/bare metal box
+    # - name: Reboot vm
     #   reboot:
 
     # Volatility runner section
@@ -248,6 +247,11 @@
 
     - name: Change mode of VolatilityRunner script
       ansible.builtin.shell: chmod +x {{ project_path }}/bash_volatility_runner.sh
+      become: yes
+      ignore_errors: yes
+
+    - name: Update clamav
+      ansible.builtin.shell: freshclam
       become: yes
       ignore_errors: yes
 

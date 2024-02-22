@@ -288,4 +288,6 @@ VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resourc
 - https://www.huuhka.net/devops-for-azure-workbooks/
 - https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations
 - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations
+- https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh
+- https://github.com/Yara-Rules/rules
 </details>

@@ -60,9 +60,13 @@ run_os_commands() {
         netstat (TreeDepth:int32,Offset:string,Proto:string,LocalAddr:string,LocalPort:string,ForeignAddr:string,ForeignPort:string,State:string,PID:int32,Owner:string,Created:string),
         poolscanner (TreeDepth:int32,Tag:string,Offset:string,Layer:string,Name:string),
         privileges (TreeDepth:int32,PID:int32,Process:string,Value:string,Privilege:string,Attributes:string,Description:string),
-        pslist (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:string, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        psscan (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:string, Handles:string, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
-        // pstree (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:string, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Audit:string, Cmd:string, Path:string),
+        pslist (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_singletons (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_windowscore (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_exclude_windows_core (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        psscan (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
+        taskhost_triage (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
+        // pstree (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Audit:string, Cmd:string, Path:string),
         registry (TreeDepth:int32,Certificatepath:string,Certificatesection:string,CertificateID:string,Certificatename:string),
         registry_hivelist (TreeDepth:int32,Offset:string,FileFullPath:string,Fileoutput:string),
         registry_hivescan (TreeDepth:int32,Offset:string),
@@ -77,9 +81,11 @@ run_os_commands() {
         vadwalk (TreeDepth:int32,PID:int32,Process:string,Offset:string,Parent:string,Left:string,Right:string,Start:string,End:string,Tag:string),
         vadyarascan (TreeDepth:int32,Offset:string,PID:int32,Rule:string,Component:string,Value:string),
         verinfo (TreeDepth:int32, PID:int32, Process:string, Base:string, Name:string, Major:string, Minor:string, Product:string, Build:string),
-        virtmap (TreeDepth:int32,Region:string,Startoffset:string,Endoffset:string)\""
+        virtmap (TreeDepth:int32,Region:string,Startoffset:string,Endoffset:string),
+        sessions (TreeDepth:int32,SessionID:string,SessionType:string,ProcessID:string,Process:string,UserName:string,CreateTime:string),
+        crashinfo (NotCreatedYet:string)\""
 
-        "echo 'Starting to run Volatility commands. lowercase statistics seems preserved by Kusto'"
+        "echo 'Starting to run Volatility commands..."
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.info > $unique_output_directory/info.csv"
         "strings -a -td $dump > $unique_output_directory/strings.txt && strings -a -td -el $dump  > $unique_output_directory/strings.txt && vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.strings.Strings --strings-file $unique_output_directory/strings.txt > $unique_output_directory/strings.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv timeliner > $unique_output_directory/timeliner.csv &"
@@ -88,15 +94,15 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.callbacks.Callbacks > $unique_output_directory/callbacks.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.cmdline.CmdLine > $unique_output_directory/cmdline.csv &"
         #"vol.py -f {crashdump} --log $unique_output_directory/Volatility.log -q -r csv windows.crashinfo.Crashinfo > $unique_output_directory/crashinfo.csv &"
-        #"az kusto script create --cluster-name $cluster_name --database-name $database_name --name crashinfo-script --resource-group $resource_group_name --script-content \".create table crashinfo (NotCreatedYet:string)\""
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.devicetree.DeviceTree > $unique_output_directory/devicetree.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dlllist.DllList > $unique_output_directory/dlllist.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverirp.DriverIrp > $unique_output_directory/driverirp.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.drivermodule.DriverModule > $unique_output_directory/drivermodule.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverscan.DriverScan > $unique_output_directory/driverscan.csv &"
+
         "mkdir $unique_output_directory/dumpfiles"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles/ windows.dumpfiles.DumpFiles &"
-        # LOGIC TO RUN CLAMAV
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles windows.dumpfiles.DumpFiles && clamscan $unique_output_directory/dumpfiles/* > $unique_output_directory/clamscan.txt && convert_clamscan_output_to_csv $unique_output_directory/clamscan.txt $unique_output_directory/clamscan.csv &"
+        # add a "file" check and make it csv
         
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dumpfiles.DumpFiles > $unique_output_directory/dumpfiles.csv &"        
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.envars.Envars > $unique_output_directory/envars.csv &"        
@@ -119,19 +125,31 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.netstat.NetStat > $unique_output_directory/netstat.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.poolscanner.PoolScanner > $unique_output_directory/poolscanner.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.privileges.Privs > $unique_output_directory/privileges.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv &"
+
+        # Need a way to better create the commands below.
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv"
+        # https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh
+        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_singletons.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_singletons.csv"
+
+        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_windowscore.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_windowscore.csv"
+
+        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_exclude_windows_core.csv\" && grep -E -i -v \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_exclude_windows_core.csv"
+
+
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv &"
-        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pstree.PsTree > $unique_output_directory/pstree.csv &"
+        "head -n 1 \"$unique_output_directory/psscan.csv\" > \"$unique_output_directory/taskhost_triage.csv\" && grep -E -i \"taskhost\" $unique_output_directory/pslist.csv >> $unique_output_directory/taskhost_triage.csv"
+
+        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pstree.PsTree > $unique_output_directory/pstree.csv &" # covered in workbook
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv &"
-        "mkdir $unique_output_directory/regdumps"
+        "mkdir $unique_output_directory/regdumps/"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv -o $unique_output_directory/regdumps/ windows.registry.hivelist.HiveList &"
         # LOGIC NEEDED
+
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivescan.HiveScan > $unique_output_directory/registry_hivescan.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.printkey.PrintKey > $unique_output_directory/registry_printkey.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.userassist.UserAssist > $unique_output_directory/registry_userassist.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.sessions.Sessions > $unique_output_directory/sessions.csv &"
-        #"az kusto script create --cluster-name $cluster_name --database-name $database_name --name sessions-script --resource-group $resource_group_name --script-content \".create table sessions (TreeDepth:int32,SessionID:string,SessionType:string,ProcessID:string,Process:string,UserName:string,CreateTime:string)\""
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.skeleton_key_check.Skeleton_Key_Check > $unique_output_directory/skeleton_key_check.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ssdt.SSDT > $unique_output_directory/ssdt.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.statistics.Statistics > $unique_output_directory/Statistics.csv &"
@@ -180,6 +198,45 @@ monitor_output_directory() {
                 python3 /home/AzVolAutolity/VolAutolity/file_ingestion.py --file_path "$new_file" --database "$database_name" --table "$tablename" --tenant_id "$TENANT_ID" --client_id "$CLIENT_ID" --client_secret "$CLIENT_SECRET" --cluster_ingestion_uri "$cluster_ingestion_uri"
             fi
         done
+}
+
+convert_clamscan_output_to_csv() {
+    local input_file="$1"
+    local output_csv="$2"
+
+    # Check if the input file exists
+    if [[ ! -f "$input_file" ]]; then
+        echo "Input file does not exist: $input_file"
+        exit 1
+    fi
+
+    # Create headers
+    echo "File,Result" > "$output_csv"
+
+    # Parse clamscan output and append to CSV
+    while IFS= read -r line; do
+        # Check for the scan summary line and stop processing if found
+        if [[ "$line" == *"----------- SCAN SUMMARY -----------"* ]]; then
+            break
+        fi
+        
+        # Skip empty lines and summary lines
+        if [[ -z "$line" ]]; then
+            continue
+        fi
+
+        # Extract the file path and scan result
+        file_path=$(echo "$line" | cut -d":" -f1)
+        result=$(echo "$line" | grep -oE 'FOUND|OK$')
+
+        # Replace commas in file path to avoid breaking CSV format
+        file_path_cleaned=$(echo "$file_path" | sed 's/,/;/g')
+
+        # Append to CSV
+        echo "\"$file_path_cleaned\",\"$result\"" >> "$output_csv"
+    done < "$input_file"
+
+    echo "Clamscan results saved to $output_csv"
 }
 
 determine_os() {

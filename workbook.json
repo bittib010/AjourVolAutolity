@@ -73,21 +73,6 @@
         "name" : "query - 0"
       },
       {
-        "type" : 3,
-        "content" : {
-          "version" : "KqlItem/1.0",
-          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| extend meta = parse_json(foreign_add)\\r\\n| extend lat = meta[\\\"latitude\\\"], lon = meta[\\\"longitude\\\"]\\r\\n| project lon, lat\\r\\n| render scatterchart with (kind = map)\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-          "size" : 0,
-          "title" : "IPs from netscan",
-          "noDataMessage" : "No available IPs in the dataset",
-          "queryType" : 9,
-          "mapSettings" : {
-            "locInfo" : "LatLong"
-          }
-        },
-        "name" : "query - 2"
-      },
-      {
         "type": 3,
         "content": {
           "version": "KqlItem/1.0",
@@ -171,7 +156,7 @@
           "version": "KqlItem/1.0",
           "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| where ForeignAddr !in (\\\"::\\\", \\\"0.0.0.0\\\", \\\"*\\\")\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(ForeignAddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, ForeignAddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
           "size": 0,
-          "title": "IPs from netscan",
+          "title": "IPs from netscan and netstat",
           "noDataMessage": "No available IPs in the dataset",
           "queryType": 9,
           "visualization": "map",
@@ -197,6 +182,24 @@
           "margin": "2",
           "padding": "2"
         }
+      },
+      {
+        "type": 1,
+        "content": {
+          "json": "# Hidden Processes"
+        },
+        "name": "text - 8"
+      },
+      {
+        "type": 3,
+        "content": {
+          "version": "KqlItem/1.0",
+          "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=leftanti psscan on PID\\r\\n| distinct *\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+          "size": 4,
+          "queryType": 9,
+          "visualization": "table"
+        },
+        "name": "query - 9"
       }
     ],
     "fallbackResourceIds" : [
