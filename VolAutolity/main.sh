@@ -31,6 +31,8 @@ find "$DIRECTORY" -type f \( -name "*.dump" -o -name "*.dmp" -o -name "*.raw" -o
                 log_message "Failed to process: $file"
             fi
         ) & # Runs new files concurrently
+        # sleeping to avoid: Message: [Conflict] Cluster 'test-4e6f1f64clstr' is in process of maintenance for a short period. You may retry to invoke the operation in a few minutes.
+        sleep 30
     fi
 done
 
