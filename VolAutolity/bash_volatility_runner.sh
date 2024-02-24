@@ -85,6 +85,8 @@ run_os_commands() {
         sessions (TreeDepth:int32,SessionID:string,SessionType:string,ProcessID:string,Process:string,UserName:string,CreateTime:string),
         crashinfo (NotCreatedYet:string)\""
 
+        "monitor_output_directory "$unique_output_directory" "$database_name" &"
+
         "echo 'Starting to run Volatility commands..."
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.info > $unique_output_directory/info.csv"
         "strings -a -td $dump > $unique_output_directory/strings.txt && strings -a -td -el $dump  > $unique_output_directory/strings.txt && vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.strings.Strings --strings-file $unique_output_directory/strings.txt > $unique_output_directory/strings.csv &"
@@ -126,20 +128,11 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.poolscanner.PoolScanner > $unique_output_directory/poolscanner.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.privileges.Privs > $unique_output_directory/privileges.csv &"
 
-        # Need a way to better create the commands below.
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv"
-        # https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh
-        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_singletons.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_singletons.csv"
-
-        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_windowscore.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_windowscore.csv"
-
-        "head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_exclude_windows_core.csv\" && grep -E -i -v \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_exclude_windows_core.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_singletons.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_singletons.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_windowscore.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_windowscore.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_exclude_windows_core.csv\" && grep -E -i -v \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_exclude_windows_core.csv &"
 
 
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv &"
-        "head -n 1 \"$unique_output_directory/psscan.csv\" > \"$unique_output_directory/taskhost_triage.csv\" && grep -E -i \"taskhost\" $unique_output_directory/pslist.csv >> $unique_output_directory/taskhost_triage.csv"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv && head -n 1 \"$unique_output_directory/psscan.csv\" > \"$unique_output_directory/taskhost_triage.csv\" && grep -E -i \"taskhost\" $unique_output_directory/pslist.csv >> $unique_output_directory/taskhost_triage.csv &"
 
-        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pstree.PsTree > $unique_output_directory/pstree.csv &" # covered in workbook
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv &"
         "mkdir $unique_output_directory/regdumps/"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv -o $unique_output_directory/regdumps/ windows.registry.hivelist.HiveList &"
@@ -157,11 +150,14 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.symlinkscan.SymlinkScan > $unique_output_directory/symlinkscan.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadinfo.VadInfo > $unique_output_directory/vadinfo.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadwalk.VadWalk > $unique_output_directory/vadwalk.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadyarascan.VadYaraScan > $unique_output_directory/vadyarascan.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.verinfo.VerInfo > $unique_output_directory/verinfo.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.virtmap.VirtMap > $unique_output_directory/virtmap.csv"
 
-        "monitor_output_directory "$unique_output_directory" "$database_name" &"
+        # Yara
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.vadyarascan.VadYaraScan --yara-rules "https://raw.githubusercontent.com/reversinglabs/reversinglabs-yara-rules/develop/yara/backdoor/Win64.Backdoor.Konni.yara" > $unique_output_directory/vadyarascan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv yarascan.YaraScan --yara-rules "https://raw.githubusercontent.com/reversinglabs/reversinglabs-yara-rules/develop/yara/backdoor/Win64.Backdoor.Konni.yara" > $unique_output_directory/yarascan.csv &"
+
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.verinfo.VerInfo > $unique_output_directory/verinfo.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.virtmap.VirtMap > $unique_output_directory/virtmap.csv &"
+
         )
         elif [[ "$os_type" == "linux" ]]; then
             commands+=("echo 'Linux-specific command'")
@@ -185,20 +181,36 @@ monitor_output_directory() {
     local unique_output_directory="$1"
     local database_name="$2"
     local log_file="$unique_output_directory/command_log.txt"
-    
+    local processed_dir="$unique_output_directory/processed"
+
+    # Ensure the processed files directory exists
+    mkdir -p "$processed_dir"
+
     echo "Starting to monitor $unique_output_directory for new CSV files..."
 
     inotifywait -m "$unique_output_directory" -e close_write --format '%w%f' |
         while IFS= read -r new_file; do
             if [[ "$new_file" =~ \.csv$ ]]; then
-                echo "New CSV file detected: $new_file" | tee -a "$log_file"
-                # Extract filename without path and extension for table name
+                # Extract filename without path for processed file tracking
                 filename=$(basename -- "$new_file")
-                tablename="${filename%.*}"
-                python3 /home/AzVolAutolity/VolAutolity/file_ingestion.py --file_path "$new_file" --database "$database_name" --table "$tablename" --tenant_id "$TENANT_ID" --client_id "$CLIENT_ID" --client_secret "$CLIENT_SECRET" --cluster_ingestion_uri "$cluster_ingestion_uri"
+                processed_file="$processed_dir/$filename"
+
+                # Check if the file has been processed already
+                if [ ! -f "$processed_file" ]; then
+                    echo "New CSV file detected: $new_file" | tee -a "$log_file"
+                    # Extract filename without path and extension for table name
+                    tablename="${filename%.*}"
+                    python3 /home/AzVolAutolity/VolAutolity/file_ingestion.py --file_path "$new_file" --database "$database_name" --table "$tablename" --tenant_id "$TENANT_ID" --client_id "$CLIENT_ID" --client_secret "$CLIENT_SECRET" --cluster_ingestion_uri "$cluster_ingestion_uri"
+
+                    # Mark the file as processed to avoid reprocessing
+                    touch "$processed_file"
+                else
+                    echo "CSV file already processed, skipping: $new_file" | tee -a "$log_file"
+                fi
             fi
         done
 }
+
 
 convert_clamscan_output_to_csv() {
     local input_file="$1"
