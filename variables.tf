@@ -50,12 +50,12 @@ variable "linux-size" {
 variable "path_to_public_key" {
   type        = string
   description = "The path to public key for SSH login"
-  default     = "C:\\Users\\AdrianKydlandSkaftun\\.ssh\\id_rsa.pub"
+  default     = "C:\\Users\\<Username>\\.ssh\\id_rsa.pub"
 }
 variable "path_to_private_key" {
   type        = string
   description = "The path to private key for SSH login"
-  default     = "C:\\Users\\AdrianKydlandSkaftun\\.ssh\\id_rsa"
+  default     = "C:\\Users\\<Username>\\.ssh\\id_rsa"
 }
 
 # Expand logic if needed for more resources. THis is based on autodeletion, to prevent it from happening if present in your subscription.
