@@ -1,0 +1,51 @@
+TreeDepth,Type,Callback,Module,Symbol,Detail
+0,PspLoadImageNotifyRoutine,0x82aa7ab9,ntoskrnl,EtwpTraceLoadImage,N/A
+0,PspCreateProcessNotifyRoutine,0x8290ed35,ntoskrnl,ViCreateProcessCallback,N/A
+0,PspCreateProcessNotifyRoutine,0x82e0c9d8,ksecdd,-,N/A
+0,PspCreateProcessNotifyRoutine,0x86e3dd96,cng,-,N/A
+0,PspCreateProcessNotifyRoutine,0x8709a6d3,tcpip,-,N/A
+0,PspCreateProcessNotifyRoutine,0x82f21dfc,CI,-,N/A
+0,PspCreateProcessNotifyRoutine,0x93935358,vm3dmp,-,N/A
+0,PspCreateProcessNotifyRoutine,0x9f6191d9,peauth,-,N/A
+0,KeBugCheckCallbackListHead,0x86ee4660,ndis,-,Ndis miniport
+0,KeBugCheckCallbackListHead,0x86ee4660,ndis,-,Ndis miniport
+0,KeBugCheckCallbackListHead,0x86ee4660,ndis,-,Ndis miniport
+0,KeBugCheckCallbackListHead,0x86ee4660,ndis,-,Ndis miniport
+0,KeBugCheckCallbackListHead,0x86ee4660,ndis,-,Ndis miniport
+0,KeBugCheckCallbackListHead,0x82829996,hal,-,ACPI x86 platform
+0,KeBugCheckReasonCallbackListHead,0x8cf2240c,BthEnum,-,BthEnum
+0,KeBugCheckReasonCallbackListHead,0x8cf0e02c,rfcomm,-,RFCOMM
+0,KeBugCheckReasonCallbackListHead,0x8ced5e0c,bthport,-,BTHUSB
+0,KeBugCheckReasonCallbackListHead,0x8ce8dcb6,BTHUSB,-,BTHUSB
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,monitor
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,PEAUTH
+0,KeBugCheckReasonCallbackListHead,0x9519850e,mouhid,-,mouhid
+0,KeBugCheckReasonCallbackListHead,0x95183abc,HIDCLASS,-,HidUsb
+0,KeBugCheckReasonCallbackListHead,0x9517385e,hidusb,-,HidUsb
+0,KeBugCheckReasonCallbackListHead,0x9510e1be,crashdmp,-,CRASHDUMP
+0,KeBugCheckReasonCallbackListHead,0x950469da,usbhub,-,USBHUB
+0,KeBugCheckReasonCallbackListHead,0x95046985,usbhub,-,USBHUB
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,umbus
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,CompositeBus
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,intelppm
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,HDAudBus
+0,KeBugCheckReasonCallbackListHead,0x8c731e3f,USBPORT,-,USBPORT
+0,KeBugCheckReasonCallbackListHead,0x8c731ef6,USBPORT,-,USBPORT
+0,KeBugCheckReasonCallbackListHead,0x8c731e9c,USBPORT,-,USBPORT
+0,KeBugCheckReasonCallbackListHead,0x8c623ac9,dxgkrnl,-,\\Device\\DxgKrnl
+0,KeBugCheckReasonCallbackListHead,0x939065f5,mouclass,-,mouclass
+0,KeBugCheckReasonCallbackListHead,0x938f1861,kbdclass,-,kbdclass
+0,KeBugCheckReasonCallbackListHead,0x938de8d5,i8042prt,-,i8042prt
+0,KeBugCheckReasonCallbackListHead,0x9387aeec,mssmbios,-,SMBiosData
+0,KeBugCheckReasonCallbackListHead,0x9387aea4,mssmbios,-,SMBiosRegistry
+0,KeBugCheckReasonCallbackListHead,0x9387ae54,mssmbios,-,SMBiosRegisters
+0,KeBugCheckReasonCallbackListHead,0x9387ae0c,mssmbios,-,SMBiosDataACPI
+0,KeBugCheckReasonCallbackListHead,0x872eb392,VIDEOPRT,-,Videoprt
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,cdrom
+0,KeBugCheckReasonCallbackListHead,0x872ab889,cdrom,-,cdrom
+0,KeBugCheckReasonCallbackListHead,0x8723d4ff,CLASSPNP,-,CLASSPNP
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,vdrvroot
+0,KeBugCheckReasonCallbackListHead,0x86a7c72d,Wdf01000,-,msisadrv
+0,KeBugCheckReasonCallbackListHead,0x86a7c22a,Wdf01000,-,Wdf01000
+0,KeBugCheckReasonCallbackListHead,0x82fc02a6,ataport,-,IDEP
+

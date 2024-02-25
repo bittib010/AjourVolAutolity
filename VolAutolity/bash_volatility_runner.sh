@@ -28,7 +28,7 @@ run_os_commands() {
         "az kusto script create --cluster-name $cluster_name --database-name $database_name --name strings-script --resource-group $resource_group_name --script-content \"
         .create tables 
         strings (TreeDepth:int32,String:string,PhysicalAddress:string,Result:string),
-        info (TreeDepth:int32, Variable:string, Value:string),
+        info (TreeDepth:int32, Variable:string, Value:int32),
         timeliner (TreeDepth:int32,Plugin:string,Description:string,CreatedDate:string,ModifiedDate:string,AccessedDate:string,ChangedDate:string),
         bigpools (TreeDepth:int32, Allocation:string, Tag:string, PoolType:string, NumberOfBytes:string, Status:string),
         cachedump (TreeDepth:int32, Username:string, Domain:string, Domainname:string, Hash:string),
@@ -40,11 +40,11 @@ run_os_commands() {
         drivermodule (TreeDepth:int32, Offset:string, KnownException:string, DriverName:string, ServiceKey:string, AlternativeName:string),
         driverscan (TreeDepth:int, Offset:string, Start:string, Size:string, ServiceKey:string, DriverName:string, Name:string),
         dumpfiles (TreeDepth:int32,Cache:string,FileObject:string,FileName:string,Result:string),
-        envars (TreeDepth:int32, PID:int32, Process:string, Block:string, Variable:string, Value:string),
+        envars (TreeDepth:int32, PID:int32, Process:string, Block:string, Variable:string, Value:int32),
         filescan (TreeDepth:int32, Offset:string, Name:string, Size:int32),
         getservicesids (TreeDepth:int32, SID:string, Service:string),
         getsids (TreeDepth:int32, PID:int32, Process:string, SID:string, Name:string),
-        handles (TreeDepth:int32, PID:int32, Process:string, Offset:string, HandleValue:string, Type:string, GrantedAccess:string, Name:string),
+        handles (TreeDepth:int32, PID:int32, Process:string, Offset:string, HandleValue:int32, Type:string, GrantedAccess:string, Name:string),
         hashdump (TreeDepth:int32, User:string, rid:int32, lmhash:string, nthash:string),
         joblinks (TreeDepth:int32,OffsetV:string,Name:string,PID:int32,PPID:int32,Sess:string,JobSess:string,Wow64:string,Total:string,Active:string,Term:string,JobLink:string,Process:string),
         ldrmodules (TreeDepth:int32,Pid:int32,Process:string,Base:string,InLoad:string,InInit:string,InMem:string,MappedPath:string),
@@ -59,14 +59,14 @@ run_os_commands() {
         netscan (TreeDepth:int32,Offset:string,Proto:string,LocalAddr:string,LocalPort:string,ForeignAddr:string,ForeignPort:string,State:string,PID:int32,Owner:string,Created:string),
         netstat (TreeDepth:int32,Offset:string,Proto:string,LocalAddr:string,LocalPort:string,ForeignAddr:string,ForeignPort:string,State:string,PID:int32,Owner:string,Created:string),
         poolscanner (TreeDepth:int32,Tag:string,Offset:string,Layer:string,Name:string),
-        privileges (TreeDepth:int32,PID:int32,Process:string,Value:string,Privilege:string,Attributes:string,Description:string),
-        pslist (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_singletons (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_windowscore (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_exclude_windows_core (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        psscan (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
-        taskhost_triage (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
-        // pstree (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32, Handles:string, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Audit:string, Cmd:string, Path:string),
+        privileges (TreeDepth:int32,PID:int32,Process:string,Value:int32,Privilege:string,Attributes:string,Description:string),
+        pslist (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_singletons (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_windowscore (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        pslist_exclude_windows_core (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
+        psscan (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
+        taskhost_triage (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
+        // pstree (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Audit:string, Cmd:string, Path:string),
         registry (TreeDepth:int32,Certificatepath:string,Certificatesection:string,CertificateID:string,Certificatename:string),
         registry_hivelist (TreeDepth:int32,Offset:string,FileFullPath:string,Fileoutput:string),
         registry_hivescan (TreeDepth:int32,Offset:string),
@@ -79,11 +79,14 @@ run_os_commands() {
         symlinkscan (TreeDepth:int32,Offset:string,CreateTime:string,FromName:string,ToName:string),
         vadinfo (TreeDepth:int32,PID:int32,Process:string,Offset:string,StartVPN:string,EndVPN:string,Tag:string,Protection:string,CommitCharge:string,PrivateMemory:string,Parent:string,File:string,Fileoutput:string),
         vadwalk (TreeDepth:int32,PID:int32,Process:string,Offset:string,Parent:string,Left:string,Right:string,Start:string,End:string,Tag:string),
-        vadyarascan (TreeDepth:int32,Offset:string,PID:int32,Rule:string,Component:string,Value:string),
+        vadyarascan (TreeDepth:int32,Offset:string,PID:int32,Rule:string,Component:string,Value:int32),
         verinfo (TreeDepth:int32, PID:int32, Process:string, Base:string, Name:string, Major:string, Minor:string, Product:string, Build:string),
         virtmap (TreeDepth:int32,Region:string,Startoffset:string,Endoffset:string),
         sessions (TreeDepth:int32,SessionID:string,SessionType:string,ProcessID:string,Process:string,UserName:string,CreateTime:string),
-        crashinfo (NotCreatedYet:string)\""
+        crashinfo (NotCreatedYet:string),
+        iat (PID:int32,Name:string,Library:string,Bound:string,Function:string,Address:string),
+        cobaltstrike (PID:int32,ProcessPort:int32,Sleep:string,Jitter:string,Server:string,POST_PATH:string,x86Install_Path:string,x64Install_Path:string,Pipe:string,LicenseID:string),
+        clamscan (File:string,Result:string)\""
 
         "monitor_output_directory "$unique_output_directory" "$database_name" &"
 
@@ -112,7 +115,7 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getservicesids.GetServiceSIDs > $unique_output_directory/getservicesids.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.getsids.GetSIDs > $unique_output_directory/getsids.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.handles.Handles > $unique_output_directory/handles.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.hashdump.Hashdump > $unique_output_directory/hashdump.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.hashdump.Hashdump > $unique_output_directory/hashdump.csv&"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.joblinks.JobLinks > $unique_output_directory/joblinks.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.ldrmodules.LdrModules > $unique_output_directory/ldrmodules.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.lsadump.Lsadump > $unique_output_directory/lsadump.csv &"
@@ -157,6 +160,10 @@ run_os_commands() {
 
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.verinfo.VerInfo > $unique_output_directory/verinfo.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.virtmap.VirtMap > $unique_output_directory/virtmap.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.iat.IAT > $unique_output_directory/iat.csv &"
+
+        # PLUGINS
+        "vol.py -f $dump --log  $unique_output_directory/Volatility.log -q -r csv windows.cobaltstrike.CobaltStrike > $unique_output_directory/cobaltstrike.csv &"
 
         )
         elif [[ "$os_type" == "linux" ]]; then
@@ -210,7 +217,6 @@ monitor_output_directory() {
             fi
         done
 }
-
 
 convert_clamscan_output_to_csv() {
     local input_file="$1"

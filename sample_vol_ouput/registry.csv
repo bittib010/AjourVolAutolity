@@ -1,0 +1,20 @@
+TreeDepth,Certificatepath,Certificatesection,CertificateID,Certificatename
+0,Software\\Microsoft\\SystemCertificates,Root,ProtectedRoots,-
+0,Microsoft\\SystemCertificates,AuthRoot,4EB6D578499B1CCF5F581EAD56BE3D9B6744A5E5,VeriSign
+0,Microsoft\\SystemCertificates,AuthRoot,4F65566336DB6598581D584A596C87934D5F2AB4,VeriSign Class 3 Primary CA
+0,Microsoft\\SystemCertificates,AuthRoot,742C3192E607E424EB4549542BE1BBC53E6174E2,VeriSign Class 3 Public Primary CA
+0,Microsoft\\SystemCertificates,CA,109F1CAED645BB78B3EA2B94C0697C740733031C,-
+0,Microsoft\\SystemCertificates,CA,D559A586669B08F46A30A133F8A9ED3D038E2EA8,-
+0,Microsoft\\SystemCertificates,CA,FEE449EE0E3965A5246F000E87FDE2A065FD89D4,-
+0,Microsoft\\SystemCertificates,CA,A377D1B1C0538833035211F4083D00FECC414DAB,-
+0,Microsoft\\SystemCertificates,Disallowed,637162CC59A3A1E25956FA5FA8F60D2E1C52EAC6,"Fraudulent, NOT Microsoft"
+0,Microsoft\\SystemCertificates,Disallowed,7D7F4414CCEF168ADF6BF40753B5BECD78375931,"Fraudulent, NOT Microsoft"
+0,Microsoft\\SystemCertificates,ROOT,18F7C1FCC3090203FD5BAA2F861A754976C8DD25,VeriSign Time Stamping CA
+0,Microsoft\\SystemCertificates,ROOT,245C97DF7514E7CF2DF8BE72AE957B9E04741E85,Microsoft Timestamp Root
+0,Microsoft\\SystemCertificates,ROOT,7F88CD7223F3C813818C994614A89C99FA3B5247,Microsoft Authenticode(tm) Root
+0,Microsoft\\SystemCertificates,ROOT,A43489159A520F0D93D032CCAF37E7FE20A8B419,Microsoft Root Authority
+0,Microsoft\\SystemCertificates,ROOT,BE36A4562FB2EE05DBB3D32323ADF445084ED656,Thawte Timestamping CA
+0,Microsoft\\SystemCertificates,ROOT,CDD4EEAE6000AC7F40C3802C171E30148030C072,Microsoft Root Certificate Authority
+0,Software\\Microsoft\\SystemCertificates,Root,ProtectedRoots,-
+0,Software\\Microsoft\\SystemCertificates,Root,ProtectedRoots,-
+

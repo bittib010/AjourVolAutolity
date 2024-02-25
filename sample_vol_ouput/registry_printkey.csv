@@ -1,0 +1,81 @@
+TreeDepth,LastWriteTime,HiveOffset,Type,Key,Name,Data,Volatile
+0,2023-04-24 14:42:03.000000 ,0x87c104c8,Key,[NONAME],A,N/A,False
+0,2023-04-24 14:49:48.000000 ,0x87c104c8,Key,[NONAME],MACHINE,N/A,False
+0,2023-04-24 14:41:38.000000 ,0x87c104c8,Key,[NONAME],USER,N/A,False
+0,2023-04-25 00:35:30.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,ControlSet001,N/A,False
+0,2009-07-14 04:53:14.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,ControlSet002,N/A,False
+0,2023-04-25 00:35:16.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,MountedDevices,N/A,False
+0,2023-04-24 14:46:29.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,RNG,N/A,False
+0,2009-07-14 04:53:15.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,Select,N/A,False
+0,2023-04-24 14:41:40.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,Setup,N/A,False
+0,2010-11-20 21:35:23.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,Software,N/A,False
+0,2023-04-25 00:37:27.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,WPA,N/A,False
+0,2023-04-24 14:41:24.000000 ,0x87c1a248,Key,\\REGISTRY\\MACHINE\\SYSTEM,CurrentControlSet,N/A,True
+0,2023-04-24 14:41:24.000000 ,0x87c44268,Key,\\REGISTRY\\MACHINE\\HARDWARE,ACPI,N/A,False
+0,2023-04-24 14:41:24.000000 ,0x87c44268,Key,\\REGISTRY\\MACHINE\\HARDWARE,DESCRIPTION,N/A,False
+0,2023-04-24 14:41:37.000000 ,0x87c44268,Key,\\REGISTRY\\MACHINE\\HARDWARE,DEVICEMAP,N/A,False
+0,2023-04-24 14:41:24.000000 ,0x87c44268,Key,\\REGISTRY\\MACHINE\\HARDWARE,RESOURCEMAP,N/A,True
+0,2009-07-14 04:37:41.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,Control Panel,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,Environment,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,EUDC,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,Keyboard Layout,N/A,False
+0,2010-11-20 21:40:46.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,Printers,N/A,False
+0,2023-04-24 14:40:53.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,Software,N/A,False
+0,2009-07-14 04:37:23.000000 ,0x87cd7008,Key,\\SystemRoot\\System32\\Config\\DEFAULT,SYSTEM,N/A,False
+0,2023-04-24 14:41:32.000000 ,0x87ce3008,Key,\\Device\\HarddiskVolume1\\Boot\\BCD,Description,N/A,False
+0,2023-04-24 14:41:32.000000 ,0x87ce3008,Key,\\Device\\HarddiskVolume1\\Boot\\BCD,Objects,N/A,False
+0,2023-04-24 14:51:22.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,7-Zip,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,ATI Technologies,N/A,False
+0,2023-04-25 00:35:17.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,CBSTEST,N/A,False
+0,2023-04-24 14:41:11.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,Classes,N/A,False
+0,2009-07-14 04:42:26.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,Clients,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,Intel,N/A,False
+0,2023-04-24 14:41:50.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,Microsoft,N/A,False
+0,2009-07-14 04:37:06.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,ODBC,N/A,False
+0,2009-07-14 04:37:24.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,Policies,N/A,False
+0,2023-04-24 14:40:16.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,RegisteredApplications,N/A,False
+0,2023-04-24 14:40:19.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,ThinPrint,N/A,False
+0,2023-04-24 14:40:48.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,"VMware, Inc.",N/A,False
+0,2023-04-25 00:35:18.000000 ,0x87ce39c8,Key,\\SystemRoot\\System32\\Config\\SOFTWARE,WOW6432Node,N/A,False
+0,2023-04-24 14:55:49.000000 ,0x888ca520,Key,\\??\\C:\\System Volume Information\\Syscache.hve,DefaultObjectStore,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,AppEvents,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Console,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Control Panel,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Environment,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,EUDC,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Keyboard Layout,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Network,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Printers,N/A,False
+0,2023-04-24 14:40:53.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,Software,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a6f47c8,Key,\\??\\C:\\Windows\\ServiceProfiles\\NetworkService\\NTUSER.DAT,System,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,AppEvents,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Console,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Control Panel,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Environment,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,EUDC,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Keyboard Layout,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Network,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Printers,N/A,False
+0,2023-04-24 14:40:53.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,Software,N/A,False
+0,2009-07-14 04:34:14.000000 ,0x8a77e5c0,Key,\\??\\C:\\Windows\\ServiceProfiles\\LocalService\\NTUSER.DAT,System,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,AppEvents,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Console,N/A,False
+0,2023-04-24 14:38:59.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Control Panel,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Environment,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,EUDC,N/A,False
+0,2023-04-24 14:38:43.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Identities,N/A,False
+0,2023-04-24 14:38:39.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Keyboard Layout,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Network,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Printers,N/A,False
+0,2023-04-24 14:51:22.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Software,N/A,False
+0,2023-04-24 14:38:37.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,System,N/A,False
+0,2023-04-24 14:41:38.000000 ,0x8d15d9c8,Key,\\??\\C:\\Users\\Hoxed\\ntuser.dat,Volatile Environment,N/A,True
+0,2023-04-24 14:51:30.000000 ,0x8d16a008,Key,\\??\\C:\\Users\\Hoxed\\AppData\\Local\\Microsoft\\Windows\\UsrClass.dat,Applications,N/A,False
+0,2023-04-24 14:38:50.000000 ,0x8d16a008,Key,\\??\\C:\\Users\\Hoxed\\AppData\\Local\\Microsoft\\Windows\\UsrClass.dat,Local Settings,N/A,False
+0,2023-04-24 14:49:48.000000 ,0x968eb008,Key,\\SystemRoot\\System32\\Config\\SECURITY,Cache,N/A,False
+0,2010-11-20 20:49:50.000000 ,0x968eb008,Key,\\SystemRoot\\System32\\Config\\SECURITY,Policy,N/A,False
+0,2023-04-24 14:49:48.000000 ,0x968eb008,Key,\\SystemRoot\\System32\\Config\\SECURITY,Recovery,N/A,False
+0,2023-04-24 14:49:48.000000 ,0x968eb008,Key,\\SystemRoot\\System32\\Config\\SECURITY,RXACT,N/A,False
+0,2023-04-24 14:41:37.000000 ,0x968eb008,Key,\\SystemRoot\\System32\\Config\\SECURITY,SAM,N/A,True
+0,2009-07-14 04:34:12.000000 ,0x969519c8,Key,\\SystemRoot\\System32\\Config\\SAM,SAM,N/A,False
+

@@ -39,21 +39,23 @@ variable "linux-username" {
 }
 
 variable "linux-size" {
+  # https://learn.microsoft.com/en-us/azure/virtual-machines/sizes
   type        = string
   description = "The machine size of VM. Too big size might not be feasible and generate errors based on tenant limitations."
   default     = "Standard_B8ms"
   #default     = "Standard_DS1_v2"
+  #default     = "Standard_F16s_v2"
 }
 
 variable "path_to_public_key" {
   type        = string
   description = "The path to public key for SSH login"
-  default     = "C:\\Users\\<USERNAME>\\.ssh\\id_rsa.pub"
+  default     = "C:\\Users\\AdrianKydlandSkaftun\\.ssh\\id_rsa.pub"
 }
 variable "path_to_private_key" {
   type        = string
   description = "The path to private key for SSH login"
-  default     = "C:\\Users\\<USERNAME>\\.ssh\\id_rsa"
+  default     = "C:\\Users\\AdrianKydlandSkaftun\\.ssh\\id_rsa"
 }
 
 # Expand logic if needed for more resources. THis is based on autodeletion, to prevent it from happening if present in your subscription.

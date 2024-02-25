@@ -1,0 +1,6 @@
+TreeDepth,PID,PPID,ImageFileName,OffsetV,Threads,Handles,SessionId,Wow64,CreateTime,ExitTime,Fileoutput
+0,4,0,System,0x8413a920,91,431,N/A,False,2023-04-24 14:41:32.000000 ,N/A,Disabled
+0,404,340,wininit.exe,0x86297030,3,74,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,476,404,services.exe,0x8250b030,9,209,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,484,404,lsass.exe,0x8250fae8,7,594,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,492,404,lsm.exe,0x82512030,10,141,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled

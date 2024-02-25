@@ -1,0 +1,283 @@
+TreeDepth,PID,Process,StartVPN,EndVPN,Tag,Protection,CommitCharge,PrivateMemory,Fileoutput,Notes,Hexdump,Disasm
+0,776,svchost.exe,0xde0000,0xde1fff,VadS,PAGE_EXECUTE_READWRITE,2,1,Disabled,N/A,"
+b0 00 eb 70 b0 01 eb 6c	...p...l
+b0 02 eb 68 b0 03 eb 64	...h...d
+b0 04 eb 60 b0 05 eb 5c	...`...\\
+b0 06 eb 58 b0 07 eb 54	...X...T
+b0 08 eb 50 b0 09 eb 4c	...P...L
+b0 0a eb 48 b0 0b eb 44	...H...D
+b0 0c eb 40 b0 0d eb 3c	...@...<
+b0 0e eb 38 b0 0f eb 34	...8...4","
+0xde0000:	mov	al, 0
+0xde0002:	jmp	0xde0074
+0xde0004:	mov	al, 1
+0xde0006:	jmp	0xde0074
+0xde0008:	mov	al, 2
+0xde000a:	jmp	0xde0074
+0xde000c:	mov	al, 3
+0xde000e:	jmp	0xde0074
+0xde0010:	mov	al, 4
+0xde0012:	jmp	0xde0074
+0xde0014:	mov	al, 5
+0xde0016:	jmp	0xde0074
+0xde0018:	mov	al, 6
+0xde001a:	jmp	0xde0074
+0xde001c:	mov	al, 7
+0xde001e:	jmp	0xde0074
+0xde0020:	mov	al, 8
+0xde0022:	jmp	0xde0074
+0xde0024:	mov	al, 9
+0xde0026:	jmp	0xde0074
+0xde0028:	mov	al, 0xa
+0xde002a:	jmp	0xde0074
+0xde002c:	mov	al, 0xb
+0xde002e:	jmp	0xde0074
+0xde0030:	mov	al, 0xc
+0xde0032:	jmp	0xde0074
+0xde0034:	mov	al, 0xd
+0xde0036:	jmp	0xde0074
+0xde0038:	mov	al, 0xe
+0xde003a:	jmp	0xde0074
+0xde003c:	mov	al, 0xf
+0xde003e:	jmp	0xde0074"
+0,1052,svchost.exe,0x610000,0x611fff,VadS,PAGE_EXECUTE_READWRITE,2,1,Disabled,N/A,"
+b0 00 eb 70 b0 01 eb 6c	...p...l
+b0 02 eb 68 b0 03 eb 64	...h...d
+b0 04 eb 60 b0 05 eb 5c	...`...\\
+b0 06 eb 58 b0 07 eb 54	...X...T
+b0 08 eb 50 b0 09 eb 4c	...P...L
+b0 0a eb 48 b0 0b eb 44	...H...D
+b0 0c eb 40 b0 0d eb 3c	...@...<
+b0 0e eb 38 b0 0f eb 34	...8...4","
+0x610000:	mov	al, 0
+0x610002:	jmp	0x610074
+0x610004:	mov	al, 1
+0x610006:	jmp	0x610074
+0x610008:	mov	al, 2
+0x61000a:	jmp	0x610074
+0x61000c:	mov	al, 3
+0x61000e:	jmp	0x610074
+0x610010:	mov	al, 4
+0x610012:	jmp	0x610074
+0x610014:	mov	al, 5
+0x610016:	jmp	0x610074
+0x610018:	mov	al, 6
+0x61001a:	jmp	0x610074
+0x61001c:	mov	al, 7
+0x61001e:	jmp	0x610074
+0x610020:	mov	al, 8
+0x610022:	jmp	0x610074
+0x610024:	mov	al, 9
+0x610026:	jmp	0x610074
+0x610028:	mov	al, 0xa
+0x61002a:	jmp	0x610074
+0x61002c:	mov	al, 0xb
+0x61002e:	jmp	0x610074
+0x610030:	mov	al, 0xc
+0x610032:	jmp	0x610074
+0x610034:	mov	al, 0xd
+0x610036:	jmp	0x610074
+0x610038:	mov	al, 0xe
+0x61003a:	jmp	0x610074
+0x61003c:	mov	al, 0xf
+0x61003e:	jmp	0x610074"
+0,1312,explorer.exe,0x1e80000,0x1e81fff,VadS,PAGE_EXECUTE_READWRITE,2,1,Disabled,N/A,"
+b0 00 eb 70 b0 01 eb 6c	...p...l
+b0 02 eb 68 b0 03 eb 64	...h...d
+b0 04 eb 60 b0 05 eb 5c	...`...\\
+b0 06 eb 58 b0 07 eb 54	...X...T
+b0 08 eb 50 b0 09 eb 4c	...P...L
+b0 0a eb 48 b0 0b eb 44	...H...D
+b0 0c eb 40 b0 0d eb 3c	...@...<
+b0 0e eb 38 b0 0f eb 34	...8...4","
+0x1e80000:	mov	al, 0
+0x1e80002:	jmp	0x1e80074
+0x1e80004:	mov	al, 1
+0x1e80006:	jmp	0x1e80074
+0x1e80008:	mov	al, 2
+0x1e8000a:	jmp	0x1e80074
+0x1e8000c:	mov	al, 3
+0x1e8000e:	jmp	0x1e80074
+0x1e80010:	mov	al, 4
+0x1e80012:	jmp	0x1e80074
+0x1e80014:	mov	al, 5
+0x1e80016:	jmp	0x1e80074
+0x1e80018:	mov	al, 6
+0x1e8001a:	jmp	0x1e80074
+0x1e8001c:	mov	al, 7
+0x1e8001e:	jmp	0x1e80074
+0x1e80020:	mov	al, 8
+0x1e80022:	jmp	0x1e80074
+0x1e80024:	mov	al, 9
+0x1e80026:	jmp	0x1e80074
+0x1e80028:	mov	al, 0xa
+0x1e8002a:	jmp	0x1e80074
+0x1e8002c:	mov	al, 0xb
+0x1e8002e:	jmp	0x1e80074
+0x1e80030:	mov	al, 0xc
+0x1e80032:	jmp	0x1e80074
+0x1e80034:	mov	al, 0xd
+0x1e80036:	jmp	0x1e80074
+0x1e80038:	mov	al, 0xe
+0x1e8003a:	jmp	0x1e80074
+0x1e8003c:	mov	al, 0xf
+0x1e8003e:	jmp	0x1e80074"
+0,1312,explorer.exe,0x3130000,0x3130fff,VadS,PAGE_EXECUTE_READWRITE,1,1,Disabled,N/A,"
+00 00 00 00 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+00 00 13 03 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+10 00 13 03 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+20 00 13 03 00 00 00 00	........
+00 00 00 00 00 00 00 00	........","
+0x3130000:	add	byte ptr [eax], al
+0x3130002:	add	byte ptr [eax], al
+0x3130004:	add	byte ptr [eax], al
+0x3130006:	add	byte ptr [eax], al
+0x3130008:	add	byte ptr [eax], al
+0x313000a:	add	byte ptr [eax], al
+0x313000c:	add	byte ptr [eax], al
+0x313000e:	add	byte ptr [eax], al
+0x3130010:	add	byte ptr [eax], al
+0x3130012:	adc	eax, dword ptr [ebx]
+0x3130014:	add	byte ptr [eax], al
+0x3130016:	add	byte ptr [eax], al
+0x3130018:	add	byte ptr [eax], al
+0x313001a:	add	byte ptr [eax], al
+0x313001c:	add	byte ptr [eax], al
+0x313001e:	add	byte ptr [eax], al
+0x3130020:	adc	byte ptr [eax], al
+0x3130022:	adc	eax, dword ptr [ebx]
+0x3130024:	add	byte ptr [eax], al
+0x3130026:	add	byte ptr [eax], al
+0x3130028:	add	byte ptr [eax], al
+0x313002a:	add	byte ptr [eax], al
+0x313002c:	add	byte ptr [eax], al
+0x313002e:	add	byte ptr [eax], al
+0x3130030:	and	byte ptr [eax], al
+0x3130032:	adc	eax, dword ptr [ebx]
+0x3130034:	add	byte ptr [eax], al
+0x3130036:	add	byte ptr [eax], al
+0x3130038:	add	byte ptr [eax], al
+0x313003a:	add	byte ptr [eax], al
+0x313003c:	add	byte ptr [eax], al
+0x313003e:	add	byte ptr [eax], al"
+0,2316,wmpnetwk.exe,0x970000,0x971fff,VadS,PAGE_EXECUTE_READWRITE,2,1,Disabled,N/A,"
+b0 00 eb 70 b0 01 eb 6c	...p...l
+b0 02 eb 68 b0 03 eb 64	...h...d
+b0 04 eb 60 b0 05 eb 5c	...`...\\
+b0 06 eb 58 b0 07 eb 54	...X...T
+b0 08 eb 50 b0 09 eb 4c	...P...L
+b0 0a eb 48 b0 0b eb 44	...H...D
+b0 0c eb 40 b0 0d eb 3c	...@...<
+b0 0e eb 38 b0 0f eb 34	...8...4","
+0x970000:	mov	al, 0
+0x970002:	jmp	0x970074
+0x970004:	mov	al, 1
+0x970006:	jmp	0x970074
+0x970008:	mov	al, 2
+0x97000a:	jmp	0x970074
+0x97000c:	mov	al, 3
+0x97000e:	jmp	0x970074
+0x970010:	mov	al, 4
+0x970012:	jmp	0x970074
+0x970014:	mov	al, 5
+0x970016:	jmp	0x970074
+0x970018:	mov	al, 6
+0x97001a:	jmp	0x970074
+0x97001c:	mov	al, 7
+0x97001e:	jmp	0x970074
+0x970020:	mov	al, 8
+0x970022:	jmp	0x970074
+0x970024:	mov	al, 9
+0x970026:	jmp	0x970074
+0x970028:	mov	al, 0xa
+0x97002a:	jmp	0x970074
+0x97002c:	mov	al, 0xb
+0x97002e:	jmp	0x970074
+0x970030:	mov	al, 0xc
+0x970032:	jmp	0x970074
+0x970034:	mov	al, 0xd
+0x970036:	jmp	0x970074
+0x970038:	mov	al, 0xe
+0x97003a:	jmp	0x970074
+0x97003c:	mov	al, 0xf
+0x97003e:	jmp	0x970074"
+0,2956,notepad.exe,0x2a00000,0x2a00fff,VadS,PAGE_EXECUTE_READWRITE,1,1,Disabled,N/A,"
+00 00 00 00 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+00 00 a0 02 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+10 00 a0 02 00 00 00 00	........
+00 00 00 00 00 00 00 00	........
+20 00 a0 02 00 00 00 00	........
+00 00 00 00 00 00 00 00	........","
+0x2a00000:	add	byte ptr [eax], al
+0x2a00002:	add	byte ptr [eax], al
+0x2a00004:	add	byte ptr [eax], al
+0x2a00006:	add	byte ptr [eax], al
+0x2a00008:	add	byte ptr [eax], al
+0x2a0000a:	add	byte ptr [eax], al
+0x2a0000c:	add	byte ptr [eax], al
+0x2a0000e:	add	byte ptr [eax], al
+0x2a00010:	add	byte ptr [eax], al
+0x2a00012:	mov	al, byte ptr [2]
+0x2a00017:	add	byte ptr [eax], al
+0x2a00019:	add	byte ptr [eax], al
+0x2a0001b:	add	byte ptr [eax], al
+0x2a0001d:	add	byte ptr [eax], al
+0x2a0001f:	add	byte ptr [eax], dl
+0x2a00021:	add	byte ptr [eax + 2], ah
+0x2a00027:	add	byte ptr [eax], al
+0x2a00029:	add	byte ptr [eax], al
+0x2a0002b:	add	byte ptr [eax], al
+0x2a0002d:	add	byte ptr [eax], al
+0x2a0002f:	add	byte ptr [eax], ah
+0x2a00031:	add	byte ptr [eax + 2], ah
+0x2a00037:	add	byte ptr [eax], al
+0x2a00039:	add	byte ptr [eax], al
+0x2a0003b:	add	byte ptr [eax], al
+0x2a0003d:	add	byte ptr [eax], al"
+0,2956,notepad.exe,0x2bd0000,0x2bd1fff,VadS,PAGE_EXECUTE_READWRITE,2,1,Disabled,N/A,"
+b0 00 eb 70 b0 01 eb 6c	...p...l
+b0 02 eb 68 b0 03 eb 64	...h...d
+b0 04 eb 60 b0 05 eb 5c	...`...\\
+b0 06 eb 58 b0 07 eb 54	...X...T
+b0 08 eb 50 b0 09 eb 4c	...P...L
+b0 0a eb 48 b0 0b eb 44	...H...D
+b0 0c eb 40 b0 0d eb 3c	...@...<
+b0 0e eb 38 b0 0f eb 34	...8...4","
+0x2bd0000:	mov	al, 0
+0x2bd0002:	jmp	0x2bd0074
+0x2bd0004:	mov	al, 1
+0x2bd0006:	jmp	0x2bd0074
+0x2bd0008:	mov	al, 2
+0x2bd000a:	jmp	0x2bd0074
+0x2bd000c:	mov	al, 3
+0x2bd000e:	jmp	0x2bd0074
+0x2bd0010:	mov	al, 4
+0x2bd0012:	jmp	0x2bd0074
+0x2bd0014:	mov	al, 5
+0x2bd0016:	jmp	0x2bd0074
+0x2bd0018:	mov	al, 6
+0x2bd001a:	jmp	0x2bd0074
+0x2bd001c:	mov	al, 7
+0x2bd001e:	jmp	0x2bd0074
+0x2bd0020:	mov	al, 8
+0x2bd0022:	jmp	0x2bd0074
+0x2bd0024:	mov	al, 9
+0x2bd0026:	jmp	0x2bd0074
+0x2bd0028:	mov	al, 0xa
+0x2bd002a:	jmp	0x2bd0074
+0x2bd002c:	mov	al, 0xb
+0x2bd002e:	jmp	0x2bd0074
+0x2bd0030:	mov	al, 0xc
+0x2bd0032:	jmp	0x2bd0074
+0x2bd0034:	mov	al, 0xd
+0x2bd0036:	jmp	0x2bd0074
+0x2bd0038:	mov	al, 0xe
+0x2bd003a:	jmp	0x2bd0074
+0x2bd003c:	mov	al, 0xf
+0x2bd003e:	jmp	0x2bd0074"
+

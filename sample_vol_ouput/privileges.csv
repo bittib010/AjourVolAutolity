@@ -1,0 +1,1472 @@
+TreeDepth,PID,Process,Value,Privilege,Attributes,Description
+0,4,System,2,SeCreateTokenPrivilege,Present,Create a token object
+0,4,System,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,4,System,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,4,System,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,4,System,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,4,System,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,4,System,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,4,System,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,4,System,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,4,System,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,4,System,12,SeSystemtimePrivilege,Present,Change the system time
+0,4,System,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,4,System,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,4,System,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,4,System,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,4,System,17,SeBackupPrivilege,Present,Backup files and directories
+0,4,System,18,SeRestorePrivilege,Present,Restore files and directories
+0,4,System,19,SeShutdownPrivilege,Present,Shut down the system
+0,4,System,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,4,System,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,4,System,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,4,System,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,4,System,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,4,System,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,4,System,26,SeSyncAgentPrivilege,,Synch directory service data
+0,4,System,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,4,System,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,4,System,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,4,System,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,4,System,31,SeTrustedCredManAccessPrivilege,Present,Access Credential Manager as a trusted caller
+0,4,System,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,4,System,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,4,System,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,4,System,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,4,System,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,268,smss.exe,2,SeCreateTokenPrivilege,Present,Create a token object
+0,268,smss.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,268,smss.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,268,smss.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,268,smss.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,268,smss.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,268,smss.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,268,smss.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,268,smss.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,268,smss.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,268,smss.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,268,smss.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,268,smss.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,268,smss.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,268,smss.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,268,smss.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,268,smss.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,268,smss.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,268,smss.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,268,smss.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,268,smss.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,268,smss.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,268,smss.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,268,smss.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,268,smss.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,268,smss.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,268,smss.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,268,smss.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,268,smss.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,268,smss.exe,31,SeTrustedCredManAccessPrivilege,Present,Access Credential Manager as a trusted caller
+0,268,smss.exe,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,268,smss.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,268,smss.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,268,smss.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,268,smss.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,352,csrss.exe,2,SeCreateTokenPrivilege,Present,Create a token object
+0,352,csrss.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,352,csrss.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,352,csrss.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,352,csrss.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,352,csrss.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,352,csrss.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,352,csrss.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,352,csrss.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,352,csrss.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,352,csrss.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,352,csrss.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,352,csrss.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,352,csrss.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,352,csrss.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,352,csrss.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,352,csrss.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,352,csrss.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,352,csrss.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,352,csrss.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,352,csrss.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,352,csrss.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,352,csrss.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,352,csrss.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,352,csrss.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,352,csrss.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,352,csrss.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,352,csrss.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,352,csrss.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,352,csrss.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,352,csrss.exe,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,352,csrss.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,352,csrss.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,352,csrss.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,352,csrss.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,404,wininit.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,404,wininit.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,404,wininit.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,404,wininit.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,404,wininit.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,404,wininit.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,404,wininit.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,404,wininit.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,404,wininit.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,404,wininit.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,404,wininit.exe,12,SeSystemtimePrivilege,,Change the system time
+0,404,wininit.exe,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,404,wininit.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,404,wininit.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,404,wininit.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,404,wininit.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,404,wininit.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,404,wininit.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,404,wininit.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,404,wininit.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,404,wininit.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,404,wininit.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,404,wininit.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,404,wininit.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,404,wininit.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,404,wininit.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,404,wininit.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,404,wininit.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,404,wininit.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,404,wininit.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,404,wininit.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,404,wininit.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,404,wininit.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,404,wininit.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,404,wininit.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,412,csrss.exe,2,SeCreateTokenPrivilege,Present,Create a token object
+0,412,csrss.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,412,csrss.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,412,csrss.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,412,csrss.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,412,csrss.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,412,csrss.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,412,csrss.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,412,csrss.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,412,csrss.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,412,csrss.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,412,csrss.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,412,csrss.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,412,csrss.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,412,csrss.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,412,csrss.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,412,csrss.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,412,csrss.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,412,csrss.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,412,csrss.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,412,csrss.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,412,csrss.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,412,csrss.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,412,csrss.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,412,csrss.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,412,csrss.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,412,csrss.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,412,csrss.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,412,csrss.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,412,csrss.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,412,csrss.exe,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,412,csrss.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,412,csrss.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,412,csrss.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,412,csrss.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,476,services.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,476,services.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,476,services.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,476,services.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,476,services.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,476,services.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,476,services.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,476,services.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,476,services.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,476,services.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,476,services.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,476,services.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,476,services.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,476,services.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,476,services.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,476,services.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,476,services.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,476,services.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,476,services.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,476,services.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,476,services.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,476,services.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,476,services.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,476,services.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,476,services.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,476,services.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,476,services.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,476,services.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,476,services.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,476,services.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,476,services.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,476,services.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,476,services.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,476,services.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,476,services.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,484,lsass.exe,2,SeCreateTokenPrivilege,"Present,Enabled",Create a token object
+0,484,lsass.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,484,lsass.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,484,lsass.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,484,lsass.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,484,lsass.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,484,lsass.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,484,lsass.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,484,lsass.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,484,lsass.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,484,lsass.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,484,lsass.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,484,lsass.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,484,lsass.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,484,lsass.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,484,lsass.exe,17,SeBackupPrivilege,"Present,Enabled",Backup files and directories
+0,484,lsass.exe,18,SeRestorePrivilege,"Present,Enabled",Restore files and directories
+0,484,lsass.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,484,lsass.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,484,lsass.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,484,lsass.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,484,lsass.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,484,lsass.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,484,lsass.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,484,lsass.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,484,lsass.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,484,lsass.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,484,lsass.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,484,lsass.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,484,lsass.exe,31,SeTrustedCredManAccessPrivilege,Present,Access Credential Manager as a trusted caller
+0,484,lsass.exe,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,484,lsass.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,484,lsass.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,484,lsass.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,484,lsass.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,492,lsm.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,492,lsm.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,492,lsm.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,492,lsm.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,492,lsm.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,492,lsm.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,492,lsm.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,492,lsm.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,492,lsm.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,492,lsm.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,492,lsm.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,492,lsm.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,492,lsm.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,492,lsm.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,492,lsm.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,492,lsm.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,492,lsm.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,492,lsm.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,492,lsm.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,492,lsm.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,492,lsm.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,492,lsm.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,492,lsm.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,492,lsm.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,492,lsm.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,492,lsm.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,492,lsm.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,492,lsm.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,492,lsm.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,492,lsm.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,492,lsm.exe,32,SeRelabelPrivilege,Present,Modify the mandatory integrity level of an object
+0,492,lsm.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,492,lsm.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,492,lsm.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,492,lsm.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,504,winlogon.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,504,winlogon.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,504,winlogon.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,504,winlogon.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,504,winlogon.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,504,winlogon.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,504,winlogon.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,504,winlogon.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,504,winlogon.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,504,winlogon.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,504,winlogon.exe,12,SeSystemtimePrivilege,,Change the system time
+0,504,winlogon.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,504,winlogon.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,504,winlogon.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,504,winlogon.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,504,winlogon.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,504,winlogon.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,504,winlogon.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,504,winlogon.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,504,winlogon.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,504,winlogon.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,504,winlogon.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,504,winlogon.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,504,winlogon.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,504,winlogon.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,504,winlogon.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,504,winlogon.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,504,winlogon.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,504,winlogon.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,504,winlogon.exe,31,SeTrustedCredManAccessPrivilege,Present,Access Credential Manager as a trusted caller
+0,504,winlogon.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,504,winlogon.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,504,winlogon.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,504,winlogon.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,504,winlogon.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,628,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,628,svchost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,628,svchost.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,628,svchost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,628,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,628,svchost.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,628,svchost.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,628,svchost.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,628,svchost.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,628,svchost.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,628,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,628,svchost.exe,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,628,svchost.exe,14,SeIncreaseBasePriorityPrivilege,Default,Increase scheduling priority
+0,628,svchost.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,628,svchost.exe,16,SeCreatePermanentPrivilege,Default,Create permanent shared objects
+0,628,svchost.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,628,svchost.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,628,svchost.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,628,svchost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,628,svchost.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,628,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,628,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,628,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,628,svchost.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,628,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,628,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,628,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,628,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,628,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,628,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,628,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,628,svchost.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,628,svchost.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,628,svchost.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,628,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,692,vmacthlp.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,692,vmacthlp.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,692,vmacthlp.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,692,vmacthlp.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,692,vmacthlp.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,692,vmacthlp.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,692,vmacthlp.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,692,vmacthlp.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,692,vmacthlp.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,692,vmacthlp.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,692,vmacthlp.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,692,vmacthlp.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,692,vmacthlp.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,692,vmacthlp.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,692,vmacthlp.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,692,vmacthlp.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,692,vmacthlp.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,692,vmacthlp.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,692,vmacthlp.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,692,vmacthlp.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,692,vmacthlp.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,692,vmacthlp.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,692,vmacthlp.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,692,vmacthlp.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,692,vmacthlp.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,692,vmacthlp.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,692,vmacthlp.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,692,vmacthlp.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,692,vmacthlp.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,692,vmacthlp.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,692,vmacthlp.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,692,vmacthlp.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,692,vmacthlp.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,692,vmacthlp.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,692,vmacthlp.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,724,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,724,svchost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,724,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,724,svchost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,724,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,724,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,724,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,724,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,724,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,724,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,724,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,724,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,724,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,724,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,724,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,724,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,724,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,724,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,724,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,724,svchost.exe,21,SeAuditPrivilege,,Generate security audits
+0,724,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,724,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,724,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,724,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,724,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,724,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,724,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,724,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,724,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,724,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,724,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,724,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,724,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,724,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,724,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,776,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,776,svchost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,776,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,776,svchost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,776,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,776,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,776,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,776,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,776,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,776,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,776,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,776,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,776,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,776,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,776,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,776,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,776,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,776,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,776,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,776,svchost.exe,21,SeAuditPrivilege,,Generate security audits
+0,776,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,776,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,776,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,776,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,776,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,776,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,776,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,776,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,776,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,776,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,776,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,776,svchost.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,776,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,776,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,776,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,860,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,860,svchost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,860,svchost.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,860,svchost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,860,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,860,svchost.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,860,svchost.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,860,svchost.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,860,svchost.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,860,svchost.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,860,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,860,svchost.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,860,svchost.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,860,svchost.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,860,svchost.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,860,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,860,svchost.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,860,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,860,svchost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,860,svchost.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,860,svchost.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,860,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,860,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,860,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,860,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,860,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,860,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,860,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,860,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,860,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,860,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,860,svchost.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,860,svchost.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,860,svchost.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,860,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,936,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,936,svchost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,936,svchost.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,936,svchost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,936,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,936,svchost.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,936,svchost.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,936,svchost.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,936,svchost.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,936,svchost.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,936,svchost.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,936,svchost.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,936,svchost.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,936,svchost.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,936,svchost.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,936,svchost.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,936,svchost.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,936,svchost.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,936,svchost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,936,svchost.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,936,svchost.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,936,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,936,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,936,svchost.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,936,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,936,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,936,svchost.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,936,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,936,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,936,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,936,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,936,svchost.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,936,svchost.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,936,svchost.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,936,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1052,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1052,svchost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1052,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1052,svchost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1052,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1052,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1052,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1052,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1052,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1052,svchost.exe,11,SeSystemProfilePrivilege,Present,Profile system performance
+0,1052,svchost.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,1052,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1052,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1052,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1052,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1052,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1052,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1052,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1052,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,1052,svchost.exe,21,SeAuditPrivilege,Present,Generate security audits
+0,1052,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1052,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1052,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1052,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1052,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1052,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1052,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1052,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1052,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1052,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1052,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1052,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,1052,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,1052,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1052,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1120,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1120,svchost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1120,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1120,svchost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1120,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1120,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1120,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1120,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1120,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1120,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1120,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1120,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1120,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1120,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1120,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1120,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1120,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1120,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1120,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,1120,svchost.exe,21,SeAuditPrivilege,"Present,Enabled",Generate security audits
+0,1120,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1120,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1120,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1120,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1120,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1120,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1120,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1120,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1120,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1120,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1120,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1120,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,1120,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,1120,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1120,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1300,dwm.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1300,dwm.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1300,dwm.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1300,dwm.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1300,dwm.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1300,dwm.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1300,dwm.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1300,dwm.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1300,dwm.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1300,dwm.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1300,dwm.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1300,dwm.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1300,dwm.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1300,dwm.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1300,dwm.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1300,dwm.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1300,dwm.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1300,dwm.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1300,dwm.exe,20,SeDebugPrivilege,,Debug programs
+0,1300,dwm.exe,21,SeAuditPrivilege,,Generate security audits
+0,1300,dwm.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1300,dwm.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1300,dwm.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1300,dwm.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1300,dwm.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1300,dwm.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1300,dwm.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1300,dwm.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,1300,dwm.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,1300,dwm.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1300,dwm.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1300,dwm.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,1300,dwm.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,1300,dwm.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1300,dwm.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1312,explorer.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1312,explorer.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1312,explorer.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1312,explorer.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1312,explorer.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1312,explorer.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1312,explorer.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1312,explorer.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1312,explorer.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1312,explorer.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1312,explorer.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1312,explorer.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1312,explorer.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1312,explorer.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1312,explorer.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1312,explorer.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1312,explorer.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1312,explorer.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1312,explorer.exe,20,SeDebugPrivilege,,Debug programs
+0,1312,explorer.exe,21,SeAuditPrivilege,,Generate security audits
+0,1312,explorer.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1312,explorer.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1312,explorer.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1312,explorer.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1312,explorer.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1312,explorer.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1312,explorer.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1312,explorer.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,1312,explorer.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,1312,explorer.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1312,explorer.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1312,explorer.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,1312,explorer.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,1312,explorer.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1312,explorer.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1348,spoolsv.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1348,spoolsv.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1348,spoolsv.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,1348,spoolsv.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1348,spoolsv.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1348,spoolsv.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,1348,spoolsv.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1348,spoolsv.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1348,spoolsv.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1348,spoolsv.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,1348,spoolsv.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1348,spoolsv.exe,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,1348,spoolsv.exe,14,SeIncreaseBasePriorityPrivilege,Default,Increase scheduling priority
+0,1348,spoolsv.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,1348,spoolsv.exe,16,SeCreatePermanentPrivilege,Default,Create permanent shared objects
+0,1348,spoolsv.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1348,spoolsv.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1348,spoolsv.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1348,spoolsv.exe,20,SeDebugPrivilege,Default,Debug programs
+0,1348,spoolsv.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,1348,spoolsv.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1348,spoolsv.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1348,spoolsv.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1348,spoolsv.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1348,spoolsv.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1348,spoolsv.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1348,spoolsv.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1348,spoolsv.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1348,spoolsv.exe,30,SeCreateGlobalPrivilege,Default,Create global objects
+0,1348,spoolsv.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1348,spoolsv.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1348,spoolsv.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,1348,spoolsv.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,1348,spoolsv.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,1348,spoolsv.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1408,taskhost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1408,taskhost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1408,taskhost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1408,taskhost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1408,taskhost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1408,taskhost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1408,taskhost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1408,taskhost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1408,taskhost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1408,taskhost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1408,taskhost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1408,taskhost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1408,taskhost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1408,taskhost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1408,taskhost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1408,taskhost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1408,taskhost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1408,taskhost.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1408,taskhost.exe,20,SeDebugPrivilege,,Debug programs
+0,1408,taskhost.exe,21,SeAuditPrivilege,,Generate security audits
+0,1408,taskhost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1408,taskhost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1408,taskhost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1408,taskhost.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1408,taskhost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1408,taskhost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1408,taskhost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1408,taskhost.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,1408,taskhost.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,1408,taskhost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1408,taskhost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1408,taskhost.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,1408,taskhost.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,1408,taskhost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1408,taskhost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1428,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1428,svchost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1428,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1428,svchost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1428,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1428,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1428,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1428,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1428,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1428,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1428,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1428,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1428,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1428,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1428,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1428,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1428,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1428,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1428,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,1428,svchost.exe,21,SeAuditPrivilege,"Present,Enabled",Generate security audits
+0,1428,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1428,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1428,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1428,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1428,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1428,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1428,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1428,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1428,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1428,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1428,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1428,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,1428,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,1428,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1428,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1556,vmtoolsd.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1556,vmtoolsd.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1556,vmtoolsd.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1556,vmtoolsd.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1556,vmtoolsd.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1556,vmtoolsd.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1556,vmtoolsd.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1556,vmtoolsd.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1556,vmtoolsd.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1556,vmtoolsd.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1556,vmtoolsd.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1556,vmtoolsd.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1556,vmtoolsd.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1556,vmtoolsd.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1556,vmtoolsd.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1556,vmtoolsd.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1556,vmtoolsd.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1556,vmtoolsd.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1556,vmtoolsd.exe,20,SeDebugPrivilege,,Debug programs
+0,1556,vmtoolsd.exe,21,SeAuditPrivilege,,Generate security audits
+0,1556,vmtoolsd.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1556,vmtoolsd.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1556,vmtoolsd.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1556,vmtoolsd.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1556,vmtoolsd.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1556,vmtoolsd.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1556,vmtoolsd.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1556,vmtoolsd.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,1556,vmtoolsd.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,1556,vmtoolsd.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1556,vmtoolsd.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1556,vmtoolsd.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,1556,vmtoolsd.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,1556,vmtoolsd.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1556,vmtoolsd.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1672,VGAuthService.,2,SeCreateTokenPrivilege,,Create a token object
+0,1672,VGAuthService.,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1672,VGAuthService.,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,1672,VGAuthService.,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1672,VGAuthService.,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1672,VGAuthService.,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,1672,VGAuthService.,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,1672,VGAuthService.,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,1672,VGAuthService.,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,1672,VGAuthService.,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,1672,VGAuthService.,12,SeSystemtimePrivilege,Present,Change the system time
+0,1672,VGAuthService.,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,1672,VGAuthService.,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,1672,VGAuthService.,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,1672,VGAuthService.,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,1672,VGAuthService.,17,SeBackupPrivilege,Present,Backup files and directories
+0,1672,VGAuthService.,18,SeRestorePrivilege,Present,Restore files and directories
+0,1672,VGAuthService.,19,SeShutdownPrivilege,Present,Shut down the system
+0,1672,VGAuthService.,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,1672,VGAuthService.,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,1672,VGAuthService.,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,1672,VGAuthService.,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1672,VGAuthService.,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1672,VGAuthService.,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1672,VGAuthService.,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1672,VGAuthService.,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1672,VGAuthService.,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,1672,VGAuthService.,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1672,VGAuthService.,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1672,VGAuthService.,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1672,VGAuthService.,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1672,VGAuthService.,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,1672,VGAuthService.,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,1672,VGAuthService.,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,1672,VGAuthService.,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1756,vmtoolsd.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1756,vmtoolsd.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1756,vmtoolsd.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,1756,vmtoolsd.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1756,vmtoolsd.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1756,vmtoolsd.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,1756,vmtoolsd.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,1756,vmtoolsd.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,1756,vmtoolsd.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,1756,vmtoolsd.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,1756,vmtoolsd.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,1756,vmtoolsd.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,1756,vmtoolsd.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,1756,vmtoolsd.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,1756,vmtoolsd.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,1756,vmtoolsd.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,1756,vmtoolsd.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,1756,vmtoolsd.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1756,vmtoolsd.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,1756,vmtoolsd.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,1756,vmtoolsd.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,1756,vmtoolsd.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1756,vmtoolsd.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1756,vmtoolsd.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1756,vmtoolsd.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1756,vmtoolsd.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1756,vmtoolsd.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,1756,vmtoolsd.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1756,vmtoolsd.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1756,vmtoolsd.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1756,vmtoolsd.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1756,vmtoolsd.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,1756,vmtoolsd.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,1756,vmtoolsd.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,1756,vmtoolsd.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1992,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1992,svchost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1992,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1992,svchost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1992,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1992,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1992,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1992,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1992,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1992,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1992,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1992,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1992,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1992,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1992,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1992,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1992,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1992,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1992,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,1992,svchost.exe,21,SeAuditPrivilege,,Generate security audits
+0,1992,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1992,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1992,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1992,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1992,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1992,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1992,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1992,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1992,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1992,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1992,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1992,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,1992,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,1992,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1992,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1072,WmiPrvSE.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1072,WmiPrvSE.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1072,WmiPrvSE.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1072,WmiPrvSE.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1072,WmiPrvSE.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1072,WmiPrvSE.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1072,WmiPrvSE.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1072,WmiPrvSE.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1072,WmiPrvSE.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1072,WmiPrvSE.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1072,WmiPrvSE.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1072,WmiPrvSE.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1072,WmiPrvSE.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1072,WmiPrvSE.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1072,WmiPrvSE.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1072,WmiPrvSE.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1072,WmiPrvSE.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1072,WmiPrvSE.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,1072,WmiPrvSE.exe,20,SeDebugPrivilege,,Debug programs
+0,1072,WmiPrvSE.exe,21,SeAuditPrivilege,Present,Generate security audits
+0,1072,WmiPrvSE.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1072,WmiPrvSE.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1072,WmiPrvSE.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1072,WmiPrvSE.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,1072,WmiPrvSE.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1072,WmiPrvSE.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1072,WmiPrvSE.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1072,WmiPrvSE.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1072,WmiPrvSE.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1072,WmiPrvSE.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1072,WmiPrvSE.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1072,WmiPrvSE.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,1072,WmiPrvSE.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,1072,WmiPrvSE.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1072,WmiPrvSE.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1332,dllhost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1332,dllhost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,1332,dllhost.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,1332,dllhost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,1332,dllhost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1332,dllhost.exe,7,SeTcbPrivilege,Default,Act as part of the operating system
+0,1332,dllhost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1332,dllhost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1332,dllhost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1332,dllhost.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,1332,dllhost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1332,dllhost.exe,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,1332,dllhost.exe,14,SeIncreaseBasePriorityPrivilege,Default,Increase scheduling priority
+0,1332,dllhost.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,1332,dllhost.exe,16,SeCreatePermanentPrivilege,Default,Create permanent shared objects
+0,1332,dllhost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1332,dllhost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1332,dllhost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1332,dllhost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,1332,dllhost.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,1332,dllhost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1332,dllhost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1332,dllhost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1332,dllhost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1332,dllhost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1332,dllhost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1332,dllhost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1332,dllhost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,1332,dllhost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1332,dllhost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1332,dllhost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1332,dllhost.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,1332,dllhost.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,1332,dllhost.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,1332,dllhost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,1268,msdtc.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,1268,msdtc.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,1268,msdtc.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,1268,msdtc.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,1268,msdtc.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,1268,msdtc.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,1268,msdtc.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,1268,msdtc.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,1268,msdtc.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,1268,msdtc.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,1268,msdtc.exe,12,SeSystemtimePrivilege,,Change the system time
+0,1268,msdtc.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,1268,msdtc.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,1268,msdtc.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,1268,msdtc.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,1268,msdtc.exe,17,SeBackupPrivilege,,Backup files and directories
+0,1268,msdtc.exe,18,SeRestorePrivilege,,Restore files and directories
+0,1268,msdtc.exe,19,SeShutdownPrivilege,,Shut down the system
+0,1268,msdtc.exe,20,SeDebugPrivilege,,Debug programs
+0,1268,msdtc.exe,21,SeAuditPrivilege,,Generate security audits
+0,1268,msdtc.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,1268,msdtc.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,1268,msdtc.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,1268,msdtc.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,1268,msdtc.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,1268,msdtc.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,1268,msdtc.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,1268,msdtc.exe,29,SeImpersonatePrivilege,Default,Impersonate a client after authentication
+0,1268,msdtc.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,1268,msdtc.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,1268,msdtc.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,1268,msdtc.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,1268,msdtc.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,1268,msdtc.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,1268,msdtc.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,2128,SearchIndexer.,2,SeCreateTokenPrivilege,,Create a token object
+0,2128,SearchIndexer.,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,2128,SearchIndexer.,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,2128,SearchIndexer.,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,2128,SearchIndexer.,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,2128,SearchIndexer.,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,2128,SearchIndexer.,8,SeSecurityPrivilege,,Manage auditing and security log
+0,2128,SearchIndexer.,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,2128,SearchIndexer.,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,2128,SearchIndexer.,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,2128,SearchIndexer.,12,SeSystemtimePrivilege,,Change the system time
+0,2128,SearchIndexer.,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,2128,SearchIndexer.,14,SeIncreaseBasePriorityPrivilege,Default,Increase scheduling priority
+0,2128,SearchIndexer.,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,2128,SearchIndexer.,16,SeCreatePermanentPrivilege,Default,Create permanent shared objects
+0,2128,SearchIndexer.,17,SeBackupPrivilege,,Backup files and directories
+0,2128,SearchIndexer.,18,SeRestorePrivilege,,Restore files and directories
+0,2128,SearchIndexer.,19,SeShutdownPrivilege,,Shut down the system
+0,2128,SearchIndexer.,20,SeDebugPrivilege,Default,Debug programs
+0,2128,SearchIndexer.,21,SeAuditPrivilege,Default,Generate security audits
+0,2128,SearchIndexer.,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,2128,SearchIndexer.,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,2128,SearchIndexer.,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,2128,SearchIndexer.,25,SeUndockPrivilege,,Remove computer from docking station
+0,2128,SearchIndexer.,26,SeSyncAgentPrivilege,,Synch directory service data
+0,2128,SearchIndexer.,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,2128,SearchIndexer.,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,2128,SearchIndexer.,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,2128,SearchIndexer.,30,SeCreateGlobalPrivilege,Default,Create global objects
+0,2128,SearchIndexer.,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,2128,SearchIndexer.,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,2128,SearchIndexer.,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,2128,SearchIndexer.,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,2128,SearchIndexer.,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,2128,SearchIndexer.,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,2316,wmpnetwk.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,2316,wmpnetwk.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,2316,wmpnetwk.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,2316,wmpnetwk.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,2316,wmpnetwk.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,2316,wmpnetwk.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,2316,wmpnetwk.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,2316,wmpnetwk.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,2316,wmpnetwk.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,2316,wmpnetwk.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,2316,wmpnetwk.exe,12,SeSystemtimePrivilege,,Change the system time
+0,2316,wmpnetwk.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,2316,wmpnetwk.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,2316,wmpnetwk.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,2316,wmpnetwk.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,2316,wmpnetwk.exe,17,SeBackupPrivilege,,Backup files and directories
+0,2316,wmpnetwk.exe,18,SeRestorePrivilege,,Restore files and directories
+0,2316,wmpnetwk.exe,19,SeShutdownPrivilege,,Shut down the system
+0,2316,wmpnetwk.exe,20,SeDebugPrivilege,,Debug programs
+0,2316,wmpnetwk.exe,21,SeAuditPrivilege,,Generate security audits
+0,2316,wmpnetwk.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,2316,wmpnetwk.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,2316,wmpnetwk.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,2316,wmpnetwk.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,2316,wmpnetwk.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,2316,wmpnetwk.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,2316,wmpnetwk.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,2316,wmpnetwk.exe,29,SeImpersonatePrivilege,Default,Impersonate a client after authentication
+0,2316,wmpnetwk.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,2316,wmpnetwk.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,2316,wmpnetwk.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,2316,wmpnetwk.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,2316,wmpnetwk.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,2316,wmpnetwk.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,2316,wmpnetwk.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,2408,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,2408,svchost.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,2408,svchost.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,2408,svchost.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,2408,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,2408,svchost.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,2408,svchost.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,2408,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,2408,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,2408,svchost.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,2408,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,2408,svchost.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,2408,svchost.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,2408,svchost.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,2408,svchost.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,2408,svchost.exe,17,SeBackupPrivilege,,Backup files and directories
+0,2408,svchost.exe,18,SeRestorePrivilege,,Restore files and directories
+0,2408,svchost.exe,19,SeShutdownPrivilege,,Shut down the system
+0,2408,svchost.exe,20,SeDebugPrivilege,,Debug programs
+0,2408,svchost.exe,21,SeAuditPrivilege,Present,Generate security audits
+0,2408,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,2408,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,2408,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,2408,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,2408,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,2408,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,2408,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,2408,svchost.exe,29,SeImpersonatePrivilege,Default,Impersonate a client after authentication
+0,2408,svchost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,2408,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,2408,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,2408,svchost.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,2408,svchost.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,2408,svchost.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,2408,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3448,sppsvc.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3448,sppsvc.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,3448,sppsvc.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,3448,sppsvc.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,3448,sppsvc.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3448,sppsvc.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,3448,sppsvc.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,3448,sppsvc.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,3448,sppsvc.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,3448,sppsvc.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,3448,sppsvc.exe,12,SeSystemtimePrivilege,,Change the system time
+0,3448,sppsvc.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,3448,sppsvc.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,3448,sppsvc.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,3448,sppsvc.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,3448,sppsvc.exe,17,SeBackupPrivilege,,Backup files and directories
+0,3448,sppsvc.exe,18,SeRestorePrivilege,,Restore files and directories
+0,3448,sppsvc.exe,19,SeShutdownPrivilege,,Shut down the system
+0,3448,sppsvc.exe,20,SeDebugPrivilege,,Debug programs
+0,3448,sppsvc.exe,21,SeAuditPrivilege,Present,Generate security audits
+0,3448,sppsvc.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,3448,sppsvc.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3448,sppsvc.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3448,sppsvc.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,3448,sppsvc.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3448,sppsvc.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3448,sppsvc.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,3448,sppsvc.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3448,sppsvc.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,3448,sppsvc.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3448,sppsvc.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3448,sppsvc.exe,33,SeIncreaseWorkingSetPrivilege,,Allocate more memory for user applications
+0,3448,sppsvc.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,3448,sppsvc.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,3448,sppsvc.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3484,svchost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3484,svchost.exe,3,SeAssignPrimaryTokenPrivilege,"Present,Enabled",Replace a process-level token
+0,3484,svchost.exe,4,SeLockMemoryPrivilege,Default,Lock pages in memory
+0,3484,svchost.exe,5,SeIncreaseQuotaPrivilege,"Present,Enabled",Increase quotas
+0,3484,svchost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3484,svchost.exe,7,SeTcbPrivilege,Default,Act as part of the operating system
+0,3484,svchost.exe,8,SeSecurityPrivilege,"Present,Enabled",Manage auditing and security log
+0,3484,svchost.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,3484,svchost.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,3484,svchost.exe,11,SeSystemProfilePrivilege,Default,Profile system performance
+0,3484,svchost.exe,12,SeSystemtimePrivilege,,Change the system time
+0,3484,svchost.exe,13,SeProfileSingleProcessPrivilege,Default,Profile a single process
+0,3484,svchost.exe,14,SeIncreaseBasePriorityPrivilege,Default,Increase scheduling priority
+0,3484,svchost.exe,15,SeCreatePagefilePrivilege,Default,Create a pagefile
+0,3484,svchost.exe,16,SeCreatePermanentPrivilege,Default,Create permanent shared objects
+0,3484,svchost.exe,17,SeBackupPrivilege,"Present,Enabled",Backup files and directories
+0,3484,svchost.exe,18,SeRestorePrivilege,"Present,Enabled",Restore files and directories
+0,3484,svchost.exe,19,SeShutdownPrivilege,"Present,Enabled",Shut down the system
+0,3484,svchost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,3484,svchost.exe,21,SeAuditPrivilege,Default,Generate security audits
+0,3484,svchost.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,3484,svchost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3484,svchost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3484,svchost.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,3484,svchost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3484,svchost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3484,svchost.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,3484,svchost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3484,svchost.exe,30,SeCreateGlobalPrivilege,Default,Create global objects
+0,3484,svchost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3484,svchost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3484,svchost.exe,33,SeIncreaseWorkingSetPrivilege,Default,Allocate more memory for user applications
+0,3484,svchost.exe,34,SeTimeZonePrivilege,Default,Adjust the time zone of the computer's internal clock
+0,3484,svchost.exe,35,SeCreateSymbolicLinkPrivilege,Default,Required to create a symbolic link
+0,3484,svchost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,2956,notepad.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,2956,notepad.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,2956,notepad.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,2956,notepad.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,2956,notepad.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,2956,notepad.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,2956,notepad.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,2956,notepad.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,2956,notepad.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,2956,notepad.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,2956,notepad.exe,12,SeSystemtimePrivilege,,Change the system time
+0,2956,notepad.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,2956,notepad.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,2956,notepad.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,2956,notepad.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,2956,notepad.exe,17,SeBackupPrivilege,,Backup files and directories
+0,2956,notepad.exe,18,SeRestorePrivilege,,Restore files and directories
+0,2956,notepad.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,2956,notepad.exe,20,SeDebugPrivilege,,Debug programs
+0,2956,notepad.exe,21,SeAuditPrivilege,,Generate security audits
+0,2956,notepad.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,2956,notepad.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,2956,notepad.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,2956,notepad.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,2956,notepad.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,2956,notepad.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,2956,notepad.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,2956,notepad.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,2956,notepad.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,2956,notepad.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,2956,notepad.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,2956,notepad.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,2956,notepad.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,2956,notepad.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,2956,notepad.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3164,audiodg.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3164,audiodg.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,3164,audiodg.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,3164,audiodg.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,3164,audiodg.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3164,audiodg.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,3164,audiodg.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,3164,audiodg.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,3164,audiodg.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,3164,audiodg.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,3164,audiodg.exe,12,SeSystemtimePrivilege,,Change the system time
+0,3164,audiodg.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,3164,audiodg.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,3164,audiodg.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,3164,audiodg.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,3164,audiodg.exe,17,SeBackupPrivilege,,Backup files and directories
+0,3164,audiodg.exe,18,SeRestorePrivilege,,Restore files and directories
+0,3164,audiodg.exe,19,SeShutdownPrivilege,,Shut down the system
+0,3164,audiodg.exe,20,SeDebugPrivilege,,Debug programs
+0,3164,audiodg.exe,21,SeAuditPrivilege,,Generate security audits
+0,3164,audiodg.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,3164,audiodg.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3164,audiodg.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3164,audiodg.exe,25,SeUndockPrivilege,,Remove computer from docking station
+0,3164,audiodg.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3164,audiodg.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3164,audiodg.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,3164,audiodg.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3164,audiodg.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,3164,audiodg.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3164,audiodg.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3164,audiodg.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,3164,audiodg.exe,34,SeTimeZonePrivilege,,Adjust the time zone of the computer's internal clock
+0,3164,audiodg.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,3164,audiodg.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,2300,WmiPrvSE.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,2300,WmiPrvSE.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,2300,WmiPrvSE.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,2300,WmiPrvSE.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,2300,WmiPrvSE.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,2300,WmiPrvSE.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,2300,WmiPrvSE.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,2300,WmiPrvSE.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,2300,WmiPrvSE.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,2300,WmiPrvSE.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,2300,WmiPrvSE.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,2300,WmiPrvSE.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,2300,WmiPrvSE.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,2300,WmiPrvSE.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,2300,WmiPrvSE.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,2300,WmiPrvSE.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,2300,WmiPrvSE.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,2300,WmiPrvSE.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,2300,WmiPrvSE.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,2300,WmiPrvSE.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,2300,WmiPrvSE.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,2300,WmiPrvSE.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,2300,WmiPrvSE.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,2300,WmiPrvSE.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,2300,WmiPrvSE.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,2300,WmiPrvSE.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,2300,WmiPrvSE.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,2300,WmiPrvSE.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,2300,WmiPrvSE.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,2300,WmiPrvSE.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,2300,WmiPrvSE.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,2300,WmiPrvSE.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,2300,WmiPrvSE.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,2300,WmiPrvSE.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,2300,WmiPrvSE.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3704,notepad.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3704,notepad.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,3704,notepad.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,3704,notepad.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,3704,notepad.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3704,notepad.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,3704,notepad.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,3704,notepad.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,3704,notepad.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,3704,notepad.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,3704,notepad.exe,12,SeSystemtimePrivilege,,Change the system time
+0,3704,notepad.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,3704,notepad.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,3704,notepad.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,3704,notepad.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,3704,notepad.exe,17,SeBackupPrivilege,,Backup files and directories
+0,3704,notepad.exe,18,SeRestorePrivilege,,Restore files and directories
+0,3704,notepad.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,3704,notepad.exe,20,SeDebugPrivilege,,Debug programs
+0,3704,notepad.exe,21,SeAuditPrivilege,,Generate security audits
+0,3704,notepad.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,3704,notepad.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3704,notepad.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3704,notepad.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,3704,notepad.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3704,notepad.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3704,notepad.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,3704,notepad.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,3704,notepad.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,3704,notepad.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3704,notepad.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3704,notepad.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,3704,notepad.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,3704,notepad.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,3704,notepad.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3840,notepad.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3840,notepad.exe,3,SeAssignPrimaryTokenPrivilege,,Replace a process-level token
+0,3840,notepad.exe,4,SeLockMemoryPrivilege,,Lock pages in memory
+0,3840,notepad.exe,5,SeIncreaseQuotaPrivilege,,Increase quotas
+0,3840,notepad.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3840,notepad.exe,7,SeTcbPrivilege,,Act as part of the operating system
+0,3840,notepad.exe,8,SeSecurityPrivilege,,Manage auditing and security log
+0,3840,notepad.exe,9,SeTakeOwnershipPrivilege,,Take ownership of files/objects
+0,3840,notepad.exe,10,SeLoadDriverPrivilege,,Load and unload device drivers
+0,3840,notepad.exe,11,SeSystemProfilePrivilege,,Profile system performance
+0,3840,notepad.exe,12,SeSystemtimePrivilege,,Change the system time
+0,3840,notepad.exe,13,SeProfileSingleProcessPrivilege,,Profile a single process
+0,3840,notepad.exe,14,SeIncreaseBasePriorityPrivilege,,Increase scheduling priority
+0,3840,notepad.exe,15,SeCreatePagefilePrivilege,,Create a pagefile
+0,3840,notepad.exe,16,SeCreatePermanentPrivilege,,Create permanent shared objects
+0,3840,notepad.exe,17,SeBackupPrivilege,,Backup files and directories
+0,3840,notepad.exe,18,SeRestorePrivilege,,Restore files and directories
+0,3840,notepad.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,3840,notepad.exe,20,SeDebugPrivilege,,Debug programs
+0,3840,notepad.exe,21,SeAuditPrivilege,,Generate security audits
+0,3840,notepad.exe,22,SeSystemEnvironmentPrivilege,,Edit firmware environment values
+0,3840,notepad.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3840,notepad.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3840,notepad.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,3840,notepad.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3840,notepad.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3840,notepad.exe,28,SeManageVolumePrivilege,,Manage the files on a volume
+0,3840,notepad.exe,29,SeImpersonatePrivilege,,Impersonate a client after authentication
+0,3840,notepad.exe,30,SeCreateGlobalPrivilege,,Create global objects
+0,3840,notepad.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3840,notepad.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3840,notepad.exe,33,SeIncreaseWorkingSetPrivilege,Present,Allocate more memory for user applications
+0,3840,notepad.exe,34,SeTimeZonePrivilege,Present,Adjust the time zone of the computer's internal clock
+0,3840,notepad.exe,35,SeCreateSymbolicLinkPrivilege,,Required to create a symbolic link
+0,3840,notepad.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3940,cmd.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3940,cmd.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,3940,cmd.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,3940,cmd.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,3940,cmd.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3940,cmd.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,3940,cmd.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,3940,cmd.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,3940,cmd.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,3940,cmd.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,3940,cmd.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,3940,cmd.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,3940,cmd.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,3940,cmd.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,3940,cmd.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,3940,cmd.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,3940,cmd.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,3940,cmd.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,3940,cmd.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,3940,cmd.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,3940,cmd.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,3940,cmd.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3940,cmd.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3940,cmd.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,3940,cmd.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3940,cmd.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3940,cmd.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,3940,cmd.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3940,cmd.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,3940,cmd.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3940,cmd.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3940,cmd.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,3940,cmd.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,3940,cmd.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,3940,cmd.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3980,conhost.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3980,conhost.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,3980,conhost.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,3980,conhost.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,3980,conhost.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3980,conhost.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,3980,conhost.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,3980,conhost.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,3980,conhost.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,3980,conhost.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,3980,conhost.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,3980,conhost.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,3980,conhost.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,3980,conhost.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,3980,conhost.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,3980,conhost.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,3980,conhost.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,3980,conhost.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,3980,conhost.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,3980,conhost.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,3980,conhost.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,3980,conhost.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3980,conhost.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3980,conhost.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,3980,conhost.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3980,conhost.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3980,conhost.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,3980,conhost.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3980,conhost.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,3980,conhost.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3980,conhost.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3980,conhost.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,3980,conhost.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,3980,conhost.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,3980,conhost.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+0,3960,ipconfig.exe,2,SeCreateTokenPrivilege,,Create a token object
+0,3960,ipconfig.exe,3,SeAssignPrimaryTokenPrivilege,Present,Replace a process-level token
+0,3960,ipconfig.exe,4,SeLockMemoryPrivilege,"Present,Enabled,Default",Lock pages in memory
+0,3960,ipconfig.exe,5,SeIncreaseQuotaPrivilege,Present,Increase quotas
+0,3960,ipconfig.exe,6,SeMachineAccountPrivilege,,Add workstations to the domain
+0,3960,ipconfig.exe,7,SeTcbPrivilege,"Present,Enabled,Default",Act as part of the operating system
+0,3960,ipconfig.exe,8,SeSecurityPrivilege,Present,Manage auditing and security log
+0,3960,ipconfig.exe,9,SeTakeOwnershipPrivilege,Present,Take ownership of files/objects
+0,3960,ipconfig.exe,10,SeLoadDriverPrivilege,Present,Load and unload device drivers
+0,3960,ipconfig.exe,11,SeSystemProfilePrivilege,"Present,Enabled,Default",Profile system performance
+0,3960,ipconfig.exe,12,SeSystemtimePrivilege,Present,Change the system time
+0,3960,ipconfig.exe,13,SeProfileSingleProcessPrivilege,"Present,Enabled,Default",Profile a single process
+0,3960,ipconfig.exe,14,SeIncreaseBasePriorityPrivilege,"Present,Enabled,Default",Increase scheduling priority
+0,3960,ipconfig.exe,15,SeCreatePagefilePrivilege,"Present,Enabled,Default",Create a pagefile
+0,3960,ipconfig.exe,16,SeCreatePermanentPrivilege,"Present,Enabled,Default",Create permanent shared objects
+0,3960,ipconfig.exe,17,SeBackupPrivilege,Present,Backup files and directories
+0,3960,ipconfig.exe,18,SeRestorePrivilege,Present,Restore files and directories
+0,3960,ipconfig.exe,19,SeShutdownPrivilege,Present,Shut down the system
+0,3960,ipconfig.exe,20,SeDebugPrivilege,"Present,Enabled,Default",Debug programs
+0,3960,ipconfig.exe,21,SeAuditPrivilege,"Present,Enabled,Default",Generate security audits
+0,3960,ipconfig.exe,22,SeSystemEnvironmentPrivilege,Present,Edit firmware environment values
+0,3960,ipconfig.exe,23,SeChangeNotifyPrivilege,"Present,Enabled,Default",Receive notifications of changes to files or directories
+0,3960,ipconfig.exe,24,SeRemoteShutdownPrivilege,,Force shutdown from a remote system
+0,3960,ipconfig.exe,25,SeUndockPrivilege,Present,Remove computer from docking station
+0,3960,ipconfig.exe,26,SeSyncAgentPrivilege,,Synch directory service data
+0,3960,ipconfig.exe,27,SeEnableDelegationPrivilege,,Enable user accounts to be trusted for delegation
+0,3960,ipconfig.exe,28,SeManageVolumePrivilege,Present,Manage the files on a volume
+0,3960,ipconfig.exe,29,SeImpersonatePrivilege,"Present,Enabled,Default",Impersonate a client after authentication
+0,3960,ipconfig.exe,30,SeCreateGlobalPrivilege,"Present,Enabled,Default",Create global objects
+0,3960,ipconfig.exe,31,SeTrustedCredManAccessPrivilege,,Access Credential Manager as a trusted caller
+0,3960,ipconfig.exe,32,SeRelabelPrivilege,,Modify the mandatory integrity level of an object
+0,3960,ipconfig.exe,33,SeIncreaseWorkingSetPrivilege,"Present,Enabled,Default",Allocate more memory for user applications
+0,3960,ipconfig.exe,34,SeTimeZonePrivilege,"Present,Enabled,Default",Adjust the time zone of the computer's internal clock
+0,3960,ipconfig.exe,35,SeCreateSymbolicLinkPrivilege,"Present,Enabled,Default",Required to create a symbolic link
+0,3960,ipconfig.exe,36,SeDelegateSessionUserImpersonatePrivilege,,Obtain an impersonation token for another user in the same session.
+

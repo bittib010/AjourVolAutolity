@@ -1,0 +1,23 @@
+TreeDepth,PID,PPID,ImageFileName,OffsetV,Threads,Handles,SessionId,Wow64,CreateTime,ExitTime,Fileoutput
+0,4,0,System,0x8413a920,91,431,N/A,False,2023-04-24 14:41:32.000000 ,N/A,Disabled
+0,268,4,smss.exe,0x8adb0330,2,29,N/A,False,2023-04-24 14:41:32.000000 ,N/A,Disabled
+0,352,340,csrss.exe,0x8552c030,9,460,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,404,340,wininit.exe,0x86297030,3,74,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,412,396,csrss.exe,0x8614d380,9,215,1,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,476,404,services.exe,0x8250b030,9,209,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,484,404,lsass.exe,0x8250fae8,7,594,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,492,404,lsm.exe,0x82512030,10,141,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,504,396,winlogon.exe,0x82511580,3,110,1,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,628,476,svchost.exe,0x82459bc0,12,365,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,724,476,svchost.exe,0x8246f968,7,272,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,776,476,svchost.exe,0x8248a758,22,542,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,860,476,svchost.exe,0x8249c758,14,313,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,936,476,svchost.exe,0x824cd258,32,908,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1052,476,svchost.exe,0x824e1320,16,697,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1120,476,svchost.exe,0x863b16c0,16,369,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1312,1288,explorer.exe,0x82577380,38,959,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1408,476,taskhost.exe,0x825ad538,8,192,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1428,476,svchost.exe,0x825cc750,18,318,0,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1992,476,svchost.exe,0x824b18e8,6,92,0,False,2023-04-24 14:41:41.000000 ,N/A,Disabled
+0,2408,476,svchost.exe,0x866d1030,14,241,0,False,2023-04-24 14:41:46.000000 ,N/A,Disabled
+0,3484,476,svchost.exe,0x86586330,9,304,0,False,2023-04-24 14:43:41.000000 ,N/A,Disabled

@@ -173,7 +173,7 @@ mindmap
 # Process of setting it up and "How to"
 ## Requirements
 ### Roles in Azure
-You need "AllDatabasesAdmin" role to be able to read, view and write to the ADX cluster. And to create everything there are a lot of others as well - I have currently been a root tenant owner. (Investigate role necessities and list it out here conforming to RBAC and POLP)
+You need "AllDatabasesAdmin" role to be able to read, view and write to the ADX cluster. And to create everything there are a lot of others as well - I have currently been a root tenant owner.
 
 To run scripts on database you need Contributor role on the cluster and Admin role on the database - Pretty much covered.
 
@@ -181,21 +181,21 @@ CloudApplicationAdmin is per now not covered in code.
 
 As root tenant owner you don't need any other permissions/roles as far as my testing goes.
 
-### Install Terraform 
-Simple and ready to go binaries can be found at: https://developer.hashicorp.com/terraform/install#Windows
+### Install and login
+ 
+Install Terraform: https://developer.hashicorp.com/terraform/install#Windows 
 
-### Install Azure CLI and signin
-This page lists three different ways to install Azure CLI on Windows: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
+Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
 
-## Steps to deploy
-
-Set the variable for your initials, path to your public and private SSH-keys in variable.tf (and more as needed).
-
-Login and set subscription
+Login and set subscription:
 ```powershell
 az login # Prompts you interactively via last opened browser and spits out all available subscriptions for your user
 az account set --subscription "<INSERT SUBSCRIPTION ID OR NAME>"
 ```
+
+## Steps to deploy
+
+Set the variable for your initials, path to your public and private SSH-keys in variable.tf (and more as needed).
 
 Navigate to the root directory of the project.
 
@@ -215,8 +215,6 @@ terraform output setup_and_instructions
 ```
 
 ## Challenges and bugs
-Some runs does not download the required Symbol Lists.
-
 I've stumbled upon a few errors using Azure CLI that was unreproducable but was most often solved by this flow of commands:
 
 ```powershell
@@ -239,23 +237,10 @@ https://www.osforensics.com/tools/volatility-workbench.html
 
 
 ## Time notes (give or take)
-ADX cluster often takes around 13-15 minutes setting up. (most often around 13:20)
+ADX cluster often takes around 13-15 minutes setting up. 
 VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
 
-
-
-# TODO
-- A listener for new CSV files in use for ingestion might be better than what is currently implemented. Reduces code as well. Or consider running ingestions concurrently in the current setup.
-- Create a workbook with premade queries for triaging:
-    - Singletons
-    - Parent/child relation
-    - Executable injection
-    - Map of all found IP-addresses
-    - and many more queries that makes it easy and quick to see where investigation should start out
-- ClamAV run
-- Map out all IP addresses found in a dump on a map
-- Make an entry in README about Cost of running this in the cloud.
-
+Completes most often within 30 minutes for everything.
 
 <details><summary>Resources: </summary>
 - https://github.com/hashicorp/terraform-provider-azurerm/issues/15649
@@ -290,4 +275,11 @@ VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resourc
 - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations
 - https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh
 - https://github.com/Yara-Rules/rules
+- https://github.com/k1nd0ne/VolWeb
+- https://github.com/carlospolop/autoVolatility
+- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-timepivot?pivots=azuredataexplorer
+- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-linechart?pivots=azuredataexplorer
+- https://www.cloudsma.com/2021/01/azure-workbooks-icons-thresholds-heatmaps/
+- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-treemap?pivots=azuredataexplorer
+- https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-grid-visualizations
 </details>

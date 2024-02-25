@@ -73,6 +73,13 @@
       "name": "query - 0"
     },
     {
+      "type": 1,
+      "content": {
+        "json": "# PSTree"
+      },
+      "name": "text - 7"
+    },
+    {
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
@@ -221,6 +228,23 @@
     {
       "type": 1,
       "content": {
+        "json": "# Processes, cmdline and interesting privileges combination"
+      },
+      "name": "text - 8"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| join kind=leftouter cmdline on PID\\r\\n| join kind=leftouter cmdline on $left.PPID==$right.PID\\r\\n| project PID, PPID, Process, ImageFileName, OffsetV, Threads, Handles, SessionId, Wow64, CreateTime, ExitTime, Fileoutput, CMDLine = Args, ParentCMDLine=Args1, ParentProcess=Process1\\r\\n| join kind=leftouter privileges  on PID\\r\\n| project-away Process1, PID1, TreeDepth\\r\\n| project-rename PrivilegeDescription = Description, PrivilegeValue = Value\\r\\n| where Privilege in (\\\"SeImpersonatePrivilege\\\", \\\"SeAssignPrimaryPrivilege\\\", \\\"SeTcbPrivilege\\\", \\\"SeBackupPrivilege\\\", \\\"SeRestorePrivilege\\\", \\\"SeCreateTokenPrivilege\\\", \\\"SeLoadDriverPrivilege\\\", \\\"SeTakeOwnershipPrivilege\\\", \\\"SeDebugPrivilege\\\")\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 18"
+    },
+    {
+      "type": 1,
+      "content": {
         "json": "# Pivot on Processes"
       },
       "name": "text - 8"
@@ -265,16 +289,38 @@
     {
       "type": 1,
       "content": {
-        "json": "# Passwords from dumps"
+        "json": "# Passwords from hashdumps"
       },
       "name": "text - 8"
     },
     {
-      "type": 1,
+      "type": 3,
       "content": {
-        "json": "# Passwords from dumps"
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"hashdump\\r\\n| extend decrypted_hash = strcat(\\\"https://ntlm.pw/\\\",nthash)\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 4,
+        "queryType": 9,
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "nthash",
+              "formatter": 0,
+              "formatOptions": {
+                "aggregation": "Sum"
+              }
+            },
+            {
+              "columnMatch": "decrypted_hash",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "Url",
+                "linkLabel": "Decrypt using online library"
+              }
+            }
+          ]
+        }
       },
-      "name": "text - 8"
+      "name": "query - 24"
     },
     {
       "type": 1,
@@ -291,11 +337,66 @@
       "name": "text - 8"
     },
     {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist_singletons\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 1,
+        "queryType": 9
+      },
+      "name": "query - 19"
+    },
+    {
       "type": 1,
       "content": {
         "json": "# Executable injections"
       },
       "name": "text - 8"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Malfind vizualize"
+      },
+      "name": "text - 8"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "61c330b4-32c4-4010-b031-5cb554b5502f",
+            "version": "KqlParameterItem/1.0",
+            "name": "PIDPivot",
+            "type": 2,
+            "description": "Choose PID to look into",
+            "isRequired": true,
+            "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=inner psscan on PID\\r\\n| distinct PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 9,
+            "value": "1768"
+          }
+        ],
+        "style": "pills",
+        "queryType": 9
+      },
+      "name": "parameters - 20"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"dlllist\\r\\n| where PID == {PIDPivot}\\r\\n| project-away TreeDepth, PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 19"
     }
   ],
   "fallbackResourceIds": [

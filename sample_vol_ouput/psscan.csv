@@ -1,0 +1,48 @@
+TreeDepth,PID,PPID,ImageFileName,OffsetV,Threads,Handles,SessionId,Wow64,CreateTime,ExitTime,Fileoutput
+0,3840,1312,notepad.exe,0x118030,1,62,1,False,2023-04-24 14:59:24.000000 ,N/A,Disabled
+0,628,476,svchost.exe,0xe93bc0,12,365,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1312,1288,explorer.exe,0x53cd380,38,959,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1348,476,spoolsv.exe,0x5551030,12,321,0,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,3704,1312,notepad.exe,0x63bfd40,1,62,1,False,2023-04-24 14:58:43.000000 ,N/A,Disabled
+0,936,476,svchost.exe,0x6ee8258,32,908,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1992,476,svchost.exe,0x89e88e8,6,92,0,False,2023-04-24 14:41:41.000000 ,N/A,Disabled
+0,776,476,svchost.exe,0x926a758,22,542,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,724,476,svchost.exe,0xa2b1968,7,272,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,2956,1312,notepad.exe,0xbaa3750,5,247,1,False,2023-04-24 14:48:50.000000 ,N/A,Disabled
+0,476,404,services.exe,0xbf30030,9,209,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,484,404,lsass.exe,0xc9f1ae8,7,594,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,504,396,winlogon.exe,0xccee580,3,110,1,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,492,404,lsm.exe,0xd53c030,10,141,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,3164,776,audiodg.exe,0x1335ca40,6,136,0,False,2023-04-24 14:49:15.000000 ,N/A,Disabled
+0,268,4,smss.exe,0x24815330,2,29,N/A,False,2023-04-24 14:41:32.000000 ,N/A,Disabled
+0,1408,476,taskhost.exe,0x320d0538,8,192,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1428,476,svchost.exe,0x3251a750,18,318,0,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,1052,476,svchost.exe,0x3a188320,16,697,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,860,476,svchost.exe,0x3b584758,14,313,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,692,476,vmacthlp.exe,0x3bbc2030,3,53,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,2300,628,WmiPrvSE.exe,0x3d67eaf8,7,116,0,False,2023-04-24 14:49:40.000000 ,N/A,Disabled
+0,2316,476,wmpnetwk.exe,0x3d8214a0,9,212,0,False,2023-04-24 14:41:46.000000 ,N/A,Disabled
+0,2128,476,SearchIndexer.,0x3d875228,13,639,0,False,2023-04-24 14:41:45.000000 ,N/A,Disabled
+0,2408,476,svchost.exe,0x3d8d1030,14,241,0,False,2023-04-24 14:41:46.000000 ,N/A,Disabled
+0,1672,476,VGAuthService.,0x3da4f1c8,3,87,0,False,2023-04-24 14:41:40.000000 ,N/A,Disabled
+0,1268,476,msdtc.exe,0x3da58550,12,145,0,False,2023-04-24 14:41:43.000000 ,N/A,Disabled
+0,1756,476,vmtoolsd.exe,0x3da62c88,9,293,0,False,2023-04-24 14:41:40.000000 ,N/A,Disabled
+0,1332,476,dllhost.exe,0x3db79a40,13,194,0,False,2023-04-24 14:41:41.000000 ,N/A,Disabled
+0,3484,476,svchost.exe,0x3db86330,9,304,0,False,2023-04-24 14:43:41.000000 ,N/A,Disabled
+0,1072,628,WmiPrvSE.exe,0x3dba89f0,9,197,0,False,2023-04-24 14:41:41.000000 ,N/A,Disabled
+0,3448,476,sppsvc.exe,0x3dbf68e0,4,146,0,False,2023-04-24 14:43:40.000000 ,N/A,Disabled
+0,404,340,wininit.exe,0x3dc97030,3,74,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,1120,476,svchost.exe,0x3ddb16c0,16,369,0,False,2023-04-24 14:41:38.000000 ,N/A,Disabled
+0,1556,1312,vmtoolsd.exe,0x3ddfdb90,6,218,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,412,396,csrss.exe,0x3df4d380,9,215,1,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,1300,860,dwm.exe,0x3e7c2030,3,68,1,False,2023-04-24 14:41:39.000000 ,N/A,Disabled
+0,352,340,csrss.exe,0x3eb2c030,9,460,0,False,2023-04-24 14:41:37.000000 ,N/A,Disabled
+0,2504,440,vmacthlp.exe,0x3f428518,4,-,-,False,2023-04-24 14:40:26.000000 ,N/A,Disabled
+0,2196,440,svchost.exe,0x3f428d40,0,-,-,False,2023-04-24 14:40:26.000000 ,2023-04-24 14:41:15.000000 ,Disabled
+0,3940,1756,cmd.exe,0x3fc90030,0,-,0,False,2023-04-24 14:59:30.000000 ,2023-04-24 14:59:30.000000 ,Disabled
+0,2620,2128,SearchProtocol,0x3fc92648,0,-,0,False,2023-04-24 14:51:19.000000 ,2023-04-24 14:56:50.000000 ,Disabled
+0,3960,3940,ipconfig.exe,0x3fcd62e8,0,-,0,False,2023-04-24 14:59:30.000000 ,2023-04-24 14:59:30.000000 ,Disabled
+0,3980,352,conhost.exe,0x3fd03920,0,-,0,False,2023-04-24 14:59:30.000000 ,2023-04-24 14:59:30.000000 ,Disabled
+0,4,0,System,0x3fff5bb0,66,134744072,N/A,False,2023-04-25 00:35:16.000000 ,N/A,Disabled
+0,4,0,System,0x3fffa920,91,431,N/A,False,2023-04-24 14:41:32.000000 ,N/A,Disabled
+

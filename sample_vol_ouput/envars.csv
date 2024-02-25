@@ -1,0 +1,1051 @@
+TreeDepth,PID,Process,Block,Variable,Value
+0,268,smss.exe,0x2408c0,Path,C:\\Windows\\System32
+0,268,smss.exe,0x2408c0,SystemDrive,C:
+0,268,smss.exe,0x2408c0,SystemRoot,C:\\Windows
+0,352,csrss.exe,0x440d80,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,352,csrss.exe,0x440d80,FP_NO_HOST_CHECK,NO
+0,352,csrss.exe,0x440d80,NUMBER_OF_PROCESSORS,1
+0,352,csrss.exe,0x440d80,OS,Windows_NT
+0,352,csrss.exe,0x440d80,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,352,csrss.exe,0x440d80,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,352,csrss.exe,0x440d80,PROCESSOR_ARCHITECTURE,x86
+0,352,csrss.exe,0x440d80,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,352,csrss.exe,0x440d80,PROCESSOR_LEVEL,6
+0,352,csrss.exe,0x440d80,PROCESSOR_REVISION,3c03
+0,352,csrss.exe,0x440d80,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,352,csrss.exe,0x440d80,SystemDrive,C:
+0,352,csrss.exe,0x440d80,SystemRoot,C:\\Windows
+0,352,csrss.exe,0x440d80,TEMP,C:\\Windows\\TEMP
+0,352,csrss.exe,0x440d80,TMP,C:\\Windows\\TEMP
+0,352,csrss.exe,0x440d80,USERNAME,SYSTEM
+0,352,csrss.exe,0x440d80,windir,C:\\Windows
+0,352,csrss.exe,0x440d80,windows_tracing_flags,3
+0,352,csrss.exe,0x440d80,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,404,wininit.exe,0x2b0d80,ALLUSERSPROFILE,C:\\ProgramData
+0,404,wininit.exe,0x2b0d80,CommonProgramFiles,C:\\Program Files\\Common Files
+0,404,wininit.exe,0x2b0d80,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,404,wininit.exe,0x2b0d80,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,404,wininit.exe,0x2b0d80,FP_NO_HOST_CHECK,NO
+0,404,wininit.exe,0x2b0d80,NUMBER_OF_PROCESSORS,1
+0,404,wininit.exe,0x2b0d80,OS,Windows_NT
+0,404,wininit.exe,0x2b0d80,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,404,wininit.exe,0x2b0d80,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,404,wininit.exe,0x2b0d80,PROCESSOR_ARCHITECTURE,x86
+0,404,wininit.exe,0x2b0d80,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,404,wininit.exe,0x2b0d80,PROCESSOR_LEVEL,6
+0,404,wininit.exe,0x2b0d80,PROCESSOR_REVISION,3c03
+0,404,wininit.exe,0x2b0d80,ProgramData,C:\\ProgramData
+0,404,wininit.exe,0x2b0d80,ProgramFiles,C:\\Program Files
+0,404,wininit.exe,0x2b0d80,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,404,wininit.exe,0x2b0d80,PUBLIC,C:\\Users\\Public
+0,404,wininit.exe,0x2b0d80,SystemDrive,C:
+0,404,wininit.exe,0x2b0d80,SystemRoot,C:\\Windows
+0,404,wininit.exe,0x2b0d80,TEMP,C:\\Windows\\TEMP
+0,404,wininit.exe,0x2b0d80,TMP,C:\\Windows\\TEMP
+0,404,wininit.exe,0x2b0d80,USERNAME,SYSTEM
+0,404,wininit.exe,0x2b0d80,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,404,wininit.exe,0x2b0d80,windir,C:\\Windows
+0,404,wininit.exe,0x2b0d80,windows_tracing_flags,3
+0,404,wininit.exe,0x2b0d80,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,412,csrss.exe,0x110d80,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,412,csrss.exe,0x110d80,FP_NO_HOST_CHECK,NO
+0,412,csrss.exe,0x110d80,NUMBER_OF_PROCESSORS,1
+0,412,csrss.exe,0x110d80,OS,Windows_NT
+0,412,csrss.exe,0x110d80,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,412,csrss.exe,0x110d80,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,412,csrss.exe,0x110d80,PROCESSOR_ARCHITECTURE,x86
+0,412,csrss.exe,0x110d80,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,412,csrss.exe,0x110d80,PROCESSOR_LEVEL,6
+0,412,csrss.exe,0x110d80,PROCESSOR_REVISION,3c03
+0,412,csrss.exe,0x110d80,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,412,csrss.exe,0x110d80,SystemDrive,C:
+0,412,csrss.exe,0x110d80,SystemRoot,C:\\Windows
+0,412,csrss.exe,0x110d80,TEMP,C:\\Windows\\TEMP
+0,412,csrss.exe,0x110d80,TMP,C:\\Windows\\TEMP
+0,412,csrss.exe,0x110d80,USERNAME,SYSTEM
+0,412,csrss.exe,0x110d80,windir,C:\\Windows
+0,412,csrss.exe,0x110d80,windows_tracing_flags,3
+0,412,csrss.exe,0x110d80,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,476,services.exe,0x310f60,ALLUSERSPROFILE,C:\\ProgramData
+0,476,services.exe,0x310f60,CommonProgramFiles,C:\\Program Files\\Common Files
+0,476,services.exe,0x310f60,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,476,services.exe,0x310f60,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,476,services.exe,0x310f60,FP_NO_HOST_CHECK,NO
+0,476,services.exe,0x310f60,NUMBER_OF_PROCESSORS,1
+0,476,services.exe,0x310f60,OS,Windows_NT
+0,476,services.exe,0x310f60,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,476,services.exe,0x310f60,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,476,services.exe,0x310f60,PROCESSOR_ARCHITECTURE,x86
+0,476,services.exe,0x310f60,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,476,services.exe,0x310f60,PROCESSOR_LEVEL,6
+0,476,services.exe,0x310f60,PROCESSOR_REVISION,3c03
+0,476,services.exe,0x310f60,ProgramData,C:\\ProgramData
+0,476,services.exe,0x310f60,ProgramFiles,C:\\Program Files
+0,476,services.exe,0x310f60,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,476,services.exe,0x310f60,PUBLIC,C:\\Users\\Public
+0,476,services.exe,0x310f60,SystemDrive,C:
+0,476,services.exe,0x310f60,SystemRoot,C:\\Windows
+0,476,services.exe,0x310f60,TEMP,C:\\Windows\\TEMP
+0,476,services.exe,0x310f60,TMP,C:\\Windows\\TEMP
+0,476,services.exe,0x310f60,USERNAME,SYSTEM
+0,476,services.exe,0x310f60,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,476,services.exe,0x310f60,windir,C:\\Windows
+0,476,services.exe,0x310f60,windows_tracing_flags,3
+0,476,services.exe,0x310f60,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,484,lsass.exe,0x360f60,ALLUSERSPROFILE,C:\\ProgramData
+0,484,lsass.exe,0x360f60,CommonProgramFiles,C:\\Program Files\\Common Files
+0,484,lsass.exe,0x360f60,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,484,lsass.exe,0x360f60,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,484,lsass.exe,0x360f60,FP_NO_HOST_CHECK,NO
+0,484,lsass.exe,0x360f60,NUMBER_OF_PROCESSORS,1
+0,484,lsass.exe,0x360f60,OS,Windows_NT
+0,484,lsass.exe,0x360f60,Path,C:\\Windows\\System32
+0,484,lsass.exe,0x360f60,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,484,lsass.exe,0x360f60,PROCESSOR_ARCHITECTURE,x86
+0,484,lsass.exe,0x360f60,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,484,lsass.exe,0x360f60,PROCESSOR_LEVEL,6
+0,484,lsass.exe,0x360f60,PROCESSOR_REVISION,3c03
+0,484,lsass.exe,0x360f60,ProgramData,C:\\ProgramData
+0,484,lsass.exe,0x360f60,ProgramFiles,C:\\Program Files
+0,484,lsass.exe,0x360f60,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,484,lsass.exe,0x360f60,PUBLIC,C:\\Users\\Public
+0,484,lsass.exe,0x360f60,SystemDrive,C:
+0,484,lsass.exe,0x360f60,SystemRoot,C:\\Windows
+0,484,lsass.exe,0x360f60,TEMP,C:\\Windows\\TEMP
+0,484,lsass.exe,0x360f60,TMP,C:\\Windows\\TEMP
+0,484,lsass.exe,0x360f60,USERNAME,SYSTEM
+0,484,lsass.exe,0x360f60,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,484,lsass.exe,0x360f60,windir,C:\\Windows
+0,484,lsass.exe,0x360f60,windows_tracing_flags,3
+0,484,lsass.exe,0x360f60,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,484,lsass.exe,0x360f60,_flags,3
+0,484,lsass.exe,0x360f60,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,492,lsm.exe,0x170f60,ALLUSERSPROFILE,C:\\ProgramData
+0,492,lsm.exe,0x170f60,CommonProgramFiles,C:\\Program Files\\Common Files
+0,492,lsm.exe,0x170f60,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,492,lsm.exe,0x170f60,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,492,lsm.exe,0x170f60,FP_NO_HOST_CHECK,NO
+0,492,lsm.exe,0x170f60,NUMBER_OF_PROCESSORS,1
+0,492,lsm.exe,0x170f60,OS,Windows_NT
+0,492,lsm.exe,0x170f60,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,492,lsm.exe,0x170f60,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,492,lsm.exe,0x170f60,PROCESSOR_ARCHITECTURE,x86
+0,492,lsm.exe,0x170f60,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,492,lsm.exe,0x170f60,PROCESSOR_LEVEL,6
+0,492,lsm.exe,0x170f60,PROCESSOR_REVISION,3c03
+0,492,lsm.exe,0x170f60,ProgramData,C:\\ProgramData
+0,492,lsm.exe,0x170f60,ProgramFiles,C:\\Program Files
+0,492,lsm.exe,0x170f60,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,492,lsm.exe,0x170f60,PUBLIC,C:\\Users\\Public
+0,492,lsm.exe,0x170f60,SystemDrive,C:
+0,492,lsm.exe,0x170f60,SystemRoot,C:\\Windows
+0,492,lsm.exe,0x170f60,TEMP,C:\\Windows\\TEMP
+0,492,lsm.exe,0x170f60,TMP,C:\\Windows\\TEMP
+0,492,lsm.exe,0x170f60,USERNAME,SYSTEM
+0,492,lsm.exe,0x170f60,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,492,lsm.exe,0x170f60,windir,C:\\Windows
+0,492,lsm.exe,0x170f60,windows_tracing_flags,3
+0,492,lsm.exe,0x170f60,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,504,winlogon.exe,0x270d80,ALLUSERSPROFILE,C:\\ProgramData
+0,504,winlogon.exe,0x270d80,CommonProgramFiles,C:\\Program Files\\Common Files
+0,504,winlogon.exe,0x270d80,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,504,winlogon.exe,0x270d80,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,504,winlogon.exe,0x270d80,FP_NO_HOST_CHECK,NO
+0,504,winlogon.exe,0x270d80,NUMBER_OF_PROCESSORS,1
+0,504,winlogon.exe,0x270d80,OS,Windows_NT
+0,504,winlogon.exe,0x270d80,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,504,winlogon.exe,0x270d80,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,504,winlogon.exe,0x270d80,PROCESSOR_ARCHITECTURE,x86
+0,504,winlogon.exe,0x270d80,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,504,winlogon.exe,0x270d80,PROCESSOR_LEVEL,6
+0,504,winlogon.exe,0x270d80,PROCESSOR_REVISION,3c03
+0,504,winlogon.exe,0x270d80,ProgramData,C:\\ProgramData
+0,504,winlogon.exe,0x270d80,ProgramFiles,C:\\Program Files
+0,504,winlogon.exe,0x270d80,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,504,winlogon.exe,0x270d80,PUBLIC,C:\\Users\\Public
+0,504,winlogon.exe,0x270d80,SystemDrive,C:
+0,504,winlogon.exe,0x270d80,SystemRoot,C:\\Windows
+0,504,winlogon.exe,0x270d80,TEMP,C:\\Windows\\TEMP
+0,504,winlogon.exe,0x270d80,TMP,C:\\Windows\\TEMP
+0,504,winlogon.exe,0x270d80,USERNAME,SYSTEM
+0,504,winlogon.exe,0x270d80,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,504,winlogon.exe,0x270d80,windir,C:\\Windows
+0,504,winlogon.exe,0x270d80,windows_tracing_flags,3
+0,504,winlogon.exe,0x270d80,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,628,svchost.exe,0x1810a8,ALLUSERSPROFILE,C:\\ProgramData
+0,628,svchost.exe,0x1810a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,628,svchost.exe,0x1810a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,628,svchost.exe,0x1810a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,628,svchost.exe,0x1810a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,628,svchost.exe,0x1810a8,FP_NO_HOST_CHECK,NO
+0,628,svchost.exe,0x1810a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,628,svchost.exe,0x1810a8,NUMBER_OF_PROCESSORS,1
+0,628,svchost.exe,0x1810a8,OS,Windows_NT
+0,628,svchost.exe,0x1810a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,628,svchost.exe,0x1810a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,628,svchost.exe,0x1810a8,PROCESSOR_ARCHITECTURE,x86
+0,628,svchost.exe,0x1810a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,628,svchost.exe,0x1810a8,PROCESSOR_LEVEL,6
+0,628,svchost.exe,0x1810a8,PROCESSOR_REVISION,3c03
+0,628,svchost.exe,0x1810a8,ProgramData,C:\\ProgramData
+0,628,svchost.exe,0x1810a8,ProgramFiles,C:\\Program Files
+0,628,svchost.exe,0x1810a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,628,svchost.exe,0x1810a8,PUBLIC,C:\\Users\\Public
+0,628,svchost.exe,0x1810a8,SystemDrive,C:
+0,628,svchost.exe,0x1810a8,SystemRoot,C:\\Windows
+0,628,svchost.exe,0x1810a8,TEMP,C:\\Windows\\TEMP
+0,628,svchost.exe,0x1810a8,TMP,C:\\Windows\\TEMP
+0,628,svchost.exe,0x1810a8,USERDOMAIN,WORKGROUP
+0,628,svchost.exe,0x1810a8,USERNAME,WIN-MNF9FL8RCB0$
+0,628,svchost.exe,0x1810a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,628,svchost.exe,0x1810a8,windir,C:\\Windows
+0,628,svchost.exe,0x1810a8,windows_tracing_flags,3
+0,628,svchost.exe,0x1810a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,692,vmacthlp.exe,0x4010a8,ALLUSERSPROFILE,C:\\ProgramData
+0,692,vmacthlp.exe,0x4010a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,692,vmacthlp.exe,0x4010a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,692,vmacthlp.exe,0x4010a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,692,vmacthlp.exe,0x4010a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,692,vmacthlp.exe,0x4010a8,FP_NO_HOST_CHECK,NO
+0,692,vmacthlp.exe,0x4010a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,692,vmacthlp.exe,0x4010a8,NUMBER_OF_PROCESSORS,1
+0,692,vmacthlp.exe,0x4010a8,OS,Windows_NT
+0,692,vmacthlp.exe,0x4010a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;
+0,692,vmacthlp.exe,0x4010a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,692,vmacthlp.exe,0x4010a8,PROCESSOR_ARCHITECTURE,x86
+0,692,vmacthlp.exe,0x4010a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,692,vmacthlp.exe,0x4010a8,PROCESSOR_LEVEL,6
+0,692,vmacthlp.exe,0x4010a8,PROCESSOR_REVISION,3c03
+0,692,vmacthlp.exe,0x4010a8,ProgramData,C:\\ProgramData
+0,692,vmacthlp.exe,0x4010a8,ProgramFiles,C:\\Program Files
+0,692,vmacthlp.exe,0x4010a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,692,vmacthlp.exe,0x4010a8,PUBLIC,C:\\Users\\Public
+0,692,vmacthlp.exe,0x4010a8,SystemDrive,C:
+0,692,vmacthlp.exe,0x4010a8,SystemRoot,C:\\Windows
+0,692,vmacthlp.exe,0x4010a8,TEMP,C:\\Windows\\TEMP
+0,692,vmacthlp.exe,0x4010a8,TMP,C:\\Windows\\TEMP
+0,692,vmacthlp.exe,0x4010a8,USERDOMAIN,WORKGROUP
+0,692,vmacthlp.exe,0x4010a8,USERNAME,WIN-MNF9FL8RCB0$
+0,692,vmacthlp.exe,0x4010a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,692,vmacthlp.exe,0x4010a8,windir,C:\\Windows
+0,692,vmacthlp.exe,0x4010a8,windows_tracing_flags,3
+0,692,vmacthlp.exe,0x4010a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,724,svchost.exe,0x441130,ALLUSERSPROFILE,C:\\ProgramData
+0,724,svchost.exe,0x441130,APPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming
+0,724,svchost.exe,0x441130,CommonProgramFiles,C:\\Program Files\\Common Files
+0,724,svchost.exe,0x441130,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,724,svchost.exe,0x441130,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,724,svchost.exe,0x441130,FP_NO_HOST_CHECK,NO
+0,724,svchost.exe,0x441130,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local
+0,724,svchost.exe,0x441130,NUMBER_OF_PROCESSORS,1
+0,724,svchost.exe,0x441130,OS,Windows_NT
+0,724,svchost.exe,0x441130,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,724,svchost.exe,0x441130,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,724,svchost.exe,0x441130,PROCESSOR_ARCHITECTURE,x86
+0,724,svchost.exe,0x441130,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,724,svchost.exe,0x441130,PROCESSOR_LEVEL,6
+0,724,svchost.exe,0x441130,PROCESSOR_REVISION,3c03
+0,724,svchost.exe,0x441130,ProgramData,C:\\ProgramData
+0,724,svchost.exe,0x441130,ProgramFiles,C:\\Program Files
+0,724,svchost.exe,0x441130,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,724,svchost.exe,0x441130,PUBLIC,C:\\Users\\Public
+0,724,svchost.exe,0x441130,SystemDrive,C:
+0,724,svchost.exe,0x441130,SystemRoot,C:\\Windows
+0,724,svchost.exe,0x441130,TEMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,724,svchost.exe,0x441130,TMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,724,svchost.exe,0x441130,USERDOMAIN,WORKGROUP
+0,724,svchost.exe,0x441130,USERNAME,WIN-MNF9FL8RCB0$
+0,724,svchost.exe,0x441130,USERPROFILE,C:\\Windows\\ServiceProfiles\\NetworkService
+0,724,svchost.exe,0x441130,windir,C:\\Windows
+0,724,svchost.exe,0x441130,windows_tracing_flags,3
+0,724,svchost.exe,0x441130,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,776,svchost.exe,0x271120,ALLUSERSPROFILE,C:\\ProgramData
+0,776,svchost.exe,0x271120,APPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming
+0,776,svchost.exe,0x271120,CommonProgramFiles,C:\\Program Files\\Common Files
+0,776,svchost.exe,0x271120,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,776,svchost.exe,0x271120,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,776,svchost.exe,0x271120,FP_NO_HOST_CHECK,NO
+0,776,svchost.exe,0x271120,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local
+0,776,svchost.exe,0x271120,NUMBER_OF_PROCESSORS,1
+0,776,svchost.exe,0x271120,OS,Windows_NT
+0,776,svchost.exe,0x271120,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,776,svchost.exe,0x271120,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,776,svchost.exe,0x271120,PROCESSOR_ARCHITECTURE,x86
+0,776,svchost.exe,0x271120,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,776,svchost.exe,0x271120,PROCESSOR_LEVEL,6
+0,776,svchost.exe,0x271120,PROCESSOR_REVISION,3c03
+0,776,svchost.exe,0x271120,ProgramData,C:\\ProgramData
+0,776,svchost.exe,0x271120,ProgramFiles,C:\\Program Files
+0,776,svchost.exe,0x271120,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,776,svchost.exe,0x271120,PUBLIC,C:\\Users\\Public
+0,776,svchost.exe,0x271120,SystemDrive,C:
+0,776,svchost.exe,0x271120,SystemRoot,C:\\Windows
+0,776,svchost.exe,0x271120,TEMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,776,svchost.exe,0x271120,TMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,776,svchost.exe,0x271120,USERDOMAIN,NT AUTHORITY
+0,776,svchost.exe,0x271120,USERNAME,LOCAL SERVICE
+0,776,svchost.exe,0x271120,USERPROFILE,C:\\Windows\\ServiceProfiles\\LocalService
+0,776,svchost.exe,0x271120,windir,C:\\Windows
+0,776,svchost.exe,0x271120,windows_tracing_flags,3
+0,776,svchost.exe,0x271120,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,860,svchost.exe,0x2f10a8,ALLUSERSPROFILE,C:\\ProgramData
+0,860,svchost.exe,0x2f10a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,860,svchost.exe,0x2f10a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,860,svchost.exe,0x2f10a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,860,svchost.exe,0x2f10a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,860,svchost.exe,0x2f10a8,FP_NO_HOST_CHECK,NO
+0,860,svchost.exe,0x2f10a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,860,svchost.exe,0x2f10a8,NUMBER_OF_PROCESSORS,1
+0,860,svchost.exe,0x2f10a8,OS,Windows_NT
+0,860,svchost.exe,0x2f10a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,860,svchost.exe,0x2f10a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,860,svchost.exe,0x2f10a8,PROCESSOR_ARCHITECTURE,x86
+0,860,svchost.exe,0x2f10a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,860,svchost.exe,0x2f10a8,PROCESSOR_LEVEL,6
+0,860,svchost.exe,0x2f10a8,PROCESSOR_REVISION,3c03
+0,860,svchost.exe,0x2f10a8,ProgramData,C:\\ProgramData
+0,860,svchost.exe,0x2f10a8,ProgramFiles,C:\\Program Files
+0,860,svchost.exe,0x2f10a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,860,svchost.exe,0x2f10a8,PUBLIC,C:\\Users\\Public
+0,860,svchost.exe,0x2f10a8,SystemDrive,C:
+0,860,svchost.exe,0x2f10a8,SystemRoot,C:\\Windows
+0,860,svchost.exe,0x2f10a8,TEMP,C:\\Windows\\TEMP
+0,860,svchost.exe,0x2f10a8,TMP,C:\\Windows\\TEMP
+0,860,svchost.exe,0x2f10a8,USERDOMAIN,WORKGROUP
+0,860,svchost.exe,0x2f10a8,USERNAME,WIN-MNF9FL8RCB0$
+0,860,svchost.exe,0x2f10a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,860,svchost.exe,0x2f10a8,windir,C:\\Windows
+0,860,svchost.exe,0x2f10a8,windows_tracing_flags,3
+0,860,svchost.exe,0x2f10a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,936,svchost.exe,0x3910a8,ALLUSERSPROFILE,C:\\ProgramData
+0,936,svchost.exe,0x3910a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,936,svchost.exe,0x3910a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,936,svchost.exe,0x3910a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,936,svchost.exe,0x3910a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,936,svchost.exe,0x3910a8,FP_NO_HOST_CHECK,NO
+0,936,svchost.exe,0x3910a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,936,svchost.exe,0x3910a8,NUMBER_OF_PROCESSORS,1
+0,936,svchost.exe,0x3910a8,OS,Windows_NT
+0,936,svchost.exe,0x3910a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,936,svchost.exe,0x3910a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,936,svchost.exe,0x3910a8,PROCESSOR_ARCHITECTURE,x86
+0,936,svchost.exe,0x3910a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,936,svchost.exe,0x3910a8,PROCESSOR_LEVEL,6
+0,936,svchost.exe,0x3910a8,PROCESSOR_REVISION,3c03
+0,936,svchost.exe,0x3910a8,ProgramData,C:\\ProgramData
+0,936,svchost.exe,0x3910a8,ProgramFiles,C:\\Program Files
+0,936,svchost.exe,0x3910a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,936,svchost.exe,0x3910a8,PUBLIC,C:\\Users\\Public
+0,936,svchost.exe,0x3910a8,SystemDrive,C:
+0,936,svchost.exe,0x3910a8,SystemRoot,C:\\Windows
+0,936,svchost.exe,0x3910a8,TEMP,C:\\Windows\\TEMP
+0,936,svchost.exe,0x3910a8,TMP,C:\\Windows\\TEMP
+0,936,svchost.exe,0x3910a8,USERDOMAIN,WORKGROUP
+0,936,svchost.exe,0x3910a8,USERNAME,WIN-MNF9FL8RCB0$
+0,936,svchost.exe,0x3910a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,936,svchost.exe,0x3910a8,windir,C:\\Windows
+0,936,svchost.exe,0x3910a8,windows_tracing_flags,3
+0,936,svchost.exe,0x3910a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1052,svchost.exe,0xc1120,ALLUSERSPROFILE,C:\\ProgramData
+0,1052,svchost.exe,0xc1120,APPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming
+0,1052,svchost.exe,0xc1120,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1052,svchost.exe,0xc1120,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1052,svchost.exe,0xc1120,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1052,svchost.exe,0xc1120,FP_NO_HOST_CHECK,NO
+0,1052,svchost.exe,0xc1120,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local
+0,1052,svchost.exe,0xc1120,NUMBER_OF_PROCESSORS,1
+0,1052,svchost.exe,0xc1120,OS,Windows_NT
+0,1052,svchost.exe,0xc1120,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1052,svchost.exe,0xc1120,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1052,svchost.exe,0xc1120,PROCESSOR_ARCHITECTURE,x86
+0,1052,svchost.exe,0xc1120,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1052,svchost.exe,0xc1120,PROCESSOR_LEVEL,6
+0,1052,svchost.exe,0xc1120,PROCESSOR_REVISION,3c03
+0,1052,svchost.exe,0xc1120,ProgramData,C:\\ProgramData
+0,1052,svchost.exe,0xc1120,ProgramFiles,C:\\Program Files
+0,1052,svchost.exe,0xc1120,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1052,svchost.exe,0xc1120,PUBLIC,C:\\Users\\Public
+0,1052,svchost.exe,0xc1120,SystemDrive,C:
+0,1052,svchost.exe,0xc1120,SystemRoot,C:\\Windows
+0,1052,svchost.exe,0xc1120,TEMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1052,svchost.exe,0xc1120,TMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1052,svchost.exe,0xc1120,USERDOMAIN,NT AUTHORITY
+0,1052,svchost.exe,0xc1120,USERNAME,LOCAL SERVICE
+0,1052,svchost.exe,0xc1120,USERPROFILE,C:\\Windows\\ServiceProfiles\\LocalService
+0,1052,svchost.exe,0xc1120,windir,C:\\Windows
+0,1052,svchost.exe,0xc1120,windows_tracing_flags,3
+0,1052,svchost.exe,0xc1120,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1120,svchost.exe,0xa1130,ALLUSERSPROFILE,C:\\ProgramData
+0,1120,svchost.exe,0xa1130,APPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming
+0,1120,svchost.exe,0xa1130,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1120,svchost.exe,0xa1130,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1120,svchost.exe,0xa1130,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1120,svchost.exe,0xa1130,FP_NO_HOST_CHECK,NO
+0,1120,svchost.exe,0xa1130,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local
+0,1120,svchost.exe,0xa1130,NUMBER_OF_PROCESSORS,1
+0,1120,svchost.exe,0xa1130,OS,Windows_NT
+0,1120,svchost.exe,0xa1130,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1120,svchost.exe,0xa1130,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1120,svchost.exe,0xa1130,PROCESSOR_ARCHITECTURE,x86
+0,1120,svchost.exe,0xa1130,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1120,svchost.exe,0xa1130,PROCESSOR_LEVEL,6
+0,1120,svchost.exe,0xa1130,PROCESSOR_REVISION,3c03
+0,1120,svchost.exe,0xa1130,ProgramData,C:\\ProgramData
+0,1120,svchost.exe,0xa1130,ProgramFiles,C:\\Program Files
+0,1120,svchost.exe,0xa1130,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1120,svchost.exe,0xa1130,PUBLIC,C:\\Users\\Public
+0,1120,svchost.exe,0xa1130,SystemDrive,C:
+0,1120,svchost.exe,0xa1130,SystemRoot,C:\\Windows
+0,1120,svchost.exe,0xa1130,TEMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,1120,svchost.exe,0xa1130,TMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,1120,svchost.exe,0xa1130,USERDOMAIN,WORKGROUP
+0,1120,svchost.exe,0xa1130,USERNAME,WIN-MNF9FL8RCB0$
+0,1120,svchost.exe,0xa1130,USERPROFILE,C:\\Windows\\ServiceProfiles\\NetworkService
+0,1120,svchost.exe,0xa1130,windir,C:\\Windows
+0,1120,svchost.exe,0xa1130,windows_tracing_flags,3
+0,1120,svchost.exe,0xa1130,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1300,dwm.exe,0x1a10d0,ALLUSERSPROFILE,C:\\ProgramData
+0,1300,dwm.exe,0x1a10d0,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,1300,dwm.exe,0x1a10d0,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1300,dwm.exe,0x1a10d0,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1300,dwm.exe,0x1a10d0,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1300,dwm.exe,0x1a10d0,FP_NO_HOST_CHECK,NO
+0,1300,dwm.exe,0x1a10d0,HOMEDRIVE,C:
+0,1300,dwm.exe,0x1a10d0,HOMEPATH,\\Users\\Hoxed
+0,1300,dwm.exe,0x1a10d0,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,1300,dwm.exe,0x1a10d0,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,1300,dwm.exe,0x1a10d0,NUMBER_OF_PROCESSORS,1
+0,1300,dwm.exe,0x1a10d0,OS,Windows_NT
+0,1300,dwm.exe,0x1a10d0,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1300,dwm.exe,0x1a10d0,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1300,dwm.exe,0x1a10d0,PROCESSOR_ARCHITECTURE,x86
+0,1300,dwm.exe,0x1a10d0,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1300,dwm.exe,0x1a10d0,PROCESSOR_LEVEL,6
+0,1300,dwm.exe,0x1a10d0,PROCESSOR_REVISION,3c03
+0,1300,dwm.exe,0x1a10d0,ProgramData,C:\\ProgramData
+0,1300,dwm.exe,0x1a10d0,ProgramFiles,C:\\Program Files
+0,1300,dwm.exe,0x1a10d0,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1300,dwm.exe,0x1a10d0,PUBLIC,C:\\Users\\Public
+0,1300,dwm.exe,0x1a10d0,SystemDrive,C:
+0,1300,dwm.exe,0x1a10d0,SystemRoot,C:\\Windows
+0,1300,dwm.exe,0x1a10d0,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1300,dwm.exe,0x1a10d0,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1300,dwm.exe,0x1a10d0,USERDOMAIN,WIN-MNF9FL8RCB0
+0,1300,dwm.exe,0x1a10d0,USERNAME,Hoxed
+0,1300,dwm.exe,0x1a10d0,USERPROFILE,C:\\Users\\Hoxed
+0,1300,dwm.exe,0x1a10d0,windir,C:\\Windows
+0,1300,dwm.exe,0x1a10d0,windows_tracing_flags,3
+0,1300,dwm.exe,0x1a10d0,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1312,explorer.exe,0x1810f8,ALLUSERSPROFILE,C:\\ProgramData
+0,1312,explorer.exe,0x1810f8,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,1312,explorer.exe,0x1810f8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1312,explorer.exe,0x1810f8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1312,explorer.exe,0x1810f8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1312,explorer.exe,0x1810f8,FP_NO_HOST_CHECK,NO
+0,1312,explorer.exe,0x1810f8,HOMEDRIVE,C:
+0,1312,explorer.exe,0x1810f8,HOMEPATH,\\Users\\Hoxed
+0,1312,explorer.exe,0x1810f8,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,1312,explorer.exe,0x1810f8,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,1312,explorer.exe,0x1810f8,NUMBER_OF_PROCESSORS,1
+0,1312,explorer.exe,0x1810f8,OS,Windows_NT
+0,1312,explorer.exe,0x1810f8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1312,explorer.exe,0x1810f8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1312,explorer.exe,0x1810f8,PROCESSOR_ARCHITECTURE,x86
+0,1312,explorer.exe,0x1810f8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1312,explorer.exe,0x1810f8,PROCESSOR_LEVEL,6
+0,1312,explorer.exe,0x1810f8,PROCESSOR_REVISION,3c03
+0,1312,explorer.exe,0x1810f8,ProgramData,C:\\ProgramData
+0,1312,explorer.exe,0x1810f8,ProgramFiles,C:\\Program Files
+0,1312,explorer.exe,0x1810f8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1312,explorer.exe,0x1810f8,PUBLIC,C:\\Users\\Public
+0,1312,explorer.exe,0x1810f8,SESSIONNAME,Console
+0,1312,explorer.exe,0x1810f8,SystemDrive,C:
+0,1312,explorer.exe,0x1810f8,SystemRoot,C:\\Windows
+0,1312,explorer.exe,0x1810f8,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1312,explorer.exe,0x1810f8,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1312,explorer.exe,0x1810f8,USERDOMAIN,WIN-MNF9FL8RCB0
+0,1312,explorer.exe,0x1810f8,USERNAME,Hoxed
+0,1312,explorer.exe,0x1810f8,USERPROFILE,C:\\Users\\Hoxed
+0,1312,explorer.exe,0x1810f8,windir,C:\\Windows
+0,1312,explorer.exe,0x1810f8,windows_tracing_flags,3
+0,1312,explorer.exe,0x1810f8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1348,spoolsv.exe,0x2010a8,ALLUSERSPROFILE,C:\\ProgramData
+0,1348,spoolsv.exe,0x2010a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,1348,spoolsv.exe,0x2010a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1348,spoolsv.exe,0x2010a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1348,spoolsv.exe,0x2010a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1348,spoolsv.exe,0x2010a8,FP_NO_HOST_CHECK,NO
+0,1348,spoolsv.exe,0x2010a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,1348,spoolsv.exe,0x2010a8,NUMBER_OF_PROCESSORS,1
+0,1348,spoolsv.exe,0x2010a8,OS,Windows_NT
+0,1348,spoolsv.exe,0x2010a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1348,spoolsv.exe,0x2010a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1348,spoolsv.exe,0x2010a8,PROCESSOR_ARCHITECTURE,x86
+0,1348,spoolsv.exe,0x2010a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1348,spoolsv.exe,0x2010a8,PROCESSOR_LEVEL,6
+0,1348,spoolsv.exe,0x2010a8,PROCESSOR_REVISION,3c03
+0,1348,spoolsv.exe,0x2010a8,ProgramData,C:\\ProgramData
+0,1348,spoolsv.exe,0x2010a8,ProgramFiles,C:\\Program Files
+0,1348,spoolsv.exe,0x2010a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1348,spoolsv.exe,0x2010a8,PUBLIC,C:\\Users\\Public
+0,1348,spoolsv.exe,0x2010a8,SystemDrive,C:
+0,1348,spoolsv.exe,0x2010a8,SystemRoot,C:\\Windows
+0,1348,spoolsv.exe,0x2010a8,TEMP,C:\\Windows\\TEMP
+0,1348,spoolsv.exe,0x2010a8,TMP,C:\\Windows\\TEMP
+0,1348,spoolsv.exe,0x2010a8,USERDOMAIN,WORKGROUP
+0,1348,spoolsv.exe,0x2010a8,USERNAME,WIN-MNF9FL8RCB0$
+0,1348,spoolsv.exe,0x2010a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,1348,spoolsv.exe,0x2010a8,windir,C:\\Windows
+0,1348,spoolsv.exe,0x2010a8,windows_tracing_flags,3
+0,1348,spoolsv.exe,0x2010a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1408,taskhost.exe,0x2e10d0,ALLUSERSPROFILE,C:\\ProgramData
+0,1408,taskhost.exe,0x2e10d0,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,1408,taskhost.exe,0x2e10d0,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1408,taskhost.exe,0x2e10d0,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1408,taskhost.exe,0x2e10d0,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1408,taskhost.exe,0x2e10d0,FP_NO_HOST_CHECK,NO
+0,1408,taskhost.exe,0x2e10d0,HOMEDRIVE,C:
+0,1408,taskhost.exe,0x2e10d0,HOMEPATH,\\Users\\Hoxed
+0,1408,taskhost.exe,0x2e10d0,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,1408,taskhost.exe,0x2e10d0,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,1408,taskhost.exe,0x2e10d0,NUMBER_OF_PROCESSORS,1
+0,1408,taskhost.exe,0x2e10d0,OS,Windows_NT
+0,1408,taskhost.exe,0x2e10d0,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1408,taskhost.exe,0x2e10d0,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1408,taskhost.exe,0x2e10d0,PROCESSOR_ARCHITECTURE,x86
+0,1408,taskhost.exe,0x2e10d0,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1408,taskhost.exe,0x2e10d0,PROCESSOR_LEVEL,6
+0,1408,taskhost.exe,0x2e10d0,PROCESSOR_REVISION,3c03
+0,1408,taskhost.exe,0x2e10d0,ProgramData,C:\\ProgramData
+0,1408,taskhost.exe,0x2e10d0,ProgramFiles,C:\\Program Files
+0,1408,taskhost.exe,0x2e10d0,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1408,taskhost.exe,0x2e10d0,PUBLIC,C:\\Users\\Public
+0,1408,taskhost.exe,0x2e10d0,SystemDrive,C:
+0,1408,taskhost.exe,0x2e10d0,SystemRoot,C:\\Windows
+0,1408,taskhost.exe,0x2e10d0,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1408,taskhost.exe,0x2e10d0,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1408,taskhost.exe,0x2e10d0,USERDOMAIN,WIN-MNF9FL8RCB0
+0,1408,taskhost.exe,0x2e10d0,USERNAME,Hoxed
+0,1408,taskhost.exe,0x2e10d0,USERPROFILE,C:\\Users\\Hoxed
+0,1408,taskhost.exe,0x2e10d0,windir,C:\\Windows
+0,1408,taskhost.exe,0x2e10d0,windows_tracing_flags,3
+0,1408,taskhost.exe,0x2e10d0,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1428,svchost.exe,0x271120,ALLUSERSPROFILE,C:\\ProgramData
+0,1428,svchost.exe,0x271120,APPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming
+0,1428,svchost.exe,0x271120,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1428,svchost.exe,0x271120,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1428,svchost.exe,0x271120,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1428,svchost.exe,0x271120,FP_NO_HOST_CHECK,NO
+0,1428,svchost.exe,0x271120,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local
+0,1428,svchost.exe,0x271120,NUMBER_OF_PROCESSORS,1
+0,1428,svchost.exe,0x271120,OS,Windows_NT
+0,1428,svchost.exe,0x271120,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1428,svchost.exe,0x271120,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1428,svchost.exe,0x271120,PROCESSOR_ARCHITECTURE,x86
+0,1428,svchost.exe,0x271120,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1428,svchost.exe,0x271120,PROCESSOR_LEVEL,6
+0,1428,svchost.exe,0x271120,PROCESSOR_REVISION,3c03
+0,1428,svchost.exe,0x271120,ProgramData,C:\\ProgramData
+0,1428,svchost.exe,0x271120,ProgramFiles,C:\\Program Files
+0,1428,svchost.exe,0x271120,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1428,svchost.exe,0x271120,PUBLIC,C:\\Users\\Public
+0,1428,svchost.exe,0x271120,SystemDrive,C:
+0,1428,svchost.exe,0x271120,SystemRoot,C:\\Windows
+0,1428,svchost.exe,0x271120,TEMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1428,svchost.exe,0x271120,TMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1428,svchost.exe,0x271120,USERDOMAIN,NT AUTHORITY
+0,1428,svchost.exe,0x271120,USERNAME,LOCAL SERVICE
+0,1428,svchost.exe,0x271120,USERPROFILE,C:\\Windows\\ServiceProfiles\\LocalService
+0,1428,svchost.exe,0x271120,windir,C:\\Windows
+0,1428,svchost.exe,0x271120,windows_tracing_flags,3
+0,1428,svchost.exe,0x271120,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1556,vmtoolsd.exe,0x281108,ALLUSERSPROFILE,C:\\ProgramData
+0,1556,vmtoolsd.exe,0x281108,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,1556,vmtoolsd.exe,0x281108,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1556,vmtoolsd.exe,0x281108,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1556,vmtoolsd.exe,0x281108,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1556,vmtoolsd.exe,0x281108,FP_NO_HOST_CHECK,NO
+0,1556,vmtoolsd.exe,0x281108,HOMEDRIVE,C:
+0,1556,vmtoolsd.exe,0x281108,HOMEPATH,\\Users\\Hoxed
+0,1556,vmtoolsd.exe,0x281108,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,1556,vmtoolsd.exe,0x281108,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,1556,vmtoolsd.exe,0x281108,NUMBER_OF_PROCESSORS,1
+0,1556,vmtoolsd.exe,0x281108,OS,Windows_NT
+0,1556,vmtoolsd.exe,0x281108,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1556,vmtoolsd.exe,0x281108,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1556,vmtoolsd.exe,0x281108,PROCESSOR_ARCHITECTURE,x86
+0,1556,vmtoolsd.exe,0x281108,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1556,vmtoolsd.exe,0x281108,PROCESSOR_LEVEL,6
+0,1556,vmtoolsd.exe,0x281108,PROCESSOR_REVISION,3c03
+0,1556,vmtoolsd.exe,0x281108,ProgramData,C:\\ProgramData
+0,1556,vmtoolsd.exe,0x281108,ProgramFiles,C:\\Program Files
+0,1556,vmtoolsd.exe,0x281108,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1556,vmtoolsd.exe,0x281108,PUBLIC,C:\\Users\\Public
+0,1556,vmtoolsd.exe,0x281108,SESSIONNAME,Console
+0,1556,vmtoolsd.exe,0x281108,SystemDrive,C:
+0,1556,vmtoolsd.exe,0x281108,SystemRoot,C:\\Windows
+0,1556,vmtoolsd.exe,0x281108,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1556,vmtoolsd.exe,0x281108,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,1556,vmtoolsd.exe,0x281108,USERDOMAIN,WIN-MNF9FL8RCB0
+0,1556,vmtoolsd.exe,0x281108,USERNAME,Hoxed
+0,1556,vmtoolsd.exe,0x281108,USERPROFILE,C:\\Users\\Hoxed
+0,1556,vmtoolsd.exe,0x281108,windir,C:\\Windows
+0,1556,vmtoolsd.exe,0x281108,windows_tracing_flags,3
+0,1556,vmtoolsd.exe,0x281108,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1672,VGAuthService.,0x2010a8,ALLUSERSPROFILE,C:\\ProgramData
+0,1672,VGAuthService.,0x2010a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,1672,VGAuthService.,0x2010a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1672,VGAuthService.,0x2010a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1672,VGAuthService.,0x2010a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1672,VGAuthService.,0x2010a8,FP_NO_HOST_CHECK,NO
+0,1672,VGAuthService.,0x2010a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,1672,VGAuthService.,0x2010a8,NUMBER_OF_PROCESSORS,1
+0,1672,VGAuthService.,0x2010a8,OS,Windows_NT
+0,1672,VGAuthService.,0x2010a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;
+0,1672,VGAuthService.,0x2010a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1672,VGAuthService.,0x2010a8,PROCESSOR_ARCHITECTURE,x86
+0,1672,VGAuthService.,0x2010a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1672,VGAuthService.,0x2010a8,PROCESSOR_LEVEL,6
+0,1672,VGAuthService.,0x2010a8,PROCESSOR_REVISION,3c03
+0,1672,VGAuthService.,0x2010a8,ProgramData,C:\\ProgramData
+0,1672,VGAuthService.,0x2010a8,ProgramFiles,C:\\Program Files
+0,1672,VGAuthService.,0x2010a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1672,VGAuthService.,0x2010a8,PUBLIC,C:\\Users\\Public
+0,1672,VGAuthService.,0x2010a8,SystemDrive,C:
+0,1672,VGAuthService.,0x2010a8,SystemRoot,C:\\Windows
+0,1672,VGAuthService.,0x2010a8,TEMP,C:\\Windows\\TEMP
+0,1672,VGAuthService.,0x2010a8,TMP,C:\\Windows\\TEMP
+0,1672,VGAuthService.,0x2010a8,USERDOMAIN,WORKGROUP
+0,1672,VGAuthService.,0x2010a8,USERNAME,WIN-MNF9FL8RCB0$
+0,1672,VGAuthService.,0x2010a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,1672,VGAuthService.,0x2010a8,windir,C:\\Windows
+0,1672,VGAuthService.,0x2010a8,windows_tracing_flags,3
+0,1672,VGAuthService.,0x2010a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1756,vmtoolsd.exe,0x2810a8,ALLUSERSPROFILE,C:\\ProgramData
+0,1756,vmtoolsd.exe,0x2810a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,1756,vmtoolsd.exe,0x2810a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1756,vmtoolsd.exe,0x2810a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1756,vmtoolsd.exe,0x2810a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1756,vmtoolsd.exe,0x2810a8,FP_NO_HOST_CHECK,NO
+0,1756,vmtoolsd.exe,0x2810a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,1756,vmtoolsd.exe,0x2810a8,NUMBER_OF_PROCESSORS,1
+0,1756,vmtoolsd.exe,0x2810a8,OS,Windows_NT
+0,1756,vmtoolsd.exe,0x2810a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;
+0,1756,vmtoolsd.exe,0x2810a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1756,vmtoolsd.exe,0x2810a8,PROCESSOR_ARCHITECTURE,x86
+0,1756,vmtoolsd.exe,0x2810a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1756,vmtoolsd.exe,0x2810a8,PROCESSOR_LEVEL,6
+0,1756,vmtoolsd.exe,0x2810a8,PROCESSOR_REVISION,3c03
+0,1756,vmtoolsd.exe,0x2810a8,ProgramData,C:\\ProgramData
+0,1756,vmtoolsd.exe,0x2810a8,ProgramFiles,C:\\Program Files
+0,1756,vmtoolsd.exe,0x2810a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1756,vmtoolsd.exe,0x2810a8,PUBLIC,C:\\Users\\Public
+0,1756,vmtoolsd.exe,0x2810a8,SystemDrive,C:
+0,1756,vmtoolsd.exe,0x2810a8,SystemRoot,C:\\Windows
+0,1756,vmtoolsd.exe,0x2810a8,TEMP,C:\\Windows\\TEMP
+0,1756,vmtoolsd.exe,0x2810a8,TMP,C:\\Windows\\TEMP
+0,1756,vmtoolsd.exe,0x2810a8,USERDOMAIN,WORKGROUP
+0,1756,vmtoolsd.exe,0x2810a8,USERNAME,WIN-MNF9FL8RCB0$
+0,1756,vmtoolsd.exe,0x2810a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,1756,vmtoolsd.exe,0x2810a8,windir,C:\\Windows
+0,1756,vmtoolsd.exe,0x2810a8,windows_tracing_flags,3
+0,1756,vmtoolsd.exe,0x2810a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1992,svchost.exe,0xc1120,ALLUSERSPROFILE,C:\\ProgramData
+0,1992,svchost.exe,0xc1120,APPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming
+0,1992,svchost.exe,0xc1120,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1992,svchost.exe,0xc1120,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1992,svchost.exe,0xc1120,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1992,svchost.exe,0xc1120,FP_NO_HOST_CHECK,NO
+0,1992,svchost.exe,0xc1120,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local
+0,1992,svchost.exe,0xc1120,NUMBER_OF_PROCESSORS,1
+0,1992,svchost.exe,0xc1120,OS,Windows_NT
+0,1992,svchost.exe,0xc1120,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1992,svchost.exe,0xc1120,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1992,svchost.exe,0xc1120,PROCESSOR_ARCHITECTURE,x86
+0,1992,svchost.exe,0xc1120,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1992,svchost.exe,0xc1120,PROCESSOR_LEVEL,6
+0,1992,svchost.exe,0xc1120,PROCESSOR_REVISION,3c03
+0,1992,svchost.exe,0xc1120,ProgramData,C:\\ProgramData
+0,1992,svchost.exe,0xc1120,ProgramFiles,C:\\Program Files
+0,1992,svchost.exe,0xc1120,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1992,svchost.exe,0xc1120,PUBLIC,C:\\Users\\Public
+0,1992,svchost.exe,0xc1120,SystemDrive,C:
+0,1992,svchost.exe,0xc1120,SystemRoot,C:\\Windows
+0,1992,svchost.exe,0xc1120,TEMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1992,svchost.exe,0xc1120,TMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,1992,svchost.exe,0xc1120,USERDOMAIN,NT AUTHORITY
+0,1992,svchost.exe,0xc1120,USERNAME,LOCAL SERVICE
+0,1992,svchost.exe,0xc1120,USERPROFILE,C:\\Windows\\ServiceProfiles\\LocalService
+0,1992,svchost.exe,0xc1120,windir,C:\\Windows
+0,1992,svchost.exe,0xc1120,windows_tracing_flags,3
+0,1992,svchost.exe,0xc1120,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1072,WmiPrvSE.exe,0x3210a8,ALLUSERSPROFILE,C:\\ProgramData
+0,1072,WmiPrvSE.exe,0x3210a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,1072,WmiPrvSE.exe,0x3210a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1072,WmiPrvSE.exe,0x3210a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1072,WmiPrvSE.exe,0x3210a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1072,WmiPrvSE.exe,0x3210a8,FP_NO_HOST_CHECK,NO
+0,1072,WmiPrvSE.exe,0x3210a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,1072,WmiPrvSE.exe,0x3210a8,NUMBER_OF_PROCESSORS,1
+0,1072,WmiPrvSE.exe,0x3210a8,OS,Windows_NT
+0,1072,WmiPrvSE.exe,0x3210a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1072,WmiPrvSE.exe,0x3210a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1072,WmiPrvSE.exe,0x3210a8,PROCESSOR_ARCHITECTURE,x86
+0,1072,WmiPrvSE.exe,0x3210a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1072,WmiPrvSE.exe,0x3210a8,PROCESSOR_LEVEL,6
+0,1072,WmiPrvSE.exe,0x3210a8,PROCESSOR_REVISION,3c03
+0,1072,WmiPrvSE.exe,0x3210a8,ProgramData,C:\\ProgramData
+0,1072,WmiPrvSE.exe,0x3210a8,ProgramFiles,C:\\Program Files
+0,1072,WmiPrvSE.exe,0x3210a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1072,WmiPrvSE.exe,0x3210a8,PUBLIC,C:\\Users\\Public
+0,1072,WmiPrvSE.exe,0x3210a8,SystemDrive,C:
+0,1072,WmiPrvSE.exe,0x3210a8,SystemRoot,C:\\Windows
+0,1072,WmiPrvSE.exe,0x3210a8,TEMP,C:\\Windows\\TEMP
+0,1072,WmiPrvSE.exe,0x3210a8,TMP,C:\\Windows\\TEMP
+0,1072,WmiPrvSE.exe,0x3210a8,USERDOMAIN,WORKGROUP
+0,1072,WmiPrvSE.exe,0x3210a8,USERNAME,WIN-MNF9FL8RCB0$
+0,1072,WmiPrvSE.exe,0x3210a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,1072,WmiPrvSE.exe,0x3210a8,windir,C:\\Windows
+0,1072,WmiPrvSE.exe,0x3210a8,windows_tracing_flags,3
+0,1072,WmiPrvSE.exe,0x3210a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1332,dllhost.exe,0x2410a8,ALLUSERSPROFILE,C:\\ProgramData
+0,1332,dllhost.exe,0x2410a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,1332,dllhost.exe,0x2410a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1332,dllhost.exe,0x2410a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1332,dllhost.exe,0x2410a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1332,dllhost.exe,0x2410a8,FP_NO_HOST_CHECK,NO
+0,1332,dllhost.exe,0x2410a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,1332,dllhost.exe,0x2410a8,NUMBER_OF_PROCESSORS,1
+0,1332,dllhost.exe,0x2410a8,OS,Windows_NT
+0,1332,dllhost.exe,0x2410a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1332,dllhost.exe,0x2410a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1332,dllhost.exe,0x2410a8,PROCESSOR_ARCHITECTURE,x86
+0,1332,dllhost.exe,0x2410a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1332,dllhost.exe,0x2410a8,PROCESSOR_LEVEL,6
+0,1332,dllhost.exe,0x2410a8,PROCESSOR_REVISION,3c03
+0,1332,dllhost.exe,0x2410a8,ProgramData,C:\\ProgramData
+0,1332,dllhost.exe,0x2410a8,ProgramFiles,C:\\Program Files
+0,1332,dllhost.exe,0x2410a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1332,dllhost.exe,0x2410a8,PUBLIC,C:\\Users\\Public
+0,1332,dllhost.exe,0x2410a8,SystemDrive,C:
+0,1332,dllhost.exe,0x2410a8,SystemRoot,C:\\Windows
+0,1332,dllhost.exe,0x2410a8,TEMP,C:\\Windows\\TEMP
+0,1332,dllhost.exe,0x2410a8,TMP,C:\\Windows\\TEMP
+0,1332,dllhost.exe,0x2410a8,USERDOMAIN,WORKGROUP
+0,1332,dllhost.exe,0x2410a8,USERNAME,WIN-MNF9FL8RCB0$
+0,1332,dllhost.exe,0x2410a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,1332,dllhost.exe,0x2410a8,windir,C:\\Windows
+0,1332,dllhost.exe,0x2410a8,windows_tracing_flags,3
+0,1332,dllhost.exe,0x2410a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,1268,msdtc.exe,0x3b1130,ALLUSERSPROFILE,C:\\ProgramData
+0,1268,msdtc.exe,0x3b1130,APPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming
+0,1268,msdtc.exe,0x3b1130,CommonProgramFiles,C:\\Program Files\\Common Files
+0,1268,msdtc.exe,0x3b1130,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,1268,msdtc.exe,0x3b1130,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,1268,msdtc.exe,0x3b1130,FP_NO_HOST_CHECK,NO
+0,1268,msdtc.exe,0x3b1130,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local
+0,1268,msdtc.exe,0x3b1130,NUMBER_OF_PROCESSORS,1
+0,1268,msdtc.exe,0x3b1130,OS,Windows_NT
+0,1268,msdtc.exe,0x3b1130,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,1268,msdtc.exe,0x3b1130,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,1268,msdtc.exe,0x3b1130,PROCESSOR_ARCHITECTURE,x86
+0,1268,msdtc.exe,0x3b1130,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,1268,msdtc.exe,0x3b1130,PROCESSOR_LEVEL,6
+0,1268,msdtc.exe,0x3b1130,PROCESSOR_REVISION,3c03
+0,1268,msdtc.exe,0x3b1130,ProgramData,C:\\ProgramData
+0,1268,msdtc.exe,0x3b1130,ProgramFiles,C:\\Program Files
+0,1268,msdtc.exe,0x3b1130,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,1268,msdtc.exe,0x3b1130,PUBLIC,C:\\Users\\Public
+0,1268,msdtc.exe,0x3b1130,SystemDrive,C:
+0,1268,msdtc.exe,0x3b1130,SystemRoot,C:\\Windows
+0,1268,msdtc.exe,0x3b1130,TEMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,1268,msdtc.exe,0x3b1130,TMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,1268,msdtc.exe,0x3b1130,USERDOMAIN,WORKGROUP
+0,1268,msdtc.exe,0x3b1130,USERNAME,WIN-MNF9FL8RCB0$
+0,1268,msdtc.exe,0x3b1130,USERPROFILE,C:\\Windows\\ServiceProfiles\\NetworkService
+0,1268,msdtc.exe,0x3b1130,windir,C:\\Windows
+0,1268,msdtc.exe,0x3b1130,windows_tracing_flags,3
+0,1268,msdtc.exe,0x3b1130,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,2128,SearchIndexer.,0x2010a8,ALLUSERSPROFILE,C:\\ProgramData
+0,2128,SearchIndexer.,0x2010a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,2128,SearchIndexer.,0x2010a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,2128,SearchIndexer.,0x2010a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,2128,SearchIndexer.,0x2010a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,2128,SearchIndexer.,0x2010a8,FP_NO_HOST_CHECK,NO
+0,2128,SearchIndexer.,0x2010a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,2128,SearchIndexer.,0x2010a8,NUMBER_OF_PROCESSORS,1
+0,2128,SearchIndexer.,0x2010a8,OS,Windows_NT
+0,2128,SearchIndexer.,0x2010a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\system32
+0,2128,SearchIndexer.,0x2010a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,2128,SearchIndexer.,0x2010a8,PROCESSOR_ARCHITECTURE,x86
+0,2128,SearchIndexer.,0x2010a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,2128,SearchIndexer.,0x2010a8,PROCESSOR_LEVEL,6
+0,2128,SearchIndexer.,0x2010a8,PROCESSOR_REVISION,3c03
+0,2128,SearchIndexer.,0x2010a8,ProgramData,C:\\ProgramData
+0,2128,SearchIndexer.,0x2010a8,ProgramFiles,C:\\Program Files
+0,2128,SearchIndexer.,0x2010a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,2128,SearchIndexer.,0x2010a8,PUBLIC,C:\\Users\\Public
+0,2128,SearchIndexer.,0x2010a8,SystemDrive,C:
+0,2128,SearchIndexer.,0x2010a8,SystemRoot,C:\\Windows
+0,2128,SearchIndexer.,0x2010a8,TEMP,C:\\ProgramData\\Microsoft\\Search\\Data\\Temp\\usgthrsvc
+0,2128,SearchIndexer.,0x2010a8,TMP,C:\\ProgramData\\Microsoft\\Search\\Data\\Temp\\usgthrsvc
+0,2128,SearchIndexer.,0x2010a8,USERDOMAIN,WORKGROUP
+0,2128,SearchIndexer.,0x2010a8,USERNAME,WIN-MNF9FL8RCB0$
+0,2128,SearchIndexer.,0x2010a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,2128,SearchIndexer.,0x2010a8,windir,C:\\Windows
+0,2128,SearchIndexer.,0x2010a8,windows_tracing_flags,3
+0,2128,SearchIndexer.,0x2010a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,2316,wmpnetwk.exe,0x251130,ALLUSERSPROFILE,C:\\ProgramData
+0,2316,wmpnetwk.exe,0x251130,APPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming
+0,2316,wmpnetwk.exe,0x251130,CommonProgramFiles,C:\\Program Files\\Common Files
+0,2316,wmpnetwk.exe,0x251130,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,2316,wmpnetwk.exe,0x251130,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,2316,wmpnetwk.exe,0x251130,FP_NO_HOST_CHECK,NO
+0,2316,wmpnetwk.exe,0x251130,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local
+0,2316,wmpnetwk.exe,0x251130,NUMBER_OF_PROCESSORS,1
+0,2316,wmpnetwk.exe,0x251130,OANOCACHE,1
+0,2316,wmpnetwk.exe,0x251130,OS,Windows_NT
+0,2316,wmpnetwk.exe,0x251130,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,2316,wmpnetwk.exe,0x251130,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,2316,wmpnetwk.exe,0x251130,PROCESSOR_ARCHITECTURE,x86
+0,2316,wmpnetwk.exe,0x251130,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,2316,wmpnetwk.exe,0x251130,PROCESSOR_LEVEL,6
+0,2316,wmpnetwk.exe,0x251130,PROCESSOR_REVISION,3c03
+0,2316,wmpnetwk.exe,0x251130,ProgramData,C:\\ProgramData
+0,2316,wmpnetwk.exe,0x251130,ProgramFiles,C:\\Program Files
+0,2316,wmpnetwk.exe,0x251130,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,2316,wmpnetwk.exe,0x251130,PUBLIC,C:\\Users\\Public
+0,2316,wmpnetwk.exe,0x251130,SystemDrive,C:
+0,2316,wmpnetwk.exe,0x251130,SystemRoot,C:\\Windows
+0,2316,wmpnetwk.exe,0x251130,TEMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,2316,wmpnetwk.exe,0x251130,TMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,2316,wmpnetwk.exe,0x251130,USERDOMAIN,WORKGROUP
+0,2316,wmpnetwk.exe,0x251130,USERNAME,WIN-MNF9FL8RCB0$
+0,2316,wmpnetwk.exe,0x251130,USERPROFILE,C:\\Windows\\ServiceProfiles\\NetworkService
+0,2316,wmpnetwk.exe,0x251130,windir,C:\\Windows
+0,2316,wmpnetwk.exe,0x251130,windows_tracing_flags,3
+0,2316,wmpnetwk.exe,0x251130,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,2408,svchost.exe,0xc1120,ALLUSERSPROFILE,C:\\ProgramData
+0,2408,svchost.exe,0xc1120,APPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming
+0,2408,svchost.exe,0xc1120,CommonProgramFiles,C:\\Program Files\\Common Files
+0,2408,svchost.exe,0xc1120,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,2408,svchost.exe,0xc1120,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,2408,svchost.exe,0xc1120,FP_NO_HOST_CHECK,NO
+0,2408,svchost.exe,0xc1120,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local
+0,2408,svchost.exe,0xc1120,NUMBER_OF_PROCESSORS,1
+0,2408,svchost.exe,0xc1120,OS,Windows_NT
+0,2408,svchost.exe,0xc1120,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,2408,svchost.exe,0xc1120,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,2408,svchost.exe,0xc1120,PROCESSOR_ARCHITECTURE,x86
+0,2408,svchost.exe,0xc1120,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,2408,svchost.exe,0xc1120,PROCESSOR_LEVEL,6
+0,2408,svchost.exe,0xc1120,PROCESSOR_REVISION,3c03
+0,2408,svchost.exe,0xc1120,ProgramData,C:\\ProgramData
+0,2408,svchost.exe,0xc1120,ProgramFiles,C:\\Program Files
+0,2408,svchost.exe,0xc1120,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,2408,svchost.exe,0xc1120,PUBLIC,C:\\Users\\Public
+0,2408,svchost.exe,0xc1120,SystemDrive,C:
+0,2408,svchost.exe,0xc1120,SystemRoot,C:\\Windows
+0,2408,svchost.exe,0xc1120,TEMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,2408,svchost.exe,0xc1120,TMP,C:\\Windows\\SERVIC~2\\LOCALS~1\\AppData\\Local\\Temp
+0,2408,svchost.exe,0xc1120,USERDOMAIN,NT AUTHORITY
+0,2408,svchost.exe,0xc1120,USERNAME,LOCAL SERVICE
+0,2408,svchost.exe,0xc1120,USERPROFILE,C:\\Windows\\ServiceProfiles\\LocalService
+0,2408,svchost.exe,0xc1120,windir,C:\\Windows
+0,2408,svchost.exe,0xc1120,windows_tracing_flags,3
+0,2408,svchost.exe,0xc1120,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,3448,sppsvc.exe,0x421130,ALLUSERSPROFILE,C:\\ProgramData
+0,3448,sppsvc.exe,0x421130,APPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming
+0,3448,sppsvc.exe,0x421130,CommonProgramFiles,C:\\Program Files\\Common Files
+0,3448,sppsvc.exe,0x421130,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,3448,sppsvc.exe,0x421130,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,3448,sppsvc.exe,0x421130,FP_NO_HOST_CHECK,NO
+0,3448,sppsvc.exe,0x421130,LOCALAPPDATA,C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local
+0,3448,sppsvc.exe,0x421130,NUMBER_OF_PROCESSORS,1
+0,3448,sppsvc.exe,0x421130,OS,Windows_NT
+0,3448,sppsvc.exe,0x421130,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,3448,sppsvc.exe,0x421130,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,3448,sppsvc.exe,0x421130,PROCESSOR_ARCHITECTURE,x86
+0,3448,sppsvc.exe,0x421130,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,3448,sppsvc.exe,0x421130,PROCESSOR_LEVEL,6
+0,3448,sppsvc.exe,0x421130,PROCESSOR_REVISION,3c03
+0,3448,sppsvc.exe,0x421130,ProgramData,C:\\ProgramData
+0,3448,sppsvc.exe,0x421130,ProgramFiles,C:\\Program Files
+0,3448,sppsvc.exe,0x421130,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,3448,sppsvc.exe,0x421130,PUBLIC,C:\\Users\\Public
+0,3448,sppsvc.exe,0x421130,SystemDrive,C:
+0,3448,sppsvc.exe,0x421130,SystemRoot,C:\\Windows
+0,3448,sppsvc.exe,0x421130,TEMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,3448,sppsvc.exe,0x421130,TMP,C:\\Windows\\SERVIC~2\\NETWOR~1\\AppData\\Local\\Temp
+0,3448,sppsvc.exe,0x421130,USERDOMAIN,WORKGROUP
+0,3448,sppsvc.exe,0x421130,USERNAME,WIN-MNF9FL8RCB0$
+0,3448,sppsvc.exe,0x421130,USERPROFILE,C:\\Windows\\ServiceProfiles\\NetworkService
+0,3448,sppsvc.exe,0x421130,windir,C:\\Windows
+0,3448,sppsvc.exe,0x421130,windows_tracing_flags,3
+0,3448,sppsvc.exe,0x421130,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,3484,svchost.exe,0x2610a8,ALLUSERSPROFILE,C:\\ProgramData
+0,3484,svchost.exe,0x2610a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,3484,svchost.exe,0x2610a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,3484,svchost.exe,0x2610a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,3484,svchost.exe,0x2610a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,3484,svchost.exe,0x2610a8,FP_NO_HOST_CHECK,NO
+0,3484,svchost.exe,0x2610a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,3484,svchost.exe,0x2610a8,MpConfig_ProductAppDataPath,C:\\ProgramData\\Microsoft\\Windows Defender
+0,3484,svchost.exe,0x2610a8,MpConfig_ProductCodeName,AntiSpyware
+0,3484,svchost.exe,0x2610a8,MpConfig_ProductPath,c:\\program files\\windows defender
+0,3484,svchost.exe,0x2610a8,MpConfig_ProductUserAppDataPath,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows Defender
+0,3484,svchost.exe,0x2610a8,MpConfig_ReportingGUID,2606E3C3-95C7-4162-B4F1-AE216A9C8890
+0,3484,svchost.exe,0x2610a8,NUMBER_OF_PROCESSORS,1
+0,3484,svchost.exe,0x2610a8,OS,Windows_NT
+0,3484,svchost.exe,0x2610a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,3484,svchost.exe,0x2610a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,3484,svchost.exe,0x2610a8,PROCESSOR_ARCHITECTURE,x86
+0,3484,svchost.exe,0x2610a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,3484,svchost.exe,0x2610a8,PROCESSOR_LEVEL,6
+0,3484,svchost.exe,0x2610a8,PROCESSOR_REVISION,3c03
+0,3484,svchost.exe,0x2610a8,ProgramData,C:\\ProgramData
+0,3484,svchost.exe,0x2610a8,ProgramFiles,C:\\Program Files
+0,3484,svchost.exe,0x2610a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,3484,svchost.exe,0x2610a8,PUBLIC,C:\\Users\\Public
+0,3484,svchost.exe,0x2610a8,SystemDrive,C:
+0,3484,svchost.exe,0x2610a8,SystemRoot,C:\\Windows
+0,3484,svchost.exe,0x2610a8,TEMP,C:\\Windows\\TEMP
+0,3484,svchost.exe,0x2610a8,TMP,C:\\Windows\\TEMP
+0,3484,svchost.exe,0x2610a8,USERDOMAIN,WORKGROUP
+0,3484,svchost.exe,0x2610a8,USERNAME,WIN-MNF9FL8RCB0$
+0,3484,svchost.exe,0x2610a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,3484,svchost.exe,0x2610a8,windir,C:\\Windows
+0,3484,svchost.exe,0x2610a8,windows_tracing_flags,3
+0,3484,svchost.exe,0x2610a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,2956,notepad.exe,0x2d1108,ALLUSERSPROFILE,C:\\ProgramData
+0,2956,notepad.exe,0x2d1108,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,2956,notepad.exe,0x2d1108,CommonProgramFiles,C:\\Program Files\\Common Files
+0,2956,notepad.exe,0x2d1108,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,2956,notepad.exe,0x2d1108,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,2956,notepad.exe,0x2d1108,FP_NO_HOST_CHECK,NO
+0,2956,notepad.exe,0x2d1108,HOMEDRIVE,C:
+0,2956,notepad.exe,0x2d1108,HOMEPATH,\\Users\\Hoxed
+0,2956,notepad.exe,0x2d1108,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,2956,notepad.exe,0x2d1108,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,2956,notepad.exe,0x2d1108,NUMBER_OF_PROCESSORS,1
+0,2956,notepad.exe,0x2d1108,OS,Windows_NT
+0,2956,notepad.exe,0x2d1108,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,2956,notepad.exe,0x2d1108,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,2956,notepad.exe,0x2d1108,PROCESSOR_ARCHITECTURE,x86
+0,2956,notepad.exe,0x2d1108,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,2956,notepad.exe,0x2d1108,PROCESSOR_LEVEL,6
+0,2956,notepad.exe,0x2d1108,PROCESSOR_REVISION,3c03
+0,2956,notepad.exe,0x2d1108,ProgramData,C:\\ProgramData
+0,2956,notepad.exe,0x2d1108,ProgramFiles,C:\\Program Files
+0,2956,notepad.exe,0x2d1108,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,2956,notepad.exe,0x2d1108,PUBLIC,C:\\Users\\Public
+0,2956,notepad.exe,0x2d1108,SESSIONNAME,Console
+0,2956,notepad.exe,0x2d1108,SystemDrive,C:
+0,2956,notepad.exe,0x2d1108,SystemRoot,C:\\Windows
+0,2956,notepad.exe,0x2d1108,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,2956,notepad.exe,0x2d1108,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,2956,notepad.exe,0x2d1108,USERDOMAIN,WIN-MNF9FL8RCB0
+0,2956,notepad.exe,0x2d1108,USERNAME,Hoxed
+0,2956,notepad.exe,0x2d1108,USERPROFILE,C:\\Users\\Hoxed
+0,2956,notepad.exe,0x2d1108,windir,C:\\Windows
+0,2956,notepad.exe,0x2d1108,windows_tracing_flags,3
+0,2956,notepad.exe,0x2d1108,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,3164,audiodg.exe,0x308c0,Path,C:\\Windows\\System32
+0,3164,audiodg.exe,0x308c0,SystemDrive,C:
+0,3164,audiodg.exe,0x308c0,SystemRoot,C:\\Windows
+0,2300,WmiPrvSE.exe,0x3a10a8,ALLUSERSPROFILE,C:\\ProgramData
+0,2300,WmiPrvSE.exe,0x3a10a8,APPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming
+0,2300,WmiPrvSE.exe,0x3a10a8,CommonProgramFiles,C:\\Program Files\\Common Files
+0,2300,WmiPrvSE.exe,0x3a10a8,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,2300,WmiPrvSE.exe,0x3a10a8,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,2300,WmiPrvSE.exe,0x3a10a8,FP_NO_HOST_CHECK,NO
+0,2300,WmiPrvSE.exe,0x3a10a8,LOCALAPPDATA,C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local
+0,2300,WmiPrvSE.exe,0x3a10a8,NUMBER_OF_PROCESSORS,1
+0,2300,WmiPrvSE.exe,0x3a10a8,OS,Windows_NT
+0,2300,WmiPrvSE.exe,0x3a10a8,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,2300,WmiPrvSE.exe,0x3a10a8,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,2300,WmiPrvSE.exe,0x3a10a8,PROCESSOR_ARCHITECTURE,x86
+0,2300,WmiPrvSE.exe,0x3a10a8,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,2300,WmiPrvSE.exe,0x3a10a8,PROCESSOR_LEVEL,6
+0,2300,WmiPrvSE.exe,0x3a10a8,PROCESSOR_REVISION,3c03
+0,2300,WmiPrvSE.exe,0x3a10a8,ProgramData,C:\\ProgramData
+0,2300,WmiPrvSE.exe,0x3a10a8,ProgramFiles,C:\\Program Files
+0,2300,WmiPrvSE.exe,0x3a10a8,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,2300,WmiPrvSE.exe,0x3a10a8,PUBLIC,C:\\Users\\Public
+0,2300,WmiPrvSE.exe,0x3a10a8,SystemDrive,C:
+0,2300,WmiPrvSE.exe,0x3a10a8,SystemRoot,C:\\Windows
+0,2300,WmiPrvSE.exe,0x3a10a8,TEMP,C:\\Windows\\TEMP
+0,2300,WmiPrvSE.exe,0x3a10a8,TMP,C:\\Windows\\TEMP
+0,2300,WmiPrvSE.exe,0x3a10a8,USERDOMAIN,WORKGROUP
+0,2300,WmiPrvSE.exe,0x3a10a8,USERNAME,WIN-MNF9FL8RCB0$
+0,2300,WmiPrvSE.exe,0x3a10a8,USERPROFILE,C:\\Windows\\system32\\config\\systemprofile
+0,2300,WmiPrvSE.exe,0x3a10a8,windir,C:\\Windows
+0,2300,WmiPrvSE.exe,0x3a10a8,windows_tracing_flags,3
+0,2300,WmiPrvSE.exe,0x3a10a8,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,3704,notepad.exe,0x211108,ALLUSERSPROFILE,C:\\ProgramData
+0,3704,notepad.exe,0x211108,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,3704,notepad.exe,0x211108,CommonProgramFiles,C:\\Program Files\\Common Files
+0,3704,notepad.exe,0x211108,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,3704,notepad.exe,0x211108,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,3704,notepad.exe,0x211108,FP_NO_HOST_CHECK,NO
+0,3704,notepad.exe,0x211108,HOMEDRIVE,C:
+0,3704,notepad.exe,0x211108,HOMEPATH,\\Users\\Hoxed
+0,3704,notepad.exe,0x211108,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,3704,notepad.exe,0x211108,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,3704,notepad.exe,0x211108,NUMBER_OF_PROCESSORS,1
+0,3704,notepad.exe,0x211108,OS,Windows_NT
+0,3704,notepad.exe,0x211108,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,3704,notepad.exe,0x211108,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,3704,notepad.exe,0x211108,PROCESSOR_ARCHITECTURE,x86
+0,3704,notepad.exe,0x211108,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,3704,notepad.exe,0x211108,PROCESSOR_LEVEL,6
+0,3704,notepad.exe,0x211108,PROCESSOR_REVISION,3c03
+0,3704,notepad.exe,0x211108,ProgramData,C:\\ProgramData
+0,3704,notepad.exe,0x211108,ProgramFiles,C:\\Program Files
+0,3704,notepad.exe,0x211108,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,3704,notepad.exe,0x211108,PUBLIC,C:\\Users\\Public
+0,3704,notepad.exe,0x211108,SESSIONNAME,Console
+0,3704,notepad.exe,0x211108,SystemDrive,C:
+0,3704,notepad.exe,0x211108,SystemRoot,C:\\Windows
+0,3704,notepad.exe,0x211108,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,3704,notepad.exe,0x211108,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,3704,notepad.exe,0x211108,USERDOMAIN,WIN-MNF9FL8RCB0
+0,3704,notepad.exe,0x211108,USERNAME,Hoxed
+0,3704,notepad.exe,0x211108,USERPROFILE,C:\\Users\\Hoxed
+0,3704,notepad.exe,0x211108,windir,C:\\Windows
+0,3704,notepad.exe,0x211108,windows_tracing_flags,3
+0,3704,notepad.exe,0x211108,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+0,3840,notepad.exe,0x231108,ALLUSERSPROFILE,C:\\ProgramData
+0,3840,notepad.exe,0x231108,APPDATA,C:\\Users\\Hoxed\\AppData\\Roaming
+0,3840,notepad.exe,0x231108,CommonProgramFiles,C:\\Program Files\\Common Files
+0,3840,notepad.exe,0x231108,COMPUTERNAME,WIN-MNF9FL8RCB0
+0,3840,notepad.exe,0x231108,ComSpec,C:\\Windows\\system32\\cmd.exe
+0,3840,notepad.exe,0x231108,FP_NO_HOST_CHECK,NO
+0,3840,notepad.exe,0x231108,HOMEDRIVE,C:
+0,3840,notepad.exe,0x231108,HOMEPATH,\\Users\\Hoxed
+0,3840,notepad.exe,0x231108,LOCALAPPDATA,C:\\Users\\Hoxed\\AppData\\Local
+0,3840,notepad.exe,0x231108,LOGONSERVER,\\\\WIN-MNF9FL8RCB0
+0,3840,notepad.exe,0x231108,NUMBER_OF_PROCESSORS,1
+0,3840,notepad.exe,0x231108,OS,Windows_NT
+0,3840,notepad.exe,0x231108,Path,C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\
+0,3840,notepad.exe,0x231108,PATHEXT,.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+0,3840,notepad.exe,0x231108,PROCESSOR_ARCHITECTURE,x86
+0,3840,notepad.exe,0x231108,PROCESSOR_IDENTIFIER,"x86 Family 6 Model 60 Stepping 3, GenuineIntel"
+0,3840,notepad.exe,0x231108,PROCESSOR_LEVEL,6
+0,3840,notepad.exe,0x231108,PROCESSOR_REVISION,3c03
+0,3840,notepad.exe,0x231108,ProgramData,C:\\ProgramData
+0,3840,notepad.exe,0x231108,ProgramFiles,C:\\Program Files
+0,3840,notepad.exe,0x231108,PSModulePath,C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\
+0,3840,notepad.exe,0x231108,PUBLIC,C:\\Users\\Public
+0,3840,notepad.exe,0x231108,SESSIONNAME,Console
+0,3840,notepad.exe,0x231108,SystemDrive,C:
+0,3840,notepad.exe,0x231108,SystemRoot,C:\\Windows
+0,3840,notepad.exe,0x231108,TEMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,3840,notepad.exe,0x231108,TMP,C:\\Users\\Hoxed\\AppData\\Local\\Temp
+0,3840,notepad.exe,0x231108,USERDOMAIN,WIN-MNF9FL8RCB0
+0,3840,notepad.exe,0x231108,USERNAME,Hoxed
+0,3840,notepad.exe,0x231108,USERPROFILE,C:\\Users\\Hoxed
+0,3840,notepad.exe,0x231108,windir,C:\\Windows
+0,3840,notepad.exe,0x231108,windows_tracing_flags,3
+0,3840,notepad.exe,0x231108,windows_tracing_logfile,C:\\BVTBin\\Tests\\installpackage\\csilogfile.log
+

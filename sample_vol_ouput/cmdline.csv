@@ -1,0 +1,44 @@
+TreeDepth,PID,Process,Args
+0,4,System,Required memory at 0x10 is not valid (process exited?)
+0,268,smss.exe,\\SystemRoot\\System32\\smss.exe
+0,352,csrss.exe,"%SystemRoot%\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,12288,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16"
+0,404,wininit.exe,wininit.exe
+0,412,csrss.exe,"%SystemRoot%\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,12288,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16"
+0,476,services.exe,C:\\Windows\\system32\\services.exe
+0,484,lsass.exe,C:\\Windows\\system32\\lsass.exe
+0,492,lsm.exe,C:\\Windows\\system32\\lsm.exe
+0,504,winlogon.exe,winlogon.exe
+0,628,svchost.exe,C:\\Windows\\system32\\svchost.exe -k DcomLaunch
+0,692,vmacthlp.exe,"""C:\\Program Files\\VMware\\VMware Tools\\vmacthlp.exe"""
+0,724,svchost.exe,C:\\Windows\\system32\\svchost.exe -k RPCSS
+0,776,svchost.exe,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted
+0,860,svchost.exe,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted
+0,936,svchost.exe,C:\\Windows\\system32\\svchost.exe -k netsvcs
+0,1052,svchost.exe,C:\\Windows\\system32\\svchost.exe -k LocalService
+0,1120,svchost.exe,C:\\Windows\\system32\\svchost.exe -k NetworkService
+0,1300,dwm.exe,"""C:\\Windows\\system32\\Dwm.exe"""
+0,1312,explorer.exe,C:\\Windows\\Explorer.EXE
+0,1348,spoolsv.exe,C:\\Windows\\System32\\spoolsv.exe
+0,1408,taskhost.exe,"""taskhost.exe"""
+0,1428,svchost.exe,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork
+0,1556,vmtoolsd.exe,"""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe"" -n vmusr"
+0,1672,VGAuthService.,"""C:\\Program Files\\VMware\\VMware Tools\\VMware VGAuth\\VGAuthService.exe"""
+0,1756,vmtoolsd.exe,"""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe"""
+0,1992,svchost.exe,C:\\Windows\\system32\\svchost.exe -k bthsvcs
+0,1072,WmiPrvSE.exe,C:\\Windows\\system32\\wbem\\wmiprvse.exe
+0,1332,dllhost.exe,C:\\Windows\\system32\\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235}
+0,1268,msdtc.exe,C:\\Windows\\System32\\msdtc.exe
+0,2128,SearchIndexer.,C:\\Windows\\system32\\SearchIndexer.exe /Embedding
+0,2316,wmpnetwk.exe,"""C:\\Program Files\\Windows Media Player\\wmpnetwk.exe"""
+0,2408,svchost.exe,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation
+0,3448,sppsvc.exe,C:\\Windows\\system32\\sppsvc.exe
+0,3484,svchost.exe,C:\\Windows\\System32\\svchost.exe -k secsvcs
+0,2956,notepad.exe,"""C:\\Windows\\system32\\notepad.exe"" "
+0,3164,audiodg.exe,C:\\Windows\\system32\\AUDIODG.EXE 0x580
+0,2300,WmiPrvSE.exe,C:\\Windows\\system32\\wbem\\wmiprvse.exe
+0,3704,notepad.exe,"""C:\\Windows\\system32\\NOTEPAD.EXE"" C:\\Users\\Hoxed\\Desktop\\note.txt"
+0,3840,notepad.exe,"""C:\\Windows\\system32\\NOTEPAD.EXE"" C:\\Users\\Hoxed\\Desktop\\note.txt"
+0,3940,cmd.exe,Required memory at 0x7ffdf010 is not valid (process exited?)
+0,3980,conhost.exe,Required memory at 0x7ffdf010 is not valid (process exited?)
+0,3960,ipconfig.exe,Required memory at 0x7ffdc010 is not valid (process exited?)
+

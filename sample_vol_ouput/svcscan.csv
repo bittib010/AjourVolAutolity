@@ -1,0 +1,464 @@
+TreeDepth,Offset,Order,PID,Start,State,Type,Name,Display,Binary,BinaryRegistry,Dll
+0,0xa34920,213,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,PlugPlay,Plug and Play,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\umpnpmgr.dll
+0,0xa34920,212,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,pla,Performance Logs & Alerts,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNoNetwork,%systemroot%\\system32\\pla.dll
+0,0xa303b8,211,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,PEAUTH,PEAUTH,\\Driver\\PEAUTH,system32\\drivers\\peauth.sys,-
+0,0xa34878,210,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,pcw,Performance Counters for Windows Driver,\\Driver\\pcw,System32\\drivers\\pcw.sys,-
+0,0xa30318,209,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,pcmcia,pcmcia,N/A,\\SystemRoot\\system32\\drivers\\pcmcia.sys,-
+0,0xa347d0,208,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,pciide,pciide,N/A,\\SystemRoot\\system32\\drivers\\pciide.sys,-
+0,0xa34728,207,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,pci,PCI Bus Driver,\\Driver\\pci,system32\\drivers\\pci.sys,-
+0,0xa30278,206,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,PcaSvc,Program Compatibility Assistant Service,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\pcasvc.dll
+0,0xa34680,205,N/A,SERVICE_AUTO_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Parvdm,Parvdm,N/A,\\SystemRoot\\system32\\drivers\\parvdm.sys,-
+0,0xa345d8,204,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,partmgr,Partition Manager,\\Driver\\partmgr,System32\\drivers\\partmgr.sys,-
+0,0xa34530,203,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Parport,Parallel port driver,N/A,\\SystemRoot\\system32\\drivers\\parport.sys,-
+0,0xa34488,202,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,p2psvc,Peer Networking Grouping,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServicePeerNet,%SystemRoot%\\system32\\p2psvc.dll
+0,0xa343e0,201,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,p2pimsvc,Peer Networking Identity Manager,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServicePeerNet,%SystemRoot%\\system32\\pnrpsvc.dll
+0,0xa34338,200,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ohci1394,1394 OHCI Compliant Host Controller (Legacy),N/A,\\SystemRoot\\system32\\drivers\\ohci1394.sys,-
+0,0xa34290,199,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,nv_agp,NVIDIA nForce AGP Bus Filter,N/A,\\SystemRoot\\system32\\drivers\\nv_agp.sys,-
+0,0xa341e8,198,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,nvstor,nvstor,N/A,\\SystemRoot\\system32\\drivers\\nvstor.sys,-
+0,0xa34140,197,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,nvraid,nvraid,N/A,\\SystemRoot\\system32\\drivers\\nvraid.sys,-
+0,0xa34098,196,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Null,Null,\\Driver\\Null,-,-
+0,0xa301d8,195,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,Ntfs,Ntfs,N/A,-,-
+0,0xa30138,194,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,nsiproxy,NSI proxy service driver.,\\Driver\\nsiproxy,system32\\drivers\\nsiproxy.sys,-
+0,0xa33ff0,193,1052,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,nsi,Network Store Interface Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\nsisvc.dll
+0,0xa30098,192,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,Npfs,Npfs,\\FileSystem\\Npfs,-,-
+0,0xa2fff8,191,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,NlaSvc,Network Location Awareness,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\nlasvc.dll
+0,0xa33f48,190,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,nfrd960,nfrd960,N/A,\\SystemRoot\\system32\\drivers\\nfrd960.sys,-
+0,0xa33ea0,189,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,NetTcpPortSharing,Net.Tcp Port Sharing Service,N/A,"""%systemroot%\\Microsoft.NET\\Framework\\v3.0\\Windows Communication Foundation\\SMSvcHost.exe""",-
+0,0xa35560,188,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,netprofm,Network List Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\netprofm.dll
+0,0xa33df8,187,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Netman,Network Connections,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\netman.dll
+0,0xa33d50,186,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,Netlogon,Netlogon,N/A,%systemroot%\\system32\\lsass.exe,-
+0,0xa33ca8,185,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,NetBT,NetBT,\\Driver\\NetBT,System32\\DRIVERS\\netbt.sys,-
+0,0xa2ff58,184,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,NetBIOS,NetBIOS Interface,\\FileSystem\\NetBIOS,system32\\DRIVERS\\netbios.sys,-
+0,0xa33c00,183,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,NDProxy,NDIS Proxy,N/A,-,-
+0,0xa33b58,182,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,NdisWan,Remote Access NDIS WAN Driver,N/A,system32\\DRIVERS\\ndiswan.sys,-
+0,0xa33ab0,181,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Ndisuio,NDIS Usermode I/O Protocol,N/A,system32\\DRIVERS\\ndisuio.sys,-
+0,0xa33a08,180,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,NdisTapi,Remote Access NDIS TAPI Driver,N/A,system32\\DRIVERS\\ndistapi.sys,-
+0,0xa33960,179,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,NdisCap,NDIS Capture LightWeight Filter,N/A,system32\\DRIVERS\\ndiscap.sys,-
+0,0xa338b8,178,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,NDIS,NDIS System Driver,\\Driver\\NDIS,system32\\drivers\\ndis.sys,-
+0,0xa2feb8,177,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,NativeWifiP,NativeWiFi Filter,N/A,system32\\DRIVERS\\nwifi.sys,-
+0,0xa354b0,176,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,napagent,Network Access Protection Agent,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,-
+0,0xa33810,175,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,Mup,Mup,\\FileSystem\\Mup,System32\\Drivers\\mup.sys,-
+0,0xa2fe18,174,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MTConfig,Microsoft Input Configuration Driver,N/A,\\SystemRoot\\system32\\drivers\\MTConfig.sys,-
+0,0xa33768,173,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MSTEE,Microsoft Streaming Tee/Sink-to-Sink Converter,N/A,system32\\drivers\\MSTEE.sys,-
+0,0xa2fd78,172,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,mssmbios,Microsoft System Management BIOS Driver,\\Driver\\mssmbios,system32\\DRIVERS\\mssmbios.sys,-
+0,0xa336c0,171,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MsRPC,MsRPC,N/A,-,-
+0,0xa2fcd8,170,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MSPQM,Microsoft Streaming Quality Manager Proxy,N/A,system32\\drivers\\MSPQM.sys,-
+0,0xa2fc38,169,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MSPCLOCK,Microsoft Streaming Clock Proxy,N/A,system32\\drivers\\MSPCLOCK.sys,-
+0,0xa33618,168,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MSKSSRV,Microsoft Streaming Service Proxy,N/A,system32\\drivers\\MSKSSRV.sys,-
+0,0xa33570,167,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,msiserver,Windows Installer,N/A,%systemroot%\\system32\\msiexec.exe /V,-
+0,0xa334c8,166,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,MSiSCSI,Microsoft iSCSI Initiator Service,N/A,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\iscsiexe.dll
+0,0xa32f58,165,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,msisadrv,msisadrv,\\Driver\\msisadrv,system32\\drivers\\msisadrv.sys,-
+0,0xa32eb0,164,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,mshidkmdf,Pass-through HID to KMDF Filter Driver,N/A,\\SystemRoot\\System32\\drivers\\mshidkmdf.sys,-
+0,0xa32e08,163,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,Msfs,Msfs,\\FileSystem\\Msfs,-,-
+0,0xa2fb98,162,1268,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,MSDTC,Distributed Transaction Coordinator,C:\\Windows\\System32\\msdtc.exe,%SystemRoot%\\System32\\msdtc.exe,-
+0,0xa2faf8,161,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,msdsm,msdsm,N/A,\\SystemRoot\\system32\\drivers\\msdsm.sys,-
+0,0xa2fa58,160,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,msahci,msahci,\\Driver\\msahci,system32\\drivers\\msahci.sys,-
+0,0xa32d60,159,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,mrxsmb20,SMB 2.0 MiniRedirector,\\FileSystem\\mrxsmb20,system32\\DRIVERS\\mrxsmb20.sys,-
+0,0xa32cb8,158,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,mrxsmb10,SMB 1.x MiniRedirector,\\FileSystem\\mrxsmb10,system32\\DRIVERS\\mrxsmb10.sys,-
+0,0xa32c10,157,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,mrxsmb,SMB MiniRedirector Wrapper and Engine,\\FileSystem\\mrxsmb,system32\\DRIVERS\\mrxsmb.sys,-
+0,0xa32b68,156,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,MRxDAV,WebDav Client Redirector Driver,N/A,\\SystemRoot\\system32\\drivers\\mrxdav.sys,-
+0,0xa32ac0,155,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,MpsSvc,Windows Firewall,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\mpssvc.dll
+0,0xa32a18,154,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,mpsdrv,Windows Firewall Authorization Driver,\\Driver\\mpsdrv,System32\\drivers\\mpsdrv.sys,-
+0,0xa32970,153,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,mpio,mpio,N/A,\\SystemRoot\\system32\\drivers\\mpio.sys,-
+0,0xa2f9b8,152,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,mountmgr,Mount Point Manager,\\Driver\\mountmgr,System32\\drivers\\mountmgr.sys,-
+0,0xa328c8,151,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,mouhid,Mouse HID Driver,N/A,system32\\DRIVERS\\mouhid.sys,-
+0,0xa32820,150,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,mouclass,Mouse Class Driver,N/A,system32\\DRIVERS\\mouclass.sys,-
+0,0xa32778,149,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,monitor,Microsoft Monitor Class Function Driver Service,N/A,system32\\DRIVERS\\monitor.sys,-
+0,0xa326d0,148,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Modem,Modem,N/A,system32\\drivers\\modem.sys,-
+0,0xa2f918,147,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,MMCSS,Multimedia Class Scheduler,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\mmcss.dll
+0,0xa2f878,146,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,MegaSR,MegaSR,N/A,\\SystemRoot\\system32\\drivers\\MegaSR.sys,-
+0,0xa32628,145,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,megasas,megasas,N/A,\\SystemRoot\\system32\\drivers\\megasas.sys,-
+0,0xa32580,144,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,luafv,UAC File Virtualization,\\FileSystem\\luafv,\\SystemRoot\\system32\\drivers\\luafv.sys,-
+0,0xa2f7d8,143,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,LSI_SCSI,LSI_SCSI,N/A,\\SystemRoot\\system32\\drivers\\lsi_scsi.sys,-
+0,0xa324d8,142,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,LSI_SAS2,LSI_SAS2,N/A,\\SystemRoot\\system32\\drivers\\lsi_sas2.sys,-
+0,0xa32430,141,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,LSI_SAS,LSI_SAS,\\Driver\\LSI_SAS,system32\\drivers\\lsi_sas.sys,-
+0,0xa32388,140,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,LSI_FC,LSI_FC,N/A,\\SystemRoot\\system32\\drivers\\lsi_fc.sys,-
+0,0xa322e0,139,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,lmhosts,TCP/IP NetBIOS Helper,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\lmhsvc.dll
+0,0xa32238,138,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,lltdsvc,Link-Layer Topology Discovery Mapper,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\lltdsvc.dll
+0,0xa32190,137,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,lltdio,Link-Layer Topology Discovery Mapper I/O Driver,\\Driver\\lltdio,system32\\DRIVERS\\lltdio.sys,-
+0,0xa320e8,136,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,LanmanWorkstation,Workstation,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\wkssvc.dll
+0,0xa333f8,135,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,LanmanServer,Server,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\srvsvc.dll
+0,0xa33348,134,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,KtmRm,KtmRm for Distributed Transaction Coordinator,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkServiceAndNoImpersonation,%systemroot%\\system32\\msdtckrm.dll
+0,0xa2f738,133,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,KSecPkg,KSecPkg,\\Driver\\KSecPkg,System32\\Drivers\\ksecpkg.sys,-
+0,0xa32040,132,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,KSecDD,KSecDD,\\Driver\\KSecDD,System32\\Drivers\\ksecdd.sys,-
+0,0xa31f98,131,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,KeyIso,CNG Key Isolation,N/A,%SystemRoot%\\system32\\lsass.exe,-
+0,0xa31ef0,130,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,kbdhid,Keyboard HID Driver,N/A,\\SystemRoot\\system32\\drivers\\kbdhid.sys,-
+0,0xa31e48,129,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,kbdclass,Keyboard Class Driver,N/A,system32\\DRIVERS\\kbdclass.sys,-
+0,0xa31da0,128,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,iScsiPrt,iScsiPort Driver,N/A,\\SystemRoot\\system32\\drivers\\msiscsi.sys,-
+0,0xa31cf8,127,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,isapnp,isapnp,N/A,\\SystemRoot\\system32\\drivers\\isapnp.sys,-
+0,0xa31c50,126,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,IRENUM,IR Bus Enumerator,N/A,system32\\drivers\\irenum.sys,-
+0,0xa31ba8,125,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,IPNAT,IP Network Address Translator,N/A,System32\\drivers\\ipnat.sys,-
+0,0xa2f698,124,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,IPMIDRV,IPMIDRV,N/A,\\SystemRoot\\system32\\drivers\\IPMIDrv.sys,-
+0,0xa31b00,123,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,iphlpsvc,IP Helper,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k NetSvcs,%SystemRoot%\\System32\\iphlpsvc.dll
+0,0xa31a58,122,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,IpFilterDriver,IP Traffic Filter Driver,N/A,system32\\DRIVERS\\ipfltdrv.sys,-
+0,0xa33290,121,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,IPBusEnum,PnP-X IP Bus Enumerator,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\ipbusenum.dll
+0,0xa319b0,120,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,intelppm,Intel Processor Driver,N/A,system32\\DRIVERS\\intelppm.sys,-
+0,0xa31908,119,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,intelide,intelide,\\Driver\\intelide,system32\\drivers\\intelide.sys,-
+0,0xa31860,118,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,IKEEXT,IKE and AuthIP IPsec Keying Modules,N/A,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\ikeext.dll
+0,0xa317b8,117,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,iirsp,iirsp,N/A,\\SystemRoot\\system32\\drivers\\iirsp.sys,-
+0,0xa2f5f8,116,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,idsvc,Windows CardSpace,N/A,"""%systemroot%\\Microsoft.NET\\Framework\\v3.0\\Windows Communication Foundation\\infocard.exe""",-
+0,0xa2f558,115,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,iaStorV,iaStorV,N/A,\\SystemRoot\\system32\\drivers\\iaStorV.sys,-
+0,0xa31710,114,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,i8042prt,i8042 Keyboard and PS/2 Mouse Port Driver,N/A,system32\\DRIVERS\\i8042prt.sys,-
+0,0xa31668,113,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,hwpolicy,Hardware Policy Driver,\\Driver\\hwpolicy,System32\\drivers\\hwpolicy.sys,-
+0,0xa315c0,112,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,HTTP,HTTP,\\Driver\\HTTP,system32\\drivers\\HTTP.sys,-
+0,0xa2f4b8,111,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HpSAMD,HpSAMD,N/A,\\SystemRoot\\system32\\drivers\\HpSAMD.sys,-
+0,0xa31518,110,776,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,HomeGroupProvider,HomeGroup Provider,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\provsvc.dll
+0,0xa331d8,109,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,HomeGroupListener,HomeGroup Listener,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\ListSvc.dll
+0,0xa33120,108,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,hkmsvc,Health Key and Certificate Management,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,-
+0,0xa31470,107,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HidUsb,Microsoft HID Class Driver,N/A,system32\\DRIVERS\\hidusb.sys,-
+0,0xa313c8,106,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,hidserv,Human Interface Device Access,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\hidserv.dll
+0,0xa31320,105,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HidIr,Microsoft Infrared HID Driver,N/A,\\SystemRoot\\system32\\drivers\\hidir.sys,-
+0,0xa2f418,104,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HidBth,Microsoft Bluetooth HID Miniport,N/A,\\SystemRoot\\system32\\drivers\\hidbth.sys,-
+0,0xa31278,103,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HidBatt,HID UPS Battery Driver,N/A,\\SystemRoot\\system32\\drivers\\HidBatt.sys,-
+0,0xa311d0,102,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HDAudBus,Microsoft UAA Bus Driver for High Definition Audio,N/A,system32\\DRIVERS\\HDAudBus.sys,-
+0,0xa31128,101,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,HdAudAddService,Microsoft 1.1 UAA Function Driver for High Definition Audio Service,N/A,system32\\drivers\\HdAudio.sys,-
+0,0xa33068,100,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,hcw85cir,Hauppauge Consumer Infrared Receiver,N/A,\\SystemRoot\\system32\\drivers\\hcw85cir.sys,-
+0,0xa31080,99,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,gpsvc,Group Policy Client,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\gpsvc.dll
+0,0xa2f378,98,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,gagp30kx,Microsoft Generic AGPv3.0 Filter for K8 Processor Platforms,N/A,\\SystemRoot\\system32\\drivers\\gagp30kx.sys,-
+0,0xa2e0c8,97,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,fvevol,Bitlocker Drive Encryption Filter Driver,\\Driver\\fvevol,System32\\DRIVERS\\fvevol.sys,-
+0,0xa2e020,96,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,FsDepends,File System Dependency Minifilter,N/A,System32\\drivers\\FsDepends.sys,-
+0,0xa2df78,95,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,FontCache3.0.0.0,Windows Presentation Foundation Font Cache 3.0.0.0,N/A,%systemroot%\\Microsoft.Net\\Framework\\v3.0\\WPF\\PresentationFontCache.exe,-
+0,0xa30fb0,94,2408,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,FontCache,Windows Font Cache Service,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\FntCache.dll
+0,0xa2ded0,93,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,FltMgr,FltMgr,\\FileSystem\\FltMgr,system32\\drivers\\fltmgr.sys,-
+0,0xa2de28,92,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,flpydisk,Floppy Disk Driver,N/A,system32\\DRIVERS\\flpydisk.sys,-
+0,0xa2dd80,91,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,Filetrace,Filetrace,N/A,system32\\drivers\\filetrace.sys,-
+0,0xa2dcd8,90,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,FileInfo,File Information FS MiniFilter,\\FileSystem\\FileInfo,system32\\drivers\\fileinfo.sys,-
+0,0xa2dc30,89,2408,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,FDResPub,Function Discovery Resource Publication,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\fdrespub.dll
+0,0xa2db88,88,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,fdPHost,Function Discovery Provider Host,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\fdPHost.dll
+0,0xa2dae0,87,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,fdc,Floppy Disk Controller Driver,N/A,system32\\DRIVERS\\fdc.sys,-
+0,0xa2f2d8,86,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,Fax,Fax,N/A,%systemroot%\\system32\\fxssvc.exe,-
+0,0xa2f238,85,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,fastfat,FAT12/16/32 File System Driver,N/A,-,-
+0,0xa2da38,84,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,exfat,exFAT File System Driver,N/A,-,-
+0,0xa2f198,83,1052,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,EventSystem,COM+ Event System,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\es.dll
+0,0xa30f00,82,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,eventlog,Windows Event Log,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,-
+0,0xa2d990,81,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ErrDev,Microsoft Hardware Error Device Driver,N/A,\\SystemRoot\\system32\\drivers\\errdev.sys,-
+0,0xa2d8e8,80,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,elxstor,elxstor,N/A,\\SystemRoot\\system32\\drivers\\elxstor.sys,-
+0,0xa2d840,79,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,EFS,Encrypting File System (EFS),N/A,%SystemRoot%\\System32\\lsass.exe,-
+0,0xa2f0f8,78,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ebdrv,Broadcom NetXtreme II 10 GigE VBD,N/A,\\SystemRoot\\system32\\drivers\\evbdx.sys,-
+0,0xa2f058,77,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,EapHost,Extensible Authentication Protocol,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\eapsvc.dll
+0,0xa2d798,76,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,E1G60,Intel(R) PRO/1000 NDIS 6 Adapter Driver,N/A,system32\\DRIVERS\\E1G60I32.sys,-
+0,0xa2efb8,75,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,DXGKrnl,LDDM Graphics Subsystem,N/A,\\SystemRoot\\System32\\drivers\\dxgkrnl.sys,-
+0,0xa2d6f0,74,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,drmkaud,Microsoft Trusted Audio Drivers,N/A,system32\\drivers\\drmkaud.sys,-
+0,0xa2d648,73,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,DPS,Diagnostic Policy Service,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\dps.dll
+0,0xa2ef18,72,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,dot3svc,Wired AutoConfig,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\dot3svc.dll
+0,0xa2d5a0,71,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Dnscache,DNS Client,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\dnsrslvr.dll
+0,0xa2d4f8,70,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Disk,Disk Driver,\\Driver\\Disk,system32\\drivers\\disk.sys,-
+0,0xa2ee60,69,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,discache,System Attribute Cache,\\Driver\\discache,System32\\drivers\\discache.sys,-
+0,0xa2d450,68,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Dhcp,DHCP Client,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\dhcpcore.dll
+0,0xa2edc0,67,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,DfsC,DFS Namespace Client Driver,\\FileSystem\\DfsC,System32\\Drivers\\dfsc.sys,-
+0,0xa2ed20,66,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,defragsvc,Disk Defragmenter,N/A,%SystemRoot%\\system32\\svchost.exe -k defragsvc,%Systemroot%\\System32\\defragsvc.dll
+0,0xa2d3a8,65,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,DcomLaunch,DCOM Server Process Launcher,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\rpcss.dll
+0,0xa2ec70,64,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,CryptSvc,Cryptographic Services,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\cryptsvc.dll
+0,0xa2d300,63,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,crcdisk,Crcdisk Filter Driver,N/A,\\SystemRoot\\system32\\drivers\\crcdisk.sys,-
+0,0xa2d258,62,1332,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,COMSysApp,COM+ System Application,C:\\Windows\\system32\\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235},%SystemRoot%\\system32\\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235},-
+0,0xa2d1b0,61,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,CompositeBus,Composite Bus Enumerator Driver,N/A,system32\\DRIVERS\\CompositeBus.sys,-
+0,0xa2ebc0,60,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Compbatt,Microsoft Composite Battery Driver,\\Driver\\Compbatt,system32\\DRIVERS\\compbatt.sys,-
+0,0xa2d108,59,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,CNG,CNG,\\Driver\\CNG,System32\\Drivers\\cng.sys,-
+0,0xa2eb20,58,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,cmdide,cmdide,N/A,\\SystemRoot\\system32\\drivers\\cmdide.sys,-
+0,0xa2d060,57,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,CmBatt,Microsoft AC Adapter Driver,N/A,system32\\DRIVERS\\CmBatt.sys,-
+0,0xa2cfb8,56,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,clr_optimization_v2.0.50727_32,Microsoft .NET Framework NGEN v2.0.50727_X86,N/A,%systemroot%\\Microsoft.NET\\Framework\\v2.0.50727\\mscorsvw.exe,-
+0,0xa2ea48,55,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,CLFS,Common Log (CLFS),\\Driver\\CLFS,System32\\CLFS.sys,-
+0,0xa2e9a8,54,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,circlass,Consumer IR Devices,N/A,\\SystemRoot\\system32\\drivers\\circlass.sys,-
+0,0xa2cf10,53,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,CertPropSvc,Certificate Propagation,N/A,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\certprop.dll
+0,0xa2e8f8,52,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,cdrom,CD-ROM Driver,\\Driver\\cdrom,system32\\DRIVERS\\cdrom.sys,-
+0,0xa2e858,51,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,cdfs,CD/DVD File System Reader,N/A,system32\\DRIVERS\\cdfs.sys,-
+0,0xa2e7b8,50,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BTHUSB,Bluetooth Radio USB Driver,N/A,System32\\Drivers\\BTHUSB.sys,-
+0,0xa2ce68,49,1992,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,bthserv,Bluetooth Support Service,C:\\Windows\\system32\\svchost.exe -k bthsvcs,%SystemRoot%\\system32\\svchost.exe -k bthsvcs,%SystemRoot%\\system32\\bthserv.dll
+0,0xa2cdc0,48,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BTHPORT,Bluetooth Port Driver,N/A,System32\\Drivers\\BTHport.sys,-
+0,0xa2cd18,47,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BthPan,Bluetooth Device (Personal Area Network),N/A,system32\\DRIVERS\\bthpan.sys,-
+0,0xa2cc70,46,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BTHMODEM,Bluetooth Serial Communications Driver,N/A,\\SystemRoot\\system32\\drivers\\bthmodem.sys,-
+0,0xa2cbc8,45,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BthEnum,Bluetooth Request Block Driver,N/A,system32\\DRIVERS\\BthEnum.sys,-
+0,0xa2cb20,44,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BrUsbSer,Brother MFC USB Serial WDM Driver,N/A,\\SystemRoot\\System32\\Drivers\\BrUsbSer.sys,-
+0,0xa2ca78,43,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BrUsbMdm,Brother MFC USB Fax Only Modem,N/A,\\SystemRoot\\System32\\Drivers\\BrUsbMdm.sys,-
+0,0xa2c9d0,42,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BrSerWdm,Brother WDM Serial driver,N/A,\\SystemRoot\\System32\\Drivers\\BrSerWdm.sys,-
+0,0xa2c928,41,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Brserid,Brother MFC Serial Port Interface Driver (WDM),N/A,\\SystemRoot\\System32\\Drivers\\Brserid.sys,-
+0,0xa2c880,40,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,Browser,Computer Browser,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\browser.dll
+0,0xa2c7d8,39,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BrFiltUp,Brother USB Mass-Storage Upper Filter Driver,N/A,\\SystemRoot\\system32\\drivers\\BrFiltUp.sys,-
+0,0xa2c730,38,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,BrFiltLo,Brother USB Mass-Storage Lower Filter Driver,N/A,\\SystemRoot\\system32\\drivers\\BrFiltLo.sys,-
+0,0xa2c688,37,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,bowser,Browser Support Driver,\\FileSystem\\bowser,system32\\DRIVERS\\bowser.sys,-
+0,0xa2c5e0,36,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,blbdrive,blbdrive,\\Driver\\blbdrive,system32\\DRIVERS\\blbdrive.sys,-
+0,0xa2c538,35,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,BITS,Background Intelligent Transfer Service,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\qmgr.dll
+0,0xa2e718,34,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,BFE,Base Filtering Engine,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%systemroot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\bfe.dll
+0,0xa2e678,33,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Beep,Beep,\\Driver\\Beep,-,-
+0,0xa2e5d8,32,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,BDESVC,BitLocker Drive Encryption Service,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\bdesvc.dll
+0,0xa2c490,31,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,b57nd60x,Broadcom NetXtreme Gigabit Ethernet - NDIS 6.0,N/A,system32\\DRIVERS\\b57nd60x.sys,-
+0,0xa2c3e8,30,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,b06bdrv,Broadcom NetXtreme II VBD,N/A,\\SystemRoot\\system32\\drivers\\bxvbdx.sys,-
+0,0xa2c340,29,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,AxInstSV,ActiveX Installer (AxInstSV),N/A,%SystemRoot%\\system32\\svchost.exe -k AxInstSVGroup,%SystemRoot%\\System32\\AxInstSV.dll
+0,0xa2c298,28,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Audiosrv,Windows Audio,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa2c1f0,27,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,AudioEndpointBuilder,Windows Audio Endpoint Builder,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa2c118,26,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,atapi,IDE Channel,\\Driver\\atapi,system32\\drivers\\atapi.sys,-
+0,0xa2c078,25,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,AsyncMac,RAS Asynchronous Media Driver,N/A,system32\\DRIVERS\\asyncmac.sys,-
+0,0xa2bfd0,24,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,arcsas,arcsas,N/A,\\SystemRoot\\system32\\drivers\\arcsas.sys,-
+0,0xa216c0,23,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,arc,arc,N/A,\\SystemRoot\\system32\\drivers\\arc.sys,-
+0,0xa21620,22,936,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Appinfo,Application Information,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\appinfo.dll
+0,0xa21578,21,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,AppIDSvc,Application Identity,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\appidsvc.dll
+0,0xa214d0,20,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,AppID,AppID Driver,N/A,\\SystemRoot\\system32\\drivers\\appid.sys,-
+0,0xa21430,19,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,amdxata,amdxata,\\Driver\\amdxata,system32\\drivers\\amdxata.sys,-
+0,0xa21388,18,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,amdsbs,amdsbs,N/A,\\SystemRoot\\system32\\drivers\\amdsbs.sys,-
+0,0xa212e0,17,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,amdsata,amdsata,N/A,\\SystemRoot\\system32\\drivers\\amdsata.sys,-
+0,0xa21238,16,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,AmdPPM,AMD Processor Driver,N/A,\\SystemRoot\\system32\\drivers\\amdppm.sys,-
+0,0xa21190,15,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,AmdK8,AMD K8 Processor Driver,N/A,\\SystemRoot\\system32\\drivers\\amdk8.sys,-
+0,0xa210f0,14,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,amdide,amdide,N/A,\\SystemRoot\\system32\\drivers\\amdide.sys,-
+0,0xa21048,13,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,amdagp,AMD AGP Bus Filter Driver,N/A,\\SystemRoot\\system32\\drivers\\amdagp.sys,-
+0,0xa20fa0,12,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,aliide,aliide,N/A,\\SystemRoot\\system32\\drivers\\aliide.sys,-
+0,0xa20ef8,11,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,ALG,Application Layer Gateway Service,N/A,%SystemRoot%\\System32\\alg.exe,-
+0,0xa20e58,10,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,aic78xx,aic78xx,N/A,\\SystemRoot\\system32\\drivers\\djsvs.sys,-
+0,0xa20db0,9,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,agp440,Intel AGP Bus Filter,\\Driver\\agp440,system32\\DRIVERS\\agp440.sys,-
+0,0xa20d08,8,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,AFD,Ancillary Function Driver for Winsock,\\Driver\\AFD,\\SystemRoot\\system32\\drivers\\afd.sys,-
+0,0xa20c68,7,936,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,AeLookupSvc,Application Experience,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\aelupsvc.dll
+0,0xa20bb8,6,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,adpu320,adpu320,N/A,\\SystemRoot\\system32\\drivers\\adpu320.sys,-
+0,0xa20b10,5,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,adpahci,adpahci,N/A,\\SystemRoot\\system32\\drivers\\adpahci.sys,-
+0,0xa20a68,4,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,adp94xx,adp94xx,N/A,\\SystemRoot\\system32\\drivers\\adp94xx.sys,-
+0,0xa209c0,3,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,AcpiPmi,ACPI Power Meter Driver,N/A,\\SystemRoot\\system32\\drivers\\acpipmi.sys,-
+0,0xa20918,2,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,ACPI,Microsoft ACPI Driver,\\Driver\\ACPI,system32\\drivers\\ACPI.sys,-
+0,0xa20878,1,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,1394ohci,1394 OHCI Compliant Host Controller,N/A,\\SystemRoot\\system32\\drivers\\1394ohci.sys,-
+0,0xa2ded0,94,2408,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,FontCache,Windows Font Cache Service,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\FntCache.dll
+0,0xa3d8f8,370,3484,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WinDefend,Windows Defender,C:\\Windows\\System32\\svchost.exe -k secsvcs,%SystemRoot%\\System32\\svchost.exe -k secsvcs,%ProgramFiles%\\Windows Defender\\mpsvc.dll
+0,0xa3d8f8,369,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,WIMMount,WIMMount,N/A,system32\\drivers\\wimmount.sys,-
+0,0xa3d850,368,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,WfpLwf,WFP Lightweight Filter,\\Driver\\WfpLwf,system32\\DRIVERS\\wfplwf.sys,-
+0,0xa3d7a8,367,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WerSvc,Windows Error Reporting Service,N/A,%SystemRoot%\\System32\\svchost.exe -k WerSvcGroup,%SystemRoot%\\System32\\WerSvc.dll
+0,0xa3d700,366,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,wercplsupport,Problem Reports and Solutions Control Panel Support,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\wercplsupport.dll
+0,0xa384b8,365,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,Wecsvc,Windows Event Collector,N/A,%SystemRoot%\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\wecsvc.dll
+0,0xa3d658,364,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WebClient,WebClient,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\webclnt.dll
+0,0xa3d5b0,363,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WdiSystemHost,Diagnostic System Host,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\wdi.dll
+0,0xa38408,362,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WdiServiceHost,Diagnostic Service Host,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\wdi.dll
+0,0xa3e230,361,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Wdf01000,Kernel Mode Driver Frameworks service,\\Driver\\Wdf01000,system32\\drivers\\Wdf01000.sys,-
+0,0xa3d508,360,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Wd,Wd,N/A,\\SystemRoot\\system32\\drivers\\wd.sys,-
+0,0xa3a6f0,359,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WcsPlugInService,Windows Color System,N/A,%SystemRoot%\\system32\\svchost.exe -k wcssvc,%SystemRoot%\\System32\\WcsPlugInService.dll
+0,0xa3e178,358,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,wcncsvc,Windows Connect Now - Config Registrar,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\wcncsvc.dll
+0,0xa3d460,357,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WbioSrvc,Windows Biometric Service,N/A,%SystemRoot%\\system32\\svchost.exe -k WbioSvcGroup,%SystemRoot%\\System32\\wbiosrvc.dll
+0,0xa3d3b8,356,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,wbengine,Block Level Backup Engine Service,N/A,"""%systemroot%\\system32\\wbengine.exe""",-
+0,0xa3d310,355,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Wanarpv6,Remote Access IPv6 ARP Driver,\\Driver\\Wanarpv6,system32\\DRIVERS\\wanarp.sys,-
+0,0xa3d268,354,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,WANARP,Remote Access IP ARP Driver,N/A,system32\\DRIVERS\\wanarp.sys,-
+0,0xa3d1c0,353,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,WacomPen,Wacom Serial Pen HID Driver,N/A,\\SystemRoot\\system32\\drivers\\wacompen.sys,-
+0,0xa3d118,352,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,W32Time,Windows Time,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\w32time.dll
+0,0xa3d070,351,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vwifibus,Virtual WiFi Bus Driver,N/A,\\SystemRoot\\System32\\drivers\\vwifibus.sys,-
+0,0xa3cfc8,350,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,VSS,Volume Shadow Copy,N/A,%systemroot%\\system32\\vssvc.exe,-
+0,0xa3a650,349,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,vsock,vSockets Virtual Machine Communication Interface Sockets driver,\\Driver\\vsock,system32\\DRIVERS\\vsock.sys,-
+0,0xa3a5b0,348,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vsmraid,vsmraid,N/A,\\SystemRoot\\system32\\drivers\\vsmraid.sys,-
+0,0xa3cf20,347,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,volsnap,Storage volumes,\\Driver\\volsnap,system32\\drivers\\volsnap.sys,-
+0,0xa3ce78,346,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,volmgrx,Dynamic Volume Manager,\\Driver\\volmgrx,System32\\drivers\\volmgrx.sys,-
+0,0xa3cdd0,345,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,volmgr,Volume Manager Driver,\\Driver\\volmgr,system32\\drivers\\volmgr.sys,-
+0,0xa3cd28,344,692,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VMware Physical Disk Helper Service,VMware Physical Disk Helper Service,"""C:\\Program Files\\VMware\\VMware Tools\\vmacthlp.exe""","""C:\\Program Files\\VMware\\VMware Tools\\vmacthlp.exe""",-
+0,0xa3e098,343,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,vmvss,VMware Snapshot Provider,N/A,C:\\Windows\\system32\\dllhost.exe /Processid:{3F02045B-B41E-409A-8C3E-37420948DBC6},-
+0,0xa3a510,342,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vmusbmouse,VMware USB Pointing Device,N/A,system32\\DRIVERS\\vmusbmouse.sys,-
+0,0xa38358,341,1756,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VMTools,VMware Tools,"""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe""","""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe""",-
+0,0xa3cc80,340,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,vmrawdsk,VMware Physical Disk Helper,\\Driver\\vmrawdsk,system32\\DRIVERS\\vmrawdsk.sys,-
+0,0xa3cbd8,339,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vmmouse,VMware Pointing Device,N/A,system32\\DRIVERS\\vmmouse.sys,-
+0,0xa3cb30,338,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,VMMemCtl,Memory Control Driver,\\Driver\\VMMemCtl,system32\\DRIVERS\\vmmemctl.sys,-
+0,0xa3ca88,337,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,vmhgfs,VMware Host Guest Client Redirector,\\FileSystem\\vmhgfs,system32\\DRIVERS\\vmhgfs.sys,-
+0,0xa3c9e0,336,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,vmci,VMware VMCI Bus Driver,\\Driver\\vmci,system32\\DRIVERS\\vmci.sys,-
+0,0xa3a470,335,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vm3dmp,vm3dmp,N/A,system32\\DRIVERS\\vm3dmp.sys,-
+0,0xa3c938,334,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,viaide,viaide,N/A,\\SystemRoot\\system32\\drivers\\viaide.sys,-
+0,0xa3c890,333,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ViaC7,VIA C7 Processor Driver,N/A,\\SystemRoot\\system32\\drivers\\viac7.sys,-
+0,0xa3a3d0,332,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,viaagp,VIA AGP Bus Filter,N/A,\\SystemRoot\\system32\\drivers\\viaagp.sys,-
+0,0xa3c7e8,331,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vhdmp,vhdmp,N/A,\\SystemRoot\\system32\\drivers\\vhdmp.sys,-
+0,0xa3a330,330,1672,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VGAuthService,VMware Alias Manager and Ticket Service,"""C:\\Program Files\\VMware\\VMware Tools\\VMware VGAuth\\VGAuthService.exe""","""C:\\Program Files\\VMware\\VMware Tools\\VMware VGAuth\\VGAuthService.exe""",-
+0,0xa382a8,329,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,VgaSave,VgaSave,\\Driver\\VgaSave,\\SystemRoot\\System32\\drivers\\vga.sys,-
+0,0xa3c740,328,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,vga,vga,N/A,system32\\DRIVERS\\vgapnp.sys,-
+0,0xa3a290,327,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,vds,Virtual Disk,N/A,%SystemRoot%\\System32\\vds.exe,-
+0,0xa3a1f0,326,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,vdrvroot,Microsoft Virtual Drive Enumerator Driver,\\Driver\\vdrvroot,system32\\drivers\\vdrvroot.sys,-
+0,0xa3c698,325,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,VaultSvc,Credential Manager,N/A,%SystemRoot%\\system32\\lsass.exe,-
+0,0xa3c5f0,324,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,UxSms,Desktop Window Manager Session Manager,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\uxsms.dll
+0,0xa3a150,323,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbuhci,Microsoft USB Universal Host Controller Miniport Driver,N/A,system32\\DRIVERS\\usbuhci.sys,-
+0,0xa3c548,322,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,USBSTOR,USB Mass-Storage Driver,N/A,\\SystemRoot\\system32\\drivers\\UsbStor.sys,-
+0,0xa3c4a0,321,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbprint,Microsoft USB PRINTER Class,N/A,\\SystemRoot\\system32\\drivers\\usbprint.sys,-
+0,0xa3c3f8,320,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbohci,Microsoft USB Open Host Controller Miniport Driver,N/A,\\SystemRoot\\system32\\drivers\\usbohci.sys,-
+0,0xa3c350,319,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbhub,Microsoft USB Standard Hub Driver,N/A,system32\\DRIVERS\\usbhub.sys,-
+0,0xa3c2a8,318,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbehci,Microsoft USB 2.0 Enhanced Host Controller Miniport Driver,N/A,system32\\DRIVERS\\usbehci.sys,-
+0,0xa3c200,317,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbcir,eHome Infrared Receiver (USBCIR),N/A,\\SystemRoot\\system32\\drivers\\usbcir.sys,-
+0,0xa3c158,316,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,usbccgp,Microsoft USB Generic Parent Driver,N/A,system32\\DRIVERS\\usbccgp.sys,-
+0,0xa3c0b0,315,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,upnphost,UPnP Device Host,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\upnphost.dll
+0,0xa37880,314,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,UmPass,Microsoft UMPass Driver,N/A,\\SystemRoot\\system32\\drivers\\umpass.sys,-
+0,0xa377d8,313,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,umbus,UMBus Enumerator Driver,N/A,system32\\DRIVERS\\umbus.sys,-
+0,0xa3a0b0,312,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,uliagpkx,Uli AGP Bus Filter,N/A,\\SystemRoot\\system32\\drivers\\uliagpkx.sys,-
+0,0xa37730,311,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS|SERVICE_INTERACTIVE_PROCESS,UI0Detect,Interactive Services Detection,N/A,%SystemRoot%\\system32\\UI0Detect.exe,-
+0,0xa37688,310,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_FILE_SYSTEM_DRIVER,udfs,udfs,N/A,system32\\DRIVERS\\udfs.sys,-
+0,0xa30e58,309,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,uagp35,Microsoft AGPv3.5 Filter,N/A,\\SystemRoot\\system32\\drivers\\uagp35.sys,-
+0,0xa375e0,308,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,tunnel,Microsoft Tunnel Miniport Adapter Driver,N/A,system32\\DRIVERS\\tunnel.sys,-
+0,0xa37538,307,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,TsUsbGD,Remote Desktop Generic USB Device,N/A,\\SystemRoot\\system32\\drivers\\TsUsbGD.sys,-
+0,0xa37490,306,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,TsUsbFlt,TsUsbFlt,N/A,System32\\drivers\\tsusbflt.sys,-
+0,0xa373e8,305,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,tssecsrv,Remote Desktop Services Security Filter Driver,N/A,System32\\DRIVERS\\tssecsrv.sys,-
+0,0xa37340,304,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,TrustedInstaller,Windows Modules Installer,N/A,%SystemRoot%\\servicing\\TrustedInstaller.exe,-
+0,0xa39fe0,303,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,TrkWks,Distributed Link Tracking Client,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\trkwks.dll
+0,0xa37298,302,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,TPVCGateway,TP VC Gateway Service,N/A,"""C:\\Program Files\\VMware\\VMware Tools\\TPVCGateway.exe""",-
+0,0xa381f8,301,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,TPAutoConnSvc,TP AutoConnect Service,N/A,"""C:\\Program Files\\VMware\\VMware Tools\\TPAutoConnSvc.exe""",-
+0,0xa38148,300,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,THREADORDER,Thread Ordering Server,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\mmcss.dll
+0,0xa38098,299,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Themes,Themes,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\themeservice.dll
+0,0xa371f0,298,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,TermService,Remote Desktop Services,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\termsrv.dll
+0,0xa37fe8,297,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,TermDD,Terminal Device Driver,\\Driver\\TermDD,system32\\DRIVERS\\termdd.sys,-
+0,0xa37148,296,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,tdx,NetIO Legacy TDI Support Driver,\\Driver\\tdx,system32\\DRIVERS\\tdx.sys,-
+0,0xa30db8,295,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,TDTCP,TDTCP,N/A,system32\\drivers\\tdtcp.sys,-
+0,0xa30d18,294,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,TDPIPE,TDPIPE,N/A,system32\\drivers\\tdpipe.sys,-
+0,0xa370a0,293,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,tcpipreg,TCP/IP Registry Compatibility,\\Driver\\tcpipreg,System32\\drivers\\tcpipreg.sys,-
+0,0xa36ff8,292,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,TCPIP6,Microsoft IPv6 Protocol Driver,N/A,system32\\DRIVERS\\tcpip.sys,-
+0,0xa36f50,291,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Tcpip,TCP/IP Protocol Driver,\\Driver\\Tcpip,System32\\drivers\\tcpip.sys,-
+0,0xa30c78,290,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,TBS,TPM Base Services,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\tbssvc.dll
+0,0xa30bd8,289,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,TapiSrv,Telephony,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\tapisrv.dll
+0,0xa36ea8,288,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,TabletInputService,Tablet PC Input Service,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\TabSvc.dll
+0,0xa39f20,287,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SysMain,Superfetch,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\sysmain.dll
+0,0xa36e00,286,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,swprv,Microsoft Software Shadow Copy Provider,N/A,%SystemRoot%\\System32\\svchost.exe -k swprv,%Systemroot%\\System32\\swprv.dll
+0,0xa30b38,285,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,swenum,Software Bus Driver,N/A,system32\\DRIVERS\\swenum.sys,-
+0,0xa36d58,284,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,StiSvc,Windows Image Acquisition (WIA),N/A,%SystemRoot%\\system32\\svchost.exe -k imgsvc,%SystemRoot%\\System32\\wiaservc.dll
+0,0xa36cb0,283,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,stexstor,stexstor,N/A,\\SystemRoot\\system32\\drivers\\stexstor.sys,-
+0,0xa36c08,282,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SstpSvc,Secure Socket Tunneling Protocol Service,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\sstpsvc.dll
+0,0xa36b60,281,2408,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SSDPSRV,SSDP Discovery,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\ssdpsrv.dll
+0,0xa36ab8,280,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,srvnet,srvnet,\\FileSystem\\srvnet,System32\\DRIVERS\\srvnet.sys,-
+0,0xa36a10,279,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,srv2,Server SMB 2.xxx Driver,\\FileSystem\\srv2,System32\\DRIVERS\\srv2.sys,-
+0,0xa30a98,278,N/A,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,srv,Server SMB 1.xxx Driver,\\FileSystem\\srv,System32\\DRIVERS\\srv.sys,-
+0,0xa309f8,277,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,sppuinotify,SPP Notification Service,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\sppuinotify.dll
+0,0xa37f38,276,3448,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,sppsvc,Software Protection,C:\\Windows\\system32\\sppsvc.exe,%SystemRoot%\\system32\\sppsvc.exe,-
+0,0xa36968,275,1348,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS|SERVICE_INTERACTIVE_PROCESS,Spooler,Print Spooler,C:\\Windows\\System32\\spoolsv.exe,%SystemRoot%\\System32\\spoolsv.exe,-
+0,0xa368c0,274,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,spldr,Security Processor Loader Driver,\\Driver\\spldr,-,-
+0,0xa30958,273,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,SNMPTRAP,SNMP Trap,N/A,%SystemRoot%\\System32\\snmptrap.exe,-
+0,0xa36818,272,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Smb,Message-oriented TCP/IP and TCP/IPv6 Protocol (SMB session),N/A,system32\\DRIVERS\\smb.sys,-
+0,0xa308b8,271,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,SiSRaid4,SiSRaid4,N/A,\\SystemRoot\\system32\\drivers\\sisraid4.sys,-
+0,0xa36770,270,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,SiSRaid2,SiSRaid2,N/A,\\SystemRoot\\system32\\drivers\\SiSRaid2.sys,-
+0,0xa366c8,269,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sisagp,SIS AGP Bus Filter,N/A,\\SystemRoot\\system32\\drivers\\sisagp.sys,-
+0,0xa36620,268,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,ShellHWDetection,Shell Hardware Detection,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\shsvcs.dll
+0,0xa37e68,267,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SharedAccess,Internet Connection Sharing (ICS),N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\ipnathlp.dll
+0,0xa37db8,266,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sfloppy,High-Capacity Floppy Disk Drive,N/A,\\SystemRoot\\system32\\drivers\\sfloppy.sys,-
+0,0xa36578,265,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sffp_sd,SFF Storage Protocol Driver for SDBus,N/A,\\SystemRoot\\system32\\drivers\\sffp_sd.sys,-
+0,0xa364d0,264,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sffp_mmc,SFF Storage Protocol Driver for MMC,N/A,\\SystemRoot\\system32\\drivers\\sffp_mmc.sys,-
+0,0xa36428,263,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sffdisk,SFF Storage Class Driver,N/A,\\SystemRoot\\system32\\drivers\\sffdisk.sys,-
+0,0xa36380,262,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SessionEnv,Remote Desktop Configuration,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,-
+0,0xa37d08,261,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sermouse,Serial Mouse Driver,N/A,\\SystemRoot\\system32\\drivers\\sermouse.sys,-
+0,0xa362d8,260,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Serial,Serial port driver,\\Driver\\Serial,system32\\DRIVERS\\serial.sys,-
+0,0xa36230,259,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Serenum,Serenum Filter Driver,N/A,system32\\DRIVERS\\serenum.sys,-
+0,0xa36188,258,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SensrSvc,Adaptive Brightness,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\sensrsvc.dll
+0,0xa360e0,257,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SENS,System Event Notification Service,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\sens.dll
+0,0xa30818,256,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,seclogon,Secondary Logon,N/A,%windir%\\system32\\svchost.exe -k netsvcs,%windir%\\system32\\seclogon.dll
+0,0xa36038,255,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,secdrv,Security Driver,\\Driver\\secdrv,-,-
+0,0xa35f90,254,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,SDRSVC,Windows Backup,N/A,%SystemRoot%\\system32\\svchost.exe -k SDRSVC,%Systemroot%\\System32\\SDRSVC.dll
+0,0xa35ee8,253,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SCPolicySvc,Smart Card Removal Policy,N/A,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\certprop.dll
+0,0xa37c58,252,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Schedule,Task Scheduler,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\schedsvc.dll
+0,0xa35e40,251,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,scfilter,Smart card PnP Class Filter Driver,N/A,System32\\DRIVERS\\scfilter.sys,-
+0,0xa35d98,250,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,SCardSvr,Smart Card,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\SCardSvr.dll
+0,0xa35cf0,249,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,sbp2port,sbp2port,N/A,\\SystemRoot\\system32\\drivers\\sbp2port.sys,-
+0,0xa35c48,248,484,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SamSs,Security Accounts Manager,C:\\Windows\\system32\\lsass.exe,%SystemRoot%\\system32\\lsass.exe,-
+0,0xa30778,247,N/A,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,rspndr,Link-Layer Topology Discovery Responder,\\Driver\\rspndr,system32\\DRIVERS\\rspndr.sys,-
+0,0xa35ba0,246,724,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,RpcSs,Remote Procedure Call (RPC),C:\\Windows\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\system32\\svchost.exe -k rpcss,%SystemRoot%\\system32\\rpcss.dll
+0,0xa306d8,245,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,RpcLocator,Remote Procedure Call (RPC) Locator,N/A,%SystemRoot%\\system32\\locator.exe,-
+0,0xa37ba8,244,724,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,RpcEptMapper,RPC Endpoint Mapper,C:\\Windows\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\System32\\RpcEpMap.dll
+0,0xa37af8,243,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RFCOMM,Bluetooth Device (RFCOMM Protocol TDI),N/A,system32\\DRIVERS\\rfcomm.sys,-
+0,0xa35af8,242,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RemoteRegistry,Remote Registry,N/A,%SystemRoot%\\system32\\svchost.exe -k regsvc,%SystemRoot%\\system32\\regsvc.dll
+0,0xa37a40,241,N/A,SERVICE_DISABLED,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RemoteAccess,Routing and Remote Access,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,-
+0,0xa37990,240,N/A,SERVICE_BOOT_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,rdyboost,ReadyBoost,\\Driver\\rdyboost,System32\\drivers\\rdyboost.sys,-
+0,0xa35a50,239,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RDPWD,RDP Winstation Driver,N/A,-,-
+0,0xa30638,238,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,RDPREFMP,Reflector Display Driver used to gain access to graphics data,\\Driver\\RDPREFMP,system32\\drivers\\rdprefmp.sys,-
+0,0xa359a8,237,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,RDPENCDD,RDP Encoder Mirror Driver,\\Driver\\RDPENCDD,system32\\drivers\\rdpencdd.sys,-
+0,0xa353a0,236,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,RDPCDD,RDPCDD,\\Driver\\RDPCDD,System32\\DRIVERS\\RDPCDD.sys,-
+0,0xa352f8,235,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,rdpbus,Remote Desktop Device Redirector Bus Driver,N/A,\\SystemRoot\\system32\\drivers\\rdpbus.sys,-
+0,0xa35250,234,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_FILE_SYSTEM_DRIVER,rdbss,Redirected Buffering Sub Sysytem,\\FileSystem\\rdbss,system32\\DRIVERS\\rdbss.sys,-
+0,0xa30598,233,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RasSstp,WAN Miniport (SSTP),N/A,system32\\DRIVERS\\rassstp.sys,-
+0,0xa351a8,232,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RasPppoe,Remote Access PPPOE Driver,N/A,system32\\DRIVERS\\raspppoe.sys,-
+0,0xa35100,231,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RasMan,Remote Access Connection Manager,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\rasmans.dll
+0,0xa35058,230,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Rasl2tp,WAN Miniport (L2TP),N/A,system32\\DRIVERS\\rasl2tp.sys,-
+0,0xa34fb0,229,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RasAuto,Remote Access Auto Connection Manager,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\rasauto.dll
+0,0xa34f08,228,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RasAgileVpn,WAN Miniport (IKEv2),N/A,system32\\DRIVERS\\AgileVpn.sys,-
+0,0xa358e0,227,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,RasAcd,Remote Access Auto Connection Driver,N/A,System32\\DRIVERS\\rasacd.sys,-
+0,0xa34e60,226,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,QWAVEdrv,QWAVE driver,N/A,\\SystemRoot\\system32\\drivers\\qwavedrv.sys,-
+0,0xa34db8,225,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,QWAVE,Quality Windows Audio Video Experience,N/A,%windir%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%windir%\\system32\\qwave.dll
+0,0xa304f8,224,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ql40xx,ql40xx,N/A,\\SystemRoot\\system32\\drivers\\ql40xx.sys,-
+0,0xa34d10,223,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,ql2300,ql2300,N/A,\\SystemRoot\\system32\\drivers\\ql2300.sys,-
+0,0xa34c68,222,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Psched,QoS Packet Scheduler,\\Driver\\Psched,system32\\DRIVERS\\pacer.sys,-
+0,0xa34bc0,221,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,ProtectedStorage,Protected Storage,N/A,%SystemRoot%\\system32\\lsass.exe,-
+0,0xa35828,220,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,ProfSvc,User Profile Service,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\profsvc.dll
+0,0xa34b18,219,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,Processor,Processor Driver,N/A,\\SystemRoot\\system32\\drivers\\processr.sys,-
+0,0xa34a70,218,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,PptpMiniport,WAN Miniport (PPTP),N/A,system32\\DRIVERS\\raspptp.sys,-
+0,0xa35778,217,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Power,Power,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\umpo.dll
+0,0xa30458,216,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,PolicyAgent,IPsec Policy Agent,N/A,%SystemRoot%\\system32\\svchost.exe -k NetworkServiceNetworkRestricted,%SystemRoot%\\System32\\ipsecsvc.dll
+0,0xa356c8,215,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,PNRPsvc,Peer Name Resolution Protocol,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServicePeerNet,-
+0,0xa349c8,214,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,PNRPAutoReg,PNRP Machine Name Publication Service,N/A,%SystemRoot%\\System32\\svchost.exe -k LocalServicePeerNet,-
+0,0xa35618,213,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,PlugPlay,Plug and Play,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\umpnpmgr.dll
+0,0xa36968,276,3448,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,sppsvc,Software Protection,C:\\Windows\\system32\\sppsvc.exe,%SystemRoot%\\system32\\sppsvc.exe,-
+0,0xa2c118,27,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,AudioEndpointBuilder,Windows Audio Endpoint Builder,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa2d990,82,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,eventlog,Windows Event Log,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,-
+0,0xa3a150,324,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,UxSms,Desktop Window Manager Session Manager,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\uxsms.dll
+0,0xa30458,217,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Power,Power,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\umpo.dll
+0,0xa33348,135,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,LanmanServer,Server,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\srvsvc.dll
+0,0xa33df8,188,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,netprofm,Network List Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\netprofm.dll
+0,0xa3e098,344,692,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VMware Physical Disk Helper Service,VMware Physical Disk Helper Service,"""C:\\Program Files\\VMware\\VMware Tools\\vmacthlp.exe""","""C:\\Program Files\\VMware\\VMware Tools\\vmacthlp.exe""",-
+0,0xa2ec70,65,628,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,DcomLaunch,DCOM Server Process Launcher,C:\\Windows\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\svchost.exe -k DcomLaunch,%SystemRoot%\\system32\\rpcss.dll
+0,0xa37af8,244,724,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,RpcEptMapper,RPC Endpoint Mapper,C:\\Windows\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\System32\\RpcEpMap.dll
+0,0xa306d8,246,724,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,RpcSs,Remote Procedure Call (RPC),C:\\Windows\\system32\\svchost.exe -k RPCSS,%SystemRoot%\\system32\\svchost.exe -k rpcss,%SystemRoot%\\system32\\rpcss.dll
+0,0xa37fe8,298,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,TermService,Remote Desktop Services,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\termsrv.dll
+0,0xa2c1f0,28,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Audiosrv,Windows Audio,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa2f378,99,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,gpsvc,Group Policy Client,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\gpsvc.dll
+0,0xa34b18,220,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,ProfSvc,User Profile Service,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\profsvc.dll
+0,0xa371f0,299,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Themes,Themes,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\themeservice.dll
+0,0xa30818,257,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SENS,System Event Notification Service,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\sens.dll
+0,0xa30f00,83,1052,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,EventSystem,COM+ Event System,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\es.dll
+0,0xa30778,248,484,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SamSs,Security Accounts Manager,C:\\Windows\\system32\\lsass.exe,%SystemRoot%\\system32\\lsass.exe,-
+0,0xa30098,193,1052,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,nsi,Network Store Interface Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\svchost.exe -k LocalService,%systemroot%\\system32\\nsisvc.dll
+0,0xa2edc0,68,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Dhcp,DHCP Client,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\dhcpcore.dll
+0,0xa2d4f8,71,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Dnscache,DNS Client,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\dnsrslvr.dll
+0,0xa32238,139,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,lmhosts,TCP/IP NetBIOS Helper,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\lmhsvc.dll
+0,0xa35e40,252,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Schedule,Task Scheduler,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\schedsvc.dll
+0,0xa37e68,268,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,ShellHWDetection,Shell Hardware Detection,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\shsvcs.dll
+0,0xa33f48,191,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,NlaSvc,Network Location Awareness,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\nlasvc.dll
+0,0xa36e00,287,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SysMain,Superfetch,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\sysmain.dll
+0,0xa2d300,64,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,CryptSvc,Cryptographic Services,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\cryptsvc.dll
+0,0xa368c0,275,1348,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS|SERVICE_INTERACTIVE_PROCESS,Spooler,Print Spooler,C:\\Windows\\System32\\spoolsv.exe,%SystemRoot%\\System32\\spoolsv.exe,-
+0,0xa2e5d8,33,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,Beep,Beep,\\Driver\\Beep,-,-
+0,0xa382a8,330,1672,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VGAuthService,VMware Alias Manager and Ticket Service,"""C:\\Program Files\\VMware\\VMware Tools\\VMware VGAuth\\VGAuthService.exe""","""C:\\Program Files\\VMware\\VMware Tools\\VMware VGAuth\\VGAuthService.exe""",-
+0,0xa21578,22,936,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Appinfo,Application Information,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\appinfo.dll
+0,0xa2cdc0,49,1992,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,bthserv,Bluetooth Support Service,C:\\Windows\\system32\\svchost.exe -k bthsvcs,%SystemRoot%\\system32\\svchost.exe -k bthsvcs,%SystemRoot%\\system32\\bthserv.dll
+0,0xa31a58,123,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,iphlpsvc,IP Helper,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\svchost.exe -k NetSvcs,%SystemRoot%\\System32\\iphlpsvc.dll
+0,0xa2e678,34,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,BFE,Base Filtering Engine,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%systemroot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\bfe.dll
+0,0xa33f48,191,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,NlaSvc,Network Location Awareness,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\nlasvc.dll
+0,0xa36ab8,281,2408,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SSDPSRV,SSDP Discovery,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\ssdpsrv.dll
+0,0xa3dd90,381,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,wscsvc,Security Center,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\wscsvc.dll
+0,0xa3dd90,380,N/A,SERVICE_SYSTEM_START,SERVICE_RUNNING,SERVICE_KERNEL_DRIVER,ws2ifsl,Windows Socket 2.0 Non-IFS Service Provider Support Environment,\\Driver\\ws2ifsl,\\SystemRoot\\system32\\drivers\\ws2ifsl.sys,-
+0,0xa3dce8,379,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WPDBusEnum,Portable Device Enumerator Service,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\wpdbusenum.dll
+0,0xa38618,378,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WPCSvc,Parental Controls,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\wpcsvc.dll
+0,0xa3dc40,377,2316,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,WMPNetworkSvc,Windows Media Player Network Sharing Service,"""C:\\Program Files\\Windows Media Player\\wmpnetwk.exe""","""%PROGRAMFILES%\\Windows Media Player\\wmpnetwk.exe""",-
+0,0xa38568,376,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_OWN_PROCESS,wmiApSrv,WMI Performance Adapter,N/A,%systemroot%\\system32\\wbem\\WmiApSrv.exe,-
+0,0xa3db98,375,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,WmiAcpi,Microsoft Windows Management Interface for ACPI,N/A,\\SystemRoot\\system32\\drivers\\wmiacpi.sys,-
+0,0xa3daf0,374,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,Wlansvc,WLAN AutoConfig,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\wlansvc.dll
+0,0xa3da48,373,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WinRM,Windows Remote Management (WS-Management),N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\system32\\WsmSvc.dll
+0,0xa3a790,372,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Winmgmt,Windows Management Instrumentation,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\wbem\\WMIsvc.dll
+0,0xa3d9a0,371,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WinHttpAutoProxySvc,WinHTTP Web Proxy Auto-Discovery Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,winhttp.dll
+0,0xa3e2e8,370,3484,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WinDefend,Windows Defender,C:\\Windows\\System32\\svchost.exe -k secsvcs,%SystemRoot%\\System32\\svchost.exe -k secsvcs,%ProgramFiles%\\Windows Defender\\mpsvc.dll
+0,0xa331d8,110,776,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,HomeGroupProvider,HomeGroup Provider,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\provsvc.dll
+0,0xa3d9a0,372,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Winmgmt,Windows Management Instrumentation,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\wbem\\WMIsvc.dll
+0,0xa32a18,155,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,MpsSvc,Windows Firewall,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\mpssvc.dll
+0,0xa3e230,362,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WdiServiceHost,Diagnostic Service Host,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\wdi.dll
+0,0xa333f8,136,1120,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,LanmanWorkstation,Workstation,C:\\Windows\\system32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\svchost.exe -k NetworkService,%SystemRoot%\\System32\\wkssvc.dll
+0,0xa33df8,188,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,netprofm,Network List Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\netprofm.dll
+0,0xa3cc80,341,1756,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,VMTools,VMware Tools,"""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe""","""C:\\Program Files\\VMware\\VMware Tools\\vmtoolsd.exe""",-
+0,0xa35058,231,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RasMan,Remote Access Connection Manager,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\rasmans.dll
+0,0xa2ef18,73,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,DPS,Diagnostic Policy Service,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\system32\\dps.dll
+0,0xa3dee0,383,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,wuauserv,Windows Update,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\wuaueng.dll
+0,0xa3dee0,382,2128,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,WSearch,Windows Search,C:\\Windows\\system32\\SearchIndexer.exe /Embedding,%systemroot%\\system32\\SearchIndexer.exe /Embedding,-
+0,0xa3de38,381,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,wscsvc,Security Center,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\wscsvc.dll
+0,0xa2c1f0,28,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Audiosrv,Windows Audio,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa38408,363,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WdiSystemHost,Diagnostic System Host,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\system32\\wdi.dll
+0,0xa2c1f0,28,776,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Audiosrv,Windows Audio,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\Audiosrv.dll
+0,0xa2e678,34,1428,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,BFE,Base Filtering Engine,C:\\Windows\\system32\\svchost.exe -k LocalServiceNoNetwork,%systemroot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\bfe.dll
+0,0xa37298,303,860,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,TrkWks,Distributed Link Tracking Client,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\trkwks.dll
+0,0xa35058,231,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,RasMan,Remote Access Connection Manager,N/A,%SystemRoot%\\System32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\rasmans.dll
+0,0xa2d1b0,62,1332,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,COMSysApp,COM+ System Application,C:\\Windows\\system32\\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235},%SystemRoot%\\system32\\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235},-
+0,0xa2faf8,162,1268,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,MSDTC,Distributed Transaction Coordinator,C:\\Windows\\System32\\msdtc.exe,%SystemRoot%\\System32\\msdtc.exe,-
+0,0xa20bb8,7,936,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,AeLookupSvc,Application Experience,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\System32\\aelupsvc.dll
+0,0xa3e468,386,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,WwanSvc,WWAN AutoConfig,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalServiceNoNetwork,%SystemRoot%\\System32\\wwansvc.dll
+0,0xa3e468,385,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,wudfsvc,Windows Driver Foundation - User-mode Driver Framework,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\WUDFSvc.dll
+0,0xa3e3c0,384,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_KERNEL_DRIVER,WudfPf,User Mode Driver Frameworks Platform Driver,N/A,system32\\drivers\\WudfPf.sys,-
+0,0xa3df88,383,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,wuauserv,Windows Update,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\wuaueng.dll
+0,0xa3de38,382,2128,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,WSearch,Windows Search,C:\\Windows\\system32\\SearchIndexer.exe /Embedding,%systemroot%\\system32\\SearchIndexer.exe /Embedding,-
+0,0xa33d50,187,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Netman,Network Connections,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\netman.dll
+0,0xa3de38,382,2128,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,WSearch,Windows Search,C:\\Windows\\system32\\SearchIndexer.exe /Embedding,%systemroot%\\system32\\SearchIndexer.exe /Embedding,-
+0,0xa33d50,187,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,Netman,Network Connections,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\netman.dll
+0,0xa3da48,374,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,Wlansvc,WLAN AutoConfig,N/A,%SystemRoot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\wlansvc.dll
+0,0xa33df8,188,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,netprofm,Network List Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\svchost.exe -k LocalService,%SystemRoot%\\System32\\netprofm.dll
+0,0xa33810,176,N/A,SERVICE_DEMAND_START,SERVICE_STOPPED,SERVICE_WIN32_SHARE_PROCESS,napagent,Network Access Protection Agent,N/A,%SystemRoot%\\System32\\svchost.exe -k NetworkService,-
+0,0xa3e2e8,371,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,WinHttpAutoProxySvc,WinHTTP Web Proxy Auto-Discovery Service,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,winhttp.dll
+0,0xa331d8,110,776,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,HomeGroupProvider,HomeGroup Provider,C:\\Windows\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\System32\\svchost.exe -k LocalServiceNetworkRestricted,%SystemRoot%\\system32\\provsvc.dll
+0,0xa38568,377,2316,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_OWN_PROCESS,WMPNetworkSvc,Windows Media Player Network Sharing Service,"""C:\\Program Files\\Windows Media Player\\wmpnetwk.exe""","""%PROGRAMFILES%\\Windows Media Player\\wmpnetwk.exe""",-
+0,0xa36ab8,281,2408,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,SSDPSRV,SSDP Discovery,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\System32\\ssdpsrv.dll
+0,0xa2db88,89,2408,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,FDResPub,Function Discovery Resource Publication,C:\\Windows\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\svchost.exe -k LocalServiceAndNoImpersonation,%SystemRoot%\\system32\\fdrespub.dll
+0,0xa2dae0,88,1052,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,fdPHost,Function Discovery Provider Host,C:\\Windows\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\svchost.exe -k LocalService,%SystemRoot%\\system32\\fdPHost.dll
+0,0xa3dee0,383,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,wuauserv,Windows Update,C:\\Windows\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\svchost.exe -k netsvcs,%systemroot%\\system32\\wuaueng.dll
+0,0xa34680,206,860,SERVICE_DEMAND_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,PcaSvc,Program Compatibility Assistant Service,C:\\Windows\\System32\\svchost.exe -k LocalSystemNetworkRestricted,%systemroot%\\system32\\svchost.exe -k LocalSystemNetworkRestricted,%SystemRoot%\\System32\\pcasvc.dll
+0,0xa2f878,147,936,SERVICE_AUTO_START,SERVICE_RUNNING,SERVICE_WIN32_SHARE_PROCESS,MMCSS,Multimedia Class Scheduler,C:\\Windows\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\svchost.exe -k netsvcs,%SystemRoot%\\system32\\mmcss.dll
+

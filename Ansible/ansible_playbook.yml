@@ -98,6 +98,23 @@
         force: yes
       become: yes
 
+    - name: Add all plugins
+      shell: |
+        echo "https://github.com/f-block/volatility-plugins/blob/main/README.md"
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/apisearch.py -o /opt/volatility3/volatility3/framework/plugins/windows/apisearch.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/imgmalfind.py -o /opt/volatility3/volatility3/framework/plugins/windows/imgmalfind.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pe_parser.py -o /opt/volatility3/volatility3/framework/plugins/windows/pe_parser.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pte_resolve.py -o /opt/volatility3/volatility3/framework/plugins/windows/pte_resolve.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptemalfind.py -o /opt/volatility3/volatility3/framework/plugins/windows/ptemalfind.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptenum.py -o /opt/volatility3/volatility3/framework/plugins/windows/ptenum.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/simple_pteenum.py -o /opt/volatility3/volatility3/framework/plugins/windows/simple_pteenum.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/swap_enum.py -o /opt/volatility3/volatility3/framework/plugins/windows/swap_enum.py
+
+        echo "https://github.com/Immersive-Labs-Sec/volatility_plugins/blob/main/README.md"
+        curl https://raw.githubusercontent.com/Immersive-Labs-Sec/volatility_plugins/main/cobaltstrike/cobaltstrike.py -o /opt/volatility3/volatility3/framework/plugins/windows/cobaltstrike.py
+      become: yes
+      ignore_errors: yes
+
     - name: Install pip packages
       ansible.builtin.pip:
         name: 
