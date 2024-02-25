@@ -242,6 +242,19 @@ VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resourc
 
 Completes most often within 30 minutes for everything.
 
+## Screenshots
+![Available data](image.png)
+
+![PSTree](image-1.png)
+
+![IPs to map](image-2.png)
+
+![Maybe standard passwords are being used](image-3.png)
+
+![Singletons](image-4.png)
+
+And much more on the way...
+
 <details><summary>Resources: </summary>
 - https://github.com/hashicorp/terraform-provider-azurerm/issues/15649
 - https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli 
