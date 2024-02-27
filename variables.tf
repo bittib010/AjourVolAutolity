@@ -67,5 +67,5 @@ variable "deletion_days" {
 
 locals {
   current_timestamp = timestamp()
-  deletion_date = formatdate("YYYY-MM-DD", timeadd(local.current_timestamp, format("%dh", var.deletion_days * 24)))
+  deletion_date     = formatdate("YYYY-MM-DD", timeadd(local.current_timestamp, format("%dh", var.deletion_days * 24)))
 }

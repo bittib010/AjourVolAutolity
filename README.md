@@ -295,4 +295,5 @@ And much more on the way...
 - https://www.cloudsma.com/2021/01/azure-workbooks-icons-thresholds-heatmaps/
 - https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-treemap?pivots=azuredataexplorer
 - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-grid-visualizations
+- https://reversea.me/index.php/writing-a-volatility-3-plugin/
 </details>

@@ -99,6 +99,100 @@
       "name": "text - 7"
     },
     {
+      "type": 1,
+      "content": {
+        "json": "# Windows Core Processes"
+      },
+      "name": "text - 35"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 38"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Singletons Windows Processes"
+      },
+      "name": "text - 37"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\")\\r\\n| summarize count() by ImageFileName\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 1,
+        "queryType": 9,
+        "visualization": "table",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "count_",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "colors",
+                "thresholdsGrid": [
+                  {
+                    "operator": "!=",
+                    "thresholdValue": "1",
+                    "representation": "red",
+                    "text": "Should be singleton"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "green",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 38"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Non-Windows Core Processes"
+      },
+      "name": "text - 39"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where not(ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\"))\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 40"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Possible Masquerading Processes"
+      },
+      "name": "text - 41"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"scvhost\\\", \\\"schvost\\\", \\\"svhost\\\", \\\"smms\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 1,
+        "queryType": 9
+      },
+      "name": "query - 42"
+    },
+    {
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
@@ -392,16 +486,9 @@
     {
       "type": 1,
       "content": {
-        "json": "# Executable injections"
+        "json": "# Pivot on any PID available"
       },
-      "name": "text - 8"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Malfind vizualize"
-      },
-      "name": "text - 8"
+      "name": "text - 43"
     },
     {
       "type": 9,
@@ -440,6 +527,57 @@
         "queryType": 9
       },
       "name": "query - 19"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Possible Base64 texts found in \"strings\""
+      },
+      "name": "text - 30"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend sok = extract_all(@'\\\\s+([A-Za-z0-9+/]{20}\\\\S+$)', String)\\r\\n| extend sok = base64_decode_tostring(tostring(sok))\\r\\n| where sok != \\\"\\\"\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 1,
+        "queryType": 9
+      },
+      "name": "query - 29"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "#  Top 10 Changed Files by Filetype (On AccessedDate)"
+      },
+      "name": "text - 31"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"timeliner\\r\\n| where Description contains \\\"MFT FILE_NAME\\\"\\r\\n| where Description contains \\\".\\\"\\r\\n| extend File_ext = split(Description, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), AccessedDate\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 32"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Top 10 Changed Filetype by \"mftscan\"  (On AccessedDate)"
+      },
+      "name": "text - 33"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"mftscan\\r\\n| where Filename contains \\\".\\\"\\r\\n| extend File_ext = split(Filename, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), Accessed\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+        "size": 0,
+        "queryType": 9
+      },
+      "name": "query - 34"
     }
   ],
   "fallbackResourceIds": [

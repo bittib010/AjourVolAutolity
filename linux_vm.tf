@@ -29,9 +29,9 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   identity {
     type = "SystemAssigned"
   }
-  depends_on = [ 
+  depends_on = [
     azurerm_kusto_cluster.adxc # Depends on this as Volatility will start running sooner than ADX is ready to ingest
-    ]
+  ]
 }
 
 # Provision using Ansible

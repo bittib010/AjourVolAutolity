@@ -15,7 +15,7 @@ resource "azurerm_role_assignment" "vm_role" {
   scope                = data.azurerm_subscription.current.id
   role_definition_name = "Contributor"
   principal_id         = azurerm_linux_virtual_machine.linux_vm.identity[0].principal_id
-  depends_on = [ azurerm_linux_virtual_machine.linux_vm ]
+  depends_on           = [azurerm_linux_virtual_machine.linux_vm]
 }
 
 
@@ -32,10 +32,10 @@ resource "azurerm_kusto_cluster_principal_assignment" "adx_vm_viewer" {
   resource_group_name = azurerm_resource_group.myrg.name
   cluster_name        = azurerm_kusto_cluster.adxc.name
   name                = "principalAssignmentName"
-  principal_id         = azurerm_linux_virtual_machine.linux_vm.identity[0].principal_id
-  principal_type = "App"
-  role           = "AllDatabasesAdmin"
-  tenant_id      = data.azurerm_client_config.current.tenant_id
+  principal_id        = azurerm_linux_virtual_machine.linux_vm.identity[0].principal_id
+  principal_type      = "App"
+  role                = "AllDatabasesAdmin"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 }
 
 
@@ -44,9 +44,9 @@ resource "azurerm_kusto_cluster_principal_assignment" "adx_user_admin" {
   cluster_name        = azurerm_kusto_cluster.adxc.name
   name                = "UserAdminRoleADX"
   principal_id        = data.azurerm_client_config.current.object_id
-  principal_type = "User" 
-  role           = "AllDatabasesAdmin"
-  tenant_id      = data.azurerm_client_config.current.tenant_id
+  principal_type      = "User"
+  role                = "AllDatabasesAdmin"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 }
 
 
@@ -56,7 +56,7 @@ resource "azurerm_kusto_cluster_principal_assignment" "adx_sp" {
   cluster_name        = azurerm_kusto_cluster.adxc.name
   name                = "UserAdsdffdminRoleADX"
   principal_id        = azuread_service_principal.aad_sp.application_id
-  principal_type = "App" 
-  role           = "AllDatabasesAdmin"
-  tenant_id      = data.azurerm_client_config.current.tenant_id
+  principal_type      = "App"
+  role                = "AllDatabasesAdmin"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 }

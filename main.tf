@@ -7,7 +7,7 @@ resource "random_id" "randomId" {
 resource "azurerm_resource_group" "myrg" {
   name     = "${var.investigator_initials}-${random_id.randomId.hex}-rg"
   location = var.resource_group_location
-  tags     = {
+  tags = {
     "deletiondate" = local.deletion_date
   }
 }

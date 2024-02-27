@@ -14,7 +14,7 @@ terraform {
       # https://registry.terraform.io/providers/hashicorp/random/latest/docs
     }
     azuread = {
-      source = "hashicorp/azuread"
+      source  = "hashicorp/azuread"
       version = "~>2.47.0"
     }
   }
