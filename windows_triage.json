@@ -68,258 +68,474 @@
       "name": "parameters - 3"
     },
     {
-      "type": 1,
+      "type": 11,
       "content": {
-        "json": "# Overview of all data currently available in {Databases}"
-      },
-      "name": "text - 7"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"// Counts by table names\\nunion withsource=[\\\"$TableName\\\"] *\\n| summarize Count=count() by TableName=[\\\"$TableName\\\"]\\n| render barchart\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "title": "Amount of data available",
-        "noDataMessage": "No data for this query available yet",
-        "queryType": 9,
-        "chartSettings": {
-          "xAxis": "TableName",
-          "group": null,
-          "createOtherGroup": 0
-        }
-      },
-      "name": "query - 0"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# PSTree"
-      },
-      "name": "text - 7"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Windows Core Processes"
-      },
-      "name": "text - 35"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 38"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Singletons Windows Processes"
-      },
-      "name": "text - 37"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\")\\r\\n| summarize count() by ImageFileName\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 1,
-        "queryType": 9,
-        "visualization": "table",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "count_",
-              "formatter": 18,
-              "formatOptions": {
-                "thresholdsOptions": "colors",
-                "thresholdsGrid": [
-                  {
-                    "operator": "!=",
-                    "thresholdValue": "1",
-                    "representation": "red",
-                    "text": "Should be singleton"
-                  },
-                  {
-                    "operator": "Default",
-                    "thresholdValue": null,
-                    "representation": "green",
-                    "text": "{0}{1}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "name": "query - 38"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Non-Windows Core Processes"
-      },
-      "name": "text - 39"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where not(ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\"))\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 40"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Possible Masquerading Processes"
-      },
-      "name": "text - 41"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"scvhost\\\", \\\"schvost\\\", \\\"svhost\\\", \\\"smms\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 1,
-        "queryType": 9
-      },
-      "name": "query - 42"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9,
-        "visualization": "table",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "PPID",
-              "formatter": 5
-            },
-            {
-              "columnMatch": "PID",
-              "formatter": 5
-            }
-          ],
-          "rowLimit": 2000,
-          "hierarchySettings": {
-            "idColumn": "PID",
-            "parentColumn": "PPID",
-            "treeType": 0,
-            "expanderColumn": "ImageFileName",
-            "expandTopLevel": true
-          },
-          "sortBy": [
-            {
-              "itemKey": "ImageFileName",
-              "sortOrder": 1
-            }
-          ]
-        },
-        "sortBy": [
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
           {
-            "itemKey": "ImageFileName",
-            "sortOrder": 1
+            "id": "16abb2a2-b345-49bb-9d2c-787f869dc9e5",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Overview",
+            "subTarget": "Overview",
+            "style": "link"
+          },
+          {
+            "id": "565ed441-ac43-448e-8202-73a2fc86ecfb",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Processes",
+            "subTarget": "Processes",
+            "style": "link"
+          },
+          {
+            "id": "ec1eb3d9-1609-4725-b191-989ffaca5b70",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "IPs",
+            "subTarget": "IPs",
+            "style": "link"
+          },
+          {
+            "id": "1c91d4fb-531d-4bec-833a-706cdb57f63c",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Passwords",
+            "subTarget": "Passwords",
+            "style": "link"
+          },
+          {
+            "id": "7d14cb9e-bc5c-45ba-9f2d-e2181fc54057",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Strings",
+            "subTarget": "Strings",
+            "style": "link"
           }
         ]
       },
-      "name": "query - 5"
+      "name": "links - 40"
     },
     {
-      "type": 1,
+      "type": 12,
       "content": {
-        "json": "# Top IPs repeated in strings table"
-      },
-      "name": "text - 7"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend IPaddr = extract(\\\"((?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]))\\\", 1, String)\\r\\n| where IPaddr != \\\"\\\"\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(IPaddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, IPaddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9,
-        "visualization": "map",
-        "mapSettings": {
-          "locInfo": "LatLong",
-          "latitude": "lat",
-          "longitude": "lon",
-          "sizeSettings": "ordernum",
-          "sizeAggregation": "Sum",
-          "opacity": 0.7,
-          "labelSettings": "IPaddr",
-          "legendMetric": "lat",
-          "legendAggregation": "Sum",
-          "itemColorSettings": {
-            "nodeColorField": "ordernum",
-            "colorAggregation": "Sum",
-            "type": "heatmap",
-            "heatmapPalette": "purpleBlueGreen"
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "title": "Processes",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Windows Core Processes"
+            },
+            "name": "text - 35"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 38"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Singletons Windows Processes"
+            },
+            "name": "text - 37"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\")\\r\\n| summarize count() by ImageFileName\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 1,
+              "queryType": 9,
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "count_",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "colors",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "!=",
+                          "thresholdValue": "1",
+                          "representation": "red",
+                          "text": "Should be singleton"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "green",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "name": "query - 38"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Non-Windows Core Processes"
+            },
+            "name": "text - 39"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where not(ImageFileName has_any(\\\"system\\\", \\\"wininit\\\", \\\"lsass\\\", \\\"lsaiso\\\", \\\"lsm\\\", \\\"services\\\", \\\"sms\\\", \\\"taskhost\\\", \\\"winlogon\\\", \\\"iexplore\\\", \\\"explorer\\\", \\\"svchost\\\", \\\"csrss\\\"))\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 40"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Possible Masquerading Processes"
+            },
+            "name": "text - 41"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| where ImageFileName has_any(\\\"scvhost\\\", \\\"schvost\\\", \\\"svhost\\\", \\\"smms\\\")\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 1,
+              "queryType": 9
+            },
+            "name": "query - 42"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# PSTree"
+            },
+            "name": "text - 7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9,
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "PPID",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "PID",
+                    "formatter": 5
+                  }
+                ],
+                "rowLimit": 2000,
+                "hierarchySettings": {
+                  "idColumn": "PID",
+                  "parentColumn": "PPID",
+                  "treeType": 0,
+                  "expanderColumn": "ImageFileName",
+                  "expandTopLevel": true
+                },
+                "sortBy": [
+                  {
+                    "itemKey": "ImageFileName",
+                    "sortOrder": 1
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "ImageFileName",
+                  "sortOrder": 1
+                }
+              ]
+            },
+            "name": "query - 5"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Hidden Processes"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=leftanti psscan on PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 4,
+              "queryType": 9,
+              "visualization": "table"
+            },
+            "name": "query - 9"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Pivot on Processes"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "parameters": [
+                {
+                  "id": "29f0e3a3-5457-4256-a300-f7afd597a395",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "PivotTable",
+                  "type": 2,
+                  "description": "The table to pivot from processes.",
+                  "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\".show tables\\r\\n| project TableName\\r\\n| where TableName in (\\\"cmdline\\\", \\\"malfind\\\", \\\"privs\\\", \\\"envvars\\\", \\\"dlllist\\\", \\\"handles\\\", \\\"netstat\\\", \\\"netscan\\\")\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+                  "typeSettings": {
+                    "additionalResourceOptions": []
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "queryType": 9,
+                  "value": null
+                }
+              ],
+              "style": "above",
+              "queryType": 9
+            },
+            "name": "parameters - 17"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| join kind=inner {PivotTable} on PID\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 17"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Parent/Child deviations"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"let known_parent_child = datatable (Child:string, Parent:dynamic)\\r\\n[\\r\\n  \\\"sms.exe\\\", dynamic([\\\"System\\\"]),\\r\\n  \\\"taskhost.exe\\\", dynamic([\\\"services.exe\\\"]),\\r\\n  \\\"lsass.exe\\\", dynamic([\\\"wininit.exe\\\"]),\\r\\n  \\\"iexplorer.exe\\\", dynamic([\\\"explorer.exe\\\"]),\\r\\n  \\\"explorer.exe\\\", dynamic([\\\"userinit.exe\\\"]),\\r\\n  \\\"lsm.exe\\\", dynamic([\\\"wininit.exe\\\"]),\\r\\n  \\\"svchost.exe\\\", dynamic([\\\"services.exe\\\"]),\\r\\n  \\\"services.exe\\\", dynamic([\\\"wininit.exe\\\"])\\r\\n];\\r\\nlet core_windows_processes = dynamic([\\\"system.exe\\\", \\\"wininit.exe\\\", \\\"lsass.exe\\\", \\\"lsaiso.exe\\\", \\\"lsm.exe\\\", \\\"services.exe\\\", \\\"sms.exe\\\", \\\"taskhost.exe\\\", \\\"winlogon.exe\\\", \\\"iexplore.exe\\\", \\\"explorer.exe\\\", \\\"svchost.exe\\\", \\\"csrss.exe\\\"]);\\r\\npsscan\\r\\n| where ImageFileName in (core_windows_processes)\\r\\n| join kind=inner psscan on $left.PPID == $right.PID\\r\\n| project PID, PPID, ImageFileName, ParentImageFileName = ImageFileName1\\r\\n| join kind=inner known_parent_child on $left.ImageFileName == $right.Child\\r\\n| project-reorder PID, PPID, ImageFileName, ParentImageFileName, Child, Parent\\r\\n| mv-expand Parent\\r\\n| extend Deviations = iif(ParentImageFileName != Parent, 1, 0)\\r\\n| where Deviations > 0\\r\\n| project-away Parent, Child, Deviations\\r\\n| distinct *\\r\\n| order by PPID asc\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9,
+              "gridSettings": {
+                "sortBy": [
+                  {
+                    "itemKey": "PPID",
+                    "sortOrder": 1
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "PPID",
+                  "sortOrder": 1
+                }
+              ]
+            },
+            "name": "query - 26"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Pivot on any PID available"
+            },
+            "name": "text - 43"
+          },
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "parameters": [
+                {
+                  "id": "61c330b4-32c4-4010-b031-5cb554b5502f",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "PIDPivot",
+                  "type": 2,
+                  "description": "Choose PID to look into",
+                  "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=inner psscan on PID\\r\\n| distinct PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+                  "typeSettings": {
+                    "additionalResourceOptions": []
+                  },
+                  "timeContext": {
+                    "durationMs": 86400000
+                  },
+                  "queryType": 9,
+                  "value": "2692"
+                }
+              ],
+              "style": "pills",
+              "queryType": 9
+            },
+            "name": "parameters - 20"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"dlllist\\r\\n| where PID == {PIDPivot}\\r\\n| project-away TreeDepth, PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 19"
           }
-        }
-      },
-      "name": "query - 4"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| where ForeignAddr !in (\\\"::\\\", \\\"0.0.0.0\\\", \\\"*\\\")\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(ForeignAddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, ForeignAddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "title": "IPs from netscan and netstat",
-        "noDataMessage": "No available IPs in the dataset",
-        "queryType": 9,
-        "visualization": "map",
-        "mapSettings": {
-          "locInfo": "LatLong",
-          "latitude": "lat",
-          "longitude": "lon",
-          "sizeSettings": "ordernum",
-          "sizeAggregation": "Sum",
-          "labelSettings": "ForeignAddr",
-          "legendMetric": "ordernum",
-          "legendAggregation": "Sum",
-          "itemColorSettings": null
-        }
+        ]
       },
       "conditionalVisibility": {
-        "parameterName": "{Databases}",
+        "parameterName": "setTab",
         "comparison": "isEqualTo",
-        "value": ""
+        "value": "Processes"
       },
-      "name": "query - 2",
-      "styleSettings": {
-        "margin": "2",
-        "padding": "2"
-      }
+      "name": "Processes"
     },
     {
-      "type": 1,
+      "type": 12,
       "content": {
-        "json": "# Hidden Processes"
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "title": "Overview",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Overview of all data currently available in {Databases}"
+            },
+            "name": "text - 7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"// Counts by table names\\nunion withsource=[\\\"$TableName\\\"] *\\n| summarize Count=count() by TableName=[\\\"$TableName\\\"]\\n| render barchart\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "title": "Amount of data available",
+              "noDataMessage": "No data for this query available yet",
+              "queryType": 9,
+              "chartSettings": {
+                "xAxis": "TableName",
+                "group": null,
+                "createOtherGroup": 0
+              }
+            },
+            "name": "query - 0"
+          }
+        ]
       },
-      "name": "text - 8"
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "name": "Overview"
     },
     {
-      "type": 3,
+      "type": 12,
       "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=leftanti psscan on PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 4,
-        "queryType": 9,
-        "visualization": "table"
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Top IPs repeated in strings table"
+            },
+            "name": "text - 7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend IPaddr = extract(\\\"\\\\\\\\b((?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\\\\\\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]))\\\\\\\\b\\\", 1, String)\\r\\n| where not(String contains \\\"Package\\\")\\r\\n| where not(String contains \\\"version\\\")\\r\\n| where IPaddr != \\\"\\\"\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(IPaddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, IPaddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9,
+              "visualization": "map",
+              "mapSettings": {
+                "locInfo": "LatLong",
+                "latitude": "lat",
+                "longitude": "lon",
+                "sizeSettings": "ordernum",
+                "sizeAggregation": "Sum",
+                "opacity": 0.7,
+                "labelSettings": "IPaddr",
+                "legendMetric": "lat",
+                "legendAggregation": "Sum",
+                "itemColorSettings": {
+                  "nodeColorField": "ordernum",
+                  "colorAggregation": "Sum",
+                  "type": "heatmap",
+                  "heatmapPalette": "purpleBlueGreen"
+                }
+              }
+            },
+            "name": "query - 4"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"union netscan, netstat\\r\\n| extend foreign_add = geo_info_from_ip_address(ForeignAddr)\\r\\n| where ForeignAddr !in (\\\"::\\\", \\\"0.0.0.0\\\", \\\"*\\\")\\r\\n| extend extractedIP = geo_info_from_ip_address(tostring(ForeignAddr))\\r\\n| where extractedIP != \\\"{}\\\"\\r\\n| extend lat_long = parse_json(extractedIP)\\r\\n| extend lat = todouble(lat_long[\\\"latitude\\\"]), lon = todouble(lat_long[\\\"longitude\\\"])\\r\\n| summarize ordernum = count() by lat, lon, ForeignAddr\\r\\n| order by ordernum desc\\r\\n| take 100\\r\\n\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "title": "IPs from netscan and netstat",
+              "noDataMessage": "No available IPs in the dataset",
+              "queryType": 9,
+              "visualization": "map",
+              "mapSettings": {
+                "locInfo": "LatLong",
+                "latitude": "lat",
+                "longitude": "lon",
+                "sizeSettings": "ordernum",
+                "sizeAggregation": "Sum",
+                "labelSettings": "ForeignAddr",
+                "legendMetric": "ordernum",
+                "legendAggregation": "Sum",
+                "itemColorSettings": null
+              }
+            },
+            "conditionalVisibility": {
+              "parameterName": "{Databases}",
+              "comparison": "isEqualTo",
+              "value": ""
+            },
+            "name": "query - 2",
+            "styleSettings": {
+              "margin": "2",
+              "padding": "2"
+            }
+          }
+        ]
       },
-      "name": "query - 9"
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "IPs"
+      },
+      "name": "IPs"
     },
     {
       "type": 1,
@@ -356,177 +572,55 @@
       "name": "query - 18"
     },
     {
-      "type": 1,
+      "type": 12,
       "content": {
-        "json": "# Pivot on Processes"
-      },
-      "name": "text - 8"
-    },
-    {
-      "type": 9,
-      "content": {
-        "version": "KqlParameterItem/1.0",
-        "parameters": [
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
           {
-            "id": "29f0e3a3-5457-4256-a300-f7afd597a395",
-            "version": "KqlParameterItem/1.0",
-            "name": "PivotTable",
-            "type": 2,
-            "description": "The table to pivot from processes.",
-            "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\".show tables\\r\\n| project TableName\\r\\n| where TableName in (\\\"cmdline\\\", \\\"malfind\\\", \\\"privs\\\", \\\"envvars\\\", \\\"dlllist\\\", \\\"handles\\\", \\\"netstat\\\", \\\"netscan\\\")\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-            "typeSettings": {
-              "additionalResourceOptions": []
+            "type": 1,
+            "content": {
+              "json": "# Passwords from hashdumps"
             },
-            "timeContext": {
-              "durationMs": 86400000
-            },
-            "queryType": 9,
-            "value": "handles"
-          }
-        ],
-        "style": "above",
-        "queryType": 9
-      },
-      "name": "parameters - 17"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| join kind=inner {PivotTable} on PID\\r\\n| project-away TreeDepth\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 17"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Passwords from hashdumps"
-      },
-      "name": "text - 8"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"hashdump\\r\\n| extend decrypted_hash = strcat(\\\"https://ntlm.pw/\\\",nthash)\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 4,
-        "queryType": 9,
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "nthash",
-              "formatter": 0,
-              "formatOptions": {
-                "aggregation": "Sum"
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"hashdump\\r\\n| extend decrypted_hash = strcat(\\\"https://ntlm.pw/\\\",nthash)\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 4,
+              "queryType": 9,
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "nthash",
+                    "formatter": 0,
+                    "formatOptions": {
+                      "aggregation": "Sum"
+                    }
+                  },
+                  {
+                    "columnMatch": "decrypted_hash",
+                    "formatter": 7,
+                    "formatOptions": {
+                      "linkTarget": "Url",
+                      "linkLabel": "Decrypt using online library"
+                    }
+                  }
+                ]
               }
             },
-            {
-              "columnMatch": "decrypted_hash",
-              "formatter": 7,
-              "formatOptions": {
-                "linkTarget": "Url",
-                "linkLabel": "Decrypt using online library"
-              }
-            }
-          ]
-        }
-      },
-      "name": "query - 24"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Parent/Child deviations"
-      },
-      "name": "text - 8"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"let known_parent_child = datatable (Child:string, Parent:dynamic)\\r\\n[\\r\\n  \\\"sms.exe\\\", dynamic([\\\"System\\\"]),\\r\\n  \\\"taskhost.exe\\\", dynamic([\\\"services.exe\\\"]),\\r\\n  \\\"lsass.exe\\\", dynamic([\\\"wininit.exe\\\"]),\\r\\n  \\\"iexplorer.exe\\\", dynamic([\\\"explorer.exe\\\"]),\\r\\n  \\\"explorer.exe\\\", dynamic([\\\"userinit.exe\\\"]),\\r\\n  \\\"lsm.exe\\\", dynamic([\\\"wininit.exe\\\"]),\\r\\n  \\\"svchost.exe\\\", dynamic([\\\"services.exe\\\"]),\\r\\n  \\\"services.exe\\\", dynamic([\\\"wininit.exe\\\"])\\r\\n];\\r\\nlet core_windows_processes = dynamic([\\\"system.exe\\\", \\\"wininit.exe\\\", \\\"lsass.exe\\\", \\\"lsaiso.exe\\\", \\\"lsm.exe\\\", \\\"services.exe\\\", \\\"sms.exe\\\", \\\"taskhost.exe\\\", \\\"winlogon.exe\\\", \\\"iexplore.exe\\\", \\\"explorer.exe\\\", \\\"svchost.exe\\\", \\\"csrss.exe\\\"]);\\r\\npsscan\\r\\n| where ImageFileName in (core_windows_processes)\\r\\n| join kind=inner psscan on $left.PID == $right.PPID\\r\\n| project PID, PPID, ImageFileName, ParentImageFileName = ImageFileName1\\r\\n| join kind=inner known_parent_child on $left.ImageFileName == $right.Child\\r\\n| project-reorder PID, PPID, ImageFileName, ParentImageFileName, Child, Parent\\r\\n| mv-expand Parent\\r\\n| extend Deviations = iif(ParentImageFileName != Parent, 1, 0)\\r\\n| where Deviations > 0\\r\\n| project-away Parent, Child, Deviations\\r\\n| distinct *\\r\\n| order by PPID asc\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9,
-        "gridSettings": {
-          "sortBy": [
-            {
-              "itemKey": "PPID",
-              "sortOrder": 1
-            }
-          ]
-        },
-        "sortBy": [
-          {
-            "itemKey": "PPID",
-            "sortOrder": 1
+            "name": "query - 24"
           }
         ]
       },
-      "name": "query - 26"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Singletons"
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Passwords"
       },
-      "name": "text - 8"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist_singletons\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 1,
-        "queryType": 9
-      },
-      "name": "query - 19"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Pivot on any PID available"
-      },
-      "name": "text - 43"
-    },
-    {
-      "type": 9,
-      "content": {
-        "version": "KqlParameterItem/1.0",
-        "parameters": [
-          {
-            "id": "61c330b4-32c4-4010-b031-5cb554b5502f",
-            "version": "KqlParameterItem/1.0",
-            "name": "PIDPivot",
-            "type": 2,
-            "description": "Choose PID to look into",
-            "isRequired": false,
-            "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"pslist\\r\\n| join kind=inner psscan on PID\\r\\n| distinct PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-            "typeSettings": {
-              "additionalResourceOptions": []
-            },
-            "timeContext": {
-              "durationMs": 86400000
-            },
-            "queryType": 9,
-            "value": "2728"
-          }
-        ],
-        "style": "pills",
-        "queryType": 9
-      },
-      "name": "parameters - 20"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"dlllist\\r\\n| where PID == {PIDPivot}\\r\\n| project-away TreeDepth, PID\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 19"
+      "name": "Passwords"
     },
     {
       "type": 1,
