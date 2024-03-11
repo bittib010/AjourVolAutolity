@@ -19,7 +19,7 @@ log_message() {
 }
 
 # Loop through each .dump and .dmp file in the directory
-find "$DIRECTORY" -type f \( -name "*.dump" -o -name "*.dmp" -o -name "*.raw" -o -name "*.dd" -o -name "*.mem" -o -name "*.vmem" \) | while read file; do
+find "$DIRECTORY" -type f \( -name "*.dump" -o -name "*.dmp" -o -name "*.raw" -o -name "*.dd" -o -name "*.mem" -o -name "*.vmem" -o -name "*.sys" \) | while read file; do
     # Check if the file has already been processed
     if ! grep -qF "$file" "$PROCESSED_FILE"; then
         # If not processed, add it to the list and process it
