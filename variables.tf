@@ -42,7 +42,8 @@ variable "linux-size" {
   # https://learn.microsoft.com/en-us/azure/virtual-machines/sizes
   type        = string
   description = "The machine size of VM. Too big size might not be feasible and generate errors based on tenant limitations."
-  default     = "Standard_B8ms"
+  default     = "Standard_F8s_v2"
+  #default     = "Standard_B8ms"
   #default     = "Standard_DS1_v2"
   #default     = "Standard_F16s_v2"
 }
