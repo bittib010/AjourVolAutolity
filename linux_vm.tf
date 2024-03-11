@@ -67,7 +67,6 @@ resource "null_resource" "ansible_provisioning" {
     inline = [
       "sudo apt-get -qq update >/dev/null && sudo apt-get -qq install -y ansible sshpass >/dev/null",
       "ansible-playbook -v /home/${var.linux-username}/Ansible/ansible_playbook.yml",
-      "sudo cp /home/${var.linux-username}/VolAutolity/sample/* ${var.mounting_point}"
     ]
   }
 }
