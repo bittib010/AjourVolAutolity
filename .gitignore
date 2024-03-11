@@ -6,3 +6,4 @@ ip.txt
 Ansible/ansible_vars.yml
 .terraform.lock.hcl
 .terraform.tfstate.lock.info
+notes.txt
