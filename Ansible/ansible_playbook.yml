@@ -238,6 +238,7 @@
     #     state: directory
     #     mode: '0755'
 
+    # Symbols would only be needed if you are aiming for no internet environment
     # - name: Download Windows symbols
     #   ansible.builtin.get_url:
     #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip
@@ -273,7 +274,7 @@
       ignore_errors: yes
 
     - name: Move any test samples to analysis folder
-      ansible.builtin.shell: cp {{ project_path }}/sample/* /mnt/memorydumps
+      ansible.builtin.shell: cp -r {{ project_path }}/sample/ /mnt/memorydumps
       become: yes
       ignore_errors: yes
 
