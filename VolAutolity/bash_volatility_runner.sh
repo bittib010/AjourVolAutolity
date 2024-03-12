@@ -150,7 +150,6 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv &"
         "mkdir $unique_output_directory/regdumps/"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv -o $unique_output_directory/regdumps/ windows.registry.hivelist.HiveList --dump &"
-        # LOGIC NEEDED
 
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv && printkeys_for_each_hive $unique_output_directory/registry_hivelist.csv $dump $unique_output_directory"
         
