@@ -12,6 +12,7 @@ This is set up in such a way that allows us to upload as many dumps as we need t
 
 > [!NOTE]  
 > This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Currently limited to focus only on Windows.
+> To keep this most safe, you should consider abiding to Azure Sandbox Landingzones which includes separate subscription, resource group (everything in this project is already a separate resource group) and more.
 
 ### Workflow 
 The analysor spins up the terraform setup, sends the uploading links/commands to the person acquiring the image(s), who then uploads. The analysor waits until ingestion has been made and starts actively querying the data. Hands-off from upload to querying.
@@ -215,6 +216,8 @@ terraform output setup_and_instructions
 ```
 
 ## Challenges and bugs
+Doing too many images at the same times yields poor result in current state as they are running concurrently. Recommend uploading one and one and doing sample-folder for max 2. 
+
 I've stumbled upon a few errors using Azure CLI that was unreproducable but was most often solved by this flow of commands:
 
 ```powershell
@@ -234,10 +237,12 @@ A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID
 # Memory dumps for testing
 https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
 https://www.osforensics.com/tools/volatility-workbench.html 
+https://archive.org/details/Africa-DFIRCTF-2021-WK02 
+
 
 
 ## Time notes (give or take)
-ADX cluster often takes around 13-15 minutes setting up. 
+ADX cluster often takes around 15 minutes setting up. 
 VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
 
 Completes most often within 30 minutes for everything.
@@ -256,44 +261,54 @@ Completes most often within 30 minutes for everything.
 And much more on the way...
 
 <details><summary>Resources: </summary>
-- https://github.com/hashicorp/terraform-provider-azurerm/issues/15649
-- https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli 
-- https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-managed-identity
-- https://azure-training.com/azure-data-science/creating-the-adx-environment/creating-adx-environment-using-cli/
-- https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli#create-an-azure-data-explorer-database
-- https://learn.microsoft.com/en-us/cli/azure/kusto/database?view=azure-cli-latest#az-kusto-database-update(kusto)
-- https://learn.microsoft.com/en-us/azure/data-explorer/python-ingest-data
-- https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py
-- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity
-- https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password
-- https://registry.terraform.io/providers/favoretti/adx/latest/docs
-- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity
-- https://pypi.org/project/azure-kusto-ingest/
-- https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
-- https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/#releasenotes-body-tab
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/tools/kusto-cli
-- https://thelearningjourneyebooks.com/
-- https://github.com/vavarachen/volatility_automation
-- https://linux.die.net/man/1/inotifywait
-- https://github.com/volatilityfoundation/volatility3/blob/develop/vol.py
-- https://downloads.volatilityfoundation.org/releases/2.4/CheatSheet_v2.4.pdf
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/data-ingestion/ingest-from-storage
-- https://github.com/search?q=repo%3AAzure%2Fazure-sdk-for-python%20ingest&type=code
-- https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py
-- https://github.com/Azure/azure-kusto-python
-- https://www.techbrothersit.com/2022/02/how-to-create-single-or-multiple-tables.html
-- https://ansibledaily.com/execute-detached-process-with-ansible/
-- https://www.huuhka.net/devops-for-azure-workbooks/
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations
-- https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations
-- https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh
-- https://github.com/Yara-Rules/rules
-- https://github.com/k1nd0ne/VolWeb
-- https://github.com/carlospolop/autoVolatility
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-timepivot?pivots=azuredataexplorer
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-linechart?pivots=azuredataexplorer
-- https://www.cloudsma.com/2021/01/azure-workbooks-icons-thresholds-heatmaps/
-- https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-treemap?pivots=azuredataexplorer
-- https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-grid-visualizations
-- https://reversea.me/index.php/writing-a-volatility-3-plugin/
+<ul>
+<li>https://github.com/hashicorp/terraform-provider-azurerm/issues/15649</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli </li>
+<li>https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-managed-identity</li>
+<li>https://azure-training.com/azure-data-science/creating-the-adx-environment/creating-adx-environment-using-cli/</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli#create-an-azure-data-explorer-database</li>
+<li>https://learn.microsoft.com/en-us/cli/azure/kusto/database?view=azure-cli-latest#az-kusto-database-update(kusto)</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/python-ingest-data</li>
+<li>https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py</li>
+<li>https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity</li>
+<li>https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password</li>
+<li>https://registry.terraform.io/providers/favoretti/adx/latest/docs</li>
+<li>https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity</li>
+<li>https://pypi.org/project/azure-kusto-ingest/</li>
+<li>https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install</li>
+<li>https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/#releasenotes-body-tab</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/tools/kusto-cli</li>
+<li>https://thelearningjourneyebooks.com/</li>
+<li>https://github.com/vavarachen/volatility_automation</li>
+<li>https://linux.die.net/man/1/inotifywait</li>
+<li>https://github.com/volatilityfoundation/volatility3/blob/develop/vol.py</li>
+<li>https://downloads.volatilityfoundation.org/releases/2.4/CheatSheet_v2.4.pdf</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/data-ingestion/ingest-from-storage</li>
+<li>https://github.com/search?q=repo%3AAzure%2Fazure-sdk-for-python%20ingest&type=code</li>
+<li>https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py</li>
+<li>https://github.com/Azure/azure-kusto-python</li>
+<li>https://www.techbrothersit.com/2022/02/how-to-create-single-or-multiple-tables.html</li>
+<li>https://ansibledaily.com/execute-detached-process-with-ansible/</li>
+<li>https://www.huuhka.net/devops-for-azure-workbooks/</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations</li>
+<li>https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations</li>
+<li>https://github.com/Dead-Simple-Scripts/AutoVol-SDF-Memory-Forensics-2/blob/master/autovol_mem2_example.sh</li>
+<li>https://github.com/Yara-Rules/rules</li>
+<li>https://github.com/k1nd0ne/VolWeb</li>
+<li>https://github.com/carlospolop/autoVolatility</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-timepivot?pivots=azuredataexplorer</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-linechart?pivots=azuredataexplorer</li>
+<li>https://www.cloudsma.com/2021/01/azure-workbooks-icons-thresholds-heatmaps/</li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/visualization-treemap?pivots=azuredataexplorer</li>
+<li>https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-grid-visualizations</li>
+<li>https://reversea.me/index.php/writing-a-volatility-3-plugin/</li>
+<li>https://hostingjournalist.com/how-to-build-tabs-and-alerts-in-azure-workbooks-azure-portal-series/</li>
+<li>https://hostingjournalist.com/how-to-build-tabs-and-alerts-in-azure-workbooks-azure-portal-series/</li>
+</ul>
 </details>
+
+## Notes on a few decisions
+PSTree is not being run, but produced in workbook instead.
+
+## Questions for the community:
+Is there a downside running an image with known malicious files within it - is there a secure way to do so? Within a separate subscription? And how do we sandbox this environment enough to make it safe to scan and analyze anything either via Volatility completely or by SSH/VNC into the machine for deeper analysis? Can we go deeper in analysis of found malicious files with dynamic/static analysis, and how should a setup like that look like?
