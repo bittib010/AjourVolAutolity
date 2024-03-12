@@ -61,16 +61,26 @@ run_os_commands() {
         poolscanner (TreeDepth:int32,Tag:string,Offset:string,Layer:string,Name:string),
         privileges (TreeDepth:int32,PID:int32,Process:string,Value:int32,Privilege:string,Attributes:string,Description:string),
         pslist (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_singletons (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_windowscore (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
-        pslist_exclude_windows_core (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Fileoutput:string),
         psscan (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
         taskhost_triage (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:datetime, ExitTime:datetime, Fileoutput:string),
-        // pstree (TreeDepth:int32, PID:int32, PPID:int32, ImageFileName:string, OffsetV:string, Threads:int32,  Handles:int32, SessionId:string, Wow64:string, CreateTime:string, ExitTime:string, Audit:string, Cmd:string, Path:string),
         registry (TreeDepth:int32,Certificatepath:string,Certificatesection:string,CertificateID:string,Certificatename:string),
         registry_hivelist (TreeDepth:int32,Offset:string,FileFullPath:string,Fileoutput:string),
-        registry_hivescan (TreeDepth:int32,Offset:string),
         registry_printkey (TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_SYSTEM(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_HARDWARE(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_UsrClass(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_ntuser(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_ntuser2(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_ntuser3(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_BCD(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_SOFTWARE(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_DEFAULT(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_SECURITY(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_SAM(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_NTUSER(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_NTUSER2(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_UnnamedKey(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
+        printkey_UnnamedKey2(TreeDepth:int32,LastWriteTime:string,HiveOffset:string,Type:string,Key:string,Name:string,Data:string,Volatile:string),
         registry_userassist (TreeDepth:int32,HiveOffset:string,HiveName:string,Path:string,LastWriteTime:string,Type:string,Name:string,ID:string,Count:string,FocusCount:string,TimeFocused:string,LastUpdated:string,RawData:string),
         skeleton_key_check (TreeDepth:int32,PID:int32,Process:string,SkeletonKeyFound:string,rc4HmacInitialize:string,rc4HmacDecrypt:string),
         ssdt (TreeDepth:int32,Index:string,Address:string,Module:string,Symbol:string),
@@ -86,7 +96,8 @@ run_os_commands() {
         crashinfo (NotCreatedYet:string),
         iat (PID:int32,Name:string,Library:string,Bound:string,Function:string,Address:string),
         cobaltstrike (PID:int32,ProcessPort:int32,Sleep:string,Jitter:string,Server:string,POST_PATH:string,x86Install_Path:string,x64Install_Path:string,Pipe:string,LicenseID:string),
-        clamscan (File:string,Result:string)\""
+        clamscan (File:string,Result:string)
+        \""
 
         "monitor_output_directory "$unique_output_directory" "$database_name" &"
 
@@ -106,7 +117,8 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.driverscan.DriverScan > $unique_output_directory/driverscan.csv &"
 
         "mkdir $unique_output_directory/dumpfiles"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles windows.dumpfiles.DumpFiles && clamscan $unique_output_directory/dumpfiles/* > $unique_output_directory/clamscan.txt && convert_clamscan_output_to_csv $unique_output_directory/clamscan.txt $unique_output_directory/clamscan.csv &"
+        "mkdir $unique_output_directory/clamscan_tmp"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles windows.dumpfiles.DumpFiles && clamscan $unique_output_directory/dumpfiles/* > $unique_output_directory/clamscan_tmp/clamscan.txt && convert_clamscan_output_to_csv $unique_output_directory/clamscan_tmp/clamscan.txt $unique_output_directory/clamscan.csv &"
         # add a "file" check and make it csv
         
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.dumpfiles.DumpFiles > $unique_output_directory/dumpfiles.csv &"        
@@ -131,8 +143,7 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.poolscanner.PoolScanner > $unique_output_directory/poolscanner.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.privileges.Privs > $unique_output_directory/privileges.csv &"
 
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_singletons.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_singletons.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_windowscore.csv\" && grep -E -i \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_windowscore.csv && head -n 1 \"$unique_output_directory/pslist.csv\" > \"$unique_output_directory/pslist_exclude_windows_core.csv\" && grep -E -i -v \"(system|wininit|lsass|lsaiso|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)\" $unique_output_directory/pslist.csv >> $unique_output_directory/pslist_exclude_windows_core.csv &"
-
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv &"
 
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv && head -n 1 \"$unique_output_directory/psscan.csv\" > \"$unique_output_directory/taskhost_triage.csv\" && grep -E -i \"taskhost\" $unique_output_directory/pslist.csv >> $unique_output_directory/taskhost_triage.csv &"
 
@@ -141,8 +152,9 @@ run_os_commands() {
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv -o $unique_output_directory/regdumps/ windows.registry.hivelist.HiveList --dump &"
         # LOGIC NEEDED
 
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv &"
-        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivescan.HiveScan > $unique_output_directory/registry_hivescan.csv &"
+        "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivelist.HiveList > $unique_output_directory/registry_hivelist.csv && printkeys_for_each_hive $unique_output_directory/registry_hivelist.csv $dump $unique_output_directory"
+        
+        #"vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.hivescan.HiveScan > $unique_output_directory/registry_hivescan.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.printkey.PrintKey > $unique_output_directory/registry_printkey.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.userassist.UserAssist > $unique_output_directory/registry_userassist.csv &"
         "vol.py -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.sessions.Sessions > $unique_output_directory/sessions.csv &"
@@ -238,7 +250,7 @@ convert_clamscan_output_to_csv() {
             break
         fi
         
-        # Skip empty lines and summary lines
+        # Skip empty lines
         if [[ -z "$line" ]]; then
             continue
         fi
@@ -263,6 +275,45 @@ determine_os() {
     echo "$os_type"
 }
 
+printkeys_for_each_hive() {
+    local file_name=$1
+    local dump=$2
+    local outpath=$3
+
+    declare -A key_counter # Associative array to keep track of how many times each key name has been used.
+
+    if [[ ! -f "$file_name" ]]; then
+        echo "File $file_name does not exist."
+        return 1
+    fi
+
+    while IFS="," read -r Offset FileFullPath
+    do
+        local current_offset="${Offset}"
+        # Extract the base name from the FileFullPath and replace backslashes with forward slashes for compatibility.
+        local base_name=$(basename "${FileFullPath//\\//}")
+        local filename_key="${base_name%%.*}"  # Remove any file extension.
+
+        if [[ -z "$filename_key" || "$filename_key" == "_" ]]; then
+            filename_key="UnnamedKey"
+        fi
+
+        # Check if this key has already been used and increment the counter if necessary.
+        if [[ -n "${key_counter[$filename_key]}" ]]; then
+            # Increment the count for this key name.
+            key_counter[$filename_key]=$((key_counter[$filename_key] + 1))
+            filename_key="${filename_key}${key_counter[$filename_key]}"
+        else
+            # This is the first time this key name has been used.
+            key_counter[$filename_key]=1
+        fi
+
+        vol.py -f "$dump" --log "$outpath/Volatility.log" -q -r csv windows.registry.printkey --offset "$current_offset" --recurse >> "$outpath/printkey_${filename_key}.csv"
+    done < <(cut -d "," -f2,3 $file_name | tail -n +2)
+}
+
+
+
 # Function to process a new file with all specified Volatility commands
 process_new_file() {
     local dump_path="$1"
@@ -280,4 +331,5 @@ process_new_file() {
     mkdir -p "$unique_output_directory"
     run_os_commands "$dump_path" "$unique_output_directory" "$os_type" "$dump_name_no_ext"
 }
+
 
