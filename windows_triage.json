@@ -106,16 +106,173 @@
             "style": "link"
           },
           {
-            "id": "7d14cb9e-bc5c-45ba-9f2d-e2181fc54057",
+            "id": "f972523b-c039-4d64-9e4f-72ef06642fe4",
             "cellValue": "setTab",
             "linkTarget": "parameter",
             "linkLabel": "Strings",
             "subTarget": "Strings",
             "style": "link"
+          },
+          {
+            "id": "7d14cb9e-bc5c-45ba-9f2d-e2181fc54057",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Networking",
+            "subTarget": "Networking",
+            "style": "link"
+          },
+          {
+            "id": "e609e768-c686-4417-9b1c-516e9e4d107d",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Registry",
+            "subTarget": "Registry",
+            "style": "link"
+          },
+          {
+            "id": "e8118b39-0c6b-4593-83d8-bf34263ce44a",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Commands",
+            "subTarget": "Commands",
+            "style": "link"
+          },
+          {
+            "id": "163e90c7-d1d8-41eb-9b13-42cabb338451",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Files",
+            "subTarget": "Files",
+            "style": "link"
+          },
+          {
+            "id": "f566b500-e51d-4619-b725-0ccc03db96e1",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "MalFind",
+            "subTarget": "MalFind",
+            "style": "link"
+          },
+          {
+            "id": "262745d3-f5be-4039-84e4-8ad4197a5301",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Aggregate",
+            "subTarget": "Aggregate",
+            "style": "link"
+          },
+          {
+            "id": "e30fe453-4f8f-4c25-9e37-0acca647a413",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "USB Devices",
+            "subTarget": "USB Devices",
+            "style": "link"
+          },
+          {
+            "id": "a3b8e57e-aa83-441e-9464-e1d3f21dc1ec",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Mutants",
+            "subTarget": "Mutants",
+            "style": "link"
+          },
+          {
+            "id": "35ea0462-bc1b-46b7-9e16-98c68cddfa1c",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "TriageAggregate",
+            "subTarget": "TriageAggregate",
+            "style": "link"
+          },
+          {
+            "id": "46a9b5e4-6ffc-40ce-957b-6eb6336148e2",
+            "cellValue": "setTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Privileges",
+            "subTarget": "Privileges",
+            "style": "link"
           }
         ]
       },
       "name": "links - 40"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Interesting Privileges"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"privileges\\r\\n| where Privilege in (\\\"SeImpersonatePrivilege\\\", \\\"SeAssignPrimaryPrivilege\\\", \\\"SeTcbPrivilege\\\", \\\"SeBackupPrivilege\\\", \\\"SeRestorePrivilege\\\", \\\"SeCreateTokenPrivilege\\\", \\\"SeLoadDriverPrivilege\\\", \\\"SeTakeOwnershipPrivilege\\\", \\\"SeDebugPrivilege\\\")\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 18"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Privileges"
+      },
+      "name": "Privileges"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"printkey_DEFAULT\\r\\n| extend Key_Length = strlen(Key)\\r\\n| order by Key_Length asc\\r\\n| extend Current_Index = row_number() - 155\\r\\n| extend Splitted_Key = set_difference(split(Key, \\\"\\\\\\\\\\\") ,dynamic([\\\"\\\"]))\\r\\n| extend Parent_Path = strcat(\\\"\\\\\\\\\\\\\\\\\\\", strcat_array(array_slice(Splitted_Key, 0, -2), \\\"\\\\\\\\\\\\\\\\\\\"))\\r\\n| project-away Splitted_Key, TreeDepth, HiveOffset, Key_Length\\r\\n| join kind=inner (\\r\\n    printkey_DEFAULT\\r\\n    | project Parent_Path = Key\\r\\n    | extend Key_Length = strlen(Parent_Path)\\r\\n    | order by Key_Length asc\\r\\n    | extend Parent_Index = row_number()\\r\\n    | project-away Key_Length\\r\\n    | summarize indx_list = make_list(Parent_Index) by Parent_Path\\r\\n    | mv-expand indx_list to typeof(double)\\r\\n    | summarize Parent_Index = max(indx_list) by Parent_Path\\r\\n    ) \\r\\n    on $left.Parent_Path == $right.Parent_Path\\r\\n| extend Splitted_Key = set_difference(split(Key, \\\"\\\\\\\\\\\") ,dynamic([\\\"\\\"]))\\r\\n| extend Folder = strcat_array(array_slice(Splitted_Key, -1, -1), \\\"\\\\\\\\\\\\\\\\\\\")\\r\\n| project-away Splitted_Key, Parent_Path, Parent_Path1\\r\\n| project-reorder Folder, Name, Data, Key\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 2,
+              "queryType": 9,
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Current_Index",
+                    "formatter": 5
+                  },
+                  {
+                    "columnMatch": "Parent_Index",
+                    "formatter": 5
+                  }
+                ],
+                "rowLimit": 10000,
+                "hierarchySettings": {
+                  "idColumn": "Current_Index",
+                  "parentColumn": "Parent_Index",
+                  "treeType": 0,
+                  "expanderColumn": "Folder"
+                }
+              }
+            },
+            "name": "query - 18"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Registry"
+      },
+      "name": "Registry"
     },
     {
       "type": 12,
@@ -538,38 +695,36 @@
       "name": "IPs"
     },
     {
-      "type": 1,
+      "type": 12,
       "content": {
-        "json": "# Interesting Privileges"
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Processes, cmdline and interesting privileges combination"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| join kind=leftouter cmdline on PID\\r\\n| join kind=leftouter cmdline on $left.PPID==$right.PID\\r\\n| project PID, PPID, Process, ImageFileName, OffsetV, Threads, Handles, SessionId, Wow64, CreateTime, ExitTime, Fileoutput, CMDLine = Args, ParentCMDLine=Args1, ParentProcess=Process1\\r\\n| join kind=leftouter privileges  on PID\\r\\n| project-away Process1, PID1, TreeDepth\\r\\n| project-rename PrivilegeDescription = Description, PrivilegeValue = Value\\r\\n| where Privilege in (\\\"SeImpersonatePrivilege\\\", \\\"SeAssignPrimaryPrivilege\\\", \\\"SeTcbPrivilege\\\", \\\"SeBackupPrivilege\\\", \\\"SeRestorePrivilege\\\", \\\"SeCreateTokenPrivilege\\\", \\\"SeLoadDriverPrivilege\\\", \\\"SeTakeOwnershipPrivilege\\\", \\\"SeDebugPrivilege\\\")\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 18"
+          }
+        ]
       },
-      "name": "text - 8"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"privileges\\r\\n| where Privilege in (\\\"SeImpersonatePrivilege\\\", \\\"SeAssignPrimaryPrivilege\\\", \\\"SeTcbPrivilege\\\", \\\"SeBackupPrivilege\\\", \\\"SeRestorePrivilege\\\", \\\"SeCreateTokenPrivilege\\\", \\\"SeLoadDriverPrivilege\\\", \\\"SeTakeOwnershipPrivilege\\\", \\\"SeDebugPrivilege\\\")\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Aggregate"
       },
-      "name": "query - 18"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Processes, cmdline and interesting privileges combination"
-      },
-      "name": "text - 8"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"psscan\\r\\n| join kind=leftouter cmdline on PID\\r\\n| join kind=leftouter cmdline on $left.PPID==$right.PID\\r\\n| project PID, PPID, Process, ImageFileName, OffsetV, Threads, Handles, SessionId, Wow64, CreateTime, ExitTime, Fileoutput, CMDLine = Args, ParentCMDLine=Args1, ParentProcess=Process1\\r\\n| join kind=leftouter privileges  on PID\\r\\n| project-away Process1, PID1, TreeDepth\\r\\n| project-rename PrivilegeDescription = Description, PrivilegeValue = Value\\r\\n| where Privilege in (\\\"SeImpersonatePrivilege\\\", \\\"SeAssignPrimaryPrivilege\\\", \\\"SeTcbPrivilege\\\", \\\"SeBackupPrivilege\\\", \\\"SeRestorePrivilege\\\", \\\"SeCreateTokenPrivilege\\\", \\\"SeLoadDriverPrivilege\\\", \\\"SeTakeOwnershipPrivilege\\\", \\\"SeDebugPrivilege\\\")\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 18"
+      "name": "Aggregate"
     },
     {
       "type": 12,
@@ -623,55 +778,85 @@
       "name": "Passwords"
     },
     {
-      "type": 1,
+      "type": 12,
       "content": {
-        "json": "# Possible Base64 texts found in \"strings\""
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "# Possible Base64 texts found in \"strings\""
+            },
+            "name": "text - 30"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend sok = extract_all(@'\\\\s+([A-Za-z0-9+/]{20}\\\\S+$)', String)\\r\\n| extend sok = base64_decode_tostring(tostring(sok))\\r\\n| where sok != \\\"\\\"\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 1,
+              "queryType": 9
+            },
+            "name": "query - 29"
+          }
+        ]
       },
-      "name": "text - 30"
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Strings"
+      },
+      "name": "Strings"
     },
     {
-      "type": 3,
+      "type": 12,
       "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"strings\\r\\n| extend sok = extract_all(@'\\\\s+([A-Za-z0-9+/]{20}\\\\S+$)', String)\\r\\n| extend sok = base64_decode_tostring(tostring(sok))\\r\\n| where sok != \\\"\\\"\\r\\n\\r\\n\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 1,
-        "queryType": 9
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "#  Top 10 Changed Files by Filetype (On AccessedDate)"
+            },
+            "name": "text - 31"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"timeliner\\r\\n| where Description contains \\\"MFT FILE_NAME\\\"\\r\\n| where Description contains \\\".\\\"\\r\\n| extend File_ext = split(Description, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), AccessedDate\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 32"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Top 10 Changed Filetype by \"mftscan\"  (On AccessedDate)"
+            },
+            "name": "text - 33"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"mftscan\\r\\n| where Filename contains \\\".\\\"\\r\\n| extend File_ext = split(Filename, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), Accessed\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
+              "size": 0,
+              "queryType": 9
+            },
+            "name": "query - 34"
+          }
+        ]
       },
-      "name": "query - 29"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "#  Top 10 Changed Files by Filetype (On AccessedDate)"
+      "conditionalVisibility": {
+        "parameterName": "setTab",
+        "comparison": "isEqualTo",
+        "value": "Files"
       },
-      "name": "text - 31"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"timeliner\\r\\n| where Description contains \\\"MFT FILE_NAME\\\"\\r\\n| where Description contains \\\".\\\"\\r\\n| extend File_ext = split(Description, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), AccessedDate\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 32"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "# Top 10 Changed Filetype by \"mftscan\"  (On AccessedDate)"
-      },
-      "name": "text - 33"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "{\"version\":\"AzureDataExplorerQuery/1.0\",\"queryText\":\"mftscan\\r\\n| where Filename contains \\\".\\\"\\r\\n| extend File_ext = split(Filename, \\\".\\\")[-1]\\r\\n| summarize count() by tostring(File_ext), Accessed\\r\\n| order by count_ desc\\r\\n| take 10\",\"clusterName\":\"{Clustername}\",\"databaseName\":\"{Databases}\"}",
-        "size": 0,
-        "queryType": 9
-      },
-      "name": "query - 34"
+      "name": "Files"
     }
   ],
   "fallbackResourceIds": [
