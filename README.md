@@ -186,7 +186,11 @@ As root tenant owner you don't need any other permissions/roles as far as my tes
  
 Install Terraform: https://developer.hashicorp.com/terraform/install#Windows 
 
-Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
+**Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
+
+**User key generation**
+ssh-keygen -t rsa
+(```ssh-keygen -t ed25519``` is also supported by Azure, need to change variable paths in locals blcok inside variable.tf if using this).
 
 Login and set subscription:
 ```powershell
@@ -204,13 +208,20 @@ Navigate to the root directory of the project.
 
 ```powershell
 terraform init
-terraform plan
-terraform apply [-auto-approve]
+terraform plan -var="subscription_id=your_subscription_id" -var="username=computerUsername"
+terraform apply -var="subscription_id=your_subscription_id" -var="username=computerUsername"[-auto-approve]
 ```
 
-Important note to the uploader/investigator: the dump file follows a naming convention: os_anythin.ext. To figure out the best fit for which modules to run I decided to use this approach. An example would be: win_myCompany130224.dd. The available values are: "win", "linux" or "osx". Current set of accepted extensions are limited ("dd" "raw" "mem" "vmem"), but easily extended to whatever Volatility3 accepts.
+computerUsername is simply your username on the computer used to generate the path of the ssh id_rsa files.
 
-If you want to make the analysis on a dump you already have, apply the full terraform config with the dump inside ./VolAutolity/sample/ folder. As this operation includes a copy to the memorydumps location that is mointored, nothing more is needed. If you are using upload functionality - you need to trigger the event by copying or moving the file into the same location it was uploaded to as it will trigger some kernel signals that triggers inotifywait. I'm working on a solution to make it run once a blob has been uploaded from elsewhere. Any input or solution is appreciated as all of this is fairly new to me!
+Add your memory dumps to ./VolAutolity/sample/ folder or upload them after the script has completed setting up everything.
+
+The dump file MUST follow a naming convention: <os>_<companyName>.<extension>. 
+- os: win, linux or osx are accepted values
+- companyName: Anything could be written here. I usually do a name and a date at the end like Adrian221024
+- extension: dd, raw, mem, vmem... Easily expand to fit all possible extensions that Volatility has
+
+If you are using upload functionality - you need to trigger the event by copying or moving the file into the same location it was uploaded to as it will trigger some kernel signals that triggers inotifywait. I'm working on a solution to make it run once a blob has been uploaded from elsewhere. Any input or solution is appreciated as all of this is fairly new to me!
 
 Send the investigator the necessary details to sign in to correct location and then upload the dump. The investigator needs to have a registered user in the current tenant to use the az cli uploading functionality (SAS token url is work in progress): Get the list of commands by entering:
 ```powershell
