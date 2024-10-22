@@ -23,7 +23,7 @@ az storage blob upload --account-name "${azurerm_storage_account.sa.name}" --con
 --------------------------
 Sign into the machine:
 --------------------------
-"ssh -i ${var.path_to_private_key} ${var.linux-username}@${azurerm_public_ip.publicip.ip_address}"
+"ssh -i ${local.path_to_private_key} ${var.linux-username}@${azurerm_public_ip.publicip.ip_address}"
 EOS
   sensitive = true
 }

@@ -23,7 +23,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
 
   admin_ssh_key {
     username   = var.linux-username
-    public_key = file(var.path_to_public_key)
+    public_key = file(local.path_to_public_key)
   }
 
   identity {
@@ -45,7 +45,7 @@ resource "null_resource" "ansible_provisioning" {
     type        = "ssh"
     host        = azurerm_public_ip.publicip.ip_address
     user        = var.linux-username
-    private_key = file(var.path_to_private_key)
+    private_key = file(local.path_to_private_key)
   }
 
   provisioner "file" {

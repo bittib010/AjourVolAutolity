@@ -48,16 +48,7 @@ variable "linux-size" {
   #default     = "Standard_F16s_v2"
 }
 
-variable "path_to_public_key" {
-  type        = string
-  description = "The path to public key for SSH login"
-  default     = "C:\\Users\\<Username>\\.ssh\\id_rsa.pub"
-}
-variable "path_to_private_key" {
-  type        = string
-  description = "The path to private key for SSH login"
-  default     = "C:\\Users\\<Username>\\.ssh\\id_rsa"
-}
+
 
 # Expand logic if needed for more resources. THis is based on autodeletion, to prevent it from happening if present in your subscription.
 # Use these variables if you have an auto deletion for a test lab setup
@@ -66,7 +57,23 @@ variable "deletion_days" {
   default     = 14
 }
 
+
+variable "subscription_id" {
+  type        = string
+  description = "The Azure subscription ID to use for this deployment."
+}
+
+
+variable "username" {
+  type        = string
+  description = "The username for SSH key paths."
+}
+
 locals {
   current_timestamp = timestamp()
   deletion_date     = formatdate("YYYY-MM-DD", timeadd(local.current_timestamp, format("%dh", var.deletion_days * 24)))
+  path_to_public_key = "C:\\Users\\${var.username}\\.ssh\\id_rsa.pub"
+  path_to_private_key = "C:\\Users\\${var.username}\\.ssh\\id_rsa"
+  # path_to_public_key = "C:\\Users\\${var.username}\\.ssh\\id_ed25519.pub"
+  # path_to_private_key = "C:\\Users\\${var.username}\\.ssh\\id_ed25519"
 }
