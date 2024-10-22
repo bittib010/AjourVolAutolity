@@ -54,8 +54,8 @@ resource "azurerm_kusto_cluster_principal_assignment" "adx_user_admin" {
 resource "azurerm_kusto_cluster_principal_assignment" "adx_sp" {
   resource_group_name = azurerm_resource_group.myrg.name
   cluster_name        = azurerm_kusto_cluster.adxc.name
-  name                = "UserAdsdffdminRoleADX"
-  principal_id        = azuread_service_principal.aad_sp.application_id
+  name                = "SPAdminRoleADX"
+  principal_id        = azuread_service_principal.aad_sp.client_id
   principal_type      = "App"
   role                = "AllDatabasesAdmin"
   tenant_id           = data.azurerm_client_config.current.tenant_id
