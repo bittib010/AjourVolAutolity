@@ -1,24 +1,26 @@
 # AjourVolAutolity
+## Project Goal
 
-## Goal of the project
-The goal of this project is
-- leveraging power of the cloud, 
-- automate the volatility commands,
-- speed up the process from acquisition-end to analysis-start,
-- utilizing the speed of KQL to find answers quickly on large data sets,
-- spend time doing more important stuff than running a bunch of commands on repeat!
+The goal of this project is to:
+- Leverage the power of the cloud
+- Automate volatility commands
+- Speed up the process from acquisition to analysis
+- Utilize the speed of KQL to quickly analyze large datasets
+- Spend more time on important tasks rather than repetitive commands
 
-This is set up in such a way that allows us to upload as many dumps as we need to. Every Volatility session will be linked with it's dump which will be stored into it's own separate database.
+This setup allows us to upload multiple dumps, with each Volatility session linked to its respective dump stored in a separate database.
 
 > [!NOTE]  
-> This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Currently limited to focus only on Windows.
-> To keep this most safe, you should consider abiding to Azure Sandbox Landingzones which includes separate subscription, resource group (everything in this project is already a separate resource group) and more.
+> This is a work in progress with many planned additions and improvements. Contributions and suggestions are welcome. Currently, the focus is limited to Windows. For safety, consider using Azure Sandbox Landingzones, which includes separate subscriptions and resource groups.
 
-### Workflow 
-The analysor spins up the terraform setup, sends the uploading links/commands to the person acquiring the image(s), who then uploads. The analysor waits until ingestion has been made and starts actively querying the data. Hands-off from upload to querying.
+### Workflow
 
-## Parent Child relations
-An important part of knowing how to analyse memory dumps is to be aware of known goods. I've created this overview which i tend to analyse and update from time to time. 
+The analyst initiates the Terraform setup and sends upload links/commands to the person acquiring the images. Once the images are uploaded, the analyst starts querying the data. This process is hands-off from upload to querying.
+
+## Parent-Child Relations
+
+Understanding known good processes is crucial for analyzing memory dumps. Below is an overview that is periodically updated.
+
 ```mermaid
 mindmap
   Core processes
@@ -26,7 +28,7 @@ mindmap
       Parents None
       Children None
       PID 0
-      Occurences 1
+      Occurrences 1
       User
         NT AUTHORITY\SYSTEM (S-1-5-18)
     system
@@ -168,117 +170,107 @@ mindmap
         InvestigateFurther
 ```
 
+## Setup Process and "How To"
 
+### Requirements
 
+#### Azure Roles
+- **AllDatabasesAdmin**: Required to read, view, and write to the ADX cluster.
+- **Contributor**: Required on the cluster.
+- **Admin**: Required on the database.
+- **CloudApplicationAdmin**: Not covered in code.
 
-# Process of setting it up and "How to"
-## Requirements
-### Roles in Azure
-You need "AllDatabasesAdmin" role to be able to read, view and write to the ADX cluster. And to create everything there are a lot of others as well - I have currently been a root tenant owner.
+#### Installation and Login
 
-To run scripts on database you need Contributor role on the cluster and Admin role on the database - Pretty much covered.
+1. **Install Terraform**: [Terraform Installation Guide](https://developer.hashicorp.com/terraform/install#Windows)
+2. **Install Azure CLI**: [Azure CLI Installation Guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget)
 
-CloudApplicationAdmin is per now not covered in code.
+3. **Generate SSH Key**:
+    ```sh
+    ssh-keygen -t rsa
+    ```
 
-As root tenant owner you don't need any other permissions/roles as far as my testing goes.
+4. **Login and Set Subscription**:
+    ```powershell
+    az login
+    # Alternative login
+    az login --use-device-code
+    az account set --subscription "<INSERT SUBSCRIPTION ID OR NAME>"
+    ```
 
-### Install and login
- 
-Install Terraform: https://developer.hashicorp.com/terraform/install#Windows 
+### Deployment Steps
 
-**Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
+1. Set variables in `variable.tf` for your initials, SSH key paths, etc.
+2. Navigate to the project's root directory.
+3. Initialize and apply Terraform:
+    ```powershell
+    terraform init
+    terraform plan -var="subscription_id=your_subscription_id" -var="username=computerUsername"
+    terraform apply -var="subscription_id=your_subscription_id" -var="username=computerUsername" [-auto-approve]
+    ```
 
-**User key generation**
-ssh-keygen -t rsa
-(```ssh-keygen -t ed25519``` is also supported by Azure, need to change variable paths in locals blcok inside variable.tf if using this).
+4. Add memory dumps to `./VolAutolity/sample/` folder or upload them after setup.
 
-Login and set subscription:
-```powershell
-az login # Prompts you interactively via last opened browser and spits out all available subscriptions for your user
-# ALTERNATIVE LOGIN
-az login --use-device-code # If the above fails, try following steps from this command
-az account set --subscription "<INSERT SUBSCRIPTION ID OR NAME>"
-```
+### Memory Dump Naming Convention
 
-## Steps to deploy
+- **os**: win, linux, or osx
+- **companyName**: Any name, e.g., Adrian221024
+- **extension**: dd, raw, mem, vmem, etc.
 
-Set the variable for your initials, path to your public and private SSH-keys in variable.tf (and more as needed).
+### Upload Functionality
 
-Navigate to the root directory of the project.
+Trigger the event by copying or moving the file to the upload location. This triggers kernel signals that activate `inotifywait`.
 
-```powershell
-terraform init
-terraform plan -var="subscription_id=your_subscription_id" -var="username=computerUsername"
-terraform apply -var="subscription_id=your_subscription_id" -var="username=computerUsername"[-auto-approve]
-```
+### Investigator Instructions
 
-computerUsername is simply your username on the computer used to generate the path of the ssh id_rsa files.
+Send the investigator the necessary details to sign in and upload the dump. The investigator must be a registered user in the current tenant.
 
-Add your memory dumps to ./VolAutolity/sample/ folder or upload them after the script has completed setting up everything.
-
-The dump file MUST follow a naming convention: <os>_<companyName>.<extension>. 
-- os: win, linux or osx are accepted values
-- companyName: Anything could be written here. I usually do a name and a date at the end like Adrian221024
-- extension: dd, raw, mem, vmem... Easily expand to fit all possible extensions that Volatility has
-
-If you are using upload functionality - you need to trigger the event by copying or moving the file into the same location it was uploaded to as it will trigger some kernel signals that triggers inotifywait. I'm working on a solution to make it run once a blob has been uploaded from elsewhere. Any input or solution is appreciated as all of this is fairly new to me!
-
-Send the investigator the necessary details to sign in to correct location and then upload the dump. The investigator needs to have a registered user in the current tenant to use the az cli uploading functionality (SAS token url is work in progress): Get the list of commands by entering:
 ```powershell
 terraform output setup_and_instructions
 ```
 
-## Challenges and bugs
-Doing too many images at the same times yields poor result in current state as they are running concurrently. Recommend uploading one and one and doing sample-folder for max 2. 
+## Challenges and Bugs
 
-I've stumbled upon a few errors using Azure CLI that was unreproducable but was most often solved by this flow of commands:
+- Uploading multiple images simultaneously yields poor results. Recommend uploading one at a time.
+- Azure CLI errors can often be resolved by:
+    ```powershell
+    az ad signed-in-user show
+    az logout
+    az login
+    az ad signed-in-user show
+    az config set auto-upgrade.enable=yes
+    ```
 
-```powershell
-az ad signed-in-user show
-az logout
-az login
-az ad signed-in-user show
-az config set auto-upgrade.enable=yes
-```
+- The setup is not idempotent. Sometimes requires multiple runs.
+- Random errors like "Error: retrieving Subscription <...>" and "Error: remote-exec provisioner error" may occur. Re-running usually fixes these issues.
 
-This setup is not idempotent as we are using provisioners like Ansible to push out our setup. Sometimes you need to run the setup twice to make it work like intended. Sometimes the null_resource takes forever, which I have made successfully run simply by pressing CTRL+C (quitting) and then re-running the apply process.
+## Memory Dumps for Testing
 
-A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID 3; CANCEL; received from peer" may occur, re-running has been the fix for this and seem to appear randomly for many users when researching the topic.
+- [MemLabs](https://github.com/stuxnet999/MemLabs/tree/master/Lab%200)
+- [Volatility Workbench](https://www.osforensics.com/tools/volatility-workbench.html)
+- [Africa-DFIRCTF-2021-WK02](https://archive.org/details/Africa-DFIRCTF-2021-WK02)
 
-"Error: remote-exec provisioner error" Sometimes happen. Try a re-run with this error as well. 
+## Time Notes
 
-# Memory dumps for testing
-https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
-
-https://www.osforensics.com/tools/volatility-workbench.html 
-
-https://archive.org/details/Africa-DFIRCTF-2021-WK02 
-
-
-
-## Time notes (give or take)
-ADX cluster often takes around 15 minutes setting up. 
-VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
-
-Completes most often within 30 minutes for everything.
+- ADX cluster setup: ~15 minutes
+- VM setup: ~16 seconds
+- Null resource setup: ~8 minutes
+- Total: ~24 minutes
 
 ## Screenshots
+
 ![Available data](image.png)
-
 ![PSTree](image-1.png)
-
 ![IPs to map](image-2.png)
-
 ![Maybe standard passwords are being used](image-3.png)
-
 ![Singletons](image-4.png)
 
-And much more on the way...
+## Resources
 
-<details><summary>Resources: </summary>
+<details><summary>Click to expand</summary>
 <ul>
 <li>https://github.com/hashicorp/terraform-provider-azurerm/issues/15649</li>
-<li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli </li>
+<li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli</li>
 <li>https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-managed-identity</li>
 <li>https://azure-training.com/azure-data-science/creating-the-adx-environment/creating-adx-environment-using-cli/</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli#create-an-azure-data-explorer-database</li>
@@ -322,8 +314,11 @@ And much more on the way...
 </ul>
 </details>
 
-## Notes on a few decisions
-PSTree is not being run, but produced in workbook instead.
+## Notes on Decisions
 
-## Questions for the community:
-Is there a downside running an image with known malicious files within it - is there a secure way to do so? Within a separate subscription? And how do we sandbox this environment enough to make it safe to scan and analyze anything either via Volatility completely or by SSH/VNC into the machine for deeper analysis? Can we go deeper in analysis of found malicious files with dynamic/static analysis, and how should a setup like that look like?
+- PSTree is generated in the workbook instead of being run directly.
+
+## Community Questions
+
+Is there a secure way to run an image with known malicious files? How can we sandbox this environment for safe scanning and analysis? Can we perform deeper analysis of malicious files with dynamic/static analysis, and what would that setup look like?
+
