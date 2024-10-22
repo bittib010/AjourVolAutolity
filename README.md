@@ -191,6 +191,8 @@ Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
 Login and set subscription:
 ```powershell
 az login # Prompts you interactively via last opened browser and spits out all available subscriptions for your user
+# ALTERNATIVE LOGIN
+az login --use-device-code # If the above fails, try following steps from this command
 az account set --subscription "<INSERT SUBSCRIPTION ID OR NAME>"
 ```
 

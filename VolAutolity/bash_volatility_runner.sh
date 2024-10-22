@@ -9,7 +9,7 @@ BASE_OUTPUT_DIRECTORY="/mnt/memorydumps/output"
 run_os_commands() {
     local dump="$1"
     local unique_output_directory="$2"
-    local os_type="$3" # This is now passed in
+    local os_type="$3"
     local database_name="$4"
     local log_file="$unique_output_directory/command_log.txt"
 
