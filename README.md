@@ -199,17 +199,16 @@ mindmap
     ```
 
 ### Deployment Steps
-
-1. Set variables in `variable.tf` for your initials, SSH key paths, etc.
+1. Optional: Set variables in `variable.tf` for your initials, etc.
 2. Navigate to the project's root directory.
-3. Initialize and apply Terraform:
+3. Optional: Add memory dumps to `./VolAutolity/sample/` folder or upload them after setup.
+4. Initialize and apply Terraform:
     ```powershell
     terraform init
     terraform plan -var="subscription_id=your_subscription_id" -var="username=computerUsername"
     terraform apply -var="subscription_id=your_subscription_id" -var="username=computerUsername" [-auto-approve]
     ```
 
-4. Add memory dumps to `./VolAutolity/sample/` folder or upload them after setup.
 
 ### Memory Dump Naming Convention
 
