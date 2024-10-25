@@ -8,24 +8,25 @@ resource "azurerm_role_assignment" "name" {
   scope                = azurerm_storage_account.sa.id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_user_assigned_identity.mi.principal_id
+}
 
+resource "azurerm_role_assignment" "sprole" {
+  principal_id         = azuread_service_principal.aad_sp.object_id
+  role_definition_name = "Contributor"
+  scope                = azurerm_resource_group.myrg.id
 }
 
 resource "azurerm_role_assignment" "vm_role" {
-  scope                = data.azurerm_subscription.current.id
-  role_definition_name = "Contributor"
-  principal_id         = azurerm_linux_virtual_machine.linux_vm.identity[0].principal_id
-  depends_on           = [azurerm_linux_virtual_machine.linux_vm]
+  principal_id         = azuread_service_principal.aad_sp.object_id
+  role_definition_name = "Virtual Machine Contributor"
+  scope                = azurerm_linux_virtual_machine.linux_vm.id
 }
-
 
 resource "azurerm_role_assignment" "example" {
+  principal_id         = azuread_service_principal.aad_sp.object_id
+  role_definition_name = "Reader"
   scope                = azurerm_resource_group.myrg.id
-  role_definition_name = "Contributor"
-  principal_id         = data.azurerm_client_config.current.client_id
-  principal_type       = "User"
 }
-
 
 resource "azurerm_kusto_cluster_principal_assignment" "adx_vm_viewer" {
   #https://learn.microsoft.com/en-us/azure/data-explorer/kusto/access-control/role-based-access-control

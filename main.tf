@@ -42,17 +42,16 @@ resource "azuread_service_principal" "aad_sp" {
   owners                       = [data.azuread_client_config.current.object_id]
 }
 
-resource "azuread_service_principal_password" "aad_sp_pass" {
-  service_principal_id = azuread_service_principal.aad_sp.object_id
+resource "random_password" "password" {
+  length  = 16
+  special = true
 }
 
-resource "azurerm_role_assignment" "sprole" {
-  # https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
-  #scope                = azurerm_kusto_cluster.adxc.id
-  scope                = data.azurerm_subscription.current.id
-  role_definition_name = "Owner"
-  principal_id         = azurerm_linux_virtual_machine.linux_vm.identity.0.principal_id
+resource "azuread_service_principal_password" "aad_sp_pass" {
+  service_principal_id = azuread_service_principal.aad_sp.id
+  end_date             = "2099-01-01T00:00:00Z"
 }
+
 
 data "azurerm_client_config" "current" {
 }

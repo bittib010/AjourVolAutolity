@@ -14,20 +14,17 @@ data "azurerm_storage_account_sas" "sasas" {
   # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/storage_account_sas
   connection_string = azurerm_storage_account.sa.primary_connection_string
   https_only        = true
-
   resource_types {
     service   = false
     container = true
     object    = true
   }
-
   services {
     blob  = true
     queue = false
     table = false
     file  = false
   }
-
   start  = "2024-01-01"
   expiry = "2025-01-01" # maybe add as variables for limitations?
 
@@ -44,7 +41,6 @@ data "azurerm_storage_account_sas" "sasas" {
     filter  = false
   }
 }
-
 
 data "azurerm_storage_account" "data_sa" {
   name                = azurerm_storage_account.sa.name

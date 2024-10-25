@@ -66,8 +66,14 @@ resource "null_resource" "ansible_provisioning" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get -qq update >/dev/null && sudo apt-get -qq install -y ansible sshpass >/dev/null",
+      "AZ_REPO=$(lsb_release -cs)",
+      "echo \"deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main\" | sudo tee /etc/apt/sources.list.d/azure-cli.list",
+      "curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null",
+      "sudo apt-get install apt-transport-https -y",
+      "sudo apt-get update && sudo apt-get install azure-cli -y",
+      "az extension add -n kusto",
+      "az login --identity --allow-no-subscriptions",
       "ansible-playbook -v /home/${var.linux-username}/Ansible/ansible_playbook.yml",
     ]
   }
 }
-
