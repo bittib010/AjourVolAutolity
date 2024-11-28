@@ -1,0 +1,41 @@
+name: 'Terraform apply 🎉'
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'cfg/**'
+  #     - '!cfg/script/**'
+  #     - '!src/**'
+
+  workflow_dispatch:
+
+env:
+  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+
+jobs:
+  terraform-plan:
+    name: 'Terraform apply'
+    runs-on: ubuntu-latest
+    outputs:
+      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform init
+      working-directory: cfg/
+      run: terraform init
+
+    - name: Terraform plan
+      working-directory: cfg/
+      run: terraform plan -out=./tfplan
+
+    - name: Terraform apply
+      working-directory: cfg/
+      run: terraform apply -auto-approve -input=false ./tfplan
