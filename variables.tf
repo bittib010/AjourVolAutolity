@@ -70,3 +70,21 @@ locals {
   current_timestamp = timestamp()
   deletion_date     = formatdate("YYYY-MM-DD", timeadd(local.current_timestamp, format("%dh", var.deletion_days * 24)))
 }
+
+
+#######################
+# Terraform variables
+########################
+variable "subscriptionname" {
+  type = string
+}
+
+variable "subscriptionid" {
+  type = string 
+}
+
+# variable "location" {
+#   type = string
+#   default = "westeurope"
+  
+# }

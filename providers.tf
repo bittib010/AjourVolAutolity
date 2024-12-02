@@ -2,7 +2,17 @@ terraform {
   required_version = ">= 1.6.6"
   #https://github.com/hashicorp/terraform/releases
 
+  # backend "azurerm" {
+  #   resource_group_name  = "p-terra"
+  #   storage_account_name = ""
+  #   container_name       = "pterratfstate"
+  #   key                  = "terraform.tfstate"
+  #   use_azuread_auth     = true
+  # }
+
   required_providers {
+
+
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.88.0"
