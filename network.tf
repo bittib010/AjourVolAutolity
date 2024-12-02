@@ -4,6 +4,7 @@ resource "azurerm_virtual_network" "vnet" {
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
   address_space       = ["10.0.0.0/16"]
+  tags                = var.tags
 }
 
 # Create a subnet
@@ -21,6 +22,7 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = azurerm_resource_group.myrg.name
   allocation_method   = "Static"
   sku                 = "Standard" # Ensure this is set to Standard
+  tags                = var.tags
 }
 
 # Create a network interface
@@ -28,8 +30,8 @@ resource "azurerm_network_interface" "ni" {
   name                = "${var.investigator_initials}-${random_id.randomId.hex}-ni"
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
-
   ip_configuration {
+    # TODO: Change name?
     name                          = "${var.investigator_initials}-${random_id.randomId.hex}-ipconf"
     subnet_id                     = azurerm_subnet.sn.id
     private_ip_address_allocation = "Dynamic"
@@ -66,6 +68,7 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = chomp(data.http.myip.response_body)
     destination_address_prefix = "*"
   }
+  tags = var.tags
 }
 
 # Connect the security group to the network interface
