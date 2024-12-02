@@ -53,6 +53,7 @@ variable "path_to_public_key" {
   description = "The path to public key for SSH login"
   default     = "~\\.ssh\\id_rsa.pub"
 }
+
 variable "path_to_private_key" {
   type        = string
   description = "The path to private key for SSH login"

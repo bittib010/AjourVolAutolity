@@ -38,6 +38,7 @@
           - regripper
           - reglookup
           - inotify-tools
+          - dos2unix
         update_cache: yes
         state: present
       become: yes
@@ -48,78 +49,14 @@
         update_cache: yes
       become: yes 
 
-    - name: Check if Volatility directory exists
-      ansible.builtin.stat:
-        path: /opt/volatility3
-      register: volatility_dir
 
-    - name: Cloning Volatility repo
-      ansible.builtin.git:
-        repo: "https://github.com/volatilityfoundation/volatility3.git"
-        dest: /opt/volatility3
-      when: not volatility_dir.stat.exists
-      become: yes
-
-    - name: Chmod vol.py
-      shell: |
-        chmod +x /opt/volatility3/vol.py
-      become: yes
-
-    - name: Check PATH
-      shell: echo $PATH
-      register: echo_path
-      become: yes
-
-    - name: Show PATH
-      debug:
-        var: echo_path.stdout
-
-    - name: Install Volatility requirements
-      shell: |
-        export PATH=$PATH:/usr/local/bin
-        pip3 install -r /opt/volatility3/requirements.txt
-      args:
-        executable: /bin/bash
-      become: yes
-
-    - name: Install Volatility requirements DEV
-      shell: |
-        export PATH=$PATH:/usr/local/bin
-        pip3 install -r /opt/volatility3/requirements-dev.txt
-      args:
-        executable: /bin/bash
-      become: yes
-
-    - name: Create or update link file for vol.py
-      ansible.builtin.file:
-        src: /opt/volatility3/vol.py
-        dest: /usr/bin/vol.py
-        state: link
-        force: yes
-      become: yes
-
-    - name: Add all plugins
-      shell: |
-        echo "https://github.com/f-block/volatility-plugins/blob/main/README.md"
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/apisearch.py -o /opt/volatility3/volatility3/framework/plugins/windows/apisearch.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/imgmalfind.py -o /opt/volatility3/volatility3/framework/plugins/windows/imgmalfind.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pe_parser.py -o /opt/volatility3/volatility3/framework/plugins/windows/pe_parser.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pte_resolve.py -o /opt/volatility3/volatility3/framework/plugins/windows/pte_resolve.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptemalfind.py -o /opt/volatility3/volatility3/framework/plugins/windows/ptemalfind.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptenum.py -o /opt/volatility3/volatility3/framework/plugins/windows/ptenum.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/simple_pteenum.py -o /opt/volatility3/volatility3/framework/plugins/windows/simple_pteenum.py
-        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/swap_enum.py -o /opt/volatility3/volatility3/framework/plugins/windows/swap_enum.py
-
-        echo "https://github.com/Immersive-Labs-Sec/volatility_plugins/blob/main/README.md"
-        curl https://raw.githubusercontent.com/Immersive-Labs-Sec/volatility_plugins/main/cobaltstrike/cobaltstrike.py -o /opt/volatility3/volatility3/framework/plugins/windows/cobaltstrike.py
-      become: yes
-      ignore_errors: yes
 
     - name: Install pip packages
       ansible.builtin.pip:
         name: 
           - pyyaml
           - pandas
+          - volatility3
           - azure-kusto-data
           - azure-kusto-ingest
           - azure-identity
@@ -128,8 +65,24 @@
           - azure-mgmt-resource
           - azure-mgmt-eventgrid
           - azure-storage-blob
-
       become: yes
+
+    - name: Adding plugins
+      shell: |
+        echo "https://github.com/f-block/volatility-plugins/blob/main/README.md"
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/apisearch.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/apisearch.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/imgmalfind.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/imgmalfind.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pe_parser.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/pe_parser.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/pte_resolve.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/pte_resolve.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptemalfind.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/ptemalfind.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/ptenum.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/ptenum.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/simple_pteenum.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/simple_pteenum.py
+        curl https://raw.githubusercontent.com/f-block/volatility-plugins/main/swap_enum.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/swap_enum.py
+
+        echo "https://github.com/Immersive-Labs-Sec/volatility_plugins/blob/main/README.md"
+        curl https://raw.githubusercontent.com/Immersive-Labs-Sec/volatility_plugins/main/cobaltstrike/cobaltstrike.py -o /usr/local/lib/python3.10/dist-packages/volatility3/framework/plugins/windows/cobaltstrike.py
+      become: yes
+      ignore_errors: yes
 
     #####################
     # Blobfuse section
@@ -228,41 +181,6 @@
       become: yes
       ignore_errors: yes
 
-    # - name: Reboot vm
-    #   reboot:
-
-    # Volatility runner section
-    # - name: Ensure the target directory exists
-    #   ansible.builtin.file:
-    #     path: "/opt/volatility3/volatility3/symbols"
-    #     state: directory
-    #     mode: '0755'
-
-    # Symbols would only be needed if you are aiming for no internet environment
-    # - name: Download Windows symbols
-    #   ansible.builtin.get_url:
-    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip
-    #     dest: "/opt/volatility3/volatility3/symbols/windows.zip"
-    #     mode: '0644'
-    #   become: yes
-    #   ignore_errors: yes
-
-    # - name: Download Mac symbols
-    #   ansible.builtin.get_url:
-    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip
-    #     dest: "/opt/volatility3/volatility3/symbols/mac.zip"
-    #     mode: '0644'
-    #   become: yes
-    #   ignore_errors: yes
-
-    # - name: Download Linux symbols
-    #   ansible.builtin.get_url:
-    #     url: https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip
-    #     dest: "/opt/volatility3/volatility3/symbols/linux.zip"
-    #     mode: '0644'
-    #   become: yes
-    #   ignore_errors: yes
-
     - name: Change mode of VolatilityRunner script
       ansible.builtin.shell: chmod +x {{ project_path }}/bash_volatility_runner.sh
       become: yes
@@ -280,6 +198,11 @@
 
     - name: Change mode of main.sh
       ansible.builtin.shell: chmod +x {{ project_path }}/main.sh
+      become: yes
+      ignore_errors: yes
+
+    - name: Dos to Unix line endings
+      ansible.builtin.shell: dos2unix {{ project_path }}/*.sh
       become: yes
       ignore_errors: yes
 
