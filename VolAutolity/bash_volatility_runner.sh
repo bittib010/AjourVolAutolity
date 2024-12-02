@@ -330,4 +330,3 @@ process_new_file() {
     run_os_commands "$dump_path" "$unique_output_directory" "$os_type" "$dump_name_no_ext"
 }
 
-

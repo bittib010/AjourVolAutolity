@@ -1,26 +1,27 @@
-targetScope = 'resourceGroup'
+targetScope = 'subscription'
 
+param location string
+param resourceGroupName string
 param investigatorInitials string
-param location string = resourceGroup().location
 param sshPublicKey string
-param clientId string
-param clientSecret string
-param vnetSubnetID string
+param dnsPrefix string
 
-resource randomId 'randomId' = {
-  count = 6
-  byteLength = 4
+var uniqueSuffix = toLower(uniqueString(subscription().id, resourceGroupName))
+var storageAccountName = '${investigatorInitials}sa${uniqueSuffix}'
+var topicName = '${investigatorInitials}eg${uniqueSuffix}'
+var aksClusterName = '${investigatorInitials}aks${uniqueSuffix}'
+var dataFactoryName = '${investigatorInitials}df${uniqueSuffix}'
+var adxClusterName = '${investigatorInitials}adx${uniqueSuffix}'
+var adxDatabaseName = '${investigatorInitials}db${uniqueSuffix}'
+
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: resourceGroupName
+  location: location
 }
-
-var storageAccountName = '${investigatorInitials}${randomId[0].hex}sa'
-var topicName = '${investigatorInitials}${randomId[1].hex}topic'
-var aksClusterName = '${investigatorInitials}${randomId[2].hex}aks'
-var dataFactoryName = '${investigatorInitials}${randomId[3].hex}df'
-var adxClusterName = '${investigatorInitials}${randomId[4].hex}adx'
-var adxDatabaseName = '${investigatorInitials}${randomId[5].hex}db'
 
 module storage 'storageAccount.bicep' = {
   name: 'storageDeployment'
+  scope: resourceGroup
   params: {
     storageAccountName: storageAccountName
     location: location
@@ -29,6 +30,7 @@ module storage 'storageAccount.bicep' = {
 
 module eventGrid 'eventGrid.bicep' = {
   name: 'eventGridDeployment'
+  scope: resourceGroup
   params: {
     topicName: topicName
     location: location
@@ -37,18 +39,25 @@ module eventGrid 'eventGrid.bicep' = {
 
 module aks 'azureKubernetesService.bicep' = {
   name: 'aksDeployment'
+  scope: resourceGroup
   params: {
     aksClusterName: aksClusterName
     location: location
+    dnsPrefix: dnsPrefix
+    osDiskSizeGB: 30
+    clientId: 'clientId'
+    clientSecret: 'clientSecret'
+    nodeCount: 3
+    skuName: 'Standard_DS2_v2'
+    adminUsername: 'azureuser'
     sshPublicKey: sshPublicKey
-    clientId: clientId
-    clientSecret: clientSecret
-    vnetSubnetID: vnetSubnetID
+    kubernetesVersion: '1.30.4'
   }
 }
 
 module dataFactory 'dataFactory.bicep' = {
   name: 'dataFactoryDeployment'
+  scope: resourceGroup
   params: {
     dataFactoryName: dataFactoryName
     location: location
@@ -57,6 +66,7 @@ module dataFactory 'dataFactory.bicep' = {
 
 module adx 'adx.bicep' = {
   name: 'adxDeployment'
+  scope: resourceGroup
   params: {
     adxClusterName: adxClusterName
     adxDatabaseName: adxDatabaseName
@@ -66,6 +76,7 @@ module adx 'adx.bicep' = {
 
 module logicApps 'logicapps.bicep' = {
   name: 'logicAppsDeployment'
+  scope: resourceGroup
   params: {
     location: location
   }
