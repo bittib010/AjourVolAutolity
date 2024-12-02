@@ -5,7 +5,7 @@ terraform {
   # backend "azurerm" {
   #   resource_group_name  = "p-terra"
   #   storage_account_name = ""
-  #   container_name       = "pterratfstate"
+  #   container_name       = "p-terra"
   #   key                  = "terraform.tfstate"
   #   use_azuread_auth     = true
   # }
