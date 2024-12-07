@@ -84,6 +84,15 @@ variable "subscriptionid" {
   type = string 
 }
 
+variable "tags" {
+  description = "Tags to be applied to resources."
+  type        = map(string)
+  default     = {
+    environment = "dev"
+    project     = "AzVolAutolity"
+  }
+}
+
 # variable "location" {
 #   type = string
 #   default = "westeurope"

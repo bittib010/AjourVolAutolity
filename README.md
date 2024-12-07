@@ -12,7 +12,6 @@ This is set up in such a way that allows us to upload as many dumps as we need t
 
 > [!NOTE]  
 > This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Currently limited to focus only on Windows.
-> To keep this most safe, you should consider abiding to Azure Sandbox Landingzones which includes separate subscription, resource group (everything in this project is already a separate resource group) and more.
 
 ### Workflow 
 The analysor spins up the terraform setup, sends the uploading links/commands to the person acquiring the image(s), who then uploads. The analysor waits until ingestion has been made and starts actively querying the data. Hands-off from upload to querying.
@@ -310,5 +309,175 @@ And much more on the way...
 ## Notes on a few decisions
 PSTree is not being run, but produced in workbook instead.
 
-## Questions for the community:
-Is there a downside running an image with known malicious files within it - is there a secure way to do so? Within a separate subscription? And how do we sandbox this environment enough to make it safe to scan and analyze anything either via Volatility completely or by SSH/VNC into the machine for deeper analysis? Can we go deeper in analysis of found malicious files with dynamic/static analysis, and how should a setup like that look like?
+Using Terraform as of current version. Basically relates to my own knowledge/limitation (or lack of). Planning on updating to add Bicep, and maybe even running in containers for reducing cost.
+
+Tablenaming convention used is set to be:
+- Remove spaces
+- Remove Parentheses
+
+
+# Workbook additions/considerations
+- Windows 7 = Taskhost.exe, Windows 8 = Taskhostex.exe, Windows 10 = Taskhostw.exe
+- #Get enabled privileges of some processes
+    python3 vol.py -f file.dmp windows.privileges.Privs [--pid <pid>]
+    #Get all processes with interesting privileges
+    python3 vol.py -f file.dmp windows.privileges.Privs | grep "SeImpersonatePrivilege\|SeAssignPrimaryPrivilege\|SeTcbPrivilege\|SeBackupPrivilege\|SeRestorePrivilege\|SeCreateTokenPrivilege\|SeLoadDriverPrivilege\|SeTakeOwnershipPrivilege\|SeDebugPrivilege
+    pass
+- Similar sounding process names
+- Decrypt base 64 strings CompromisedSystemMem.vmem | grep -E '[A-Za-z0-9+/]{4}*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)' | grep -vE '^.{1,40}$' |  grep -E '^[A-Za-z0-9+/]+={0,2}$' | base64 -d | less
+- Strings of interest list
+- Recently changed Registries
+- OTX and virustotal lookup
+
+# Modules explanations
+
+## General
+### banners.Banners
+### configwriter.ConfigWriter
+### frameworkinfo.FrameworkInfo
+### isfinfo.IsfInfo
+### layerwriter.LayerWriter
+
+## Linux
+### linux.bash.Bash
+### linux.capabilities.Capabilities
+### linux.check_afinfo.Check_afinfo
+### linux.check_creds.Check_creds
+### linux.check_idt.Check_idt
+### linux.check_modules.Check_modules
+### linux.check_syscall.Check_syscall
+### linux.elfs.Elfs
+### linux.envars.Envars
+### linux.iomem.IOMem
+### linux.keyboard_notifiers.Keyboard_notifiers
+### linux.kmsg.Kmsg
+### linux.library_list.LibraryList
+### linux.lsmod.Lsmod
+### linux.lsof.Lsof
+### linux.malfind.Malfind
+### linux.mountinfo.MountInfo
+### linux.netfilter.Netfilter
+### linux.proc.Maps
+### linux.psaux.PsAux
+### linux.pslist.PsList
+### linux.psscan.PsScan
+### linux.pstree.PsTree
+### linux.sockstat.Sockstat
+### linux.tty_check.tty_check
+
+## Mac
+### mac.bash.Bash
+### mac.check_syscall.Check_syscall
+### mac.check_sysctl.Check_sysctl
+### mac.check_trap_table.Check_trap_table
+### mac.dmesg.Dmesg
+### mac.ifconfig.Ifconfig
+### mac.kauth_listeners.Kauth_listeners
+### mac.kauth_scopes.Kauth_scopes
+### mac.kevents.Kevents
+### mac.list_files.List_Files
+### mac.lsmod.Lsmod
+### mac.lsof.Lsof
+### mac.malfind.Malfind
+### mac.mount.Mount
+### mac.netstat.Netstat
+### mac.proc_maps.Maps
+### mac.psaux.Psaux
+### mac.pslist.PsList
+### mac.pstree.PsTree
+### mac.socket_filters.Socket_filters
+### mac.timers.Timers
+### mac.trustedbsd.Trustedbsd
+### mac.vfsevents.VFSevents
+
+## WHAT?
+### timeliner.Timeliner
+### vmscan.Vmscan
+
+## Windows
+### windows.bigpools.BigPools
+Description: The windows.bigpools.BigPools module is used to analyze and extract information about large memory pools in the Windows operating system. Memory pools are areas of memory used by the operating system to manage dynamic memory allocation for various system components and drivers.
+
+**What is a memory pool?**
+>A memory pool is a block of memory that is reserved for dynamic memory allocation. In the context of operating systems like Windows, memory pools are used to manage memory more efficiently by pre-allocating a large block of memory and then dividing it into smaller chunks as needed. This approach helps reduce fragmentation and the overhead associated with frequent memory allocation and deallocation. Memory pools are particularly useful for managing memory for system components and drivers that require frequent and dynamic memory allocation. By using memory pools, the operating system can ensure that memory is allocated and freed quickly, which can improve overall system performance and stability.
+
+Usage:
+
+Memory Analysis: This module helps in identifying and analyzing large memory pools, which can be useful for detecting memory leaks, understanding memory usage patterns, and troubleshooting performance issues.
+Forensics: In forensic investigations, analyzing big pools can help identify suspicious memory usage by malware or other unauthorized processes.
+Example:
+```bash
+vol -f dump.dd --log ./Volatility.log -r csv windows.bigpools > output.csv
+```
+
+### windows.callbacks.Callbacks
+### windows.cmdline.CmdLine
+### windows.crashinfo.Crashinfo
+### windows.devicetree.DeviceTree
+### windows.dlllist.DllList
+### windows.driverirp.DriverIrp
+### windows.drivermodule.DriverModule
+### windows.driverscan.DriverScan
+### windows.dumpfiles.DumpFiles
+### windows.envars.Envars
+### windows.filescan.FileScan
+### windows.getservicesids.GetServiceSIDs
+### windows.getsids.GetSIDs
+### windows.handles.Handles
+### windows.hollowprocesses.HollowProcesses
+### windows.iat.IAT
+### windows.info.Info
+### windows.joblinks.JobLinks
+### windows.kpcrs.KPCRs
+### windows.ldrmodules.LdrModules
+### windows.malfind.Malfind
+### windows.mbrscan.MBRScan
+### windows.memmap.Memmap
+### windows.modscan.ModScan
+### windows.modules.Modules
+### windows.mutantscan.MutantScan
+### windows.netscan.NetScan
+### windows.netstat.NetStat
+### windows.pedump.PEDump
+### windows.poolscanner.PoolScanner
+### windows.privileges.Privs
+### windows.processghosting.ProcessGhosting
+### windows.pslist.PsList
+PSScan - look at unallocated space. Might show processes that WERE running or processes that WERE running but now have been unlinked from the W-Linked list.
+It scans the whole image.
+
+
+```mermaid
+mindmap
+    Run command
+        Singletons
+        Boot start time anomaly
+        Parent/child relations
+```
+
+### windows.psscan.PsScan
+### windows.pstree.PsTree
+### windows.psxview.PsXView
+### windows.registry.certificates.Certificates
+### windows.registry.getcellroutine.GetCellRoutine
+### windows.registry.hivelist.HiveList
+### windows.registry.hivescan.HiveScan
+### windows.registry.printkey.PrintKey
+### windows.registry.userassist.UserAssist
+### windows.sessions.Sessions
+### windows.shimcachemem.ShimcacheMem
+### windows.skeleton_key_check.Skeleton_Key_Check
+### windows.ssdt.SSDT
+### windows.statistics.Statistics
+### windows.strings.Strings
+### windows.suspicious_threads.SuspiciousThreads
+### windows.symlinkscan.SymlinkScan
+### windows.thrdscan.ThrdScan
+### windows.threads.Threads
+### windows.timers.Timers
+### windows.truecrypt.Passphrase
+### windows.unloadedmodules.UnloadedModules
+### windows.vadinfo.VadInfo
+### windows.vadwalk.VadWalk
+### windows.verinfo.VerInfo
+### windows.virtmap.VirtMap
