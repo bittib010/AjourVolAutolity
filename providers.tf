@@ -2,13 +2,13 @@ terraform {
   required_version = ">= 1.6.6"
   #https://github.com/hashicorp/terraform/releases
 
-  # backend "azurerm" {
-  #   resource_group_name  = "p-terra"
-  #   storage_account_name = ""
-  #   container_name       = "p-terra"
-  #   key                  = "terraform.tfstate"
-  #   use_azuread_auth     = true
-  # }
+  backend "azurerm" {
+    resource_group_name  = "vola-terraform"
+    storage_account_name = "volatfstatezwrp76"
+    container_name       = "p-terra"
+    key                  = "terraform.tfstate"
+    use_azuread_auth     = true
+  }
 
   required_providers {
 

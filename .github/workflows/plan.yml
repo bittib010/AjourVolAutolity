@@ -26,8 +26,8 @@ jobs:
     - uses: hashicorp/setup-terraform@v3
 
     - run: terraform init
-      working-directory: cfg/
+      working-directory: /
 
     - name: Terraform plan
-      working-directory: cfg/
+      working-directory: /
       run: terraform plan -out=./tfplan
