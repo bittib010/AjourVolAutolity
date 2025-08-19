@@ -96,7 +96,19 @@ run_os_commands() {
         crashinfo (NotCreatedYet:string),
         iat (PID:int32,Name:string,Library:string,Bound:string,Function:string,Address:string),
         cobaltstrike (PID:int32,ProcessPort:int32,Sleep:string,Jitter:string,Server:string,POST_PATH:string,x86Install_Path:string,x64Install_Path:string,Pipe:string,LicenseID:string),
-        clamscan (File:string,Result:string)
+        clamscan (File:string,Result:string),
+        vmscan (TreeDepth:int32,Architecture:string,VMCSPhysicalOffset:string,EPT:string,GuestCR3:string),
+        hollowprocesses (TreeDepth:int32,PID:int32,Process:string,Notes:string),
+        kpcrs (TreeDepth:int32,Offset:string,PRCBOffset:string),
+        processghosting (TreeDepth:int32,PID:int32,Process:string,FILE_OBJECT:string,DeletePending:string,Pathd:string),
+        psxview (TreeDepth:int32,Offset:string,Name:string,PID:int32,pslist:string,psscan:string,thrdscan:string,csrss:string,ExitTime:string),
+        registry_getcellroutine (TreeDepth:int32,HiveOffset:string,HiveName:string,GetCellRoutineModule:string,GetCellRoutineHandler:string),
+        shimcachemem (TreeDepth:int32,Order:string,LastModified:string,LastUpdate:string,ExecFlag:string,FileSize:string,FilePath:string),
+        suspicious_threads (TreeDepth:int32,Process:string,PID:int32,TID:int32,Context:string,Address:string,VADPath:string,Note:string),
+        threads (TreeDepth:int32,Offset:string,PID:int32,TID:int32,StartAddress:string,CreateTime:string,ExitTime:string),
+        timers (TreeDepth:int32,Offset:string,DueTime:string,Periodms:string,Signaled:string,Routine:string,Module:string,Symbol:string),
+        unloadedmodules (TreeDepth:int32,Name:string,StartAddress:string,EndAddress:string,Time:string),
+        truecrypt (TreeDepth:int32,Offset:string,Length:string,PasswordPDB:string)
         \""
 
         "monitor_output_directory "$unique_output_directory" "$database_name" &"
@@ -118,6 +130,7 @@ run_os_commands() {
 
         "mkdir $unique_output_directory/dumpfiles"
         "mkdir $unique_output_directory/clamscan_tmp"
+        # Run clamscan only if dumpfiles plugin is successful (by using &&)
         "vol -f $dump --log $unique_output_directory/Volatility.log -q  -o $unique_output_directory/dumpfiles windows.dumpfiles.DumpFiles && clamscan $unique_output_directory/dumpfiles/* > $unique_output_directory/clamscan_tmp/clamscan.txt && convert_clamscan_output_to_csv $unique_output_directory/clamscan_tmp/clamscan.txt $unique_output_directory/clamscan.csv &"
         # add a "file" check and make it csv
         
@@ -146,6 +159,8 @@ run_os_commands() {
         "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pslist.PsList > $unique_output_directory/pslist.csv &"
 
         "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psscan.PsScan > $unique_output_directory/psscan.csv && head -n 1 \"$unique_output_directory/psscan.csv\" > \"$unique_output_directory/taskhost_triage.csv\" && grep -E -i \"taskhost\" $unique_output_directory/pslist.csv >> $unique_output_directory/taskhost_triage.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.psxview.PsXView > $unique_output_directory/psxview.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.processghosting.ProcessGhosting > $unique_output_directory/processghosting.csv &"
 
         "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.certificates.Certificates > $unique_output_directory/registry.csv &"
         "mkdir $unique_output_directory/regdumps/"
@@ -175,6 +190,42 @@ run_os_commands() {
         # PLUGINS
         "vol -f $dump --log  $unique_output_directory/Volatility.log -q -r csv windows.cobaltstrike.CobaltStrike > $unique_output_directory/cobaltstrike.csv &"
 
+        # TODO: CHECK THESE COMMANDS in a later run!
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv vmscan.Vmscan > $unique_output_directory/vmscan.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.hollowprocesses.HollowProcesses > $unique_output_directory/hollowprocesses.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.kpcrs.KPCRs > $unique_output_directory/kpcrs.csv &"
+        
+        # windows.pedump
+        # usage: volatility windows.pedump.PEDump [-h] [--pid [PID ...]] --base BASE [--kernel-module]
+        # following arguments are required: --base
+        # "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.pedump.PEDump > $unique_output_directory/pedump.csv &"
+        
+        # windows.processghosting
+        # TreeDepth,PID,Process,FILE_OBJECT,DeletePending,Pathd
+        # volatility3.plugins.windows.processghosting: This plugin only supports Windows 10 builds when the ImageFilePointer member of _EPROCESS is present
+        
+        
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.registry.getcellroutine.GetCellRoutine > $unique_output_directory/getcellroutine.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.shimcachemem.ShimcacheMem > $unique_output_directory/shimcachemem.csv &"
+        # Bug added for this typo: Supsi TODO: Check if this is fixed in the latest version
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.suspicious_threads.SupsiciousThreads > $unique_output_directory/suspicious_threads.csv &"
+        # windows.svcdiff
+        # Does not mention framework version, but states a version of 1.0.0
+        # Is this removed?
+        # "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.svcdiff.SvcDiff > $unique_output_directory/svcdiff.csv &"
+        # windows.svclist
+        # Requires Framework version 2.4.0
+        # Is this removed?
+        #"vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.svclist.SvcList > $unique_output_directory/svclist.csv &"
+
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.threads.Threads > $unique_output_directory/threads.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.timers.Timers > $unique_output_directory/timers.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.unloadedmodules.UnloadedModules > $unique_output_directory/unloadedmodules.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.iat.IAT > $unique_output_directory/iat.csv &"
+        "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.truecrypt.Passphrase > $unique_output_directory/truecrypt.csv &"
+        # windows.mftscan.ads
+        # Seem to be required to have Framework version 2.0.0
+        # "vol -f $dump --log $unique_output_directory/Volatility.log -q -r csv windows.mftscan.ads.MFTScanAds > $unique_output_directory/mftscan_ads.csv &"
         )
         elif [[ "$os_type" == "linux" ]]; then
             commands+=("echo 'Linux-specific command'")
