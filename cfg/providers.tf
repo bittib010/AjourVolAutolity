@@ -3,7 +3,7 @@ terraform {
   #https://github.com/hashicorp/terraform/releases
 
   backend "azurerm" {
-    resource_group_name  = "p-terra"
+    resource_group_name  = "vola-terraform"
     storage_account_name = "volatfstatezwrp76"
     container_name       = "p-terra"
     key                  = "terraform.tfstate"
