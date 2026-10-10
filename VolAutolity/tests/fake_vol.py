@@ -1,6 +1,7 @@
 """Stand-in for the `vol` CLI used by the pipeline tests. Mimics the options VolatilityCli passes."""
 
 import argparse
+import csv
 import json
 import sys
 from pathlib import Path
@@ -30,11 +31,13 @@ if plugin == "windows.info.Info":
     print("0,Kernel Base,0xf80000000000")
     print("0,SystemTime,2024-02-13 10:11:12.000000 UTC")
 elif plugin == "windows.registry.hivelist.HiveList":
-    print("TreeDepth,Offset,FileFullPath,File output")
-    print("0,0x87c104c8,,Disabled")
-    print("0,0x87c1a248,\\REGISTRY\\MACHINE\\SYSTEM,Disabled")
-    print("0,0x8b0c2008,\\??\\C:\\Users\\a\\ntuser.dat,Disabled")
-    print("0,0x8b0c3008,\\??\\C:\\Users\\b\\ntuser.dat,Disabled")
+    # Same writer settings as Volatility's CSV renderer, which doubles backslashes.
+    writer = csv.writer(sys.stdout, lineterminator="\n", escapechar="\\")
+    writer.writerow(["TreeDepth", "Offset", "FileFullPath", "File output"])
+    writer.writerow(["0", "0x87c104c8", "", "Disabled"])
+    writer.writerow(["0", "0x87c1a248", r"\REGISTRY\MACHINE\SYSTEM", "Disabled"])
+    writer.writerow(["0", "0x8b0c2008", r"\??\C:\Users\a\ntuser.dat", "Disabled"])
+    writer.writerow(["0", "0x8b0c3008", r"\??\C:\Users\b\ntuser.dat", "Disabled"])
 elif plugin == "windows.registry.printkey.PrintKey":
     offset = rest[rest.index("--offset") + 1] if "--offset" in rest else "all"
     print("TreeDepth,Last Write Time,Hive Offset,Type,Key,Name,Data,Volatile")

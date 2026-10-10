@@ -107,13 +107,13 @@ class CsvNormalizer:
 
     def normalize(self, source: Path, table: str, dest_dir: Path) -> NormalizedCsv | None:
         """Returns None when the file has no header (plugin produced nothing usable)."""
-        header_index, header = self._find_header(source)
+        header_index, header, escaped = self._find_header(source)
         if header is None:
             return None
 
         names = Identifiers.columns(header)
         inferrers = [_ColumnTypeInferrer() for _ in names]
-        for row in self._rows(source, header_index):
+        for row in self._rows(source, header_index, escaped):
             for inferrer, value in zip(inferrers, row):
                 inferrer.observe(value)
         columns = [Column(name, inferrer.result) for name, inferrer in zip(names, inferrers)]
@@ -122,7 +122,7 @@ class CsvNormalizer:
         dest_dir.mkdir(parents=True, exist_ok=True)
         writer = _ChunkWriter(dest_dir, table, self.chunk_bytes)
         try:
-            for row in self._rows(source, header_index):
+            for row in self._rows(source, header_index, escaped):
                 writer.write(self._convert(row, columns))
                 result.rows += 1
         finally:
@@ -131,8 +131,12 @@ class CsvNormalizer:
         result.raw_bytes = writer.total_bytes
         return result
 
-    def _find_header(self, source: Path) -> tuple[int, list[str] | None]:
-        """Volatility CSV always starts with `TreeDepth`; skip any banner lines that precede it."""
+    def _find_header(self, source: Path) -> tuple[int, list[str] | None, bool]:
+        """Volatility CSV always starts with `TreeDepth`; skip any banner lines that precede it.
+
+        The third value says whether this is Volatility output: its CSV writer escapes backslashes
+        (`C:\\\\Windows`), so those files are read back with the same escape character.
+        """
         with source.open("r", encoding="utf-8", errors="replace", newline="") as handle:
             reader = csv.reader(handle)
             first: tuple[int, list[str]] | None = None
@@ -144,13 +148,13 @@ class CsvNormalizer:
                 if first is None:
                     first = (index, row)
                 if row[0].strip() == "TreeDepth":
-                    return index, row
-        return first if first else (0, None)
+                    return index, row, True
+        return (*first, False) if first else (0, None, False)
 
     @staticmethod
-    def _rows(source: Path, header_index: int):
+    def _rows(source: Path, header_index: int, escaped: bool):
         with source.open("r", encoding="utf-8", errors="replace", newline="") as handle:
-            reader = csv.reader(handle)
+            reader = csv.reader(handle, escapechar="\\" if escaped else None)
             for index, row in enumerate(reader):
                 if index <= header_index or not row:
                     continue

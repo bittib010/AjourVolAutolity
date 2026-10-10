@@ -1,3 +1,4 @@
+import csv
 import gzip
 import tempfile
 import threading
@@ -71,6 +72,15 @@ class CsvNormalizerTests(unittest.TestCase):
             "0,4,0x8413a920,2023-04-24T14:41:32.000000Z,1.5,System",
             "0,,0x8adb0330,2023-04-24T14:41:33.000000Z,2,N/A",  # N/A kept in string columns only
         ])
+
+    def test_volatility_backslash_escaping_is_decoded(self):
+        # Volatility's csv.DictWriter(escapechar="\\") doubles backslashes; our own CSVs don't escape.
+        result = self._normalize('TreeDepth,Path,Note\n0,\\\\Device\\\\HarddiskVolume2\\\\Windows,"say ""hi"""\n')
+        with gzip.open(result.chunks[0], "rt", encoding="utf-8") as handle:
+            row = next(csv.reader(handle))
+        self.assertEqual(row, ["0", "\\Device\\HarddiskVolume2\\Windows", 'say "hi"'])
+        plain = self._normalize("File,Result\nC:\\x\\y,OK\n")
+        self.assertEqual(self._rows(plain), ["C:\\x\\y,OK"])
 
     def test_values_beyond_int64_stay_strings(self):
         result = self._normalize("TreeDepth,Big\n0,18446744073709551615\n")
