@@ -45,6 +45,8 @@ resource "azurerm_network_security_group" "nsg" {
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
 
+  # SSH is only for troubleshooting; provisioning no longer needs it (cloud-init does the setup).
+  # The old HTTP-In (80) rule was dropped: nothing on the VM listens on port 80.
   security_rule {
     name                       = "SSH-In"
     priority                   = 100
@@ -53,19 +55,7 @@ resource "azurerm_network_security_group" "nsg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = chomp(data.http.myip.response_body)
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "HTTP-In"
-    priority                   = 101
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "80"
-    source_address_prefix      = chomp(data.http.myip.response_body)
+    source_address_prefix      = local.operator_ip
     destination_address_prefix = "*"
   }
   tags = var.tags

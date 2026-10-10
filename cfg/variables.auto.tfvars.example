@@ -1,0 +1,11 @@
+################################################
+# Copy to variables.auto.tfvars (git-ignored) and fill in.
+################################################
+subscriptionid   = "00000000-0000-0000-0000-000000000000"
+subscriptionname = "my-subscription"
+
+# From `tofu output backend_config` in ./bootstrap
+state_resource_group_name  = "my-subscription-terraform"
+state_storage_account_name = "mysubscriptiontfstatexxxxxx"
+
+investigator_initials = "abc"
