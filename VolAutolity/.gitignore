@@ -1,3 +1,5 @@
-__pycache__
+__pycache__/
+# Memory images to upload on `tofu apply` (never commit evidence)
 sample/*
-adx_vars_bash.sh
+# Local `python -m volautolity process` output
+work/
