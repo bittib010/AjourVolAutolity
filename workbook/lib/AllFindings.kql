@@ -1,0 +1,7 @@
+// Every detector, one schema: PID, Process, Severity, Category, Finding, Detail (+ SeverityRank).
+let AllFindings = () {
+    union Det_ProcessBaseline(), Det_Masquerade(), Det_ProcessLocation(), Det_ParentChild(), Det_Identity(), Det_Commands(),
+          Det_Injection(), Det_Credentials(), Det_Network(), Det_Persistence(), Det_Posture(), Det_Services(), Det_Kernel(),
+          Det_Files(), Det_Misc()
+    | extend SeverityRank = SevRank(Severity)
+};

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "PivotTime",
+    "label": "Pivot time (UTC)",
+    "type": 1,
+    "description": "Centre of the window, e.g. 2025-03-06 17:45:00. Empty = acquisition time.",
+    "value": "",
+    "testValue": "2025-03-06 17:45:00"
+  },
+  {
+    "name": "WindowMinutes",
+    "label": "Window (+/- minutes)",
+    "type": 2,
+    "isRequired": true,
+    "jsonData": "[{\"value\":\"15\",\"label\":\"15 minutes\"},{\"value\":\"60\",\"label\":\"1 hour\",\"selected\":true},{\"value\":\"240\",\"label\":\"4 hours\"},{\"value\":\"1440\",\"label\":\"1 day\"},{\"value\":\"10080\",\"label\":\"7 days\"}]",
+    "typeSettings": {"additionalResourceOptions": [], "showDefault": false},
+    "value": "60",
+    "testValue": "60"
+  }
+]

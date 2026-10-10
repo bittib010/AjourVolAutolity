@@ -1,0 +1,2 @@
+// Acquisition time as recorded by the kernel (windows.info SystemTime).
+let AcquiredAt = toscalar(info | where Variable == "SystemTime" | project todatetime(Value) | take 1);

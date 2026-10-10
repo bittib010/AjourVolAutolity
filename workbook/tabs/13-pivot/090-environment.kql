@@ -1,0 +1,5 @@
+// Title: Environment variables
+envars
+| where PID == {PID}
+| project Variable, Value
+| order by Variable asc

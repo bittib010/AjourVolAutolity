@@ -1,0 +1,10 @@
+// Title: Weakened security settings
+// Severity: High
+// Why: WDigest UseLogonCredential=1 puts cleartext passwords in lsass; RunAsPPL=0 / LsaCfgFlags=0 remove LSA protection; VulnerableDriverBlocklistEnable=0 prepares BYOVD; Defender Disable* switches and broad exclusions (drive roots, Temp, script extensions, shells) blind AV; disabled security services, event channels, ETW autologgers and PowerShell logging remove telemetry; EnableLUA=0 and LocalAccountTokenFilterPolicy=1 enable remote local-admin use (PsExec, pass-the-hash); RDP NLA off / non-standard port / shadowing without consent; firewall profiles off; AMSI off for WSH.
+// FalsePositives: Defender switched off because a third-party AV is installed (clients do this automatically); SQL/Exchange/backup exclusions; GPO-managed RDP. Tamper protection ignores some of these values on Windows 10 1903+ - treat presence as an attempt.
+// MITRE: T1562.001, T1562.002, T1562.004, T1562.006, T1112, T1548.002, T1021.001
+// Refs: https://support.microsoft.com/en-us/topic/microsoft-security-advisory-update-to-improve-credentials-protection-and-management-may-13-2014-93434251-04ac-b7f3-52aa-9f951c14b649 ; https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection ; https://github.com/SigmaHQ/sigma/tree/master/rules/windows/registry/registry_set
+Det_Posture()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

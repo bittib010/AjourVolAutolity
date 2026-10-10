@@ -1,0 +1,13 @@
+// Title: Hijackable environment variables
+// Why: COMSPEC pointing somewhere other than cmd.exe, a redirected windir/SystemRoot, user-writable folders early in PATH, and .NET profiler variables (COR_PROFILER*) are used to hijack execution or load DLLs into every .NET process.
+// FalsePositives: APM agents (New Relic, Dynatrace, AppDynamics) set COR_PROFILER on servers; developer tools prepend PATH.
+// MITRE: T1574.007, T1574.012
+envars
+| extend V = tolower(Value)
+| where (Variable =~ "ComSpec" and V !endswith @"\system32\cmd.exe")
+     or (Variable in~ ("windir", "SystemRoot") and V !in (@"c:\windows", @"c:\windows\"))
+     or (Variable =~ "Path" and tostring(split(V, ";")[0]) matches regex @"(\\users\\|\\temp|\\programdata)")
+     or Variable matches regex @"(?i)^(COR|CORECLR)_(ENABLE_PROFILING|PROFILER|PROFILER_PATH(_32|_64)?)$"
+     or Variable =~ "__PSLockdownPolicy"
+| summarize PIDs = make_set(PID, 20), Processes = make_set(Process, 20) by Variable, Value
+| order by Variable asc

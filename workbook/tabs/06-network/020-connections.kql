@@ -1,0 +1,8 @@
+// Title: All connections and listeners
+// Size: large
+// Why: Every socket with owner, image path and command line, inferred direction and whether the peer is on the internet. "Sources" shows netstat (live) and/or netscan (pool scan).
+let procs = Procs() | where InPslist | summarize arg_max(CreateTime, ImagePath, CommandLine) by PID;
+NetConns()
+| lookup kind=leftouter procs on PID
+| project Created, Direction, Proto, LocalAddr, LocalPort, ForeignAddr, ForeignPort, State, ForeignPublic, PID, Owner, ImagePath, CommandLine, Sources
+| order by ForeignPublic desc, Direction asc, Owner asc

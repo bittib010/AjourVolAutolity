@@ -1,0 +1,23 @@
+// netscan (pool scan: also freed/historic objects) + netstat (live tables), de-duplicated, with the source(s),
+// destination class and an inferred direction. Owner names are truncated EPROCESS names.
+let NetConns = () {
+    let wellKnown = dynamic([21, 22, 23, 25, 53, 80, 88, 135, 139, 389, 443, 445, 636, 1433, 3268, 3389, 5985, 5986]);
+    let all = union (netscan | extend Src = "netscan"), (netstat | extend Src = "netstat");
+    let listeners = all | where State == "LISTENING" | distinct LocalPort, PID | extend IsListener = true;
+    all
+    | summarize Sources = make_set(Src), Created = min(Created), Owner = take_any(Owner)
+        by Proto, LocalAddr, LocalPort, ForeignAddr, ForeignPort, State, PID
+    | join kind=leftouter listeners on LocalPort, PID
+    | project-away LocalPort1, PID1
+    | extend LOwner = tolower(Owner), ForeignPublic = IsPublicIp(ForeignAddr), Live = set_has_element(Sources, "netstat"),
+             Loopback = LocalAddr in ("127.0.0.1", "::1") and ForeignAddr in ("127.0.0.1", "::1")
+    | extend Direction = case(State == "LISTENING", "listening",
+                              Proto startswith "UDP", "udp",
+                              Loopback, "local",
+                              coalesce(IsListener, false), "inbound",
+                              ForeignPort in (wellKnown) or ForeignPort < 1024, "outbound",
+                              LocalPort in (wellKnown), "inbound",
+                              LocalPort >= 49152 and ForeignPort < 49152, "outbound",
+                              "unknown")
+    | project-away IsListener
+};

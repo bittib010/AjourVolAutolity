@@ -1,0 +1,10 @@
+// Title: Services and scheduled tasks findings
+// Severity: High
+// Why: Services left behind by remote execution (Cobalt Strike jump psexec, Impacket smbexec/psexec, PsExec/PAExec/RemCom, getsystem pipes), service binaries and drivers in user-writable paths, svchost ServiceDlls outside System32, services hidden from the services.exe list (svcdiff), RMM tools, and scheduled tasks running LOLBins with download/obfuscation, tools, or Impacket atexec.
+// FalsePositives: PsExec used by admins, approved RMM tools, AV drivers under Program Files. svcdiff/svclist only run on Windows 10 1703+ x64; scheduled_tasks is x64-only in Volatility 2.28.2.
+// MITRE: T1543.003, T1569.002, T1053.005, T1219
+// Refs: https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/ ; https://www.cybertriage.com/blog/dfir-breakdown-impacket-remote-execution-activity-smbexec/ ; https://www.microsoft.com/en-us/security/blog/2022/04/12/tarrask-malware-uses-scheduled-tasks-for-defense-evasion/
+Det_Services()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

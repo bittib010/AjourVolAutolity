@@ -1,0 +1,37 @@
+// One row per process instance seen by pslist and/or psscan. They are matched on PID + CreateTime
+// because PIDs are reused (never on offset: pslist shows virtual, psscan pool offsets).
+// Enrichment comes from plugins that walk the active process list, so it is only attached to
+// instances that pslist sees:
+//   ImagePath   kernel SeAudit path (pebmasquerade) > first .exe in dlllist (PEB, writable by the process)
+//   CommandLine PEB command line (spoofable; Volatility error text is dropped)
+//   UserSid     first SID of the token (getsids lists the user first, then groups)
+// Name is EPROCESS.ImageFileName, truncated to 14 characters; ImageName is the full name when known.
+let Procs = () {
+    let listed = pslist
+        | project ProcKey = strcat(PID, "|", CreateTime), PID, PPID, Name = ImageFileName, CreateTime, ExitTime,
+                  Threads, Handles, SessionId, Wow64, InPslist = true;
+    let scanned = psscan
+        | project ProcKey = strcat(PID, "|", CreateTime), PID, PPID, Name = ImageFileName, CreateTime, ExitTime,
+                  Threads, Handles, SessionId, Wow64, InPsscan = true;
+    let images = union
+            (pebmasquerade | where EPROCESS_SeAudit_ImageFileName !in ("", "-") | project PID, Path = EPROCESS_SeAudit_ImageFileName, Rank = 1),
+            (dlllist | where Path endswith ".exe" | summarize arg_min(VolRow, Path) by PID | project PID, Path, Rank = 2)
+        | summarize arg_min(Rank, Path) by PID
+        | project PID, ImagePath = NormPath(Path);
+    let commands = cmdline
+        | where Args !in ("", "-") and not(Args startswith "Required memory") and Args !contains "process exited"
+        | summarize CommandLine = take_any(Args) by PID;
+    let users = getsids | summarize arg_min(VolRow, SID, Name) by PID | project PID, UserSid = SID, UserLabel = Name;
+    listed
+    | join kind=fullouter scanned on ProcKey
+    | project ProcKey = coalesce(ProcKey, ProcKey1), PID = coalesce(PID, PID1), PPID = coalesce(PPID, PPID1),
+              Name = coalesce(Name, Name1), CreateTime = coalesce(CreateTime, CreateTime1), ExitTime = coalesce(ExitTime, ExitTime1),
+              Threads = coalesce(Threads, Threads1), Handles = coalesce(Handles, Handles1), SessionId = coalesce(SessionId, SessionId1),
+              Wow64 = coalesce(Wow64, Wow641), InPslist = coalesce(InPslist, false), InPsscan = coalesce(InPsscan, false)
+    | lookup kind=leftouter images on PID
+    | lookup kind=leftouter commands on PID
+    | lookup kind=leftouter users on PID
+    | extend ImagePath = iff(InPslist, ImagePath, ""), CommandLine = iff(InPslist, CommandLine, ""),
+             UserSid = iff(InPslist, UserSid, ""), UserLabel = iff(InPslist, UserLabel, "")
+    | extend ImageName = iff(isnotempty(ImagePath), Leaf(ImagePath), tolower(Name)), Exited = isnotnull(ExitTime)
+};

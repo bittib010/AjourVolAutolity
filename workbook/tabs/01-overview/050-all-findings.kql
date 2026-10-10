@@ -1,0 +1,8 @@
+// Title: All findings
+// Size: full
+// Why: Every finding from every tab, most severe first. Use the grid filter to search (e.g. a PID, a path or a technique ID such as T1003).
+AllFindings()
+| where SeverityRank >= 1
+| project Severity, Category, Finding, PID, Process, Detail, SeverityRank
+| order by SeverityRank desc, Category asc, Finding asc
+| project-away SeverityRank

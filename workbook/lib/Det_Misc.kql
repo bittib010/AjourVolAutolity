@@ -1,0 +1,43 @@
+// Execution evidence (amcache, shimcache, userassist), known-bad mutexes, rogue root certificates and YARA hits.
+let Det_Misc = () {
+    let executed = union
+            (amcache | project Path = tolower(Path), Src = strcat("amcache ", EntryType), When = LastModifyTime),
+            (shimcachemem | project Path = tolower(FilePath), Src = "shimcache", When = LastModified),
+            (registry_userassist | where Type == "Value" | project Path = tolower(Name), Src = "userassist", When = LastUpdated)
+        | where isnotempty(Path);
+    let evidence = executed
+        | extend Rule = case(Path matches regex ToolNames, "High|Intrusion / dual-use tool executed or present",
+                             Path matches regex @"^(c:\\windows|%systemroot%|\\\\[^\\]+\\admin\$)\\[a-z0-9]{6,8}\.exe$" and not(Path matches regex @"\\(explorer|regedit|notepad|splwow64|winhlp32|helppane|bfsvc|write|hh)\.exe$"), "High|Random-named executable in the Windows directory (PsExec-style service binary)",
+                             Path matches regex StagingDirHigh, "Medium|Execution evidence for a binary in a staging directory",
+                             "")
+        | where isnotempty(Rule)
+        | parse Rule with Severity "|" Finding
+        | summarize Sources = make_set(Src), When = max(When) by Path, Severity, Finding
+        | project PID = long(null), Process = "", Severity, Finding, Detail = strcat(Path, " [", strcat_array(Sources, ", "), "] last ", When);
+    let mutants = union (mutantscan | project Name, PID = long(null)), (handles | where Type == "Mutant" | project Name, PID)
+        | extend M = replace_regex(Name, @"^(Global|Local|Session\\\d+\\BaseNamedObjects)\\", "")
+        | extend Family = case(M == ")!VoqA.I4", "Poison Ivy", M in ("gangrenb", "germeonb", "crypt32LogOffPortEvent"), "Pushdo/Cutwail",
+                               M matches regex @"^DC_MUTEX-[A-Z0-9]{7}$", "DarkComet", M matches regex @"^QSR_MUTEX_[A-Za-z0-9]{18}$", "Quasar RAT",
+                               M == "Mutex_RemWatchdog" or M matches regex @"(?i)^Remcos_Mutex_Inj$", "Remcos", M == "AsyncMutex_6SI8OkPnk", "AsyncRAT",
+                               M matches regex @"^(_AVIRA_(2108|2109|210999)|__SYSTEM__[0-9A-F]{8}__|_H_[0-9A-F]{8}_)$", "Zeus",
+                               M matches regex @"^MsWinZonesCacheCounterMutexA0?$", "WannaCry", M in ("uxJLpe1m", "Ap1mutx7"), "Sality",
+                               M in ("kjsidugidf99439", "hsfjuukjzloqu28oajh727190"), "Conti", "")
+        | where isnotempty(Family)
+        | summarize PIDs = make_set(PID) by M, Family
+        | project PID = tolong(PIDs[0]), Process = "", Severity = "High", Finding = strcat("Known malware mutex (", Family, ")"),
+                  Detail = strcat(M, iff(array_length(PIDs) > 0, strcat(" held by PID ", strcat_array(PIDs, ", ")), ""));
+    let certs = registry
+        | where Certificatepath =~ @"Software\Microsoft\SystemCertificates" and Certificatesection in~ ("Root", "AuthRoot", "TrustedPublisher")
+              and CertificateID matches regex @"^[0-9A-Fa-f]{40}$"
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Root/publisher certificate in a user certificate store (interception / code-signing trust) [T1553.004]",
+                  Detail = strcat(Certificatesection, " ", CertificateID, " ", Certificatename);
+    let badCerts = registry
+        | where Certificatename matches regex @"(?i)(DO_NOT_TRUST|FiddlerRoot|Superfish|eDellRoot|DSDTestProvider|mitmproxy|PortSwigger|Charles Proxy|Komodia|PrivDog)"
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Known interception / compromised root certificate [T1553.004]",
+                  Detail = strcat(Certificatepath, " ", Certificatesection, " ", Certificatename);
+    let yara = union (yarascan | project PID = long(null), Process = "", Rule, Component), (vadyarascan | project PID, Process = ImageFileName, Rule, Component)
+        | summarize Hits = count() by PID, Process, Rule
+        | project PID, Process, Severity = "High", Finding = strcat("YARA rule matched: ", Rule), Detail = strcat(Hits, " hit(s)");
+    union evidence, mutants, certs, badCerts, yara
+    | extend Category = "Other indicators"
+};

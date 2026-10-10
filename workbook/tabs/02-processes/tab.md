@@ -1,0 +1,3 @@
+# Processes
+Know normal, find evil. Core Windows processes have a fixed parent, path, session, account, start time and instance count (SANS *Hunt Evil*); deviations are among the most reliable memory-forensics signals.
+Edge cases handled here: names are truncated to 14 characters (`SearchIndexer.`), PIDs are reused (instances are matched on PID + creation time, and a "parent" created after its child is PID reuse, not spoofing), csrss/wininit/winlogon/explorer normally have no living parent, svchost counts vary with memory size, and exited processes stay in memory while handles to them are open.

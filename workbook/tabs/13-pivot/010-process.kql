@@ -1,0 +1,8 @@
+// Title: Process, parent and children
+// Why: The process instance(s) with this PID (several if the PID was reused), its verified parent and its children.
+ProcTree()
+| where PID == {PID} or (PPID == {PID} and ParentState == "found")
+| extend Relation = iff(PID == {PID}, "process", "child")
+| project Relation, PID, Process = Name, CreateTime, ExitTime, PPID, Parent = ParentName, ParentState, SessionId, UserSid, UserLabel, ImagePath, CommandLine,
+          ParentCommandLine, InPslist, InPsscan
+| order by Relation desc, CreateTime asc

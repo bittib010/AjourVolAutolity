@@ -1,0 +1,13 @@
+// Title: Every handle to lsass.exe
+// Why: The full picture behind the lsass finding, including allowlisted holders, with the access mask decoded per hex digit (VM_READ 0x10, VM_WRITE 0x20, DUP_HANDLE 0x40, QUERY_LIMITED_INFORMATION 0x1000). Known tool masks: 0x1010 Mimikatz sekurlsa, 0x1410 nanodump/createdump, 0x1438 Mimikatz misc::memssp, 0x1fffff ProcDump/dumpert.
+// Refs: https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights ; https://car.mitre.org/analytics/CAR-2019-04-004
+handles
+| where Type == "Process" and Name matches regex @"(?i)^lsass\.exe Pid \d+$"
+| extend Target = tolong(extract(@"Pid (\d+)$", 1, Name)), Access = tolower(GrantedAccess)
+| where PID != Target
+| extend VM_READ = Access matches regex @"[13579bdf][0-9a-f]$", VM_WRITE = Access matches regex @"[2367abef][0-9a-f]$",
+         DUP_HANDLE = Access matches regex @"[4567cdef][0-9a-f]$",
+         KnownTool = case(Access == "0x1010", "Mimikatz sekurlsa", Access == "0x1410", "nanodump/createdump", Access == "0x1438", "Mimikatz memssp",
+                          Access in ("0x1fffff", "0x1f0fff"), "full access (ProcDump/dumpert)", Access == "0x14c0", "MalSecLogon (if svchost)", "")
+| project PID, Process, Access, VM_READ, VM_WRITE, DUP_HANDLE, KnownTool, HandleValue
+| order by VM_READ desc, Process asc

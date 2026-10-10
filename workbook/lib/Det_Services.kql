@@ -1,0 +1,46 @@
+// Services (svcscan; svcdiff = hidden from the services.exe list) and scheduled tasks. Remote-execution tools
+// (PsExec, Impacket, Cobalt Strike jump psexec) leave a characteristic service behind.
+let Det_Services = () {
+    let svc = svcscan
+        | extend Image = iff(BinaryRegistry !in ("", "N/A", "-"), BinaryRegistry, Binary), LName = tolower(Name)
+        | summarize arg_max(VolRow, *) by Name, Image, Dll
+        | extend P = NormPath(Image), DllP = NormPath(Dll);
+    let svcRules = svc
+        | extend Rule = case(
+            Image matches regex @"(?i)^%comspec%\s+/b\s+/c\s+start\s+/b\s+/min\s+powershell", "Critical|Cobalt Strike jump psexec_psh service [T1569.002]",
+            Name matches regex @"^[A-Za-z0-9]{7}$" and Image matches regex @"(?i)^\\\\[^\\]+\\admin\$\\[a-z0-9]{7}\.exe$", "Critical|Cobalt Strike jump psexec service [T1569.002]",
+            LName == "btobto" or Image matches regex @"(?i)%comspec%\s+/q\s+/c\s+echo\s.*\\__output", "Critical|Impacket smbexec service [T1569.002]",
+            Image matches regex @"(?i)(cmd|%comspec%).*/c.*echo.*\\pipe\\|rundll32.*\.dll,a\s+/p:", "High|getsystem named-pipe service (Meterpreter/Cobalt Strike) [T1134.001]",
+            LName in ("psexesvc", "csexecsvc", "remcomsvc", "winexesvc") or LName startswith "paexec" or Image matches regex @"(?i)\\(psexesvc|csexecsvc|remcomsvc)\.exe|\\paexec", "High|Remote execution tool service (PsExec family) [T1569.002]",
+            Name matches regex @"^([A-Za-z]{4}|[A-Za-z]{8}|[A-Za-z]{16})$" and Image matches regex @"(?i)^%systemroot%\\[a-z]{8}\.exe$", "High|Impacket/Metasploit psexec service [T1569.002]",
+            SuspiciousData(Image), "High|Service command line is suspicious [T1543.003]",
+            Type has "DRIVER" and isnotempty(Image) and Image !in ("N/A", "-") and not(Image startswith @"\Driver\" or Image startswith @"\FileSystem\")
+                and not(P matches regex @"\\system32\\(drivers|driverstore\\filerepository)\\"), iff(P matches regex StagingDirHigh or P matches regex StagingDirMedium, "High|Kernel driver loaded from a user-writable path [T1543.003]", "Medium|Kernel driver outside the driver directories [T1543.003]"),
+            Type !has "DRIVER" and (P matches regex StagingDirHigh or P matches regex StagingDirMedium), "High|Service binary in a user-writable directory [T1543.003]",
+            Dll !in ("", "N/A", "-") and not(DllP matches regex @"^c:\\windows\\system32\\") and DllP !contains "printconfig.dll", "High|svchost ServiceDll outside System32 [T1543.003]",
+            Image matches regex @"(?i)screenconnect\.clientservice|anydesk|ateraagent|splashtop|teamviewer|rustdesk|meshagent", "Medium|Remote management (RMM) service [T1219]",
+            "")
+        | where isnotempty(Rule)
+        | parse Rule with Severity "|" Finding
+        | project PID = iff(PID > 0, PID, long(null)), Process = Name, Severity, Finding,
+                  Detail = strcat(Name, " (", Display, ") ", State, " ", Start, ": ", Image, iff(Dll !in ("", "N/A", "-"), strcat(" | ServiceDll ", Dll), ""));
+    let hidden = svcdiff
+        | project PID = iff(PID > 0, PID, long(null)), Process = Name, Severity = "High", Finding = "Service hidden from the services.exe list (svcdiff)",
+                  Detail = strcat(Name, " ", State, ": ", iff(BinaryRegistry !in ("", "N/A", "-"), BinaryRegistry, Binary));
+    let tasks = scheduled_tasks
+        | extend Cmd = strcat(Action, " ", ActionArguments), WD = tolower(WorkingDirectory)
+        | extend Rule = case(
+            TaskName matches regex @"^[A-Za-z]{8}$" and (TriggerDescription contains "2015-07-15T20:35:13" or ActionArguments matches regex @"(?i)/c .*>\s*%windir%\\temp\\[a-z]{8}\.tmp 2>&1"), "Critical|Impacket atexec scheduled task [T1053.005]",
+            SuspiciousData(Cmd) and TriggerType in ("Logon", "Boot", "Session", "Event"), "High|Scheduled task runs a suspicious command at logon/boot [T1053.005]",
+            SuspiciousData(Cmd) or SuspiciousData(WD), "High|Scheduled task runs a suspicious command [T1053.005]",
+            tolower(Cmd) matches regex ToolNames, "High|Scheduled task runs a known intrusion tool [T1053.005]",
+            TaskName in ("N/A", "-", ""), "Medium|Scheduled task without a Tree entry (hidden/orphaned) [T1053.005]",
+            TaskName matches regex @"^(\{[0-9A-Fa-f-]{36}\}|[A-Za-z0-9]{6,10})$" and not(Action matches regex @"(?i)\\(windows|program files)"), "Medium|Randomly named scheduled task outside system paths [T1053.005]",
+            "")
+        | where isnotempty(Rule)
+        | parse Rule with Severity "|" Finding
+        | project PID = long(null), Process = TaskName, Severity, Finding,
+                  Detail = strcat(TaskName, " [", TriggerType, ", ", PrincipalID, ", enabled=", Enabled, "]: ", Cmd);
+    union svcRules, hidden, tasks
+    | extend Category = "Services & tasks"
+};

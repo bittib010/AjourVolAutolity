@@ -1,0 +1,2 @@
+// File name part of a Windows path.
+let Leaf = (path:string) { tostring(split(replace_string(path, "/", @"\"), @"\")[-1]) };

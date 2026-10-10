@@ -1,0 +1,35 @@
+// File-system artefacts from memory (filescan names are paths without a drive letter, e.g. \Users\x\...).
+// Credential dumps, hive/NTDS copies, Kerberos tickets, intrusion tools, recon output, exfil configs,
+// ransom notes, scripts/containers in staging folders, plus ClamAV verdicts on dumped files.
+let Det_Files = () {
+    let files = filescan
+        | extend N = tolower(Name)
+        | summarize take_any(Offset) by N, Name;
+    let fileRules = files
+        | extend Rule = case(
+            N matches regex @"\\(andrew|coredump|lsass|pplblade|rustive|dumpert)\.dmp$|\\(lsass\.(zip|rar)|notlsass\.zip)$|\\lsass[^\\]*\.dmp$|\\(nanodump|proc_)[^\\]*\.dmp$", "Critical|LSASS memory dump file [T1003.001]",
+            N matches regex @"\\(sam|system|security)\.(save|sav|hive|hiv|bak|bck|backup|export)$|\\hive_sam_|\\sam-20\d\d-|\\sam-haxx|_shadowsteal\.zip$", "High|Copy of a credential registry hive [T1003.002]",
+            N endswith @"\ntds.dit" and N !startswith @"\windows\ntds\", "High|NTDS.dit outside \\Windows\\NTDS [T1003.003]",
+            N matches regex @"\.kirbi$", "High|Kerberos ticket file (.kirbi) [T1558]",
+            N matches regex ToolNames, "High|Intrusion / dual-use tool on disk",
+            N matches regex @"\\(ad_users|ad_computers|ad_ous|ad_group|trustdmp|subnets)\.txt$|\\(\w+_)?\d{14}_bloodhound\.zip$|\\(\w+_)?\d{14}_(computers|users|groups|domains|gpos|ous|containers)\.json$", "High|Active Directory recon output (AdFind/SharpHound) [T1087]",
+            N matches regex @"\\rclone\.conf$|\\ngrok\.yml$", "High|Exfiltration / tunnel tool configuration [T1567]",
+            N matches regex @"\\(ryukreadme\.(txt|html)|readme\.blacksuit\.txt|akira_readme\.txt|!!!read_me_medusa!!!\.txt|criticalbreachdetected\.pdf|look at this instruction\.txt|how_to_decrypt\.txt|read_note\.html|instructions_read_me\.txt|cactus\.readme\.txt|inc-readme\.(txt|html)|readme_to_decrypt\.html|restore-my-files\.txt|@please_read_me@\.txt|decrypt-files\.txt|how_to_recover_data\.html|readme_safepay\.txt|how to restore your files\.txt|recover-files\.txt)$|\\[a-z0-9]{6,12}\.readme\.txt$|\\recover-[a-z0-9]{5,10}-files\.txt$", "Critical|Ransom note [T1486]",
+            N matches regex @"^\\(users\\[^\\]+\\(downloads|desktop|documents)|users\\[^\\]+\\appdata\\local\\temp|windows\\temp|users\\public|programdata|perflogs|\$recycle\.bin|temp|intel)\\.*\.(hta|js|jse|vbs|vbe|wsf|sct|scr|cpl|xll|one|iso|img|vhd|vhdx)$", "High|Script or disk-image container in a staging folder [T1204]",
+            N matches regex @"^\\(users\\[^\\]+\\appdata\\local\\temp|windows\\temp|users\\public|programdata|perflogs|\$recycle\.bin)\\.*\.(ps1|bat|cmd|msi|lnk)$" and N !contains "__psscriptpolicytest_", "Medium|Script in a staging folder [T1059]",
+            N matches regex @"^\\[^\\]+\.(exe|dll|scr|bat|ps1)$", "Medium|Executable in the root of a volume",
+            N matches regex @"\.(pdf|docx?|xlsx?|pptx?|rtf|txt|jpe?g|png|zip|rar)\s*\.(exe|scr|com|pif|bat|cmd|lnk|js|vbs|hta|ps1)$", "High|Document-like double extension [T1036.007]",
+            N matches regex @"\\sysvol\\[^\\]+\\policies\\\{[0-9a-f-]{36}\}\\(machine|user)\\(scripts\\(startup|logon)\\[^\\]+\.(bat|cmd|ps1|exe|vbs)|preferences\\scheduledtasks\\scheduledtasks\.xml)", "Medium|GPO script or scheduled task (mass deployment?) [T1484.001]",
+            N endswith ".dsh", "High|diskshadow script (shadow copy deletion / NTDS theft) [T1490]",
+            "")
+        | where isnotempty(Rule)
+        | parse Rule with Severity "|" Finding
+        | project PID = long(null), Process = "", Severity, Finding, Detail = Name;
+    let clam = clamscan
+        | where Result == "FOUND"
+        | project PID = long(null), Process = "", Severity = case(Signature matches regex @"(?i)^(Win|Multios|Doc|Xls|Html|Js|Ps1)\.(Trojan|Malware|Ransomware|Exploit|Backdoor|Downloader|Dropper)", "High",
+                                                                Signature startswith "PUA.", "Medium", "Low"),
+                  Finding = "ClamAV detection in a file dumped from memory", Detail = strcat(Signature, ": ", DumpedFile);
+    union fileRules, clam
+    | extend Category = "Files"
+};

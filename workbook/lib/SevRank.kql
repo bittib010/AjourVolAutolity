@@ -1,0 +1,4 @@
+// Severity label -> sortable rank (and score weight).
+let SevRank = (severity:string) {
+    case(severity == "Critical", 4, severity == "High", 3, severity == "Medium", 2, severity == "Low", 1, 0)
+};

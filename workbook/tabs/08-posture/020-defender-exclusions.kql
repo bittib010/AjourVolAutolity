@@ -1,0 +1,8 @@
+// Title: Microsoft Defender exclusions
+// Why: All configured exclusions (paths, processes, extensions, IPs). Ransomware operators add exclusions for their staging folder or for whole drives before deploying the encryptor.
+// FalsePositives: SQL Server, Exchange, backup and EDR vendor exclusions documented by the vendor.
+// MITRE: T1562.001
+RegValues()
+| where LKey matches regex @"\\windows defender\\exclusions\\(paths|processes|extensions|ipaddresses|temporarypaths)$"
+| project LastWriteTime, Hive, Kind = tostring(split(Key, @"\")[-1]), Exclusion = Name, Key
+| order by LastWriteTime desc

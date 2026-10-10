@@ -1,0 +1,6 @@
+// Title: Open handles by type
+// Why: Files, registry keys, mutants, other processes and named pipes this process holds open - shows what it was working on.
+handles
+| where PID == {PID}
+| summarize Count = count(), Names = make_set(Name, 25) by Type
+| order by Count desc

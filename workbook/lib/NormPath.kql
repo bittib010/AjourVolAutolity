@@ -1,0 +1,11 @@
+// Normalise paths from different plugins to one comparable form: lowercase, drive-letter based.
+// \Device\HarddiskVolumeN\ is mapped to c:\ (memory has no volume->letter map; good enough for triage).
+let NormPath = (path:string) {
+    let p = tolower(trim(@"[\s""]", path));
+    replace_regex(replace_regex(replace_regex(replace_regex(replace_regex(p,
+        @"^\\\\\?\\", ""),
+        @"^\\\?\?\\", ""),
+        @"^(\\systemroot|%systemroot%)\\", @"c:\\windows\\"),
+        @"^\\device\\harddiskvolume\d+\\", @"c:\\"),
+        @"^\\windows\\", @"c:\\windows\\")
+};

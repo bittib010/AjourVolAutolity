@@ -1,0 +1,7 @@
+// Title: Scheduled tasks outside Windows/Program Files
+// Why: Third-party and attacker tasks: anything whose action is not under C:\Windows or Program Files, with trigger, account and timestamps. Recently created tasks that run at logon/boot are prime persistence candidates.
+// FalsePositives: Browser and vendor updaters (Google, Edge, Adobe, OneDrive).
+scheduled_tasks
+| where not(Action matches regex @"(?i)^""?(%windir%|%systemroot%|c:\\windows|%programfiles%|%programfiles\(x86\)%|c:\\program files)")
+| project CreationTime, LastRunTime, TaskName, Enabled, TriggerType, TriggerDescription, PrincipalID, Action, ActionArguments, WorkingDirectory
+| order by CreationTime desc

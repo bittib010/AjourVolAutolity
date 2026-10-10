@@ -1,0 +1,10 @@
+// Title: Suspicious parent -> child relationships
+// Severity: High
+// Why: Office spawning shells (malicious documents), WmiPrvSE/wsmprovhost spawning shells (remote WMI/WinRM execution), services.exe spawning cmd (PsExec, getsystem), web servers spawning shells (web shells), lsass with any child, logon/accessibility binaries spawning cmd (sticky-keys backdoor), LOLBins spawning shells.
+// FalsePositives: Management agents (SCCM via WMI), build servers (java -> cmd), print drivers (spoolsv -> rundll32 is excluded as it is common). Only parents proven to exist before the child are used, so PID reuse cannot create false pairs.
+// MITRE: T1204.002, T1047, T1021.006, T1569.002, T1505.003, T1546.008
+// Refs: https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_office_susp_child_processes.yml ; https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_wmiprvse_susp_child_processes.yml ; https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_webshell_susp_process_spawned_from_webserver.yml
+Det_ParentChild()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

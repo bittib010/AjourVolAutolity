@@ -1,0 +1,10 @@
+// Title: Recovered console history and screen buffers
+// Why: Commands typed into cmd.exe (and output shown on screen) recovered from conhost.exe memory - often the clearest record of hands-on-keyboard activity. Typos and retries suggest a human operator.
+// FalsePositives: Only builds with Volatility console symbols are supported (x64 Windows 10/11, Server 2019/2022); Windows Terminal (OpenConsole.exe) and PowerShell's own history are not covered. No history does not mean no activity.
+// Refs: https://github.com/volatilityfoundation/volatility/wiki/Command-Reference#cmdscan
+union (cmdscan | extend Source = "cmdscan"), (consoles | extend Source = "consoles")
+| where isnotempty(Data) and Data !in ("None", "N/A", "-") and Data !contains "Not Found"
+| where Property has_any ("Command", "Application", "Title", "ScreenBuffer", "ExeAlias")
+| project PID, Process, Source, Property, Data, VolRow
+| order by PID asc, Source asc, VolRow asc
+| project-away VolRow

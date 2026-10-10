@@ -1,0 +1,18 @@
+// Every timestamped artefact as (Time, Source, Event, PID, Detail). Garbage FILETIMEs are dropped
+// (before 2000, or more than a day after acquisition).
+let Timeline = () {
+    let upper = coalesce(AcquiredAt, now()) + 1d;
+    union
+        (Procs() | where isnotnull(CreateTime) | project Time = CreateTime, Source = "process", Event = "started", PID, Detail = strcat(Name, " ", CommandLine)),
+        (Procs() | where isnotnull(ExitTime) | project Time = ExitTime, Source = "process", Event = "exited", PID, Detail = Name),
+        (NetConns() | where isnotnull(Created) | project Time = Created, Source = "network", Event = Direction, PID, Detail = strcat(Owner, " ", LocalAddr, ":", LocalPort, " -> ", ForeignAddr, ":", ForeignPort, " ", State)),
+        (union isfuzzy=true withsource = T (registry_printkey | take 0), printkey_* | where Type == "Key" | project Time = LastWriteTime, Source = "registry", Event = "key written", PID = long(null), Detail = strcat(replace_string(T, "printkey_", ""), " ", Key, @"\", Name)),
+        (scheduled_tasks | project Time = CreationTime, Source = "task", Event = "created", PID = long(null), Detail = strcat(TaskName, ": ", Action, " ", ActionArguments)),
+        (scheduled_tasks | project Time = LastRunTime, Source = "task", Event = "last run", PID = long(null), Detail = strcat(TaskName, ": ", Action, " ", ActionArguments)),
+        (amcache | project Time = LastModifyTime, Source = "amcache", Event = EntryType, PID = long(null), Detail = Path),
+        (shimcachemem | project Time = LastModified, Source = "shimcache", Event = "file modified", PID = long(null), Detail = FilePath),
+        (registry_userassist | where Type == "Value" | project Time = LastUpdated, Source = "userassist", Event = "GUI launch", PID = long(null), Detail = strcat(Name, " (", Count, "x)")),
+        (unloadedmodules | project Time, Source = "driver", Event = "unloaded", PID = long(null), Detail = Name),
+        (symlinkscan | project Time = CreateTime, Source = "symlink", Event = "created", PID = long(null), Detail = strcat(FromName, " -> ", ToName))
+    | where Time between (datetime(2000-01-01) .. upper)
+};

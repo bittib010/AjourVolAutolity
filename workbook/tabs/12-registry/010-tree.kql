@@ -1,0 +1,10 @@
+// Title: Keys and values
+// Visualization: tree
+// Tree: id=Id parent=ParentId label=Item
+// Size: full
+// Why: Subkeys and values under the matching keys, nested by path, with last-write times. Values show their data; REG_BINARY prints as hex.
+{Hive}
+| where Key contains @"{KeyFilter}"
+| extend Id = iff(Type == "Key", strcat(Key, @"\", Name), strcat(Key, @"\@", Name)), ParentId = Key
+| project Id, ParentId, Item = iff(Type == "Key", Name, strcat(Name, " = ", substring(Data, 0, 300))), Type, LastWriteTime, Volatile
+| take 5000

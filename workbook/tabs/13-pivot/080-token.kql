@@ -1,0 +1,5 @@
+// Title: Token: SIDs and enabled privileges
+union
+    (getsids | where PID == {PID} | project Kind = iff(VolRow == toscalar(getsids | where PID == {PID} | summarize min(VolRow)), "user", "group"), Value = SID, Detail = Name),
+    (privileges | where PID == {PID} and Attributes has "Enabled" | project Kind = "privilege", Value = Privilege, Detail = Attributes)
+| order by Kind desc, Value asc

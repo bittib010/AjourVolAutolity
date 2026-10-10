@@ -1,0 +1,10 @@
+// Title: Suspicious files
+// Severity: High
+// Why: LSASS dumps, copies of SAM/SYSTEM/SECURITY and NTDS.dit, Kerberos tickets, intrusion and dual-use tools (Mimikatz, Rubeus, SharpHound, AdFind, rclone, ngrok, AnyDesk ...), AD recon output, exfiltration configs, ransom notes of ~30 families, scripts and ISO/IMG/VHD containers in Downloads/Temp/ProgramData, executables in a volume root, double extensions, diskshadow scripts, and ClamAV detections in dumped files.
+// FalsePositives: Admin tool kits, legitimate rclone backups, approved RMM tools. Renamed tools are missed (Medusa renamed rclone to lsp.exe). ClamAV heuristics fire on partial (zero-filled) dumped images.
+// MITRE: T1003, T1105, T1486, T1553.005, T1036.007
+// Refs: https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a ; https://github.com/ThreatLabz/ransomware_notes ; https://thedfirreport.com/2021/08/01/bazarcall-to-conti-ransomware-via-trickbot-and-cobalt-strike/
+Det_Files()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

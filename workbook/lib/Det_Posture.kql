@@ -1,0 +1,57 @@
+// Security settings that attackers weaken before credential theft, lateral movement or ransomware
+// (Microsoft docs, Sigma registry_set rules, CISA advisories, The DFIR Report). A value present on every host is
+// usually GPO; a single outlier, or several changes with close LastWriteTime, is the signal.
+let Det_Posture = () {
+    let defenderOff = dynamic(["disableantispyware", "disableantivirus", "disablerealtimemonitoring", "disablebehaviormonitoring",
+                               "disableonaccessprotection", "disableioavprotection", "disablescriptscanning", "disableintrusionpreventionsystem"]);
+    let securityServices = dynamic(["windefend", "wdboot", "wdfilter", "wdnisdrv", "wdnissvc", "sense", "securityhealthservice", "wscsvc", "eventlog"]);
+    let values = RegValues()
+        | where LKey matches regex @"(\\control\\|\\windows defender|\\policies\\|\\services\\|\\windows nt\\|powershell|\\amsi|\\script\\settings|\\winevt\\|\\wmi\\autologger|\\\.netframework|\\deviceguard|windows error reporting)"
+        | extend N = RegNum(Data), D = tolower(trim(@"\s", Data)), Svc = tostring(split(LKey, @"\")[-1]);
+    let rules = values
+        | extend Rule = case(
+            LKey endswith @"\securityproviders\wdigest" and LName == "uselogoncredential" and N == 1, "High|WDigest cleartext credential caching enabled [T1112]",
+            LKey endswith @"\control\lsa" and LName == "runasppl" and N == 0, "High|LSA protection (RunAsPPL) explicitly disabled [T1562]",
+            LKey endswith @"\control\lsa" and LName == "lsacfgflags" and N == 0, "Medium|Credential Guard disabled (LsaCfgFlags=0) [T1562]",
+            LKey endswith @"\deviceguard" and LName == "enablevirtualizationbasedsecurity" and N == 0, "Medium|Virtualization-based security disabled [T1562]",
+            LKey endswith @"\ci\config" and LName == "vulnerabledriverblocklistenable" and N == 0, "High|Vulnerable driver blocklist disabled (BYOVD preparation) [T1562]",
+            LKey endswith @"\control\lsa" and LName == "disablerestrictedadmin" and N == 0, "Medium|RDP Restricted Admin enabled (pass-the-hash over RDP) [T1550.002]",
+            LKey endswith @"\control\lsa" and LName == "nolmhash" and N == 0, "High|LM hashes stored (NoLMHash=0) [T1003]",
+            LKey endswith @"\control\lsa" and LName == "lmcompatibilitylevel" and N between (0 .. 2), "Medium|NTLM/LM downgrade (LmCompatibilityLevel <= 2) [T1557]",
+            LKey contains @"\windows error reporting\localdumps" and LName == "dumptype" and N == 2 and LKey has "lsass", "High|WER configured to write full lsass dumps [T1003.001]",
+            LKey contains @"windows defender" and LName in (defenderOff) and N == 1, "High|Microsoft Defender protection disabled by registry [T1562.001]",
+            LKey matches regex @"\\windows defender\\exclusions\\(paths|processes|extensions|ipaddresses|temporarypaths)$" and (LName matches regex @"^[a-z]:\\?$" or LName matches regex @"(\\users\\public|\\appdata|\\temp|\\programdata|\\perflogs)" or LName in ("exe", "dll", "ps1", "bat", "vbs", "js", "hta", ".exe", ".dll", ".ps1") or LName has_any ("powershell", "cmd.exe", "rundll32", "mshta", "regsvr32")), "High|Dangerous Microsoft Defender exclusion [T1562.001]",
+            LKey matches regex @"\\windows defender\\exclusions\\(paths|processes|extensions|ipaddresses|temporarypaths)$", "Medium|Microsoft Defender exclusion [T1562.001]",
+            LKey endswith @"\windows defender\features" and LName == "tamperprotection" and N in (0, 4), "Medium|Defender tamper protection off [T1562.001]",
+            LKey matches regex @"\\services\\[^\\]+$" and LName == "start" and N == 4 and Svc in (securityServices), "High|Security or logging service disabled (Start=4) [T1562.001]",
+            LKey endswith @"\control\minint", "High|MiniNt key present (disables the Event Log after reboot) [T1562.002]",
+            LKey matches regex @"\\winevt\\channels\\.*(defender|sysmon|powershell|security)" and LName == "enabled" and N == 0, "High|Security-relevant event channel disabled [T1562.002]",
+            LKey matches regex @"\\wmi\\autologger\\(defenderapilogger|defenderauditlogger|eventlog-[^\\]+)$" and LName == "start" and N == 0, "High|ETW autologger session disabled [T1562.006]",
+            LKey endswith @"\policies\system" and LName == "enablelua" and N == 0, "High|UAC disabled (EnableLUA=0) [T1548.002]",
+            LKey endswith @"\policies\system" and LName == "localaccounttokenfilterpolicy" and N == 1, "High|Remote UAC disabled for local accounts (LocalAccountTokenFilterPolicy=1) [T1550.002]",
+            LKey endswith @"\policies\system" and LName in ("consentpromptbehavioradmin", "promptonsecuredesktop") and N == 0, "Medium|UAC prompts weakened [T1548.002]",
+            LKey endswith @"\control\terminal server" and LName == "fdenytsconnections" and N == 0, "Low|Remote Desktop enabled [T1021.001]",
+            LKey endswith @"\winstations\rdp-tcp" and LName == "userauthentication" and N == 0, "High|RDP Network Level Authentication disabled [T1021.001]",
+            LKey endswith @"\winstations\rdp-tcp" and LName == "portnumber" and isnotnull(N) and N != 3389, "Medium|RDP listening on a non-standard port [T1021.001]",
+            LKey endswith @"\termservice\parameters" and LName == "servicedll" and not(D endswith @"\termsrv.dll"), "High|TermService ServiceDll replaced (RDP Wrapper) [T1021.001]",
+            LKey contains @"terminal services" and LName == "shadow" and N in (2, 4), "High|RDP session shadowing without consent [T1021.001]",
+            LKey matches regex @"(firewallpolicy|windowsfirewall)\\(domainprofile|standardprofile|publicprofile)$" and LName == "enablefirewall" and N == 0, "High|Windows Firewall profile disabled [T1562.004]",
+            LKey contains "powershell" and LName in ("enablescriptblocklogging", "enablemodulelogging", "enabletranscripting") and N == 0, "High|PowerShell logging disabled [T1562.002]",
+            LKey contains "powershell" and LName == "executionpolicy" and D in ("bypass", "unrestricted"), "Low|PowerShell execution policy Bypass/Unrestricted",
+            LKey endswith @"\script\settings" and LName == "amsienable" and N == 0, "High|AMSI disabled for Windows Script Host [T1562.001]",
+            LKey endswith @"\.netframework" and LName == "etwenabled" and N == 0, "High|.NET ETW disabled [T1562.006]",
+            LKey matches regex @"\\windows nt\\(currentversion\\)?systemrestore$" and LName in ("disablesr", "disableconfig") and N == 1, "High|System Restore disabled [T1490]",
+            LKey endswith @"\windows nt\currentversion\winlogon" and LName == "autoadminlogon" and N == 1, "Medium|Automatic logon enabled (check DefaultPassword) [T1552.002]",
+            LKey endswith @"\windows nt\currentversion\winlogon" and LName == "defaultpassword" and isnotempty(D), "High|Cleartext autologon password in the registry [T1552.002]",
+            LKey endswith @"\lanmanserver\parameters" and LName == "smb1" and N == 1, "Medium|SMBv1 server enabled",
+            "")
+        | where isnotempty(Rule);
+    // MiniNt usually has no values, so look at key rows too.
+    let miniNt = union isfuzzy=true (registry_printkey | take 0), printkey_*
+        | where Type == "Key" and Key matches regex @"(?i)\\control\\minint$"
+        | extend Rule = "High|MiniNt key present (disables the Event Log after reboot) [T1562.002]", Hive = "SYSTEM";
+    union rules, miniNt
+    | parse Rule with Severity "|" Finding
+    | project PID = long(null), Process = "", Severity, Category = "Security posture", Finding,
+              Detail = strcat(Hive, " ", Key, " | ", Name, " = ", substring(Data, 0, 200), " (written ", LastWriteTime, ")")
+};

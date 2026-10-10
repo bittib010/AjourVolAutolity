@@ -1,0 +1,9 @@
+// Title: Events around the pivot time
+// Size: full
+// Why: Everything that happened within the window: processes starting and exiting, connections, registry keys written, tasks created, tools first seen. Filter the grid on a PID or a word to follow one thread of activity.
+// FalsePositives: Registry key LastWriteTime is per key (not per value) and can be bumped by benign changes.
+let pivot = iff(isempty("{PivotTime}"), AcquiredAt, todatetime("{PivotTime}"));
+let window = {WindowMinutes} * 1m;
+Timeline()
+| where Time between ((pivot - window) .. (pivot + window))
+| order by Time asc

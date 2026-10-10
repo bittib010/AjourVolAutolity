@@ -1,0 +1,3 @@
+// User-writable locations where malware is often staged but legitimate per-user software (Teams,
+// OneDrive, installers) also runs - medium confidence, needs context.
+let StagingDirMedium = @"(\\appdata\\local\\temp\\|\\appdata\\roaming\\|\\users\\public\\|^c:\\programdata\\[^\\]+$|\\windows\\temp\\|\\downloads\\|\\desktop\\|^c:\\[^\\]+\.(exe|dll|scr|com)$)";

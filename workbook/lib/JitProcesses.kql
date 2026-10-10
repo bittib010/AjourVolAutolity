@@ -1,0 +1,7 @@
+// Processes that legitimately create executable private memory (JIT engines, AV, Chromium sandboxes) -
+// the main false-positive source for malfind, suspicious_threads and the system-call plugins.
+let JitProcesses = dynamic(["powershell.exe", "pwsh.exe", "powershell_ise", "msedge.exe", "msedgewebview2", "chrome.exe", "firefox.exe",
+    "iexplore.exe", "brave.exe", "opera.exe", "java.exe", "javaw.exe", "node.exe", "teams.exe", "ms-teams.exe", "msteams.exe",
+    "code.exe", "slack.exe", "discord.exe", "onedrive.exe", "msmpeng.exe", "mpdefendercore", "mssense.exe", "w3wp.exe",
+    "dotnet.exe", "searchapp.exe", "searchhost.exe", "windowsazuregu", "waappagent.exe", "outlook.exe", "olk.exe", "spotify.exe",
+    "zoom.exe", "acrobat.exe", "acrord32.exe", "excel.exe", "winword.exe", "powerpnt.exe", "devenv.exe", "sqlservr.exe"]);

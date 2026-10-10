@@ -1,0 +1,10 @@
+// Title: Network findings
+// Severity: High
+// Why: Script hosts and LOLBins talking to the internet, notepad with a socket (classic injected beacon), argument-less rundll32/regsvr32 with a connection (Cobalt Strike spawn-to), lsass to a public IP, Kerberos from non-lsass (Rubeus/Impacket), outbound SMB/RDP from user processes, known C2/RAT/tunnel ports (4444, 50050, 31337, Tor, SOCKS ...), and sockets owned by processes that are not running.
+// FalsePositives: Admin tooling, printing (notepad -> 9100 excluded), approved remote-access tools, stale netscan objects whose owner pointer was reused (prefer netstat-confirmed rows).
+// MITRE: T1071, T1571, T1090, T1021.001, T1021.002, T1558
+// Refs: https://github.com/SigmaHQ/sigma/tree/master/rules/windows/network_connection ; https://www.cobaltstrike.com/blog/why-is-notepad-exe-connecting-to-the-internet ; https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements
+Det_Network()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

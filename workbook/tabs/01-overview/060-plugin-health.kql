@@ -1,0 +1,7 @@
+// Title: Plugin health (failed, timed out, skipped)
+// Why: Volatility plugins fail for legitimate reasons: OS build not supported (svclist/svcdiff need Windows 10 1703+ x64, consoles/cmdscan x64 Windows 10+, GUI plugins x64), paged-out structures, smeared images, or missing YARA rules. Every detector that depends on a failed plugin is blind for this image.
+// FalsePositives: "skipped" is configuration (e.g. no YARA rules), not an error.
+volautolity_runs
+| where Status != "ok"
+| project Status, Table, Plugin, DurationSeconds, Error = substring(Error, 0, 500), IngestError
+| order by Status asc, Table asc

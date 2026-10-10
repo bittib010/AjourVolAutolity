@@ -1,0 +1,9 @@
+// Title: Loaded, scanned and unloaded drivers
+// Why: One row per driver name with where it was seen: the loaded module list, the pool scan (also unlinked/unloaded drivers), and the recently-unloaded list (BYOVD tools load a vulnerable driver, kill the EDR, then unload it).
+// FalsePositives: Driver update and hot-plug activity produce unload entries.
+union (modules | project Name = tolower(Name), Path, Where = "loaded"),
+      (modscan | project Name = tolower(Name), Path, Where = "pool scan"),
+      (unloadedmodules | project Name = tolower(Name), Path = "", Where = strcat("unloaded ", Time))
+| summarize Seen = make_set(Where), Paths = make_set(Path) by Name
+| extend Loaded = set_has_element(Seen, "loaded")
+| order by Loaded asc, Name asc

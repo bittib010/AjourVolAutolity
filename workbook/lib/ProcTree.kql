@@ -1,0 +1,27 @@
+// Procs with the parent resolved safely. A PPID only identifies the parent if a process with that PID
+// existed *before* the child was created; otherwise the real parent exited and its PID was reused
+// (that is PID reuse, not PPID spoofing). ParentState:
+//   found        parent instance identified (it may have exited since: see ParentExitTime)
+//   pid-reused   a process with that PID exists but was created after the child
+//   gone         no process with that PID in memory (normal for csrss/wininit/winlogon/explorer)
+let ProcTree = () {
+    let p = Procs();
+    let parents = p
+        | project PPID = PID, ParentKey = ProcKey, ParentName = Name, ParentImage = ImageName, ParentCreateTime = CreateTime,
+                  ParentExitTime = ExitTime, ParentPath = ImagePath, ParentCommandLine = CommandLine,
+                  ParentUserSid = UserSid, ParentSessionId = SessionId;
+    // System (PID 4) is always the real parent: Registry is created ~seconds *before* System's recorded
+    // CreateTime. A 10 s tolerance absorbs whole-second timestamps during early boot.
+    let matched = p
+        | join kind=inner parents on PPID
+        | where PPID == 4 or isnull(CreateTime) or isnull(ParentCreateTime) or ParentCreateTime <= CreateTime + 10s
+        | summarize arg_max(ParentCreateTime, *) by ProcKey
+        | project-away PPID1
+        | extend ParentState = "found";
+    let unmatched = p
+        | join kind=leftanti matched on ProcKey
+        | join kind=leftouter (parents | summarize Later = count() by PPID) on PPID
+        | extend ParentState = iff(coalesce(Later, 0) > 0, "pid-reused", "gone")
+        | project-away PPID1, Later;
+    union matched, unmatched
+};

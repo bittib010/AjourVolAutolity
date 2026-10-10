@@ -1,0 +1,5 @@
+// Title: Findings for this process
+AllFindings()
+| where PID == {PID}
+| order by SeverityRank desc
+| project Severity, Category, Finding, Detail

@@ -1,0 +1,13 @@
+// Title: Image
+// Visualization: tiles
+// Size: small
+// Why: Chain of custody and context. The SHA-256 was computed by the worker on the image it analysed; compare it with the hash recorded at acquisition. Boot time is the creation time of the System process; acquisition time comes from the kernel clock.
+let image = volautolity_image | take 1;
+union
+    (image | project Order = 1, Title = "Image", Value = ImageName, Subtitle = strcat(format_bytes(SizeBytes, 1), " | SHA-256 ", Sha256)),
+    (info | where Variable == "NTBuildLab" | project Order = 2, Title = "Windows build", Value, Subtitle = strcat(toscalar(info | where Variable == "Is64Bit" | project iff(Value == "True", "64-bit", "32-bit")), ", ", toscalar(info | where Variable == "NtProductType" | project Value))),
+    (print Order = 3, Title = "Boot (UTC)", Value = tostring(BootTime), Subtitle = strcat("acquired ", tostring(AcquiredAt), " | uptime ", tostring(AcquiredAt - BootTime))),
+    (pslist | summarize Live = countif(isnull(ExitTime)), Exited = countif(isnotnull(ExitTime)) | project Order = 4, Title = "Processes", Value = tostring(Live), Subtitle = strcat(Exited, " exited but still in memory")),
+    (volautolity_runs | summarize Ok = countif(Status == "ok"), Bad = countif(Status in ("failed", "timeout")) | project Order = 5, Title = "Plugins", Value = strcat(Ok, " ok"), Subtitle = strcat(Bad, " failed or timed out"))
+| order by Order asc
+| project Title, Value, Subtitle

@@ -1,0 +1,9 @@
+// True when an autostart/service/task command looks malicious: user-writable or UNC location, a LOLBin
+// combined with obfuscation/download/script content, or a script file type.
+let SuspiciousData = (data:string) {
+    let d = tolower(data);
+    d matches regex @"(\\users\\public\\|\\appdata\\local\\temp\\|\\appdata\\roaming\\[^\\]+\.(exe|dll|ps1|bat|vbs|js|hta)|\\programdata\\[^\\]+\.(exe|dll|ps1|bat|cmd|vbs|js|hta)|\\windows\\temp\\|\\perflogs\\|\\\$recycle\.bin\\|%(temp|tmp|public)%|^""?\\\\|\\admin\$\\)"
+    or (d matches regex @"(\bcmd(\.exe)?\s+/[ckr]\b|%comspec%|\b(powershell|pwsh|mshta|rundll32|regsvr32|wscript|cscript|certutil|bitsadmin|msbuild|installutil|regasm|regsvcs|cmstp|forfiles|wmic|curl)(\.exe)?\b)"
+        and d matches regex @"(\s-(e|en|enc|enco|encodedcommand|ec)\s+[a-z0-9+/=]{16,}|frombase64string|\biex\b|invoke-expression|downloadstring|downloadfile|net\.webclient|https?://|javascript:|vbscript:|scrobj\.dll|\s-w(indowstyle)?\s+h|\s-nop\b|bypass)")
+    or d matches regex @"\.(vbs|vbe|js|jse|wsf|hta|ps1|scr|pif|cpl|jar)(\W|$)"
+};

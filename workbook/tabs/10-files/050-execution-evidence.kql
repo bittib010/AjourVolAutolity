@@ -1,0 +1,11 @@
+// Title: Execution evidence (Amcache, ShimCache, UserAssist)
+// Size: large
+// Why: Programs that were present or run, outside Windows and Program Files - including entries not yet written to disk (ShimCache is flushed only at shutdown). UserAssist records GUI launches per user with run counts. Sort by time to find the first tool dropped.
+// FalsePositives: Presence in ShimCache/Amcache does not prove execution on Windows 10+; ShimCache LastModified is the file's timestamp, not a run time.
+union
+    (amcache | project When = LastModifyTime, Source = strcat("amcache ", EntryType), Path, Detail = strcat(Company, " ", ProductName, " SHA1 ", SHA1)),
+    (shimcachemem | project When = LastModified, Source = "shimcache", Path = FilePath, Detail = strcat("order ", Order, iff(ExecFlag, " executed", ""))),
+    (registry_userassist | where Type == "Value" | project When = LastUpdated, Source = "userassist", Path = Name, Detail = strcat("count ", Count, ", focus ", TimeFocused, " ", HiveName))
+| where isnotempty(Path) and not(Path matches regex @"(?i)^(c:\\windows\\|%windir%|\\windows\\|\\systemroot\\|c:\\program files|%programfiles%|\{(1ac14e77|d65231b0|f38bf404|905e63b6|6d809377|7c5a40ef)[^}]*\})")
+| extend ToolMatch = tolower(Path) matches regex ToolNames
+| order by ToolMatch desc, When desc

@@ -1,0 +1,9 @@
+// Title: Loaded modules (dlllist + ldrmodules)
+// Why: DLLs in load order with the loader-list flags. A DLL from a user-writable path, or one that is False in all three lists, deserves a look.
+dlllist
+| where PID == {PID}
+| join kind=leftouter (ldrmodules | where Pid == {PID} | project Base, InLoad, InInit, InMem) on Base
+| project VolRow, Name, Path, Base, Size, LoadTime, InLoad, InInit, InMem,
+          FromStaging = NormPath(Path) matches regex StagingDirHigh or NormPath(Path) matches regex StagingDirMedium
+| order by VolRow asc
+| project-away VolRow

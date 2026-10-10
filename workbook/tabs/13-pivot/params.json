@@ -1,0 +1,10 @@
+[
+  {
+    "name": "PID",
+    "label": "Process",
+    "type": 2,
+    "isRequired": true,
+    "kql": "union pslist, psscan\n| summarize Name = take_any(ImageFileName) by PID\n| project value = PID, label = strcat(PID, ' - ', Name)\n| order by value asc",
+    "testValue": "4"
+  }
+]

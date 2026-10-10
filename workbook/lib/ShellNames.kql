@@ -1,0 +1,8 @@
+// Shells, script hosts, LOLBins and recon tools (lowercase, as truncated EPROCESS names).
+let ShellNames = dynamic(["cmd.exe", "powershell.exe", "pwsh.exe", "powershell_ise", "wscript.exe", "cscript.exe", "mshta.exe",
+    "rundll32.exe", "regsvr32.exe", "certutil.exe", "bitsadmin.exe", "curl.exe", "wmic.exe", "schtasks.exe", "msbuild.exe",
+    "installutil.ex", "regasm.exe", "regsvcs.exe", "msiexec.exe", "hh.exe", "forfiles.exe", "msdt.exe", "odbcconf.exe",
+    "net.exe", "net1.exe", "whoami.exe", "nltest.exe", "reg.exe", "sc.exe", "bash.exe", "wsl.exe", "certreq.exe",
+    "bcdedit.exe", "vssadmin.exe", "wevtutil.exe", "netsh.exe", "systeminfo.exe", "quser.exe", "qwinsta.exe",
+    "hostname.exe", "ipconfig.exe", "arp.exe", "nslookup.exe", "tasklist.exe", "taskkill.exe", "cmstp.exe",
+    "psexec.exe", "psexec64.exe", "adfind.exe"]);

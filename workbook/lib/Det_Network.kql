@@ -1,0 +1,58 @@
+// Network findings (Sigma network_connection rules, Elastic, SANS, The DFIR Report). 80/443 alone mean nothing:
+// these rules look at WHO owns the socket and unusual ports, not at ordinary web traffic.
+let Det_Network = () {
+    let c2Ports = dynamic([1080, 1177, 1337, 1604, 2404, 3360, 4040, 4433, 4443, 4444, 4445, 4455, 4782, 5552, 5555, 6606, 7443, 7707,
+                           7777, 8808, 8843, 8888, 9050, 9150, 9001, 9030, 9898, 31337, 40056, 50050]);
+    let neverNetwork = dynamic(["notepad.exe", "calc.exe", "calculatorapp.", "mspaint.exe", "wordpad.exe"]);
+    let proxyHigh = dynamic(["wscript.exe", "cscript.exe", "certutil.exe", "msbuild.exe", "mshta.exe", "regsvr32.exe", "installutil.ex",
+                             "cmstp.exe", "regasm.exe", "regsvcs.exe", "odbcconf.exe", "msxsl.exe", "xwizard.exe", "msdt.exe", "eqnedt32.exe",
+                             "cmd.exe", "bitsadmin.exe"]);
+    let proxyMedium = dynamic(["rundll32.exe", "msiexec.exe", "hh.exe", "dllhost.exe", "winlogon.exe", "control.exe"]);
+    let conns = NetConns() | where Direction !in ("local");
+    let procs = Procs() | where InPslist | project PID, ImagePath, CommandLine;
+    let ownerCheck = conns
+        | where Direction != "udp"
+        | extend Rule = case(
+            LOwner in (neverNetwork) and not(LOwner == "notepad.exe" and ForeignPort == 9100), "High|Process that should never use the network has a socket (injected beacon?)",
+            LOwner in (proxyHigh) and (ForeignPublic or Direction == "listening"), "High|Script host / LOLBin with an internet connection or listener",
+            LOwner in (proxyMedium) and ForeignPublic, "Medium|System proxy binary connected to the internet",
+            LOwner == "lsass.exe" and ForeignPublic, "High|lsass.exe connected to a public address",
+            LOwner in ("powershell.exe", "pwsh.exe") and Direction == "listening" and LocalAddr !in ("127.0.0.1", "::1"), "High|PowerShell listening on the network (bind shell?)",
+            LOwner in ("powershell.exe", "pwsh.exe") and ForeignPublic and ForeignPort !in (80, 443), "High|PowerShell connected to a public address on a non-web port",
+            LOwner in ("powershell.exe", "pwsh.exe") and ForeignPublic, "Low|PowerShell connected to a public address",
+            Direction == "outbound" and ForeignPort == 88 and LOwner !in ("lsass.exe", "chrome.exe", "firefox.exe", "msedge.exe"), "Medium|Kerberos traffic from a process other than lsass (ticket abuse: Rubeus/Impacket)",
+            Direction == "outbound" and ForeignPort == 445 and PID != 4 and isnotnull(PID), "High|Outbound SMB from a user process (Impacket, scanner, worm)",
+            Direction == "outbound" and ForeignPort == 3389 and LOwner !in ("mstsc.exe", "rdcman.exe", "msrdc.exe", "mremoteng.exe", "remotedesktopm"), "High|Outbound RDP from a non-RDP client (tunnel / tool)",
+            Direction == "outbound" and ForeignPort in (5985, 5986) and LOwner in ("powershell.exe", "pwsh.exe", "cscript.exe", "winrs.exe"), "Medium|Outbound WinRM (PowerShell remoting / winrs) to another host",
+            ForeignPort in (c2Ports) and Direction == "outbound", strcat(iff(ForeignPublic, "High", "Medium"), "|Connection to a port commonly used by C2/RAT/tunnel tools"),
+            Direction == "listening" and LocalPort in (c2Ports) and LocalAddr !in ("127.0.0.1", "::1"), "High|Listening on a port commonly used by C2/RAT/tunnel tools",
+            Direction == "listening" and LocalPort in (1080, 9050, 9150) and LocalAddr in ("127.0.0.1", "::1"), "Medium|Local SOCKS/Tor proxy listener",
+            Direction == "listening" and (LocalPort in (22, 5900, 5901, 7070) or LocalPort between (5900 .. 5910)), "Medium|Remote-access listener (SSH/VNC/AnyDesk) on this host",
+            Direction == "inbound" and LocalPort == 3389 and ForeignPublic, "High|Inbound RDP from a public address",
+            Direction == "inbound" and LocalPort in (445, 139) and PID != 4 and isnotnull(PID), "High|Inbound SMB owned by a process other than System (relay/hijack)",
+            "")
+        | where isnotempty(Rule)
+        | parse Rule with Severity "|" Finding
+        | project PID, Process = Owner, Severity, Finding, Detail = strcat(Proto, " ", LocalAddr, ":", LocalPort, " -> ", ForeignAddr, ":", ForeignPort, " ", State, " (", strcat_array(Sources, "+"), ")");
+    let noArgs = conns
+        | where LOwner in ("rundll32.exe", "regsvr32.exe", "dllhost.exe") and Direction in ("outbound", "unknown")
+        | join kind=inner procs on PID
+        | where CommandLine matches regex @"(?i)^\s*""?([a-z]:)?[^""]*?(rundll32|regsvr32|dllhost)(\.exe)?""?\s*$"
+        | project PID, Process = Owner, Severity = "High", Finding = "Argument-less rundll32/regsvr32/dllhost with a network connection (Cobalt Strike spawn-to)",
+                  Detail = strcat(CommandLine, " -> ", ForeignAddr, ":", ForeignPort);
+    let stagingOwner = conns
+        | where Direction in ("outbound", "listening", "inbound", "unknown")
+        | join kind=inner procs on PID
+        | where ImagePath matches regex StagingDirHigh or ImagePath matches regex StagingDirMedium
+        | summarize Endpoints = make_set(strcat(ForeignAddr, ":", ForeignPort), 10) by PID, Owner, ImagePath
+        | project PID, Process = Owner, Severity = "High", Finding = "Process running from a staging directory owns sockets",
+                  Detail = strcat(ImagePath, " -> ", strcat_array(Endpoints, ", "));
+    let alive = Procs() | where not(Exited) | distinct PID;
+    let orphanOwner = conns
+        | where State !in ("TIME_WAIT", "CLOSED", "CLOSE_WAIT", "FIN_WAIT1", "FIN_WAIT2", "LAST_ACK") and isnotnull(PID) and PID != 0
+        | join kind=leftanti alive on PID
+        | project PID, Process = Owner, Severity = iff(Live, "High", "Medium"), Finding = "Socket owned by a PID that is not a running process",
+                  Detail = strcat(Proto, " ", LocalAddr, ":", LocalPort, " -> ", ForeignAddr, ":", ForeignPort, " ", State, " (", strcat_array(Sources, "+"), ")");
+    union ownerCheck, noArgs, stagingOwner, orphanOwner
+    | extend Category = "Network"
+};

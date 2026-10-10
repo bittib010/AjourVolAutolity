@@ -1,0 +1,16 @@
+// Title: Downloaded files (Mark-of-the-Web)
+// Why: The Zone.Identifier stream records where a file came from (ZoneId 3 = internet, HostUrl, ReferrerUrl). Files from file-sharing/paste/tunnel services or raw IP addresses, and scripts/containers from the internet, are typical initial access. A ReferrerUrl that is a local path means the file was extracted from that archive.
+// FalsePositives: Every browser download carries ZoneId=3. Only small (resident) streams are visible in memory.
+// MITRE: T1105, T1566, T1553.005
+// Refs: https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/6e3f7352-d11c-4d76-8c39-2516a9df36e8
+mftscan_ads
+| where ADSFilename =~ "Zone.Identifier"
+| mv-apply Line = split(Hexdump, "\n") to typeof(string) on (
+    extend Ascii = extract(@"^\s*(?:[0-9a-f]{2} ){1,16}\s*(.*?)\s*$", 1, trim_end("\r", Line))
+    | summarize Ascii = strcat_array(make_list(Ascii), ""))
+| extend ZoneId = toint(extract(@"ZoneId=(\d)", 1, Ascii)), HostUrl = extract(@"HostUrl=(.*?)(\.\.|$)", 1, Ascii),
+         ReferrerUrl = extract(@"ReferrerUrl=(.*?)(\.\.|$)", 1, Ascii)
+| extend Risky = Filename matches regex @"(?i)\.(hta|js|jse|vbs|vbe|wsf|scr|cpl|iso|img|vhdx?|exe|dll|msi|lnk|one|xll|zip|7z|rar)$"
+         or HostUrl matches regex @"(?i)(ngrok|trycloudflare|cdn\.discordapp|transfer\.sh|temp\.sh|mega\.nz|gofile|pastebin|raw\.githubusercontent|/releases/download/|dropboxusercontent|1drv\.ms|anydesk|screenconnect|https?://\d+\.\d+\.\d+\.\d+)"
+| project Risky, Filename, ZoneId, HostUrl, ReferrerUrl, RecordNumber
+| order by Risky desc, Filename asc

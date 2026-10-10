@@ -1,0 +1,10 @@
+// Title: Execution evidence, malware mutexes, certificates, YARA
+// Severity: High
+// Why: Intrusion tools and random-named Windows-directory binaries (PsExec-style services) in Amcache/ShimCache/UserAssist; mutexes of known malware families (Poison Ivy, DarkComet, Quasar, Remcos, Zeus, WannaCry, Conti ...); root or publisher certificates added to a user store (TLS interception, trusted malware signing); interception roots (Superfish, eDellRoot, Fiddler, mitmproxy); YARA rule hits.
+// FalsePositives: ShimCache/Amcache presence is not proof of execution on Windows 10+. Developer machines carry Fiddler/mitmproxy roots. WannaCry "vaccine" tools create its mutex on purpose.
+// MITRE: T1553.004, T1204
+// Refs: https://cloud.google.com/blog/topics/threat-intelligence/caching-out-the-val/ ; https://www.hexacorn.com/blog/2023/03/12/list-of-clean-mutexes-and-mutants/
+Det_Misc()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

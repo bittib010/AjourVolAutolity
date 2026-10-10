@@ -1,0 +1,4 @@
+// Directories malware is commonly staged in and executed from, rarely used by legitimate software
+// (lowercase, matched against NormPath output). Sources: Sigma proc_creation_win_susp_execution_path,
+// Elastic "execution from unusual directory", api0cradle UltimateAppLockerByPassList.
+let StagingDirHigh = @"(\\perflogs\\|\\\$recycle\.bin\\|\\windows\\fonts\\|\\windows\\tasks\\|\\windows\\system32\\tasks\\|\\windows\\debug\\|\\windows\\help\\|\\windows\\ime\\|\\windows\\media\\|\\windows\\addins\\|\\windows\\repair\\|\\windows\\security\\|\\windows\\tracing\\|\\windows\\prefetch\\|\\windows\\inf\\|\\windows\\cursors\\|\\users\\default\\|\\users\\all users\\|\\config\\systemprofile\\|\\intel\\logs\\|\\rsa\\machinekeys\\|\\spool\\drivers\\color\\|\\spool\\printers\\|\\spool\\servers\\|\\system32\\fxstmp\\|\\system32\\com\\dmp\\|\\registration\\crmlog\\|^c:\\intel\\|^c:\\amd\\temp\\|^\\\\|\\device\\mup\\)";

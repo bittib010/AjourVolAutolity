@@ -1,0 +1,8 @@
+// Title: Kernel callbacks by owner
+// Why: Who is notified of process, thread and image-load events. Every EDR registers process-creation callbacks; if an EDR driver is loaded but has no PspCreateProcessNotifyRoutine entry, it may have been blinded (EDRSandblast, RTCore64-based killers).
+// FalsePositives: Callback counts differ per build and installed software; compare against a clean image of the same build.
+// MITRE: T1562.001
+callbacks
+| summarize Callbacks = count(), Types = make_set(Type) by Module
+| extend Unresolved = Module in ("", "-", "N/A")
+| order by Unresolved desc, Callbacks desc

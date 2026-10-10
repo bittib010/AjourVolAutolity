@@ -1,0 +1,5 @@
+// Title: Network
+NetConns()
+| where PID == {PID}
+| project Created, Direction, Proto, LocalAddr, LocalPort, ForeignAddr, ForeignPort, State, ForeignPublic, Sources
+| order by Created asc

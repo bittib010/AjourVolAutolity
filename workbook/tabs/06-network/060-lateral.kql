@@ -1,0 +1,11 @@
+// Title: Internal lateral-movement channels
+// Why: SMB (445/139), RPC/WMI (135), RDP (3389), WinRM (5985/5986), SSH and VNC between internal hosts, by peer and direction. Workstation-to-workstation administration traffic is rare in most networks and typical of lateral movement (PsExec, WMI, RDP, WinRM).
+// FalsePositives: Domain controllers, file servers, SCCM/management and backup servers, admins using RDP.
+// MITRE: T1021.001, T1021.002, T1021.006, T1047
+let lateral = dynamic([22, 135, 139, 445, 3389, 5900, 5985, 5986]);
+NetConns()
+| where Direction in ("inbound", "outbound") and not(ForeignPublic) and ForeignAddr !in ("0.0.0.0", "::", "*", "127.0.0.1", "::1")
+| extend Port = iff(Direction == "inbound", LocalPort, ForeignPort)
+| where Port in (lateral)
+| summarize Connections = count(), States = make_set(State), Owners = make_set(Owner), FirstSeen = min(Created) by Direction, Peer = ForeignAddr, Port
+| order by Direction asc, Port asc

@@ -1,0 +1,7 @@
+// Title: Most recently written keys in this hive
+// Why: Keys written shortly before acquisition - persistence, configuration changes and tool artefacts tend to be among them.
+// FalsePositives: Windows updates, AV and software constantly touch some keys (e.g. under Microsoft\Windows\CurrentVersion\Explorer).
+{Hive}
+| where Type == "Key" and isnotnull(LastWriteTime)
+| summarize LastWriteTime = max(LastWriteTime) by Key = strcat(Key, @"\", Name)
+| top 200 by LastWriteTime desc

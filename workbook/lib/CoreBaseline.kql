@@ -1,0 +1,42 @@
+// Known-good Windows 10/11/Server core processes (SANS "Hunt Evil" poster, EchoTrail, Microsoft docs).
+// Names are lowercase EPROCESS.ImageFileName, i.e. truncated to 14 characters ("searchindexer.").
+//   Parents          allowed parent names; empty = no parent check
+//   ParentMayBeGone  parent normally exits (smss children, userinit) - a missing parent is fine
+//   PathRegex        expected normalised image path ("" = minimal process without an image file)
+//   Singleton        "system" = one live instance; "session" = one per session; "" = any number
+//   Session          "0", "1+" (interactive), "any", "none" (no session)
+//   SystemOnly       token user must be S-1-5-18
+//   AtBoot           starts within minutes of boot
+let CoreBaseline = datatable(Name:string, Parents:dynamic, ParentMayBeGone:bool, PathRegex:string, Singleton:string,
+                             Session:string, SystemOnly:bool, AtBoot:bool)
+[
+    "system",         dynamic([]),                                false, "",                                                     "system",  "none", true,  true,
+    "registry",       dynamic(["system"]),                        false, "",                                                     "system",  "none", true,  true,
+    "memcompression", dynamic(["system"]),                        false, "",                                                     "system",  "none", true,  false,
+    "secure system",  dynamic(["system"]),                        false, "",                                                     "system",  "none", true,  true,
+    "smss.exe",       dynamic(["system", "smss.exe"]),            false, @"^c:\\windows\\system32\\smss\.exe$",                  "system",  "any",  true,  true,
+    "csrss.exe",      dynamic(["smss.exe"]),                      true,  @"^c:\\windows\\system32\\csrss\.exe$",                 "session", "any",  true,  false,
+    "wininit.exe",    dynamic(["smss.exe"]),                      true,  @"^c:\\windows\\system32\\wininit\.exe$",               "system",  "0",    true,  true,
+    "winlogon.exe",   dynamic(["smss.exe"]),                      true,  @"^c:\\windows\\system32\\winlogon\.exe$",              "session", "1+",   true,  false,
+    "services.exe",   dynamic(["wininit.exe"]),                   false, @"^c:\\windows\\system32\\services\.exe$",              "system",  "0",    true,  true,
+    "lsass.exe",      dynamic(["wininit.exe"]),                   false, @"^c:\\windows\\system32\\lsass\.exe$",                 "system",  "0",    true,  true,
+    "lsaiso.exe",     dynamic(["wininit.exe"]),                   false, @"^c:\\windows\\system32\\lsaiso\.exe$",                "system",  "0",    true,  true,
+    "lsm.exe",        dynamic(["wininit.exe"]),                   false, @"^c:\\windows\\system32\\lsm\.exe$",                   "system",  "0",    true,  true,
+    "svchost.exe",    dynamic(["services.exe"]),                  false, @"^c:\\windows\\(system32|syswow64)\\svchost\.exe$",    "",        "any",  false, false,
+    "spoolsv.exe",    dynamic(["services.exe"]),                  false, @"^c:\\windows\\system32\\spoolsv\.exe$",               "system",  "0",    true,  false,
+    "searchindexer.", dynamic(["services.exe"]),                  false, @"^c:\\windows\\system32\\searchindexer\.exe$",         "system",  "0",    true,  false,
+    "taskhostw.exe",  dynamic(["svchost.exe"]),                   false, @"^c:\\windows\\system32\\taskhostw\.exe$",             "",        "any",  false, false,
+    "runtimebroker.", dynamic(["svchost.exe"]),                   false, @"^c:\\windows\\system32\\runtimebroker\.exe$",         "",        "1+",   false, false,
+    "sihost.exe",     dynamic(["svchost.exe"]),                   false, @"^c:\\windows\\system32\\sihost\.exe$",                "session", "1+",   false, false,
+    "ctfmon.exe",     dynamic(["svchost.exe", "taskhostw.exe"]),  false, @"^c:\\windows\\system32\\ctfmon\.exe$",                "",        "1+",   false, false,
+    "explorer.exe",   dynamic(["userinit.exe", "svchost.exe", "explorer.exe"]), true, @"^c:\\windows\\explorer\.exe$",           "",        "1+",   false, false,
+    "userinit.exe",   dynamic(["winlogon.exe"]),                  false, @"^c:\\windows\\system32\\userinit\.exe$",              "",        "1+",   false, false,
+    "dwm.exe",        dynamic(["winlogon.exe"]),                  false, @"^c:\\windows\\system32\\dwm\.exe$",                   "session", "1+",   false, false,
+    "fontdrvhost.ex", dynamic(["wininit.exe", "winlogon.exe"]),   false, @"^c:\\windows\\system32\\fontdrvhost\.exe$",           "",        "any",  false, false,
+    "logonui.exe",    dynamic(["winlogon.exe"]),                  false, @"^c:\\windows\\system32\\logonui\.exe$",               "",        "1+",   false, false,
+    "wmiprvse.exe",   dynamic(["svchost.exe"]),                   false, @"^c:\\windows\\(system32|syswow64)\\wbem\\wmiprvse\.exe$", "",    "0",    false, false,
+    "msmpeng.exe",    dynamic(["services.exe"]),                  false, @"^c:\\(programdata\\microsoft\\windows defender\\platform\\[^\\]+|program files\\windows defender)\\msmpeng\.exe$", "system", "0", true, false,
+    "conhost.exe",    dynamic([]),                                false, @"^c:\\windows\\(system32|syswow64)\\conhost\.exe$",    "",        "any",  false, false,
+    "dllhost.exe",    dynamic(["svchost.exe", "services.exe"]),   false, @"^c:\\windows\\(system32|syswow64)\\dllhost\.exe$",    "",        "any",  false, false,
+    "taskhost.exe",   dynamic(["services.exe", "svchost.exe"]),   false, @"^c:\\windows\\system32\\taskhost\.exe$",              "",        "any",  false, false
+];

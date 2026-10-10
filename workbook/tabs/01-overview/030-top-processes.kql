@@ -1,0 +1,14 @@
+// Title: Most suspicious processes
+// Size: large
+// Why: Processes ranked by the sum of their findings (2^severity per finding: Critical 16, High 8, Medium 4, Low 2). Independent signals stacking on one process (odd parent + staging path + injected code + network) is far stronger than any single rule. Open the PID in the *Pivot* tab.
+// FalsePositives: JIT-heavy processes (browsers, PowerShell, .NET, AV) collect low-severity memory findings; their score is dominated by those unless other categories also fire.
+let details = Procs() | where InPslist | summarize arg_max(CreateTime, ImagePath, CommandLine, UserSid, SessionId) by PID;
+AllFindings()
+| where isnotnull(PID) and SeverityRank >= 1
+| summarize Score = sum(pow(2, SeverityRank)), Findings = count(), MaxRank = max(SeverityRank),
+            Categories = make_set(Category), Reasons = make_set(Finding, 12) by PID, Process
+| extend Severity = case(MaxRank == 4, "Critical", MaxRank == 3, "High", MaxRank == 2, "Medium", "Low")
+| lookup kind=leftouter details on PID
+| project Score, Severity, PID, Process, Findings, Categories, Reasons, ImagePath, CommandLine, UserSid, SessionId, CreateTime
+| order by Score desc
+| take 50

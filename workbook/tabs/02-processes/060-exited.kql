@@ -1,0 +1,10 @@
+// Title: Exited and scan-only processes
+// Why: Short-lived processes are often the attacker's tools (whoami, net, psexec, procdump). They stay in memory while another process holds a handle to them, or as freed pool memory found by psscan. Ordered by creation time to show bursts of activity.
+// FalsePositives: Many short-lived processes are normal (updaters, conhost, svchost children). Processes created before the boot time are remnants of a previous boot.
+Procs()
+| where Exited or not(InPslist)
+| extend Note = case(isnotnull(CreateTime) and CreateTime < BootTime, "remnant from before boot",
+                     not(InPslist) and not(Exited), "running but unlinked?",
+                     not(InPslist), "freed (psscan only)", "exited, still referenced")
+| project CreateTime, ExitTime, Lifetime = ExitTime - CreateTime, PID, PPID, Process = Name, SessionId, Note
+| order by CreateTime asc
