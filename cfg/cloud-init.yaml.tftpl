@@ -1,0 +1,30 @@
+#cloud-config
+# Rendered by linux_vm.tf. Installs the VolAutolity worker on first boot.
+# Progress/errors: /var/log/cloud-init-output.log, then `journalctl -u volautolity -f`.
+package_update: true
+package_upgrade: true
+packages:
+  - python3-venv
+  - python3-dev
+  - build-essential
+  - binutils
+  - clamav
+  - clamav-freshclam
+  - curl
+
+write_files:
+  - path: /etc/volautolity/volautolity.env
+    owner: root:root
+    permissions: "0640"
+    content: |
+      ${indent(6, env_file)}
+%{ for path, content in app_files ~}
+  - path: /opt/volautolity/app/${path}
+    owner: root:root
+    permissions: "0644"
+    encoding: gz+b64
+    content: ${content}
+%{ endfor ~}
+
+runcmd:
+  - [bash, /opt/volautolity/app/deploy/setup.sh]

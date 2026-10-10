@@ -2,22 +2,42 @@
 
 ## Goal of the project
 The goal of this project is
-- leveraging power of the cloud, 
+- leveraging power of the cloud,
 - automate the volatility commands,
 - speed up the process from acquisition-end to analysis-start,
 - utilizing the speed of KQL to find answers quickly on large data sets,
 - spend time doing more important stuff than running a bunch of commands on repeat!
 
-This is set up in such a way that allows us to upload as many dumps as we need to. Every Volatility session will be linked with it's dump which will be stored into it's own separate database.
+You can upload as many memory images as you need. Each image is analysed with Volatility 3 and its
+results go into their own Azure Data Explorer (ADX) database.
 
-> [!NOTE]  
-> This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Currently limited to focus only on Windows.
+> [!NOTE]
+> This is a work in progress with a lot of additions and improvements already planned. If you want to contribute - please feel free to do so. Suggestions are also very welcome. Windows has the most coverage (and the workbook); Linux and macOS are supported by the pipeline but need kernel symbols.
 
-### Workflow 
-The analysor spins up the terraform setup, sends the uploading links/commands to the person acquiring the image(s), who then uploads. The analysor waits until ingestion has been made and starts actively querying the data. Hands-off from upload to querying.
+### Workflow
+1. The analyst deploys the stack with OpenTofu.
+2. The analyst sends the upload instructions to whoever acquires the image(s).
+3. That person uploads.
+4. A worker VM picks up each upload, runs ~80 Volatility plugins and streams every result table into
+   ADX while the rest are still running.
+5. The analyst starts querying as soon as the first tables land. From upload to querying it is
+   hands-off.
+
+```mermaid
+flowchart LR
+    U[Investigator] -- "azcopy / avml / az CLI<br/>(upload-only SAS or Entra ID)" --> B[(Blob container<br/>inbox)]
+    subgraph Azure resource group
+      B -- "poll + download<br/>(managed identity)" --> W[Worker VM<br/>systemd: volautolity]
+      W -- "vol plugins<br/>(bounded parallel)" --> W
+      W -- "queued ingestion<br/>(one DB per image)" --> A[(Azure Data Explorer)]
+      W -- "CSVs, logs, hives,<br/>dumped files" --> R[(Blob container<br/>results)]
+      A --> WB[Workbook]
+    end
+    WB --> AN[Analyst / KQL]
+```
 
 ## Parent Child relations
-An important part of knowing how to analyse memory dumps is to be aware of known goods. I've created this overview which i tend to analyse and update from time to time. 
+An important part of knowing how to analyse memory dumps is to be aware of known goods. I've created this overview which i tend to analyse and update from time to time.
 ```mermaid
 mindmap
   Core processes
@@ -67,7 +87,7 @@ mindmap
       Parents
         services.exe
       Children
-        werfault.exe? 
+        werfault.exe?
     gpscript.exe
       Parents
         svchost.exe
@@ -167,84 +187,172 @@ mindmap
         InvestigateFurther
 ```
 
-
-
-
 # Process of setting it up and "How to"
+
 ## Requirements
-### Roles in Azure
-You need "AllDatabasesAdmin" role to be able to read, view and write to the ADX cluster. And to create everything there are a lot of others as well - I have currently been a root tenant owner.
 
-To run scripts on database you need Contributor role on the cluster and Admin role on the database - Pretty much covered.
+### Tools
+- **[OpenTofu](https://opentofu.org/docs/intro/install/) 1.10 or newer:** `winget install OpenTofu.Tofu`.
+- **[Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).**
+- **An SSH key pair.** It's only used for troubleshooting on the worker VM.
 
-CloudApplicationAdmin is per now not covered in code.
-
-As root tenant owner you don't need any other permissions/roles as far as my testing goes.
-
-### Install and login
- 
-Install Terraform: https://developer.hashicorp.com/terraform/install#Windows 
-
-Install Azure CLI: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=winget
-
-Login and set subscription:
 ```powershell
-az login # Prompts you interactively via last opened browser and spits out all available subscriptions for your user
-az account set --subscription "<INSERT SUBSCRIPTION ID OR NAME>"
+az login
+az account set --subscription "<subscription id or name>"
 ```
+
+### Roles in Azure
+- **Owner on the subscription, or Contributor + User Access Administrator.** The deployment creates
+  role assignments for the worker's managed identity. That identity's roles are scoped to the
+  storage account and the ADX cluster, not to the subscription.
+- **ADX `AllDatabasesAdmin` is granted to you automatically.** You need it to query the databases
+  and use the workbook.
 
 ## Steps to deploy
 
-Set the variable for your initials, path to your public and private SSH-keys in variable.tf (and more as needed).
-
-Navigate to the root directory of the project.
-
+**1. One-time: create the remote state storage.** It is a separate module, so destroying a lab never
+deletes its own state.
 ```powershell
-terraform init
-terraform plan
-terraform apply [-auto-approve]
+cd cfg/bootstrap
+tofu init
+tofu apply -var subscriptionid=<id> -var subscriptionname=<name>
+tofu output backend_config
 ```
 
-Important note to the uploader/investigator: the dump file follows a naming convention: os_anythin.ext. To figure out the best fit for which modules to run I decided to use this approach. An example would be: win_myCompany130224.dd. The available values are: "win", "linux" or "osx". Current set of accepted extensions are limited ("dd" "raw" "mem" "vmem"), but easily extended to whatever Volatility3 accepts.
-
-If you want to make the analysis on a dump you already have, apply the full terraform config with the dump inside ./VolAutolity/sample/ folder. As this operation includes a copy to the memorydumps location that is mointored, nothing more is needed. If you are using upload functionality - you need to trigger the event by copying or moving the file into the same location it was uploaded to as it will trigger some kernel signals that triggers inotifywait. I'm working on a solution to make it run once a blob has been uploaded from elsewhere. Any input or solution is appreciated as all of this is fairly new to me!
-
-Send the investigator the necessary details to sign in to correct location and then upload the dump. The investigator needs to have a registered user in the current tenant to use the az cli uploading functionality (SAS token url is work in progress): Get the list of commands by entering:
+**2. Configure.** Nothing environment-specific is committed:
 ```powershell
-terraform output setup_and_instructions
+cd ..
+copy variables.auto.tfvars.example variables.auto.tfvars   # git-ignored; fill in subscription + state values
+```
+Other knobs are in [variables.tf](cfg/variables.tf): VM size, ADX SKU, YARA rules, slow plugins,
+work directory, and so on.
+
+**3. Deploy.** The ADX cluster takes about 15 minutes; the VM installs itself through cloud-init.
+```powershell
+tofu init
+tofu plan -out tfplan
+tofu apply tfplan
+tofu output -raw setup_and_instructions   # upload commands + SAS link to hand out
 ```
 
-## Challenges and bugs
-Doing too many images at the same times yields poor result in current state as they are running concurrently. Recommend uploading one and one and doing sample-folder for max 2. 
+**4. Upload** memory images named `<os>_<anything>.<ext>`, e.g. `win_acme-dc01_20261010.raw`, where
+`<os>` is `win`, `linux` or `mac`. `.gz`/`.zip` compressed uploads are accepted.
+[docs/ACQUISITION.md](docs/ACQUISITION.md) covers acquiring memory on-prem, from hypervisors and
+from Azure VMs, plus the upload options:
+- `azcopy` with the upload-only SAS link,
+- `avml --sas-url` straight from a Linux host,
+- `az storage blob upload --auth-mode login` for tenant users.
 
-I've stumbled upon a few errors using Azure CLI that was unreproducable but was most often solved by this flow of commands:
+To analyse an image you already have, drop it into `VolAutolity/sample/` before `tofu apply`; it is
+uploaded like any other.
 
+**5. Query.**
+- Open the *Windows Triage Workbook* in the resource group, or query the cluster directly.
+- Each image has its own database, named after the file.
+- Start with `volautolity_runs` (what ran, what failed and why) and `volautolity_image` (name, size,
+  SHA-256).
+
+## What happens on the worker
+The worker is a small Python service, [VolAutolity/volautolity](VolAutolity/volautolity), run by
+systemd under a dedicated, sandboxed user:
+
+- **Polling.** It polls the upload container through the Storage SDK. This catches uploads from
+  anywhere (the old blobfuse + inotify approach never saw remote uploads). Progress is recorded in
+  blob metadata (`volautolity_status`).
+- **One image at a time.** It downloads and, if needed, decompresses the image, then hashes it
+  (SHA-256) while analysing. If the uploader attached a `sha256` value, it verifies the image against it.
+- **Kernel resolved once.** It resolves the kernel once (`windows.info --save-config`), and every
+  other plugin reuses that config instead of re-scanning the image.
+- **Bounded parallelism.** It runs about 80 plugins with a bounded worker pool: about one process per
+  core, capped by RAM, so images no longer thrash the VM. High-value plugins run first; whole-image
+  passes such as strings, timeliner, dumpfiles and YARA run last.
+- **Streaming ingestion.** Each CSV is ingested as soon as it is ready:
+  - **Schema from the CSV header.** No hand-written schemas that drift when Volatility changes.
+  - **Inferred types.**
+  - **An explicit column mapping**, so a reordered column can't land in the wrong place.
+  - **Ingestion batching set to 20 seconds**, so tables appear quickly.
+- **Results upload.** CSVs, logs, dumped registry hives and files are uploaded to the `results`
+  container.
+
+The plugin list and table names are in [docs/PLUGINS.md](docs/PLUGINS.md).
+
+### Running it locally
+You can test plugins against an image on your own machine without Azure:
 ```powershell
-az ad signed-in-user show
-az logout
-az login
-az ad signed-in-user show
-az config set auto-upgrade.enable=yes
+cd VolAutolity
+python -m venv .venv; .venv\Scripts\pip install -r requirements.txt
+$env:VOL_COMMAND = ".venv\Scripts\vol.exe"; $env:WORK_DIR = "$PWD\work"
+.venv\Scripts\python -m volautolity process ..\win_case.raw --no-ingest --only pslist,netscan
+.venv\Scripts\python -m volautolity plugins --os windows
+```
+Tests: `python -m unittest discover -s tests`. Volatility and the Azure SDKs are optional for most
+tests; installing them enables the catalog checks.
+
+## Security model
+- **No secrets in the repository.** Environment values live in a git-ignored tfvars, and CI uses
+  repository variables plus OIDC.
+- **No secrets on the VM.** It authenticates with a user-assigned managed identity. That identity has:
+  - Storage Blob Data Contributor on the one storage account.
+  - Contributor on the one ADX cluster, to create databases.
+  - ADX AllDatabasesAdmin.
+- **Private storage.** Containers are private, public blob access is disabled, and TLS 1.2 is the
+  minimum. Blob soft delete keeps overwritten or deleted images for 7 days.
+- **Upload-only SAS for external uploaders.** It is container-scoped and HTTPS-only. It cannot read,
+  list or delete. Its validity is configurable (7 days by default), and rotating the account key
+  revokes it.
+- **Locked-down VM:**
+  - SSH only, from the deploying IP, keys only.
+  - Trusted Launch (secure boot + vTPM).
+  - The service runs as an unprivileged user with systemd sandboxing (`ProtectSystem=strict`, no
+    capabilities, ...).
+- **Pinned supply chain.** Python dependencies are pinned. Third-party downloads (YARA rules,
+  community plugins) are pinned to a commit and SHA-256-verified before use.
+- **Untrusted input is handled defensively:**
+  - Blob names never become paths.
+  - Archive member names are ignored.
+  - ADX identifiers are sanitised and bracketed.
+  - No shell is involved in running tools.
+- **Chain of custody.** Every image's SHA-256 is recorded in ADX (`volautolity_image`) and in the
+  blob's metadata.
+
+## CI/CD
+- **[ci.yml](.github/workflows/ci.yml)** runs on every push/PR: `tofu fmt/validate`, Python tests
+  and shellcheck. It needs no Azure access.
+- **[plan.yml](.github/workflows/plan.yml) / [apply.yml](.github/workflows/apply.yml)** are manual,
+  and log in to Azure with OIDC, so no client secret is stored. They need:
+  - An app registration with a federated credential for this repository (environment `production`
+    for apply), and the roles from *Roles in Azure*.
+  - Repository **variables**:
+    - Identity: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`.
+    - Subscription: `AZURE_SUBSCRIPTION_ID`, `AZURE_SUBSCRIPTION_NAME`.
+    - State backend: `TF_STATE_RESOURCE_GROUP`, `TF_STATE_STORAGE_ACCOUNT`.
+    - Worker access: `SSH_PUBLIC_KEY`, `OPERATOR_IP`.
+
+## Troubleshooting
+SSH in with the command from `tofu output -raw setup_and_instructions`, then:
+```bash
+sudo tail -f /var/log/cloud-init-output.log      # first-boot setup (packages, venv, ClamAV, service)
+journalctl -u volautolity -f                     # the worker
+ls /mnt/volautolity/output/<database>/logs       # per-plugin stderr/log, saved Volatility config
+sudo bash /opt/volautolity/app/deploy/setup.sh   # re-run setup (idempotent)
 ```
 
-This setup is not idempotent as we are using provisioners like Ansible to push out our setup. Sometimes you need to run the setup twice to make it work like intended. Sometimes the null_resource takes forever, which I have made successfully run simply by pressing CTRL+C (quitting) and then re-running the apply process.
-
-A bug with errors: "Error: retrieving Subscription <...> stream error: stream ID 3; CANCEL; received from peer" may occur, re-running has been the fix for this and seem to appear randomly for many users when researching the topic.
-
-"Error: remote-exec provisioner error" Sometimes happen. Try a re-run with this error as well. 
-
-# Memory dumps for testing
-https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
-https://www.osforensics.com/tools/volatility-workbench.html 
-https://archive.org/details/Africa-DFIRCTF-2021-WK02 
-
-
+Notes:
+- **Kusto ingestion failures** show up in `.show ingestion failures` on the cluster.
+- **Code changes replace the VM.** The app is shipped inside cloud-init `custom_data`, which can't
+  be changed in place, so changing the Python code re-creates the worker VM on the next apply.
+- **Migrating an existing Terraform deployment.** Run `tofu init` (OpenTofu reads the existing state;
+  provider addresses are translated automatically), then `tofu plan`. The plan will:
+  - Remove the old service principal, Ansible provisioner and over-broad role assignments.
+  - Forget, without destroying, the state storage resources (now in `cfg/bootstrap`).
+  - Replace the VM.
 
 ## Time notes (give or take)
-ADX cluster often takes around 15 minutes setting up. 
-VM with size Standard_DS1_v2 takes about 16 seconds, but adding the null_resource (installation of apps and more) takes a total of 8 min.
-
-Completes most often within 30 minutes for everything.
+- The ADX cluster often takes around 15 minutes to set up.
+- The VM is ready a few minutes after creation. Watch `cloud-init-output.log`.
+- On a `Standard_F8s_v2`, the core tables of a typical Windows image land within minutes of the
+  upload finishing.
+- The slow plugins (strings, timeliner, dumpfiles + ClamAV, YARA) can take much longer on big images.
 
 ## Screenshots
 ![Available data](image.png)
@@ -259,35 +367,55 @@ Completes most often within 30 minutes for everything.
 
 And much more on the way...
 
+# Workbook additions/considerations
+- Windows 7 = Taskhost.exe, Windows 8 = Taskhostex.exe, Windows 10 = Taskhostw.exe
+- #Get enabled privileges of some processes
+    python3 vol.py -f file.dmp windows.privileges.Privs [--pid <pid>]
+    #Get all processes with interesting privileges
+    python3 vol.py -f file.dmp windows.privileges.Privs | grep "SeImpersonatePrivilege\|SeAssignPrimaryPrivilege\|SeTcbPrivilege\|SeBackupPrivilege\|SeRestorePrivilege\|SeCreateTokenPrivilege\|SeLoadDriverPrivilege\|SeTakeOwnershipPrivilege\|SeDebugPrivilege
+    pass
+- Similar sounding process names
+- Decrypt base 64 strings CompromisedSystemMem.vmem | grep -E '[A-Za-z0-9+/]{4}*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)' | grep -vE '^.{1,40}$' |  grep -E '^[A-Za-z0-9+/]+={0,2}$' | base64 -d | less
+- Strings of interest list
+- Recently changed Registries
+- OTX and virustotal lookup
+- New tables to surface: consoles/cmdscan (command history), amcache, scheduled_tasks, svcdiff, pebmasquerade, direct/indirect_system_calls, etwpatch (see [docs/PLUGINS.md](docs/PLUGINS.md))
+
+# Memory dumps for testing
+https://github.com/stuxnet999/MemLabs/tree/master/Lab%200
+https://www.osforensics.com/tools/volatility-workbench.html
+https://archive.org/details/Africa-DFIRCTF-2021-WK02
+
+## Notes on a few decisions
+- **PSTree** is not run; the tree is produced in the workbook instead.
+- **OpenTofu** is used instead of Terraform (open source, MPL). Two OpenTofu-only features are used:
+  variables in the backend block, and `removed` blocks. State encryption is available if wanted (see
+  [SUGGESTIONS.md](SUGGESTIONS.md)).
+- **Table naming convention:**
+  - Remove spaces
+  - Remove Parentheses
+
 <details><summary>Resources: </summary>
 <ul>
 <li>https://github.com/hashicorp/terraform-provider-azurerm/issues/15649</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli </li>
 <li>https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-managed-identity</li>
 <li>https://azure-training.com/azure-data-science/creating-the-adx-environment/creating-adx-environment-using-cli/</li>
-<li>https://learn.microsoft.com/en-us/azure/data-explorer/create-cluster-database?tabs=azcli#create-an-azure-data-explorer-database</li>
 <li>https://learn.microsoft.com/en-us/cli/azure/kusto/database?view=azure-cli-latest#az-kusto-database-update(kusto)</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/python-ingest-data</li>
 <li>https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py</li>
-<li>https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity</li>
-<li>https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password</li>
-<li>https://registry.terraform.io/providers/favoretti/adx/latest/docs</li>
-<li>https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity</li>
+<li>https://search.opentofu.org/provider/hashicorp/azurerm/latest</li>
+<li>https://opentofu.org/docs/intro/migration/</li>
 <li>https://pypi.org/project/azure-kusto-ingest/</li>
-<li>https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install</li>
-<li>https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/#releasenotes-body-tab</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/tools/kusto-cli</li>
 <li>https://thelearningjourneyebooks.com/</li>
 <li>https://github.com/vavarachen/volatility_automation</li>
-<li>https://linux.die.net/man/1/inotifywait</li>
 <li>https://github.com/volatilityfoundation/volatility3/blob/develop/vol.py</li>
 <li>https://downloads.volatilityfoundation.org/releases/2.4/CheatSheet_v2.4.pdf</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/data-ingestion/ingest-from-storage</li>
-<li>https://github.com/search?q=repo%3AAzure%2Fazure-sdk-for-python%20ingest&type=code</li>
-<li>https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-ingest/tests/sample.py</li>
+<li>https://learn.microsoft.com/en-us/kusto/management/batching-policy?view=azure-data-explorer</li>
 <li>https://github.com/Azure/azure-kusto-python</li>
 <li>https://www.techbrothersit.com/2022/02/how-to-create-single-or-multiple-tables.html</li>
-<li>https://ansibledaily.com/execute-detached-process-with-ansible/</li>
 <li>https://www.huuhka.net/devops-for-azure-workbooks/</li>
 <li>https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/geospatial-visualizations</li>
 <li>https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-tree-visualizations</li>
@@ -302,182 +430,7 @@ And much more on the way...
 <li>https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-grid-visualizations</li>
 <li>https://reversea.me/index.php/writing-a-volatility-3-plugin/</li>
 <li>https://hostingjournalist.com/how-to-build-tabs-and-alerts-in-azure-workbooks-azure-portal-series/</li>
-<li>https://hostingjournalist.com/how-to-build-tabs-and-alerts-in-azure-workbooks-azure-portal-series/</li>
+<li>https://github.com/microsoft/avml</li>
+<li>https://github.com/Velocidex/WinPmem</li>
 </ul>
 </details>
-
-## Notes on a few decisions
-PSTree is not being run, but produced in workbook instead.
-
-Using Terraform as of current version. Basically relates to my own knowledge/limitation (or lack of). Planning on updating to add Bicep, and maybe even running in containers for reducing cost.
-
-Tablenaming convention used is set to be:
-- Remove spaces
-- Remove Parentheses
-
-
-# Workbook additions/considerations
-- Windows 7 = Taskhost.exe, Windows 8 = Taskhostex.exe, Windows 10 = Taskhostw.exe
-- #Get enabled privileges of some processes
-    python3 vol.py -f file.dmp windows.privileges.Privs [--pid <pid>]
-    #Get all processes with interesting privileges
-    python3 vol.py -f file.dmp windows.privileges.Privs | grep "SeImpersonatePrivilege\|SeAssignPrimaryPrivilege\|SeTcbPrivilege\|SeBackupPrivilege\|SeRestorePrivilege\|SeCreateTokenPrivilege\|SeLoadDriverPrivilege\|SeTakeOwnershipPrivilege\|SeDebugPrivilege
-    pass
-- Similar sounding process names
-- Decrypt base 64 strings CompromisedSystemMem.vmem | grep -E '[A-Za-z0-9+/]{4}*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)' | grep -vE '^.{1,40}$' |  grep -E '^[A-Za-z0-9+/]+={0,2}$' | base64 -d | less
-- Strings of interest list
-- Recently changed Registries
-- OTX and virustotal lookup
-
-# Modules explanations
-
-## General
-### banners.Banners
-### configwriter.ConfigWriter
-### frameworkinfo.FrameworkInfo
-### isfinfo.IsfInfo
-### layerwriter.LayerWriter
-
-## Linux
-### linux.bash.Bash
-### linux.capabilities.Capabilities
-### linux.check_afinfo.Check_afinfo
-### linux.check_creds.Check_creds
-### linux.check_idt.Check_idt
-### linux.check_modules.Check_modules
-### linux.check_syscall.Check_syscall
-### linux.elfs.Elfs
-### linux.envars.Envars
-### linux.iomem.IOMem
-### linux.keyboard_notifiers.Keyboard_notifiers
-### linux.kmsg.Kmsg
-### linux.library_list.LibraryList
-### linux.lsmod.Lsmod
-### linux.lsof.Lsof
-### linux.malfind.Malfind
-### linux.mountinfo.MountInfo
-### linux.netfilter.Netfilter
-### linux.proc.Maps
-### linux.psaux.PsAux
-### linux.pslist.PsList
-### linux.psscan.PsScan
-### linux.pstree.PsTree
-### linux.sockstat.Sockstat
-### linux.tty_check.tty_check
-
-## Mac
-### mac.bash.Bash
-### mac.check_syscall.Check_syscall
-### mac.check_sysctl.Check_sysctl
-### mac.check_trap_table.Check_trap_table
-### mac.dmesg.Dmesg
-### mac.ifconfig.Ifconfig
-### mac.kauth_listeners.Kauth_listeners
-### mac.kauth_scopes.Kauth_scopes
-### mac.kevents.Kevents
-### mac.list_files.List_Files
-### mac.lsmod.Lsmod
-### mac.lsof.Lsof
-### mac.malfind.Malfind
-### mac.mount.Mount
-### mac.netstat.Netstat
-### mac.proc_maps.Maps
-### mac.psaux.Psaux
-### mac.pslist.PsList
-### mac.pstree.PsTree
-### mac.socket_filters.Socket_filters
-### mac.timers.Timers
-### mac.trustedbsd.Trustedbsd
-### mac.vfsevents.VFSevents
-
-## WHAT?
-### timeliner.Timeliner
-### vmscan.Vmscan
-
-## Windows
-### windows.bigpools.BigPools
-Description: The windows.bigpools.BigPools module is used to analyze and extract information about large memory pools in the Windows operating system. Memory pools are areas of memory used by the operating system to manage dynamic memory allocation for various system components and drivers.
-
-**What is a memory pool?**
->A memory pool is a block of memory that is reserved for dynamic memory allocation. In the context of operating systems like Windows, memory pools are used to manage memory more efficiently by pre-allocating a large block of memory and then dividing it into smaller chunks as needed. This approach helps reduce fragmentation and the overhead associated with frequent memory allocation and deallocation. Memory pools are particularly useful for managing memory for system components and drivers that require frequent and dynamic memory allocation. By using memory pools, the operating system can ensure that memory is allocated and freed quickly, which can improve overall system performance and stability.
-
-Usage:
-
-Memory Analysis: This module helps in identifying and analyzing large memory pools, which can be useful for detecting memory leaks, understanding memory usage patterns, and troubleshooting performance issues.
-Forensics: In forensic investigations, analyzing big pools can help identify suspicious memory usage by malware or other unauthorized processes.
-Example:
-```bash
-vol -f dump.dd --log ./Volatility.log -r csv windows.bigpools > output.csv
-```
-
-### windows.callbacks.Callbacks
-### windows.cmdline.CmdLine
-### windows.crashinfo.Crashinfo
-### windows.devicetree.DeviceTree
-### windows.dlllist.DllList
-### windows.driverirp.DriverIrp
-### windows.drivermodule.DriverModule
-### windows.driverscan.DriverScan
-### windows.dumpfiles.DumpFiles
-### windows.envars.Envars
-### windows.filescan.FileScan
-### windows.getservicesids.GetServiceSIDs
-### windows.getsids.GetSIDs
-### windows.handles.Handles
-### windows.hollowprocesses.HollowProcesses
-### windows.iat.IAT
-### windows.info.Info
-### windows.joblinks.JobLinks
-### windows.kpcrs.KPCRs
-### windows.ldrmodules.LdrModules
-### windows.malfind.Malfind
-### windows.mbrscan.MBRScan
-### windows.memmap.Memmap
-### windows.modscan.ModScan
-### windows.modules.Modules
-### windows.mutantscan.MutantScan
-### windows.netscan.NetScan
-### windows.netstat.NetStat
-### windows.pedump.PEDump
-### windows.poolscanner.PoolScanner
-### windows.privileges.Privs
-### windows.processghosting.ProcessGhosting
-### windows.pslist.PsList
-PSScan - look at unallocated space. Might show processes that WERE running or processes that WERE running but now have been unlinked from the W-Linked list.
-It scans the whole image.
-
-
-```mermaid
-mindmap
-    Run command
-        Singletons
-        Boot start time anomaly
-        Parent/child relations
-```
-
-### windows.psscan.PsScan
-### windows.pstree.PsTree
-### windows.psxview.PsXView
-### windows.registry.certificates.Certificates
-### windows.registry.getcellroutine.GetCellRoutine
-### windows.registry.hivelist.HiveList
-### windows.registry.hivescan.HiveScan
-### windows.registry.printkey.PrintKey
-### windows.registry.userassist.UserAssist
-### windows.sessions.Sessions
-### windows.shimcachemem.ShimcacheMem
-### windows.skeleton_key_check.Skeleton_Key_Check
-### windows.ssdt.SSDT
-### windows.statistics.Statistics
-### windows.strings.Strings
-### windows.suspicious_threads.SuspiciousThreads
-### windows.symlinkscan.SymlinkScan
-### windows.thrdscan.ThrdScan
-### windows.threads.Threads
-### windows.timers.Timers
-### windows.truecrypt.Passphrase
-### windows.unloadedmodules.UnloadedModules
-### windows.vadinfo.VadInfo
-### windows.vadwalk.VadWalk
-### windows.verinfo.VerInfo
-### windows.virtmap.VirtMap

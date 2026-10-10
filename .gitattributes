@@ -1,0 +1,8 @@
+# Files that end up on the Linux worker keep LF endings, even in Windows checkouts
+# (CRLF breaks bash scripts and systemd units; the old setup needed dos2unix for this).
+*.sh              text eol=lf
+*.service         text eol=lf
+*.tftpl           text eol=lf
+*.py              text eol=lf
+*.tf              text eol=lf
+requirements.txt  text eol=lf

@@ -1,42 +1,41 @@
-################################################
-#  Deploy resource group
-################################################
-resource "azurerm_resource_group" "terraform" {
-  name     = "${var.subscriptionname}-terraform"
-  location = var.resource_group_location
+################################################################################
+# The remote-state storage used to be created by this configuration, i.e. the
+# configuration managed the storage account holding its own state (a
+# `tofu destroy` would have deleted it). It now lives in ./bootstrap.
+#
+# These blocks make OpenTofu forget those resources WITHOUT destroying them.
+# They are no-ops if the resources were never in this state. Once a plan/apply
+# has run with them, this file can be deleted.
+################################################################################
+
+removed {
+  from = azurerm_storage_container.p-terra
 
   lifecycle {
-    ignore_changes = [
-      tags
-    ]
+    destroy = false
   }
 }
 
+removed {
+  from = azurerm_storage_account.terraform
 
-################################################
-#  Deploy Terraform state file container
-################################################
-resource "azurerm_storage_account" "terraform" {
-  name                     = "${local.subshort}tfstate${random_string.random.result}"
-  resource_group_name      = azurerm_resource_group.terraform.name
-  location                 = azurerm_resource_group.terraform.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  lifecycle {
+    destroy = false
+  }
 }
 
-resource "azurerm_storage_container" "p-terra" {
-  name                  = "p-terra"
-  storage_account_id    = azurerm_storage_account.terraform.id
-  container_access_type = "private"
+removed {
+  from = azurerm_resource_group.terraform
+
+  lifecycle {
+    destroy = false
+  }
 }
 
+removed {
+  from = random_string.random
 
-############################################################################################################################################
-# Create "Random string" to assist creation of resource unique names
-############################################################################################################################################
-resource "random_string" "random" {
-  length  = 6
-  special = false
-  upper   = false
-  numeric = true
+  lifecycle {
+    destroy = false
+  }
 }

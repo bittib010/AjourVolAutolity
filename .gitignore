@@ -1,9 +1,28 @@
+# OpenTofu working files (OpenTofu still uses the .terraform directory name)
 .terraform/
-terraform.tfstate
-terraform.tfstate.backup
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
 .terraform.lock.hcl
+*.tfplan
+tfplan
+crash.log
+
+# Environment-specific values: never commit these (see cfg/variables.auto.tfvars.example)
+*.auto.tfvars
+terraform.tfvars
+!*.tfvars.example
+backend.hcl
+
+# Legacy generated files from the Ansible/Terraform setup
 ip.txt
 Ansible/ansible_vars.yml
-.terraform.lock.hcl
-.terraform.tfstate.lock.info
+VolAutolity/adx_vars_bash.sh
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
 notes.txt
+TEMP.suggestions.md

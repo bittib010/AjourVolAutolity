@@ -1,33 +1,41 @@
-name: 'Terraform plan 🎈'
+name: 'OpenTofu plan 🎈'
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - 'cfg/**'
-  #     - '!cfg/script/**'
   workflow_dispatch:
 
+# OIDC: no client secret stored in GitHub. Requires a federated credential on the app registration
+# (see README "CI/CD"). Repository variables hold the non-secret values.
+permissions:
+  id-token: write
+  contents: read
+
 env:
-  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
-  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
-  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+  ARM_USE_OIDC: "true"
+  ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  TF_VAR_subscriptionid: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  TF_VAR_subscriptionname: ${{ vars.AZURE_SUBSCRIPTION_NAME }}
+  TF_VAR_state_resource_group_name: ${{ vars.TF_STATE_RESOURCE_GROUP }}
+  TF_VAR_state_storage_account_name: ${{ vars.TF_STATE_STORAGE_ACCOUNT }}
+  TF_VAR_ssh_public_key: ${{ vars.SSH_PUBLIC_KEY }}
+  TF_VAR_operator_ip: ${{ vars.OPERATOR_IP }}
+  TF_VAR_deployer_principal_type: App
 
 jobs:
-  terraform-plan:
-    name: 'Terraform plan'
+  plan:
+    name: 'OpenTofu plan'
     runs-on: ubuntu-latest
-    outputs:
-      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
+    defaults:
+      run:
+        working-directory: cfg/
     steps:
-    - uses: actions/checkout@v4
-    - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v2
+        with:
+          tofu_version: "~> 1.12"
 
-    - run: terraform init
-      working-directory: cfg/
+      - run: tofu init -input=false
 
-    - name: Terraform plan
-      working-directory: cfg/
-      run: terraform plan -out=./tfplan
+      - name: OpenTofu plan
+        run: tofu plan -input=false -out=tfplan
