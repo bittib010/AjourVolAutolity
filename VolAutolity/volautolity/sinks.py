@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from abc import ABC, abstractmethod
 
-from .csvnorm import NormalizedCsv
+from .csvnorm import Column, NormalizedCsv
 from .naming import DumpName
 
 log = logging.getLogger(__name__)
@@ -18,6 +18,9 @@ class ResultSink(ABC):
 
     @abstractmethod
     def ingest(self, normalized: NormalizedCsv) -> None: ...
+
+    def create_tables(self, tables: dict[str, list[Column]]) -> None:
+        """Create empty tables with their declared schema (before any data arrives)."""
 
     def create_functions(self, functions: dict[str, str]) -> None:
         """Create/replace stored KQL functions (derived views such as taskhost_triage)."""

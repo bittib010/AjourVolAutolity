@@ -67,10 +67,11 @@ class CsvNormalizerTests(unittest.TestCase):
         self.assertEqual(types, {
             "TreeDepth": ColumnType.LONG, "PID": ColumnType.LONG, "OffsetV": ColumnType.STRING,
             "CreateTime": ColumnType.DATETIME, "Ratio": ColumnType.REAL, "Name": ColumnType.STRING,
+            "VolRow": ColumnType.LONG,
         })
         self.assertEqual(self._rows(result), [
-            "0,4,0x8413a920,2023-04-24T14:41:32.000000Z,1.5,System",
-            "0,,0x8adb0330,2023-04-24T14:41:33.000000Z,2,N/A",  # N/A kept in string columns only
+            "0,4,0x8413a920,2023-04-24T14:41:32.000000Z,1.5,System,1",
+            "0,,0x8adb0330,2023-04-24T14:41:33.000000Z,2,N/A,2",  # N/A kept in string columns only
         ])
 
     def test_volatility_backslash_escaping_is_decoded(self):
@@ -78,9 +79,26 @@ class CsvNormalizerTests(unittest.TestCase):
         result = self._normalize('TreeDepth,Path,Note\n0,\\\\Device\\\\HarddiskVolume2\\\\Windows,"say ""hi"""\n')
         with gzip.open(result.chunks[0], "rt", encoding="utf-8") as handle:
             row = next(csv.reader(handle))
-        self.assertEqual(row, ["0", "\\Device\\HarddiskVolume2\\Windows", 'say "hi"'])
+        self.assertEqual(row, ["0", "\\Device\\HarddiskVolume2\\Windows", 'say "hi"', "1"])
         plain = self._normalize("File,Result\nC:\\x\\y,OK\n")
-        self.assertEqual(self._rows(plain), ["C:\\x\\y,OK"])
+        self.assertEqual(self._rows(plain), ["C:\\x\\y,OK,1"])
+
+    def test_empty_columns_use_type_hints(self):
+        result = self._normalize("TreeDepth,PID,ExitTime,Name\n0,N/A,N/A,N/A\n")
+        types = [c.type for c in result.columns][:-1]  # last column is VolRow
+        self.assertEqual(types, [ColumnType.LONG, ColumnType.LONG, ColumnType.DATETIME, ColumnType.STRING])
+        self.assertEqual(self._rows(result), ["0,,,N/A,1"])
+
+    def test_declared_types_win_and_bad_values_become_null(self):
+        from volautolity.csvnorm import Column
+        source = self.tmp / "decl.csv"
+        source.write_text("TreeDepth,PID,Wow64,CreateTime,Extra\n0,4,True,N/A,7\n0,x,maybe,2024-01-01 00:00:00.000000 UTC,8\n", encoding="utf-8")
+        declared = [Column("TreeDepth", ColumnType.LONG), Column("PID", ColumnType.LONG), Column("Wow64", ColumnType.BOOL),
+                    Column("CreateTime", ColumnType.DATETIME)]
+        result = CsvNormalizer().normalize(source, "t", self.tmp / "out", declared)
+        self.assertEqual([c.type for c in result.columns],
+                         [ColumnType.LONG, ColumnType.LONG, ColumnType.BOOL, ColumnType.DATETIME, ColumnType.LONG, ColumnType.LONG])
+        self.assertEqual(self._rows(result), ["0,4,true,,7,1", "0,,,2024-01-01T00:00:00.000000Z,8,2"])
 
     def test_values_beyond_int64_stay_strings(self):
         result = self._normalize("TreeDepth,Big\n0,18446744073709551615\n")
@@ -89,7 +107,7 @@ class CsvNormalizerTests(unittest.TestCase):
     def test_header_only_file_yields_empty_table(self):
         result = self._normalize("TreeDepth,PID\n")
         self.assertEqual((result.rows, result.chunks), (0, []))
-        self.assertEqual([c.name for c in result.columns], ["TreeDepth", "PID"])
+        self.assertEqual([c.name for c in result.columns], ["TreeDepth", "PID", "VolRow"])
 
     def test_empty_file_yields_nothing(self):
         self.assertIsNone(self._normalize(""))
@@ -102,7 +120,7 @@ class CsvNormalizerTests(unittest.TestCase):
 
     def test_ragged_rows_keep_their_data(self):
         result = self._normalize("TreeDepth,Args\n0,a,b\n")
-        self.assertEqual(self._rows(result), ["0,\"a,b\""])
+        self.assertEqual(self._rows(result), ["0,\"a,b\",1"])
 
 
 class UnpackTests(unittest.TestCase):

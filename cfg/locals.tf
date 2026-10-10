@@ -12,8 +12,9 @@ locals {
   ssh_public_key = var.ssh_public_key != null ? var.ssh_public_key : file(pathexpand(var.path_to_public_key))
 
   # Python application shipped to the VM through cloud-init (no SSH provisioning, no Ansible).
-  app_root  = "${path.module}/../VolAutolity"
-  app_files = setunion(fileset(local.app_root, "volautolity/*.py"), fileset(local.app_root, "deploy/*"), ["requirements.txt"])
+  app_root = "${path.module}/../VolAutolity"
+  app_files = setunion(fileset(local.app_root, "volautolity/*.py"), fileset(local.app_root, "volautolity/*.json"),
+  fileset(local.app_root, "deploy/*"), ["requirements.txt"])
 
   # Memory images dropped in VolAutolity/sample/ are uploaded on apply and picked up like any other upload.
   sample_dir    = "${local.app_root}/sample"

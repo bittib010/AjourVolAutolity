@@ -13,10 +13,11 @@ from pathlib import Path
 
 from . import __version__
 from .catalog import PluginCatalog
-from .csvnorm import CsvNormalizer
+from .csvnorm import Column, CsvNormalizer
 from .models import CsvArtifact, OsFamily, TaskResult, TaskStatus, utcnow
 from .naming import DumpName
 from .scheduler import TaskScheduler
+from .schemas import TableSchemas
 from .settings import Settings
 from .sinks import ResultSink
 from .tasks import RunContext, TaskFactory, VolatilityTask
@@ -79,6 +80,7 @@ class IngestionQueue:
         self.staging_dir = staging_dir
         self._pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="ingest")
         self._futures: list[tuple[CsvArtifact, Future]] = []
+        self.schemas: dict[str, list[Column]] = {}  # declared table schemas, set once the OS is known
 
     def submit(self, result: TaskResult) -> None:
         for artifact in result.artifacts:
@@ -86,7 +88,8 @@ class IngestionQueue:
 
     def _ingest(self, artifact: CsvArtifact) -> int:
         staging = self.staging_dir / artifact.table
-        normalized = self.normalizer.normalize(artifact.path, artifact.table, staging)
+        declared = TableSchemas.lookup(self.schemas, artifact.table)
+        normalized = self.normalizer.normalize(artifact.path, artifact.table, staging, declared)
         if normalized is None:
             return 0
         try:
@@ -113,13 +116,15 @@ class IngestionQueue:
 
 class DumpPipeline:
     def __init__(self, settings: Settings, sink: ResultSink, catalog: PluginCatalog | None = None,
-                 stop_event: threading.Event | None = None, only_tables: set[str] | None = None):
+                 stop_event: threading.Event | None = None, only_tables: set[str] | None = None,
+                 schemas: TableSchemas | None = None):
         self.settings = settings
         self.sink = sink
         self.catalog = catalog or PluginCatalog()
         self.stop_event = stop_event or threading.Event()
         self.only_tables = only_tables
         self.factory = TaskFactory(settings)
+        self.schemas = schemas or TableSchemas()
 
     def process(self, image: Path, original_name: str | None = None, os_override: OsFamily | None = None) -> PipelineReport:
         dump = DumpName(original_name or image.name)
@@ -141,7 +146,10 @@ class DumpPipeline:
         started = utcnow()
         hasher = ImageHasher(image)
         try:
-            report.os_family = self._bootstrap(ctx, dump, os_override, ingestion, report)
+            report.os_family, bootstrap = self._bootstrap(ctx, dump, os_override, report)
+            self._prepare_database(report.os_family, ingestion)
+            if bootstrap is not None:
+                ingestion.submit(bootstrap)
             if report.os_family is None:
                 log.error("%s: no OS profile could be resolved; skipping remaining plugins", dump.filename)
                 diagnostics = VolatilityTask(self.catalog.diagnostics()).run(ctx)
@@ -155,25 +163,31 @@ class DumpPipeline:
             ingested = ingestion.join()
             report.sha256 = hasher.result()
             self._write_summaries(report, dump, image, started, ingested, ctx, ingestion)
-            if report.os_family is not None:
-                self.sink.create_functions(self.catalog.functions(report.os_family))
         finally:
             ingestion.close()
         log.info("%s finished: %d tasks, %d failed/timed out", dump.filename, len(report.results), len(report.failed_tasks))
         return report
 
     def _bootstrap(self, ctx: RunContext, dump: DumpName, os_override: OsFamily | None,
-                   ingestion: IngestionQueue, report: PipelineReport) -> OsFamily | None:
+                   report: PipelineReport) -> tuple[OsFamily | None, TaskResult | None]:
         """Run the OS's bootstrap plugin. Without an OS prefix in the file name, try each OS in turn."""
         candidates = [os_override or dump.os_family] if (os_override or dump.os_family) else list(OsFamily)
         for os_family in candidates:
             result = self.factory.bootstrap(self.catalog.bootstrap(os_family)).run(ctx)
             report.results.append(result)
             if result.status is TaskStatus.OK:
-                ingestion.submit(result)
-                return os_family
+                return os_family, result
             log.warning("%s bootstrap (%s) failed: %s", os_family.value, result.name, result.error[-300:])
-        return None
+        return None, None
+
+    def _prepare_database(self, os_family: OsFamily | None, ingestion: IngestionQueue) -> None:
+        """Create every table (empty, with declared types) and the helper functions before any data
+        arrives, so the workbook can query tables of plugins that fail or are still running."""
+        tables = self.schemas.for_os(os_family)
+        ingestion.schemas = tables
+        self.sink.create_tables({name: columns for name, columns in tables.items() if not name.endswith("*")})
+        if os_family is not None:
+            self.sink.create_functions(self.catalog.functions(os_family))
 
     def _selected(self, specs):
         if not self.only_tables:

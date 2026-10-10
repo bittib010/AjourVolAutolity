@@ -101,6 +101,16 @@ class AdxSink(ResultSink):
                 log.warning("%s: keeping existing ADX types for %s", table, ", ".join(conflicts))
             return [Column(c.name, existing[c.name]) for c in columns]
 
+    def create_tables(self, tables: dict[str, list[Column]]) -> None:
+        if not tables:
+            return
+        with self._lock:
+            # One atomic command; a fresh database has no conflicting definitions.
+            self._mgmt(".create-merge tables " + ", ".join(f"['{name}'] ({_schema(cols)})" for name, cols in tables.items()))
+            for name, cols in tables.items():
+                self._tables[name] = {c.name: c.type for c in cols}
+        log.info("created %d tables", len(tables))
+
     def create_functions(self, functions: dict[str, str]) -> None:
         for name, body in functions.items():
             self._mgmt(
