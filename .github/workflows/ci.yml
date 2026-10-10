@@ -38,6 +38,23 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
 
+  workbook:
+    name: 'Workbook build + KQL validation'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python workbook/build.py --check
+      - run: npm ci --ignore-scripts
+        working-directory: workbook/validate
+      - run: python workbook/build.py --export-queries "$RUNNER_TEMP/queries.json"
+      - run: node workbook/validate/check.js "$RUNNER_TEMP/queries.json" VolAutolity/volautolity/schemas.json
+
   shell:
     name: 'shellcheck'
     runs-on: ubuntu-latest
