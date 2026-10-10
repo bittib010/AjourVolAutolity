@@ -1,0 +1,44 @@
+[Unit]
+Description=VolAutolity - Volatility 3 to Azure Data Explorer
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=volautolity
+Group=volautolity
+EnvironmentFile=/etc/volautolity/volautolity.env
+Environment=HOME=/var/lib/volautolity
+StateDirectory=volautolity
+WorkingDirectory=/opt/volautolity/app
+# WORK_DIR usually lives on the Azure temp disk (/mnt), which is wiped on deallocation; recreate it as root ("+").
+ExecStartPre=+/usr/bin/install -d -m 0750 -o volautolity -g volautolity ${WORK_DIR}
+ExecStart=/opt/volautolity/venv/bin/python -m volautolity watch
+Restart=on-failure
+RestartSec=30
+TimeoutStopSec=120
+UMask=0027
+
+# Sandboxing: the worker parses untrusted memory images. setup.sh adds ReadWritePaths for WORK_DIR.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
