@@ -1,0 +1,76 @@
+// Code injection and in-process defence evasion. Severity is lowered for JIT/AV processes (JitProcesses),
+// which legitimately hold RWX private memory, call syscalls directly or start threads in unbacked memory.
+let Det_Injection = () {
+    let sensitive = dynamic(["lsass.exe", "services.exe", "smss.exe", "csrss.exe", "wininit.exe", "winlogon.exe", "spoolsv.exe", "svchost.exe"]);
+    let mal = malfind
+        | extend LName = tolower(Process), Bytes = extract(@"((?:[0-9a-f]{2} ){6})", 1, tolower(Hexdump))
+        | extend Kind = case(Notes == "MZ header" or Bytes startswith "4d 5a", "PE header (MZ) in private executable memory",
+                             Bytes startswith "fc 48 83 e4 f0" or Bytes startswith "fc e8", "Shellcode stager prologue (Cobalt Strike / Metasploit)",
+                             Notes == "Function prologue", "Code (function prologue) in private executable memory",
+                             Bytes matches regex @"^(00 ){6}", "RWX region starting with zeros",
+                             "RWX private memory")
+        | extend Severity = case(Kind startswith "PE header" or Kind startswith "Shellcode", iff(LName in (JitProcesses), "High", "Critical"),
+                                 LName in (sensitive) and Kind !startswith "RWX region starting", "High",
+                                 LName in (JitProcesses) or Kind startswith "RWX region starting", "Low",
+                                 "Medium")
+        | summarize Regions = count(), Severity = max(SevRank(Severity)), Kinds = make_set(Kind), Starts = make_set(StartVPN, 5) by PID, Process
+        | project PID, Process, Severity = case(Severity == 4, "Critical", Severity == 3, "High", Severity == 2, "Medium", "Low"),
+                  Finding = strcat("malfind: ", tostring(Kinds[0])), Detail = strcat(Regions, " region(s) at ", strcat_array(Starts, ", "), " - ", strcat_array(Kinds, "; "));
+    let hollow = hollowprocesses
+        | project PID, Process, Severity = iff(Notes contains "DLL", "Medium", "High"), Finding = "Process hollowing indicator", Detail = Notes;
+    let ghost = processghosting
+        | where tolower(Process) !in ("system", "registry", "memcompression", "secure system")
+        | where DeletePending == 1 or DeleteOnClose == 1 or FILE_OBJECT in ("0x0", "0", "-", "N/A")
+        | project PID, Process, Severity = "High", Finding = "Process ghosting / doppelganging (image deleted or missing file object)",
+                  Detail = strcat(Path, " DeletePending=", DeletePending, " DeleteOnClose=", DeleteOnClose, " FILE_OBJECT=", FILE_OBJECT);
+    let peb = pebmasquerade
+        | where EPROCESS_SeAudit_ImageFileName !in ("", "-") and PEB_ImageFilePath !in ("", "-")
+        | extend KernelName = tolower(Leaf(EPROCESS_SeAudit_ImageFileName)), PebName = tolower(Leaf(PEB_ImageFilePath))
+        | where KernelName != PebName or PEB_ImageFilePath_Spoofed or PEB_CommandLine_Spoofed
+        | project PID, Process = EPROCESS_ImageFileName, Severity = iff(KernelName != PebName, "High", "Medium"),
+                  Finding = "PEB masquerading (user-mode image path differs from the kernel's)",
+                  Detail = strcat("kernel: ", EPROCESS_SeAudit_ImageFileName, " | PEB: ", PEB_ImageFilePath,
+                                  iff(PEB_ImageFilePath_Spoofed or PEB_CommandLine_Spoofed, " | spoofed length fields", ""));
+    // ldrmodules: processes whose loader lists could not be read show nearly every module as unlinked (paged-out PEB,
+    // suspended UWP apps) - skip them. Resource-only DLLs mapped as data are also "unlinked" but harmless.
+    let wow = pslist | project Pid = PID, Wow64;
+    let ldr = ldrmodules
+        | where Pid != 4
+        | summarize Total = count(), Unlinked = countif(not(InLoad) and not(InInit) and not(InMem)) by Pid
+        | where Unlinked * 2 < Total
+        | join kind=inner (ldrmodules | where not(InLoad) and not(InInit) and not(InMem)) on Pid
+        | lookup kind=leftouter wow on Pid
+        | extend P = NormPath(MappedPath)
+        | where not(P matches regex @"\.(mui|fon|ttf|winmd|msstyles|tlb|nls|dat|ini)$")
+        | where not(coalesce(Wow64, false) and P contains @"\syswow64\")
+        | extend Severity = case(MappedPath in ("", "N/A", "-"), "High",
+                                 P matches regex StagingDirHigh or P matches regex StagingDirMedium, "High",
+                                 P startswith @"c:\windows\", "Low", "Medium")
+        | project PID = Pid, Process, Severity, Finding = "DLL mapped but unlinked from all loader lists (ldrmodules)",
+                  Detail = iff(MappedPath in ("", "N/A", "-"), strcat("PE image at ", Base, " with no backing file"), MappedPath);
+    let threads = suspicious_threads
+        | project PID, Process, Severity = iff(tolower(Process) in (JitProcesses), "Medium", "High"),
+                  Finding = "Thread starting in suspicious memory", Detail = strcat("TID ", TID, ": ", Note, " ", VADPath);
+    let syscalls = union (direct_system_calls | extend Kind = "Direct system calls"), (indirect_system_calls | extend Kind = "Indirect system calls")
+        | summarize Hits = count() by PID, Process, Kind
+        | project PID, Process, Severity = iff(tolower(Process) in (JitProcesses), "Low", "High"),
+                  Finding = strcat(Kind, " outside ntdll (EDR evasion)"), Detail = strcat(Hits, " syscall stub(s) outside ntdll/win32u");
+    let etw = etwpatch
+        | project PID, Process, Severity = iff(Opcode has "c3", "High", "Medium"), Finding = "ETW function patched in memory",
+                  Detail = strcat(DLL, "!", Function, " starts with ", Opcode);
+    let debugregs = debugregisters
+        | extend Targets = strcat_array(pack_array(Symbol0, Symbol1, Symbol2, Symbol3, Range0, Range1, Range2, Range3), " ")
+        | project PID, Process, Severity = case(Targets matches regex @"(?i)amsiscan|etwevent|nttrace|amsi\.dll", "High",
+                                                tolower(Process) in ("windbg.exe", "x64dbg.exe", "x32dbg.exe", "devenv.exe", "msvsmon.exe"), "Low", "Medium"),
+                  Finding = "Hardware breakpoints set (patchless AMSI/ETW bypass?)", Detail = strcat("TID ", TID, ": ", Targets);
+    let dllStaging = dlllist
+        | extend P = NormPath(Path)
+        | where P matches regex StagingDirHigh or (P matches regex StagingDirMedium and tolower(Process) in (dynamic(["lsass.exe", "services.exe", "winlogon.exe", "csrss.exe", "svchost.exe", "spoolsv.exe", "explorer.exe"])))
+        | summarize Dlls = make_set(P, 10) by PID, Process
+        | project PID, Process, Severity = "High", Finding = "DLL loaded from a staging directory", Detail = strcat_array(Dlls, ", ");
+    let unhooked = unhooked_system_calls
+        | project PID = long(null), Process = "", Severity = "Medium", Finding = "ntdll stubs differ between processes (EDR hooks removed?)",
+                  Detail = strcat(Function, ": ", DistinctImplementations);
+    union mal, hollow, ghost, peb, ldr, threads, syscalls, etw, debugregs, dllStaging, unhooked
+    | extend Category = "Injection & evasion"
+};

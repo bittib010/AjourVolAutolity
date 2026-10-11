@@ -1,0 +1,3 @@
+// Boot time: creation of the System process (PID 4) - or of the Registry process, which Windows creates a few
+// seconds before System's recorded CreateTime.
+let BootTime = toscalar(pslist | where PID == 4 or (PPID == 4 and ImageFileName == "Registry") | summarize min(CreateTime));

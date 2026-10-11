@@ -1,0 +1,10 @@
+// Title: Listening ports
+// Why: What this host offers to the network. On a workstation, listeners on 22, 3389, 5985/5986, 5900+, 7070, 4444, 1080 or 8080, or listeners owned by user-mode tools, are unusual. lsass listening on 88/389/636/3268 means this image is a domain controller.
+// FalsePositives: System owns SMB (139/445) and WinRM (5985 via HTTP.sys); svchost owns RPC (135), SSDP/UPnP, Delivery Optimization (7680).
+NetConns()
+| where Direction in ("listening", "udp") and LocalAddr !in ("127.0.0.1", "::1")
+| summarize Protocols = make_set(Proto), Addresses = make_set(LocalAddr) by LocalPort, PID, Owner
+| extend Role = case(tolower(Owner) == "lsass.exe" and LocalPort in (88, 389, 636, 3268, 3269), "domain controller service",
+                     LocalPort in (139, 445) and PID == 4, "SMB (normal)", LocalPort == 135, "RPC endpoint mapper", LocalPort == 3389, "RDP",
+                     LocalPort in (5985, 5986), "WinRM", LocalPort == 22, "SSH", LocalPort between (5900 .. 5910), "VNC", "")
+| order by LocalPort asc

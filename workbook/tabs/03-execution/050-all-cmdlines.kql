@@ -1,0 +1,7 @@
+// Title: All command lines (for review)
+// Size: large
+// Why: The full list with parent and account, for patterns no rule anticipates. Sort by creation time to follow a session; filter on the grid for "\Users\", "http", "-enc", "\\\\" or a hostname.
+ProcTree()
+| where InPslist and isnotempty(CommandLine)
+| project CreateTime, PID, Process = Name, Parent = ParentName, UserSid, SessionId, CommandLine
+| order by CreateTime asc

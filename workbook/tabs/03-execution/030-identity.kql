@@ -1,0 +1,7 @@
+// Title: Token anomalies (SYSTEM shells, potato escalation)
+// Severity: High
+// Why: A cmd/powershell running as SYSTEM inside a user's session (PsExec -s -i, sticky-keys backdoor), a SYSTEM process started by a service account such as IIS AppPool/NETWORK SERVICE (SeImpersonate "potato" exploits), or explorer/sihost running as SYSTEM.
+// FalsePositives: Remote management agents that open SYSTEM consoles on purpose. The token user is the first SID reported by getsids.
+// MITRE: T1134.001, T1068, T1546.008
+// Refs: https://jlajara.gitlab.io/Potatoes_Windows_Privesc ; https://attack.mitre.org/techniques/T1134/004/
+Det_Identity()

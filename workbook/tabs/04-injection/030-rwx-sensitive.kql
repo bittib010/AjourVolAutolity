@@ -1,0 +1,12 @@
+// Title: Executable private memory in processes that never JIT
+// Severity: High
+// Why: lsass, services, smss, csrss, wininit, winlogon and spoolsv do not generate code at runtime; executable private (VadS) memory in them is a strong injection signal even when malfind's heuristics miss it.
+// FalsePositives: Security products injecting into system processes; rare compatibility shims.
+// MITRE: T1055
+// Refs: https://github.com/ufrisk/MemProcFS/wiki/FS_FindEvil
+vadinfo
+| where tolower(Process) in ("lsass.exe", "services.exe", "smss.exe", "csrss.exe", "wininit.exe", "winlogon.exe", "spoolsv.exe")
+| where Protection has "EXECUTE" and PrivateMemory == 1
+| summarize Regions = count(), Protections = make_set(Protection), Starts = make_set(StartVPN, 10) by PID, Process
+| extend Severity = "High"
+| order by Regions desc

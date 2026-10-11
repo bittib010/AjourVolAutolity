@@ -1,0 +1,6 @@
+// Title: Threads
+// Why: Thread start addresses and the module they start in. A thread whose start path is empty (unbacked memory) in a non-JIT process is suspicious.
+threads
+| where PID == {PID}
+| project TID, CreateTime, ExitTime, StartAddress, StartPath, Win32StartAddress, Win32StartPath
+| order by CreateTime asc

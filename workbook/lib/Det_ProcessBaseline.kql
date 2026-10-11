@@ -1,0 +1,50 @@
+// Deviations of core Windows processes from the known-good baseline (CoreBaseline): parent, path,
+// session, token user, start time and instance count. Exited instances are ignored except for parentage.
+let Det_ProcessBaseline = () {
+    let critical = dynamic(["lsass.exe", "services.exe", "wininit.exe", "lsaiso.exe", "smss.exe", "csrss.exe", "winlogon.exe"]);
+    let core = ProcTree()
+        | extend LName = tolower(Name)
+        | join kind=inner (CoreBaseline | project-rename LName = Name) on LName
+        | extend Base = iff(LName in (critical), "Critical", "High");
+    let wrongParent = core
+        | where ParentState == "found" and array_length(Parents) > 0
+              and not(set_has_element(Parents, tolower(ParentName)))
+              // smss child instances that started csrss/winlogon have exited; their PID can be a later process
+              and not(ParentMayBeGone and isnotnull(ParentExitTime))
+        | project PID, Process = Name, Severity = Base, Finding = "Core process with an unexpected parent",
+                  Detail = strcat(Name, " (", PID, ") was started by ", ParentName, " (", PPID, "); expected ", strcat_array(Parents, " or "));
+    let missingParent = core
+        | where not(Exited) and ParentState != "found" and not(ParentMayBeGone) and array_length(Parents) > 0
+        | project PID, Process = Name, Severity = "Medium", Finding = "Parent of a core process is not in memory",
+                  Detail = strcat(Name, " (", PID, ") parent PID ", PPID, " ", ParentState, "; expected ", strcat_array(Parents, " or "), " to still be running");
+    let wrongPath = core
+        | where isnotempty(PathRegex) and isnotempty(ImagePath) and not(ImagePath matches regex PathRegex)
+        | project PID, Process = Name, Severity = "Critical", Finding = "Core process name running from an unexpected path",
+                  Detail = strcat(ImagePath, " (expected ", PathRegex, ")");
+    let wrongSession = core
+        | where not(Exited) and ((Session == "0" and SessionId != 0) or (Session == "1+" and SessionId == 0))
+        | project PID, Process = Name, Severity = Base, Finding = "Core process in an unexpected session",
+                  Detail = strcat(Name, " runs in session ", SessionId, "; expected session ", Session);
+    let wrongUser = core
+        | where not(Exited) and SystemOnly and isnotempty(UserSid) and UserSid != "S-1-5-18"
+        | project PID, Process = Name, Severity = "Critical", Finding = "Core process not running as SYSTEM",
+                  Detail = strcat(Name, " token user is ", UserSid, " ", UserLabel);
+    let lateStart = core
+        | where not(Exited) and AtBoot and CreateTime > BootTime + 10m
+        | project PID, Process = Name, Severity = "Medium", Finding = "Boot-time process started late",
+                  Detail = strcat(Name, " started ", CreateTime - BootTime, " after boot (", CreateTime, ")");
+    let tooMany = core
+        | where not(Exited) and Singleton != ""
+        | extend Scope = iff(Singleton == "session", tostring(SessionId), "system")
+        | summarize Instances = count(), PIDs = make_list(PID), Severity = take_any(Base) by Name, LName, Scope
+        | where Instances > 1
+        | mv-expand PID = PIDs to typeof(long)
+        | project PID, Process = Name, Severity, Finding = "More instances than expected",
+                  Detail = strcat(Instances, " live instances of ", Name, iff(Scope == "system", "", strcat(" in session ", Scope)), ": ", strcat_array(PIDs, ", "));
+    let lsmOnWin10 = core
+        | where LName == "lsm.exe" and not(Exited) and toint(toscalar(info | where Variable == "NtMajorVersion" | project Value | take 1)) >= 10
+        | project PID, Process = Name, Severity = "High", Finding = "lsm.exe on Windows 10+",
+                  Detail = "lsm.exe only exists up to Windows 7; on later versions this name is a masquerade";
+    union wrongParent, missingParent, wrongPath, wrongSession, wrongUser, lateStart, tooMany, lsmOnWin10
+    | extend Category = "Process baseline"
+};

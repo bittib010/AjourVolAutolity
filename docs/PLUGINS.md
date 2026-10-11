@@ -7,9 +7,20 @@ a required option, so a Volatility upgrade can't silently drop tables.
 
 - **One database per image.** Every image gets its own ADX database. Every plugin writes one table,
   except `registry_hivelist`, which also creates one `printkey_<HIVE>` table per hive.
-- **Columns come from the plugin's CSV header.** Spaces and parentheses are removed
-  (`Offset(V)` becomes `OffsetV`, `File output` becomes `Fileoutput`). Types are inferred:
-  `long` / `real` / `datetime`, otherwise `string`.
+- **Columns come from the plugin's own declaration.** They are the plugin's TreeGrid columns in
+  Volatility's source, recorded in
+  [`VolAutolity/volautolity/schemas.json`](../VolAutolity/volautolity/schemas.json) by
+  `tools/gen_schemas.py`.
+  - Names have spaces and parentheses removed (`Offset(V)` becomes `OffsetV`, `File output` becomes
+    `Fileoutput`).
+  - Types are the declared ones: `long`, `bool`, `datetime`, `real` or `string`. A value that doesn't
+    fit the declared type becomes null rather than failing ingestion.
+  - Columns a newer Volatility adds are typed by inference.
+- **Every table is created up front, once the OS is known.** A plugin that fails or finds nothing
+  leaves an empty, typed table, so workbook queries don't break.
+- **Every table has a `VolRow` column:** the row's position in Volatility's output. The order carries
+  meaning that ADX doesn't preserve: the first `dlllist` module is the executable, the first `getsids`
+  SID is the token user, and console history is ordered.
 - **Priority sets the order, not whether a plugin runs.** `core` plugins run first so the workbook
   fills early; `slow` ones (whole-image passes) run last at lower CPU priority.
 - **Every image also gets these tables:**
@@ -236,6 +247,6 @@ mindmap
 ```
 
 ### Backslashes in paths
-Volatility's CSV writer escapes backslashes, so Windows paths arrive in ADX doubled
-(`\\Device\\HarddiskVolume2\\Windows`). This is unchanged from the previous runner, and the
-workbook's registry tree query relies on it. Match accordingly in KQL (`has @"\\Windows\\"`).
+Volatility's CSV writer escapes backslashes (`C:\\Windows`). The worker decodes this, so paths in ADX
+are normal Windows paths (`C:\Windows\System32`). Databases created by the earlier bash runner still
+contain doubled backslashes.

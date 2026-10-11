@@ -247,10 +247,36 @@ To analyse an image you already have, drop it into `VolAutolity/sample/` before 
 uploaded like any other.
 
 **5. Query.**
-- Open the *Windows Triage Workbook* in the resource group, or query the cluster directly.
+- Open the *Windows Triage Workbook* in the resource group (see [The triage workbook](#the-triage-workbook)),
+  or query the cluster directly.
 - Each image has its own database, named after the file.
-- Start with `volautolity_runs` (what ran, what failed and why) and `volautolity_image` (name, size,
-  SHA-256).
+- `volautolity_runs` shows what ran, what failed and why; `volautolity_image` shows name, size and SHA-256.
+
+## The triage workbook
+The workbook ranks what deserves attention first, and explains each finding: why it matters, common
+false positives, ATT&CK techniques and sources.
+
+| Tab | What it looks at |
+|---|---|
+| **Overview** | Image facts; most suspicious processes, scored across all detectors; every finding; plugin health. |
+| **Processes** | Verified process tree; deviations from the known-good baseline (parent, path, session, account, start time, count); typosquats/RTLO; staging paths; unlinked processes; exited processes. |
+| **Execution** | ~40 command-line patterns (LOLBins, LSASS dumping, shadow-copy deletion, Defender tampering, AD recon, PsExec/WMI, rclone); console history; parent/child abuse (Office, WMI, WinRM, services, web shells, sticky keys); SYSTEM shells and potato escalation. |
+| **Injection & evasion** | malfind (MZ / Cobalt Strike stager bytes), hollowing, ghosting, PEB masquerading, unlinked DLLs, unbacked threads, direct/indirect syscalls, ETW patches, hardware breakpoints. |
+| **Credentials** | lsass handles with decoded access masks, Cobalt Strike and credential-tool pipes, SAM/LSA secrets/DCC2 (no online lookups), skeleton key, dangerous privileges. |
+| **Network** | Socket-owner rules (LOLBins, notepad, argument-less rundll32), C2/RAT/Tor ports, lateral-movement channels, listeners, internet peers on a map, named pipes. |
+| **Persistence** | ~35 registry autostart and hijack locations, Run-key review, suspicious services (Cobalt Strike / Impacket / PsExec patterns, svcdiff), scheduled tasks, Startup folders. |
+| **Security posture** | WDigest, LSA protection, Credential Guard, driver blocklist, Defender switches and exclusions, logging/ETW, UAC, RDP, firewall, AMSI. |
+| **Kernel** | Callbacks, IRP handlers and timers outside any module; SSDT hooks; orphan kernel threads; hidden drivers; BYOVD drivers; filter attachments. |
+| **Files & artefacts** | LSASS dumps, hive/NTDS copies, tools, ransom notes; Mark-of-the-Web download origins; mass-rename heuristic; Amcache/ShimCache/UserAssist; malware mutexes; rogue root certificates; YARA/ClamAV. |
+| **Timeline** | All timestamped artefacts around a pivot time you choose. |
+| **Registry browser** | Tree view of any hive, plus the most recently written keys. |
+| **Pivot** | Everything about one PID. |
+| **Strings & IOCs** | URLs, public IPs, decoded PowerShell, credential-looking strings. |
+| **Run health** | Per-plugin status, durations, rows per table. |
+
+The workbook is generated from KQL sources in [workbook/](workbook/README.md). Every query is checked in
+CI against the exact table schemas with Microsoft's KQL analyzer. The detectors were calibrated on a real
+Windows 10 memory image.
 
 ## What happens on the worker
 The worker is a small Python service, [VolAutolity/volautolity](VolAutolity/volautolity), run by
@@ -267,9 +293,12 @@ systemd under a dedicated, sandboxed user:
   core, capped by RAM, so images no longer thrash the VM. High-value plugins run first; whole-image
   passes such as strings, timeliner, dumpfiles and YARA run last.
 - **Streaming ingestion.** Each CSV is ingested as soon as it is ready:
-  - **Schema from the CSV header.** No hand-written schemas that drift when Volatility changes.
-  - **Inferred types.**
-  - **An explicit column mapping**, so a reordered column can't land in the wrong place.
+  - **Tables created up front.** All tables are created as soon as the OS is known, with the column
+    types Volatility itself declares (`schemas.json`, generated from the Volatility source).
+  - **Backslash escaping decoded.** Volatility escapes backslashes in its CSV output; the worker
+    decodes them.
+  - **Row order kept.** Each row's position is stored as `VolRow`.
+  - **An explicit column mapping by name**, so a reordered or new column can't land in the wrong place.
   - **Ingestion batching set to 20 seconds**, so tables appear quickly.
 - **Results upload.** CSVs, logs, dumped registry hives and files are uploaded to the `results`
   container.
@@ -368,18 +397,17 @@ Notes:
 And much more on the way...
 
 # Workbook additions/considerations
-- Windows 7 = Taskhost.exe, Windows 8 = Taskhostex.exe, Windows 10 = Taskhostw.exe
-- #Get enabled privileges of some processes
-    python3 vol.py -f file.dmp windows.privileges.Privs [--pid <pid>]
-    #Get all processes with interesting privileges
-    python3 vol.py -f file.dmp windows.privileges.Privs | grep "SeImpersonatePrivilege\|SeAssignPrimaryPrivilege\|SeTcbPrivilege\|SeBackupPrivilege\|SeRestorePrivilege\|SeCreateTokenPrivilege\|SeLoadDriverPrivilege\|SeTakeOwnershipPrivilege\|SeDebugPrivilege
-    pass
-- Similar sounding process names
-- Decrypt base 64 strings CompromisedSystemMem.vmem | grep -E '[A-Za-z0-9+/]{4}*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)' | grep -vE '^.{1,40}$' |  grep -E '^[A-Za-z0-9+/]+={0,2}$' | base64 -d | less
-- Strings of interest list
-- Recently changed Registries
-- OTX and virustotal lookup
-- New tables to surface: consoles/cmdscan (command history), amcache, scheduled_tasks, svcdiff, pebmasquerade, direct/indirect_system_calls, etwpatch (see [docs/PLUGINS.md](docs/PLUGINS.md))
+Done in the current workbook:
+- Taskhost generations (Win7 taskhost, Win8 taskhostex, Win10+ taskhostw) are in the baseline.
+- Interesting privileges.
+- Similar-sounding process names.
+- Base64 decoding of PowerShell.
+- Strings of interest.
+- Recently changed registry keys.
+
+Still open:
+- **OTX / VirusTotal lookups.** Deliberately not built in: sending customer IOCs or hashes to
+  third-party services must be a conscious analyst decision.
 
 # Memory dumps for testing
 https://github.com/stuxnet999/MemLabs/tree/master/Lab%200

@@ -1,0 +1,12 @@
+// Title: Public IP addresses in memory
+// Why: Addresses that appear in memory but not in the network tables can be past C2 connections or configuration. Compare with the Network tab.
+// FalsePositives: Version numbers (1.2.3.4-like) and documentation ranges; addresses in certificate or update data.
+strings
+| where String matches regex @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b" and not(String matches regex @"(?i)version|\d+\.\d+\.\d+\.\d+\.\d+")
+| extend Ip = extract(@"\b((?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3})\b", 1, String)
+| where isnotempty(Ip) and IsPublicIp(Ip)
+| summarize Hits = count(), Examples = make_set(substring(String, 0, 200), 3) by Ip
+| extend Geo = geo_info_from_ip_address(Ip)
+| project Ip, Country = tostring(Geo.country), Hits, Examples
+| order by Hits desc
+| take 500

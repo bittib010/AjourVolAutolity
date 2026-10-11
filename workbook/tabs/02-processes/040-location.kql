@@ -1,0 +1,10 @@
+// Title: Staging paths, svchost without -k, unlinked processes
+// Severity: High
+// Why: Malware runs from user-writable folders (Temp, AppData, Users\Public, ProgramData, PerfLogs, Recycle Bin, Windows\Tasks, spool\drivers\color ...). Every genuine svchost has "-k <group>". A running process that psscan finds but pslist does not was unlinked from the active process list (DKOM rootkit).
+// FalsePositives: Per-user apps (Teams, OneDrive, Zoom) and installers legitimately run from AppData/Temp (Medium). psscan also finds processes from before a reboot; those are filtered by boot time.
+// MITRE: T1036.005, T1014
+// Refs: https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_susp_execution_path.yml ; https://github.com/volatilityfoundation/volatility/wiki/Command-Reference-Mal
+Det_ProcessLocation()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

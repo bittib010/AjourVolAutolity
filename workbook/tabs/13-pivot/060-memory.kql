@@ -1,0 +1,7 @@
+// Title: Executable private memory and malfind hits
+// Why: VAD regions that are private and executable (where injected code lives), with malfind's hexdump when it flagged the region.
+vadinfo
+| where PID == {PID} and Protection has "EXECUTE" and PrivateMemory == 1
+| join kind=leftouter (malfind | where PID == {PID} | project StartVPN, Notes, Hexdump, Disasm) on StartVPN
+| project StartVPN, EndVPN, Protection, Tag, CommitCharge, File, Notes, Hexdump, Disasm
+| order by StartVPN asc

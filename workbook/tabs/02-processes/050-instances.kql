@@ -1,0 +1,12 @@
+// Title: Core process instance counts
+// Why: System-wide singletons (lsass, services, wininit, spoolsv, LsaIso ...) must have exactly one live instance; csrss/winlogon/dwm one per session. A second lsass is a classic sign of credential-theft tooling or masquerading.
+// FalsePositives: Terminal servers and fast user switching add per-session instances. svchost counts are never alerted on (service splitting since Windows 10 1703).
+Procs()
+| where not(Exited)
+| extend LName = tolower(Name)
+| join kind=inner (CoreBaseline | project LName = Name, Singleton) on LName
+| summarize Instances = count(), Sessions = make_set(SessionId), PIDs = make_set(PID) by Process = Name, Singleton
+| extend Expected = case(Singleton == "system", "1", Singleton == "session", strcat("1 per session (", array_length(Sessions), ")"), "any"),
+         Severity = case(Singleton == "system" and Instances > 1, "High", Singleton == "session" and Instances > array_length(Sessions), "High", "")
+| project Process, Instances, Expected, Severity, Sessions, PIDs
+| order by Severity desc, Process asc

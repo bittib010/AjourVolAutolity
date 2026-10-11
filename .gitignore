@@ -26,3 +26,6 @@ __pycache__/
 
 notes.txt
 TEMP.suggestions.md
+
+# Workbook validator dependencies
+node_modules/

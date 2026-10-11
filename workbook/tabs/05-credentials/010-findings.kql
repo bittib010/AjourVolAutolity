@@ -1,0 +1,10 @@
+// Title: Credential access findings
+// Severity: Critical
+// Why: Handles to lsass.exe with VM_READ/duplicate access held by shells, LOLBins or unknown tools (Mimikatz 0x1010, nanodump 0x1410, ProcDump 0x1fffff, MalSecLogon svchost 0x14c0); credential-tool and Cobalt Strike named pipes; LSA secrets holding cleartext passwords; skeleton key patches; shells that enabled SeDebugPrivilege themselves.
+// FalsePositives: AV/EDR, Task Manager, Process Explorer and backup agents open lsass (allowlisted, extend as needed). Dump tools close their handle quickly, so absence proves nothing. A PPL-protected lsass cannot be read by unprotected tools - a VM_READ handle then implies a driver-based bypass.
+// MITRE: T1003.001, T1003.004, T1003.005, T1556.001, T1134
+// Refs: https://www.splunk.com/en_us/blog/security/you-bet-your-lsass-hunting-lsass-access.html ; https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_access/proc_access_win_lsass_susp_access_flag.yml ; https://github.com/SigmaHQ/sigma/blob/master/rules/windows/pipe_created/pipe_created_hktl_cobaltstrike.yml
+Det_Credentials()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

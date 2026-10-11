@@ -1,0 +1,9 @@
+// Title: Internet peers per process
+// Why: Which processes talk to which public addresses. Few connections from an unusual process to one rare address (beaconing) is more interesting than many browser connections. Check the addresses against threat intelligence.
+// FalsePositives: Browsers, Teams/OneDrive, Defender and Windows Update talk to many Microsoft/CDN addresses.
+NetConns()
+| where ForeignPublic and Direction in ("outbound", "unknown", "inbound")
+| summarize Connections = count(), Ports = make_set(ForeignPort), States = make_set(State), Owners = make_set(Owner) by ForeignAddr
+| extend Geo = geo_info_from_ip_address(ForeignAddr)
+| project ForeignAddr, Country = tostring(Geo.country), City = tostring(Geo.city), Connections, Ports, Owners, States
+| order by array_length(Owners) asc, Connections asc

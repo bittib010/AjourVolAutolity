@@ -1,0 +1,10 @@
+// Title: Suspicious command lines and console history
+// Severity: High
+// Why: ~40 patterns from LOLBAS, Sigma, MITRE ATT&CK, The DFIR Report and CISA ransomware advisories: encoded PowerShell and download cradles, certutil/bitsadmin/mshta/regsvr32/rundll32 abuse, LSASS dumping (comsvcs MiniDump, ProcDump, Mimikatz), hive and NTDS theft, shadow-copy deletion, Defender tampering, AD discovery (AdFind, nltest), PsExec/WMI lateral movement, rclone exfiltration and more. Console history (cmdscan/consoles) recovers commands typed in cmd.exe even after the window was closed.
+// FalsePositives: Admin scripts and installers (schtasks /create, sc config, reg add Run). Backup products rotate shadow copies. Low-severity stealth flags alone mean little.
+// MITRE: T1059.001, T1218, T1003.001, T1490, T1562.001, T1047, T1569.002
+// Refs: https://lolbas-project.github.io/ ; https://github.com/SigmaHQ/sigma/tree/master/rules/windows/process_creation ; https://thedfirreport.com/
+Det_Commands()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc, PID asc
+| project-away SeverityRank

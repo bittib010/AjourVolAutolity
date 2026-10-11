@@ -1,0 +1,20 @@
+// Token anomalies: SYSTEM shells in interactive sessions (PsExec -s -i, sticky keys), SYSTEM children of
+// service accounts (potato/SeImpersonate abuse), and user-session shell processes running as SYSTEM.
+let Det_Identity = () {
+    let shells = dynamic(["cmd.exe", "powershell.exe", "pwsh.exe", "rundll32.exe", "mshta.exe", "wscript.exe", "cscript.exe", "regsvr32.exe"]);
+    let tree = ProcTree() | where not(Exited) | extend LName = tolower(Name);
+    let systemShell = tree
+        | where UserSid == "S-1-5-18" and SessionId >= 1 and LName in (shells)
+        | project PID, Process = Name, Severity = "High", Finding = "Shell running as SYSTEM in an interactive session",
+                  Detail = strcat(Name, " in session ", SessionId, " started by ", coalesce(ParentName, "?"), ": ", CommandLine);
+    let potato = tree
+        | where UserSid == "S-1-5-18" and (ParentUserSid in ("S-1-5-19", "S-1-5-20") or ParentUserSid startswith "S-1-5-80-" or ParentUserSid startswith "S-1-5-82-")
+        | project PID, Process = Name, Severity = "High", Finding = "SYSTEM process started by a service account (SeImpersonate/potato privilege escalation?)",
+                  Detail = strcat(ParentName, " (", ParentUserSid, ") -> ", Name, " (SYSTEM)");
+    let userAsSystem = tree
+        | where UserSid == "S-1-5-18" and LName in ("explorer.exe", "runtimebroker.", "sihost.exe", "ctfmon.exe")
+        | project PID, Process = Name, Severity = "High", Finding = "User-session process running as SYSTEM",
+                  Detail = strcat(Name, " token user is SYSTEM (expected the logged-on user)");
+    union systemShell, potato, userAsSystem
+    | extend Category = "Execution"
+};

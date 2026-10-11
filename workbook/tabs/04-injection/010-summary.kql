@@ -1,0 +1,10 @@
+// Title: Injection and in-memory evasion findings
+// Severity: Critical
+// Why: malfind regions starting with an MZ header or a Cobalt Strike/Metasploit stager prologue (fc 48 83 e4 f0 / fc e8) are injected code; hollowprocesses/processghosting/pebmasquerade show image tampering; ldrmodules entries unlinked from all loader lists, threads starting in unbacked memory, syscall stubs outside ntdll, ETW functions starting with "ret" (c3) and hardware breakpoints on AmsiScanBuffer/EtwEventWrite are evasion.
+// FalsePositives: JIT runtimes and AV (downgraded); resource-only DLLs mapped as data (System32, Low); EDR trampolines can look like hooks. malfind sees only the first 64 bytes and the VAD's initial protection, so RW->RX tricks and stomped headers are missed.
+// MITRE: T1055, T1055.012, T1055.013, T1620, T1562.006, T1106
+// Refs: https://www.elastic.co/blog/hunting-memory ; https://github.com/ufrisk/MemProcFS/wiki/FS_FindEvil ; https://unit42.paloaltonetworks.com/cobalt-strike-memory-analysis/
+Det_Injection()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc, PID asc
+| project-away SeverityRank

@@ -1,0 +1,12 @@
+// Title: Decoded PowerShell -EncodedCommand blobs
+// Why: Encoded PowerShell (Base64 of UTF-16LE) from command lines, scripts and C2 traffic that survived in memory, decoded.
+// MITRE: T1059.001, T1027
+strings
+| where String matches regex @"(?i)\s-e(n|nc|nco|ncodedcommand)?\s+[A-Za-z0-9+/]{40,}"
+| extend B64 = extract(@"(?i)\s-e(?:n|nc|nco|ncodedcommand)?\s+([A-Za-z0-9+/]{40,}={0,2})", 1, String)
+| summarize Hits = count() by B64
+| extend Bytes = base64_decode_toarray(B64)
+| mv-apply b = Bytes to typeof(int) on (where b != 0 | summarize Codepoints = make_list(b))
+| extend Decoded = unicode_codepoints_to_string(Codepoints)
+| project Hits, Decoded, B64
+| take 200

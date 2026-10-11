@@ -1,0 +1,23 @@
+// Processes whose image lives in a staging directory, svchost without "-k", and processes found by the
+// pool scanner but missing from the active process list while still running (DKOM unlinking).
+let Det_ProcessLocation = () {
+    let procs = Procs();
+    let staging = procs
+        | where InPslist and isnotempty(ImagePath)
+        | extend Severity = case(ImagePath matches regex StagingDirHigh, "High", ImagePath matches regex StagingDirMedium, "Medium", "")
+        | where isnotempty(Severity)
+        | project PID, Process = Name, Severity, Finding = "Process image in a staging / user-writable directory", Detail = ImagePath;
+    let svchostNoK = procs
+        | where tolower(Name) == "svchost.exe" and InPslist and not(Exited) and isnotempty(CommandLine) and CommandLine !contains "-k"
+        | project PID, Process = Name, Severity = "High", Finding = "svchost.exe without a -k service group", Detail = CommandLine;
+    let unlinked = procs
+        | where InPsscan and not(InPslist) and not(Exited) and CreateTime between (BootTime .. coalesce(AcquiredAt, now()))
+        | project PID, Process = Name, Severity = "High", Finding = "Running process missing from the active process list (unlinked?)",
+                  Detail = strcat(Name, " found only by psscan, created ", CreateTime, ", no exit time");
+    let psxviewHidden = psxview
+        | where not(pslist) and (thrdscan or csrss) and (isempty(ExitTime) or ExitTime in ("N/A", "-"))
+        | project PID, Process = Name, Severity = "High", Finding = "psxview: process visible to thread/csrss scans but not pslist",
+                  Detail = strcat("pslist=", pslist, " psscan=", psscan, " thrdscan=", thrdscan, " csrss=", csrss);
+    union staging, svchostNoK, unlinked, psxviewHidden
+    | extend Category = "Process location"
+};

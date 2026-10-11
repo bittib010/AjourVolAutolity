@@ -1,0 +1,12 @@
+// Title: Dangerous privileges enabled by the process itself
+// Why: Privileges marked "Enabled" but not "Default" were switched on at runtime. SeDebugPrivilege (read any process incl. lsass), SeLoadDriverPrivilege (BYOVD), SeTcbPrivilege, SeBackup/SeRestore (hive and NTDS copies), SeImpersonate (potato attacks) and SeTakeOwnership are what attack tools ask for.
+// FalsePositives: Process Explorer/Monitor, debuggers, EDR, backup software and installers enable SeDebug/SeBackup legitimately.
+// MITRE: T1134
+// Refs: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/debug-programs
+privileges
+| where Privilege in ("SeDebugPrivilege", "SeLoadDriverPrivilege", "SeTcbPrivilege", "SeBackupPrivilege", "SeRestorePrivilege",
+                      "SeImpersonatePrivilege", "SeTakeOwnershipPrivilege", "SeCreateTokenPrivilege", "SeAssignPrimaryTokenPrivilege")
+| where Attributes has "Enabled" and Attributes !has "Default"
+| summarize Privileges = make_set(Privilege) by PID, Process
+| extend Shell = tolower(Process) in (ShellNames)
+| order by Shell desc, Process asc

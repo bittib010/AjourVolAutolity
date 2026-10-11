@@ -1,0 +1,10 @@
+// Title: Named pipes (open handles)
+// Why: Named pipes carry SMB beacons, post-exploitation jobs and remote execution (PsExec). Unusual pipe names held by unusual processes - especially random hex suffixes - deserve a look; known Cobalt Strike and tool pipes are flagged in the Credentials findings.
+// FalsePositives: Chrome/Edge (mojo.*), Office, SQL, Docker and many services use pipes legitimately.
+// MITRE: T1570, T1021.002
+handles
+| where Type == "File" and Name startswith @"\Device\NamedPipe\"
+| extend Pipe = substring(Name, strlen(@"\Device\NamedPipe\"))
+| where not(Pipe matches regex @"(?i)^(mojo\.|chrome\.|crashpad_|lsass$|ntsvcs$|scerpc$|wkssvc$|srvsvc$|samr$|lsarpc$|eventlog$|initshutdown$|spoolss$|atsvc$|epmapper$|PIPE_EVENTROOT|LOCAL\\|Winsock2|GoogleCrashServices|dotnet-diagnostic|ProtectedPrefix)")
+| summarize Holders = make_set(strcat(Process, " (", PID, ")"), 10) by Pipe
+| order by Pipe asc

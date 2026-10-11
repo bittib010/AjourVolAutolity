@@ -1,0 +1,11 @@
+// True for routable internet addresses (excludes RFC1918, loopback, link-local, CGNAT, multicast,
+// unspecified and IPv6 ULA/link-local).
+let IsPublicIp = (ip:string) {
+    iff(ip contains ":",
+        not(ip in ("::", "::1", "*") or ip startswith "fe80" or ip startswith "fc" or ip startswith "fd" or ip startswith "ff"
+            or ip startswith "::ffff:127." or ip startswith "::ffff:10." or ip startswith "::ffff:192.168."),
+        isnotnull(parse_ipv4(ip)) and not(ipv4_is_private(ip))
+            and not(ipv4_is_in_range(ip, "127.0.0.0/8")) and not(ipv4_is_in_range(ip, "169.254.0.0/16"))
+            and not(ipv4_is_in_range(ip, "0.0.0.0/8")) and not(ipv4_is_in_range(ip, "224.0.0.0/3"))
+            and not(ipv4_is_in_range(ip, "100.64.0.0/10")))
+};

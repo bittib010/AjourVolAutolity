@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Hive",
+    "label": "Hive",
+    "type": 2,
+    "isRequired": true,
+    "kql": ".show tables\n| where TableName startswith 'printkey_'\n| project TableName\n| order by TableName asc",
+    "testValue": "printkey_SOFTWARE"
+  },
+  {
+    "name": "KeyFilter",
+    "label": "Key path contains",
+    "type": 1,
+    "description": "Substring of the key path, e.g. CurrentVersion\\Run",
+    "value": "CurrentVersion\\Run",
+    "testValue": "CurrentVersion\\Run"
+  }
+]

@@ -1,0 +1,10 @@
+// Title: Map of internet peers
+// Visualization: map
+// Map: lat=Latitude lon=Longitude label=ForeignAddr size=Connections
+// Why: Geolocation of public peer addresses (approximate, from ADX's built-in GeoIP data). Unexpected countries for this organisation are worth a look.
+NetConns()
+| where ForeignPublic
+| summarize Connections = count() by ForeignAddr
+| extend Geo = geo_info_from_ip_address(ForeignAddr)
+| extend Latitude = todouble(Geo.latitude), Longitude = todouble(Geo.longitude)
+| where isnotnull(Latitude)

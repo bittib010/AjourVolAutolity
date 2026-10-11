@@ -1,0 +1,25 @@
+// Suspicious command lines (cmdline), console command history and screen buffers (cmdscan, consoles)
+// and .NET profiler hijacking via environment variables (envars).
+let Det_Commands = () {
+    let fromCmdline = Procs()
+        | where InPslist and isnotempty(CommandLine)
+        | extend Hits = CmdHits(CommandLine)
+        | mv-expand Hit = Hits to typeof(string)
+        | where isnotempty(Hit)
+        | parse Hit with Severity "|" Tactic "|" Technique "|" Finding
+        | project PID, Process = Name, Severity, Finding = strcat(Finding, " [", Technique, "]"), Detail = CommandLine;
+    let fromConsole = union cmdscan, consoles
+        | where isnotempty(Data) and Data !in ("None", "N/A", "-") and Property !endswith ".Application" and Property !contains "Title"
+        | extend Hits = CmdHits(Data)
+        | mv-expand Hit = Hits to typeof(string)
+        | where isnotempty(Hit)
+        | parse Hit with Severity "|" Tactic "|" Technique "|" Finding
+        | project PID, Process, Severity, Finding = strcat("Console history: ", Finding, " [", Technique, "]"), Detail = substring(Data, 0, 500);
+    let profiler = envars
+        | where Variable in~ ("COR_ENABLE_PROFILING", "CORECLR_ENABLE_PROFILING") and Value == "1"
+        | join kind=inner (envars | where Variable matches regex @"(?i)^(COR|CORECLR)_PROFILER_PATH(_32|_64)?$" | project PID, ProfilerPath = Value) on PID
+        | project PID, Process, Severity = iff(ProfilerPath matches regex @"(?i)\\program files", "Medium", "High"),
+                  Finding = ".NET profiler loaded via environment (COR_PROFILER hijack) [T1574.012]", Detail = ProfilerPath;
+    union fromCmdline, fromConsole, profiler
+    | extend Category = "Execution"
+};

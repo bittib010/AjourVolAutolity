@@ -1,0 +1,7 @@
+// Title: Masquerading names
+// Severity: High
+// Why: Process names that look like core Windows processes (svch0st, scvhost, lsasss, expl0rer ...), names with right-to-left override or other invisible characters, document-like double extensions and "C:\Windows \System32" mock directories used for UAC bypass.
+// FalsePositives: Legitimate near-names are allowlisted (dasHost, sihost, taskhost, smsvchost ...); add your own if a vendor binary trips the similarity check.
+// MITRE: T1036.005, T1036.002, T1036.007, T1548.002
+// Refs: https://redcanary.com/threat-detection-report/techniques/match-legitimate-name-or-location/ ; https://www.elastic.co/guide/en/security/current/uac-bypass-attempt-via-windows-directory-masquerading.html
+Det_Masquerade()

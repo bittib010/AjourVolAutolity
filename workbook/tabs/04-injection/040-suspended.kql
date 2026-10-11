@@ -1,0 +1,10 @@
+// Title: Suspended threads, correlated with injection
+// Why: Process hollowing creates the target suspended, rewrites it, then resumes it. A suspended thread in a process that also has hollowing/malfind findings is a strong combination; on its own a suspended thread is usually a background UWP app.
+// FalsePositives: Suspended UWP/Store apps (SearchApp, StartMenuExperienceHost, Settings) - shown as Low.
+// MITRE: T1055.012
+let injected = union (malfind | distinct PID), (hollowprocesses | distinct PID), (processghosting | distinct PID);
+suspended_threads
+| join kind=leftouter (injected | extend Injected = true) on PID
+| extend Severity = iff(coalesce(Injected, false), "High", "Low")
+| project Severity, PID, Process, TID, StartFile, StartSymbol, Win32StartFile, Win32StartSymbol
+| order by Severity asc, PID asc

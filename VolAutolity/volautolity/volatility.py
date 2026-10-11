@@ -46,6 +46,7 @@ class VolatilityCli:
         self.command = command
         self.image = image
         self.cache_dir = cache_dir
+        self.cache_dir.mkdir(parents=True, exist_ok=True)  # vol fails (identifier.cache) if it doesn't exist
         self.plugin_dirs = plugin_dirs
         self.symbol_dirs = tuple(p for p in symbol_dirs if p.exists())
         self.remote_isf_url = remote_isf_url

@@ -1,0 +1,10 @@
+// Title: URLs in memory
+// Why: C2 endpoints, download locations and exfiltration targets often survive only in memory. Rare URLs (seen once or twice) on unusual domains are the interesting ones.
+// FalsePositives: Certificate revocation, schema and Microsoft/vendor URLs dominate - they are filtered out.
+strings
+| where String has_any ("http://", "https://")
+| extend Url = extract(@"(https?://[A-Za-z0-9.\-_~:/?#\[\]@!$&'()*+,;=%]{4,300})", 1, String)
+| where isnotempty(Url) and not(Url matches regex @"(?i)^https?://([a-z0-9-]+\.)*(microsoft|windows|windowsupdate|msftncsi|live|office|bing|digicert|verisign|symantec|globalsign|sectigo|comodo|w3|xmlsoap|schemas|openxmlformats|adobe|apache|purl|ietf|iana|ocsp|crl)\.")
+| summarize Hits = count(), Where = make_set(Result, 5) by Url
+| order by Hits asc
+| take 1000

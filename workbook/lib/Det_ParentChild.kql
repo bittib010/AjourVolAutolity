@@ -1,0 +1,35 @@
+// Parent -> child pairs that indicate exploitation, remote execution or backdoors (Sigma process_creation
+// rules, SANS Hunt Evil, EchoTrail). Uses only parents that provably existed before the child (ProcTree).
+let Det_ParentChild = () {
+    let office = dynamic(["winword.exe", "excel.exe", "powerpnt.exe", "msaccess.exe", "mspub.exe", "onenote.exe", "visio.exe",
+                          "eqnedt32.exe", "outlook.exe", "wordpad.exe", "wordview.exe"]);
+    let webServers = dynamic(["w3wp.exe", "httpd.exe", "nginx.exe", "php.exe", "php-cgi.exe", "tomcat.exe", "tomcat8.exe",
+                              "tomcat9.exe", "java.exe", "javaw.exe", "sqlservr.exe", "umworkerproces", "caddy.exe"]);
+    let accessibility = dynamic(["winlogon.exe", "logonui.exe", "utilman.exe", "sethc.exe", "osk.exe", "magnify.exe",
+                                 "narrator.exe", "atbroker.exe", "displayswitch."]);
+    let lolParents = dynamic(["mshta.exe", "rundll32.exe", "regsvr32.exe", "bitsadmin.exe", "wscript.exe", "cscript.exe",
+                              "msbuild.exe", "installutil.ex"]);
+    let quiet = dynamic(["taskhostw.exe", "runtimebroker.", "dwm.exe", "fontdrvhost.ex", "sihost.exe", "ctfmon.exe",
+                         "searchindexer.", "searchprotocol", "conhost.exe"]);
+    let shells = dynamic(["cmd.exe", "powershell.exe", "pwsh.exe", "powershell_ise", "rundll32.exe", "mshta.exe", "regsvr32.exe",
+                          "wscript.exe", "cscript.exe"]);
+    ProcTree()
+    | where ParentState == "found"
+    | extend LName = tolower(Name), LParent = tolower(ParentName)
+    | extend Rule = case(
+        LParent == "lsass.exe" and LName != "efsui.exe", "Critical|lsass.exe spawned a child process",
+        LParent in (accessibility) and LName in (shells), "Critical|Shell spawned by a logon/accessibility process (sticky-keys style backdoor)",
+        LParent in (office) and LName in (ShellNames), "High|Office application spawned a shell, script host or LOLBin",
+        LParent == "wmiprvse.exe" and LName in (ShellNames) and LName != "msiexec.exe", "High|WMI provider host spawned a shell (remote WMI execution)",
+        LParent in ("wsmprovhost.ex", "winrshost.exe") and LName in (ShellNames), "High|WinRM host spawned a shell (PowerShell remoting / winrs)",
+        LParent == "services.exe" and LName in ("cmd.exe", "powershell.exe", "pwsh.exe", "rundll32.exe", "msbuild.exe", "mshta.exe"), "High|services.exe spawned a shell (service-based execution, e.g. PsExec/getsystem)",
+        LParent == "spoolsv.exe" and LName in (ShellNames) and LName != "rundll32.exe", "High|Print spooler spawned a shell or tool",
+        LParent in (webServers) and LName in (ShellNames), "High|Web/application server spawned a shell (web shell)",
+        LParent in (lolParents) and LName in (shells), "High|LOLBin spawned a shell",
+        LParent in (quiet) and LName in (shells), "Medium|Quiet system process spawned a shell",
+        "")
+    | where isnotempty(Rule)
+    | parse Rule with Severity "|" Finding
+    | project PID, Process = Name, Severity, Category = "Execution", Finding,
+              Detail = strcat(ParentName, " (", PPID, ") -> ", Name, " (", PID, ")", iff(isnotempty(CommandLine), strcat(": ", CommandLine), ""))
+};

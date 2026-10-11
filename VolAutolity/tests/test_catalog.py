@@ -50,6 +50,15 @@ class CatalogMatchesVolatilityTests(unittest.TestCase):
                 self.assertIn(spec.name, self.plugins, f"not found (import failures: {self.import_failures})")
                 self.assertFalse(issubclass(self.plugins[spec.name], self.rename_class), "deprecated alias")
 
+    def test_schemas_json_is_up_to_date(self):
+        import subprocess
+        import sys
+        from pathlib import Path
+
+        tool = Path(__file__).resolve().parents[1] / "tools" / "gen_schemas.py"
+        result = subprocess.run([sys.executable, str(tool), "--check"], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_required_options_are_supplied(self):
         from volatility3.framework.configuration import requirements as req
         from volatility3.framework.interfaces.configuration import SimpleTypeRequirement

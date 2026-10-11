@@ -1,0 +1,5 @@
+// Title: Rows per table
+// Why: Tables that exist but are empty: the plugin found nothing, was not supported on this build, or failed (see the runs above).
+union withsource = TableName *
+| summarize Rows = count() by TableName
+| order by Rows asc

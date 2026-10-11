@@ -1,0 +1,48 @@
+// Suspicious command-line patterns (LOLBAS, Sigma, MITRE ATT&CK, The DFIR Report, CISA ransomware advisories).
+// Returns an array of "Severity|Tactic|Technique|Finding" for every pattern the text matches.
+let CmdHits = (text:string) {
+    let t = tolower(text);
+    pack_array(
+        iff(t matches regex @"(powershell|pwsh)(\.exe)?\b.*\s[-/](e|en|enc|enco\w*|ec)\s+[a-z0-9+/=]{16,}", "Medium|Execution|T1059.001|Encoded PowerShell command", ""),
+        iff(t has "frombase64string" or t has "[convert]::", "Medium|Defense Evasion|T1140|Base64 decoding in command line", ""),
+        iff(t matches regex @"\b(iex|invoke-expression)\b" and t matches regex @"(downloadstring|downloaddata|downloadfile|net\.webclient|invoke-webrequest|\biwr\b|invoke-restmethod|\birm\b|start-bitstransfer)", "High|Execution|T1059.001|PowerShell download cradle", ""),
+        iff(t matches regex @"\s[-/](w|wi|win|windowstyle)\s+h(idden)?\b|\s-nop(rofile)?\b|\s-(ep|exec|executionpolicy)\s+bypass", "Low|Defense Evasion|T1564.003|PowerShell stealth flags", ""),
+        iff(t matches regex @"certutil(\.exe)?\b.*(-urlcache|-verifyctl|-url\s)", "High|Command and Control|T1105|certutil used to download", ""),
+        iff(t matches regex @"certutil(\.exe)?\b.*\s-(decode|decodehex|encode)\b", "Medium|Defense Evasion|T1140|certutil encode/decode", ""),
+        iff(t matches regex @"bitsadmin(\.exe)?\b.*/(transfer|create|addfile|setnotifycmdline|resume)", "High|Defense Evasion|T1197|bitsadmin job", ""),
+        iff(t matches regex @"\b(curl|wget)(\.exe)?\s.*https?://", "Medium|Command and Control|T1105|curl/wget download", ""),
+        iff(t matches regex @"mshta(\.exe)?\b.*(vbscript:|javascript:|https?://|\.hta\b|getobject)", "High|Defense Evasion|T1218.005|mshta executing script or remote content", ""),
+        iff(t matches regex @"regsvr32(\.exe)?\b.*(/i:|scrobj\.dll|https?://|\\\\)", "High|Defense Evasion|T1218.010|regsvr32 Squiblydoo / remote scriptlet", ""),
+        iff(t matches regex @"rundll32(\.exe)?\b.*(javascript:|mshtml,runhtmlapplication|\\\\[a-z0-9.-]+\\|\s-sta\b)", "High|Defense Evasion|T1218.011|rundll32 script or remote DLL", ""),
+        iff(t matches regex @"comsvcs(\.dll)?.*(minidump|#\s*\+?-?24\b)", "Critical|Credential Access|T1003.001|LSASS dump via comsvcs.dll MiniDump", ""),
+        iff(t matches regex @"procdump(64)?a?(\.exe)?\b.*\s-ma\b.*lsass|\s-ma\s+lsass", "High|Credential Access|T1003.001|ProcDump of lsass", ""),
+        iff(t matches regex @"(sekurlsa::|privilege::debug|lsadump::|kerberos::(ptt|golden|list)|misc::memssp|token::elevate|crypto::capi|dpapi::)", "Critical|Credential Access|T1003|Mimikatz command", ""),
+        iff(t matches regex @"\breg(\.exe)?\s+save\s+hklm\\(sam|system|security)\b", "High|Credential Access|T1003.002|Registry hive dump (SAM/SYSTEM/SECURITY)", ""),
+        iff(t matches regex @"ntdsutil.*(ifm|create full)|ntds\.dit|esentutl.*ntds", "High|Credential Access|T1003.003|NTDS.dit theft", ""),
+        iff(t matches regex @"vssadmin(\.exe)?\s.*create\s+shadow", "Medium|Credential Access|T1003.003|Volume shadow copy created", ""),
+        iff(t matches regex @"vssadmin(\.exe)?\s.*(delete\s+shadows|resize\s+shadowstorage)|wmic(\.exe)?\s.*shadowcopy\s+delete|win32_shadowcopy.*(remove-|delete)|wbadmin(\.exe)?\s.*delete\s+(catalog|systemstatebackup|backup)|diskshadow(\.exe)?\s.*delete\s+shadows|bcdedit(\.exe)?\s.*(recoveryenabled\s+no|bootstatuspolicy\s+ignoreallfailures)|reagentc(\.exe)?\s+/disable", "Critical|Impact|T1490|Inhibit system recovery (shadow copies / backups / boot recovery)", ""),
+        iff(t matches regex @"bcdedit(\.exe)?\s.*safeboot\s+(minimal|network)", "High|Defense Evasion|T1562.009|Boot into Safe Mode configured", ""),
+        iff(t matches regex @"wmic(\.exe)?\s.*process\s+call\s+create", "High|Execution|T1047|WMI process creation", ""),
+        iff(t matches regex @"\b(psexe(c|c64|svc)|paexec|csexec)\b", "High|Lateral Movement|T1569.002|PsExec-style remote execution", ""),
+        iff(t matches regex @"schtasks(\.exe)?\s.*/create", "Medium|Persistence|T1053.005|Scheduled task created", ""),
+        iff(t matches regex @"\bsc(\.exe)?\s+(\\\\\S+\s+)?(create|config)\b.*binpath", "Medium|Persistence|T1543.003|Service created or reconfigured", ""),
+        iff(t matches regex @"\breg(\.exe)?\s+add\s.*\\(currentversion\\run|winlogon|image file execution options)", "Medium|Persistence|T1547.001|Autorun registry key written", ""),
+        iff(t matches regex @"set-mppreference.*-disable(realtimemonitoring|behaviormonitoring|ioavprotection|scriptscanning)|add-mppreference.*-exclusion(path|process|extension)|disableantispyware|disableantivirus|dism.*disable-feature.*defender|\bsc(\.exe)?\s+(stop|config|delete)\s+(windefend|sense|wdnissvc)", "High|Defense Evasion|T1562.001|Microsoft Defender tampering", ""),
+        iff(t matches regex @"amsiutils|amsiinitfailed|amsiscanbuffer", "High|Defense Evasion|T1562.001|AMSI bypass", ""),
+        iff(t matches regex @"wevtutil(\.exe)?\s+(cl|clear-log)\s|clear-eventlog|remove-eventlog|fsutil(\.exe)?\s+usn\s+deletejournal", "High|Defense Evasion|T1070.001|Event log / USN journal cleared", ""),
+        iff(t matches regex @"netsh(\.exe)?\s.*(advfirewall\s+set\s.*state\s+off|firewall\s+set\s+opmode\s+(mode=)?disable)", "Medium|Defense Evasion|T1562.004|Firewall disabled", ""),
+        iff(t matches regex @"\bnet1?(\.exe)?\s+(user|group|localgroup)\s.*(/domain|domain admins|enterprise admins)", "Medium|Discovery|T1087.002|Domain account/group discovery", ""),
+        iff(t matches regex @"nltest(\.exe)?\s.*(/domain_trusts|/dclist:|/all_trusts)|dsquery.*trusteddomain", "Medium|Discovery|T1482|Domain trust discovery", ""),
+        iff(t matches regex @"\badfind\b|-sc\s+trustdmp|objectcategory=(person|computer)", "High|Discovery|T1087.002|AdFind Active Directory enumeration", ""),
+        iff(t matches regex @"whoami(\.exe)?\s+/(all|priv|groups)", "Low|Discovery|T1033|whoami privilege discovery", ""),
+        iff(t matches regex @"\bnet1?(\.exe)?\s+(user\s+\S+\s+\S+\s+/add|localgroup\s+administrators\s+\S+\s+/add)", "High|Persistence|T1136.001|Local account created / added to Administrators", ""),
+        iff(t matches regex @"rclone(\.exe)?\s.*\s(copy|sync|move)\s", "High|Exfiltration|T1567.002|rclone data transfer", ""),
+        iff(t matches regex @"\b(7z|7za|7zr|7zg|rar|winrar)(\.exe)?\s+a\s.*\s-(p|hp)\S+", "Medium|Collection|T1560.001|Password-protected archive created", ""),
+        iff(t matches regex @"(cmd|%comspec%).*/c.*echo.*\\pipe\\", "High|Privilege Escalation|T1134.001|Meterpreter/Cobalt Strike getsystem (named pipe)", ""),
+        iff(t matches regex @"\bnet1?(\.exe)?\s+stop\s.*(veeam|backup|vss|wbengine|sql|msexchange|sophos|symantec|mcafee|acronis|netbackup|veritas)|taskkill(\.exe)?\s.*/f.*/im", "Medium|Impact|T1489|Services or processes stopped", ""),
+        iff(t matches regex @"(msbuild|installutil|regasm|regsvcs)(\.exe)?\s.*\\(users\\public|appdata|temp|programdata)\\", "Medium|Defense Evasion|T1127|Trusted developer utility running user-writable content", ""),
+        iff(t matches regex @"cmstp(\.exe)?\s.*/(ni|s)\b.*\.inf", "High|Defense Evasion|T1218.003|cmstp INF execution", ""),
+        iff(t matches regex @"icacls(\.exe)?\s+\S+\s+/grant\s+(everyone|\*s-1-1-0):", "Medium|Impact|T1222.001|Permissions opened to Everyone", ""),
+        iff(t matches regex @"cipher(\.exe)?\s+/w:", "High|Impact|T1485|Free space wiped (cipher /w)", "")
+    )
+};

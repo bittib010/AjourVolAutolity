@@ -1,0 +1,6 @@
+// Title: Slowest plugins
+// Visualization: barchart
+// Size: small
+volautolity_runs
+| top 20 by DurationSeconds desc
+| project Table, DurationSeconds

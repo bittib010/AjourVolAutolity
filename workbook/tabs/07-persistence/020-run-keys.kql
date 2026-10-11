@@ -1,0 +1,7 @@
+// Title: All Run / RunOnce entries (review list)
+// Why: Every Run-key autostart, also those no rule flagged. Look for unfamiliar names, binaries in AppData/ProgramData, recently written keys, and RunOnce entries that are still present (not yet executed). A RunOnce name starting with "*" also runs in Safe Mode.
+// FalsePositives: OneDrive, Teams, Edge auto-launch, SecurityHealth and vendor tray apps are normal.
+RegValues()
+| where LKey matches regex @"\\currentversion\\(run|runonce|runonceex(\\[^\\]+)*|runservices|runservicesonce|policies\\explorer\\run)$"
+| project LastWriteTime, Hive, Key, Name, Data, Suspicious = SuspiciousData(Data)
+| order by Suspicious desc, LastWriteTime desc

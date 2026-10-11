@@ -1,0 +1,5 @@
+// Title: All plugin runs
+// Size: full
+volautolity_runs
+| project Status, Table, Plugin, Rows, DurationSeconds, StartedUtc, FinishedUtc, Error = substring(Error, 0, 300), IngestError
+| order by Status asc, Table asc

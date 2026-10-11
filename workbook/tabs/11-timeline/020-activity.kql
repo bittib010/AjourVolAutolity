@@ -1,0 +1,6 @@
+// Title: Activity over the last 7 days before acquisition
+// Visualization: timechart
+// Why: Spikes of process starts, registry writes or tool executions outside working hours often mark the intrusion.
+Timeline()
+| where Time > coalesce(AcquiredAt, now()) - 7d
+| summarize Events = count() by bin(Time, 1h), Source

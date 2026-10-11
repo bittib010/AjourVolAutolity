@@ -1,0 +1,7 @@
+// Title: Startup folder files and PowerShell profiles
+// Why: Files in Startup folders run at logon; PowerShell profile scripts run with every PowerShell session. Neither is visible in the registry. filescan only lists files that were open or cached in memory.
+// MITRE: T1547.001, T1546.013
+filescan
+| where Name matches regex @"(?i)\\start menu\\programs\\startup\\[^\\]+$|\\windowspowershell\\v1\.0\\profile\.ps1$|\\(windows)?powershell\\[^\\]*profile\.ps1$"
+| where Name !endswith "desktop.ini"
+| distinct Name

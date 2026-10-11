@@ -1,0 +1,49 @@
+// Process masquerading: names that look like core Windows processes but are not (svch0st, scvhost, lsasss ...),
+// names with non-printable/bidi characters (RTLO), double extensions and "mock" trusted directories.
+// Similarity = Jaccard index over the character sets (KQL has no edit distance), length within 2.
+let Det_Masquerade = () {
+    let coreNames = dynamic(["svchost.exe", "lsass.exe", "csrss.exe", "services.exe", "winlogon.exe", "wininit.exe", "explorer.exe",
+                             "smss.exe", "spoolsv.exe", "conhost.exe", "taskhostw.exe", "dllhost.exe", "rundll32.exe", "lsaiso.exe",
+                             "runtimebroker.", "searchindexer.", "msmpeng.exe", "userinit.exe", "iexplore.exe"]);
+    // Typosquats seen in the wild (EchoTrail, Red Canary) plus variants the similarity check misses.
+    let typos = dynamic(["svch0st.exe", "scvhost.exe", "svchosts.exe", "svchost32.exe", "svhost.exe", "schost.exe", "svchos.exe", "svchosl.exe",
+                         "svhost32.exe", "scvh0st.exe", "lsasss.exe", "lsas.exe", "1sass.exe", "lsass32.exe", "lssass.exe", "lssas.exe", "lass.exe",
+                         "expl0rer.exe", "explorers.exe", "iexplorer.exe", "c0nhost.exe", "conhosts.exe", "csrsss.exe", "crss.exe", "csrs.exe",
+                         "smss32.exe", "winlogin.exe", "winlog0n.exe", "services32.exe", "servlces.exe", "spoolsvc.exe", "dllhst.exe",
+                         "rundl32.exe", "runddl32.exe", "taskhost32.exe", "userinlt.exe", "wininlt.exe", "msmpengs.exe"]);
+    // Legitimate Windows binaries whose names are similar to a core name - measured against every .exe in
+    // C:\Windows, System32 and SysWOW64 of Windows 11 (character-set Jaccard >= 0.8).
+    let allowed = dynamic(["dashost.exe", "sihost.exe", "taskhost.exe", "taskhostex.exe", "smsvchost.exe", "consent.exe", "lsm.exe",
+                           "wudfhost.exe", "unsecapp.exe", "sppsvc.exe", "vssvc.exe", "wsmprovhost.ex", "mpdefendercore", "nissrv.exe",
+                           "searchhost.exe", "searchapp.exe", "sihclient.exe", "logonui.exe", "axinstui.exe", "cacls.exe", "colorcpl.exe",
+                           "epdservice.exe", "ism.exe", "msg.exe", "nethost.exe", "pairtool.exe", "printui.exe", "resetengine.ex",
+                           "rstrui.exe", "shellhost.exe", "synchost.exe", "tscon.exe", "verclsid.exe", "vmms.exe", "wwahost.exe"]);
+    let procs = Procs() | where InPslist or not(Exited) | extend LName = tolower(Name);
+    let knownTypo = procs
+        | where LName in (typos)
+        | project PID, Process = Name, Severity = "High", Finding = "Known typosquat of a core Windows process name",
+                  Detail = strcat(Name, iff(isnotempty(ImagePath), strcat(", image ", ImagePath), ""));
+    // Similar names only count outside the Windows directories: legitimate near-names all live there, while
+    // lookalikes are usually dropped in user-writable folders (a lookalike placed in System32 still hits the typo list).
+    let lookalike = procs
+        | where LName !in (coreNames) and LName !in (allowed) and LName !in (typos) and strlen(LName) between (6 .. 16)
+        | where not(ImagePath matches regex @"^c:\\windows\\(system32|syswow64|winsxs)\\|^c:\\windows\\[^\\]+$")
+        | mv-apply Core = coreNames to typeof(string) on (
+            extend Similarity = todouble(jaccard_index(to_utf8(LName), to_utf8(Core)))
+            | where Similarity >= 0.8 and abs(strlen(LName) - strlen(Core)) <= 2
+            | top 1 by Similarity desc)
+        | project PID, Process = Name, Severity = iff(isempty(ImagePath), "Medium", "High"), Finding = "Name resembles a core Windows process",
+                  Detail = strcat(Name, " looks like ", Core, " (similarity ", round(todouble(Similarity), 2), ")", iff(isnotempty(ImagePath), strcat(", image ", ImagePath), ""));
+    let oddChars = procs
+        | where Name matches regex @"[^\x20-\x7e]" or ImagePath matches regex @"[\x{200b}-\x{200f}\x{202a}-\x{202e}\x{2066}-\x{2069}]"
+        | project PID, Process = Name, Severity = "High", Finding = "Non-printable or bidirectional characters in process name/path (RTLO)",
+                  Detail = strcat(Name, " ", ImagePath);
+    let doubleExt = procs
+        | where ImagePath matches regex @"\.(pdf|docx?|xlsx?|pptx?|txt|jpe?g|png|zip|rar|rtf|csv|html?)\s*\.(exe|scr|com|pif|bat|cmd|js|vbs|hta|lnk)$"
+        | project PID, Process = Name, Severity = "High", Finding = "Executable with a document-like double extension", Detail = ImagePath;
+    let mockDir = procs
+        | where ImagePath matches regex @"^c:\\windows \\|\\[^\\]* \\"
+        | project PID, Process = Name, Severity = "High", Finding = "Image path with a trailing-space directory (mock trusted directory UAC bypass)", Detail = ImagePath;
+    union knownTypo, lookalike, oddChars, doubleExt, mockDir
+    | extend Category = "Masquerading"
+};

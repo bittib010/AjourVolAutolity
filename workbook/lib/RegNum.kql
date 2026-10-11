@@ -1,0 +1,4 @@
+// Numeric registry value (DWORD prints as decimal; small "0x.." values are accepted too).
+let RegNum = (data:string) {
+    tolong(iff(data startswith "0x", replace_regex(data, @"^0x0*(.)", @"\1"), trim(@"\s", data)))
+};

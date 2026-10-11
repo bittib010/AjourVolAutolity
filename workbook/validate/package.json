@@ -1,0 +1,12 @@
+{
+  "name": "volautolity-workbook-validate",
+  "private": true,
+  "description": "Semantic validation of the workbook's KQL with Kusto.Language",
+  "license": "MIT",
+  "scripts": {
+    "check": "node check.js"
+  },
+  "devDependencies": {
+    "@kusto/language-service-next": "12.4.1"
+  }
+}

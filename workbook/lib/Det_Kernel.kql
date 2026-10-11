@@ -1,0 +1,54 @@
+// Kernel rootkit and BYOVD indicators. Volatility 3 prints an unresolved owner module as "-" (not "UNKNOWN").
+// Code that resolves to no loaded module = manually mapped driver (kdmapper), shellcode or a hidden driver.
+let Det_Kernel = () {
+    let byovd = @"(?i)^(rtcore64|gdrv|dbutil_2_3|procexp(152)?|asw(arpot|vmm)|avgarpot|zam(64|guard64)|amsdk|mhyprot2|iqvw64e|truesight|rentdrv2|tfsysmon|viragt64|bdapiutil64|k7rkscan|throttlestop|rwdrv|hlpdrv|gmer64|probmon|hwrwdrv|kprocesshacker|wsftprm|tdevflt|ene|asio[23]?|winring0x64|nvoclock|atszio64|capcom|iobitunlocker|wnbios|ksapi)(\.sys)?$";
+    let noModule = dynamic(["", "-", "N/A"]);
+    let callbacksUnknown = callbacks
+        | where Module in (noModule)
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Kernel callback in code that belongs to no loaded module",
+                  Detail = strcat(Type, " -> ", Callback, " ", Detail);
+    let ssdtHooks = ssdt
+        | where Module in (noModule) or tolower(Module) !in ("ntoskrnl", "ntkrnlmp", "ntkrnlpa", "ntkrpamp")
+        | project PID = long(null), Process = "", Severity = "High", Finding = "SSDT entry not pointing into the kernel (hook)",
+                  Detail = strcat("Index ", Index, " ", Symbol, " -> ", Address, " in ", Module);
+    let irpHooks = driverirp
+        | where Module in (noModule)
+        | summarize IRPs = make_set(IRP, 10) by DriverName, Address
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Driver IRP handler in code that belongs to no module",
+                  Detail = strcat(DriverName, " ", strcat_array(IRPs, ", "), " -> ", Address);
+    let timersUnknown = timers
+        | where Module in (noModule)
+        | project PID = long(null), Process = "", Severity = iff(Periodms > 0, "High", "Medium"), Finding = "Kernel timer DPC in code that belongs to no module",
+                  Detail = strcat("Routine ", Routine, ", period ", Periodms, " ms");
+    let orphanThreads = orphan_kernel_threads
+        | project PID, Process = "System", Severity = "High", Finding = "System thread starting outside any loaded driver (orphan kernel thread)",
+                  Detail = strcat("TID ", TID, " start ", StartAddress, " ", StartPath, " created ", CreateTime);
+    let driverNoModule = drivermodule
+        | where not(KnownException)
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Driver object whose code is in no loaded module (hidden/unlinked driver)",
+                  Detail = strcat(DriverName, " ", ServiceKey, " ", AlternativeName);
+    let hiddenModules = modscan
+        | join kind=leftanti modules on Base
+        | join kind=leftouter (unloadedmodules | summarize Unloaded = max(Time) by Name) on Name
+        | project PID = long(null), Process = "", Severity = iff(isnull(Unloaded), "High", iff(Name matches regex byovd, "High", "Medium")),
+                  Finding = iff(isnull(Unloaded), "Driver found by pool scan but not in the loaded module list (unlinked?)", "Unloaded driver still in memory"),
+                  Detail = strcat(Name, " ", Path, iff(isnotnull(Unloaded), strcat(" (unloaded ", Unloaded, ")"), ""));
+    let vulnerable = union (modules | project Name, Path, Src = "loaded"), (modscan | project Name, Path, Src = "pool scan"),
+                           (unloadedmodules | project Name, Path = "", Src = strcat("unloaded ", Time))
+        | where Name matches regex byovd
+        | summarize Seen = make_set(Src) by Name, Path
+        | project PID = long(null), Process = "", Severity = "High", Finding = "Known vulnerable driver (BYOVD - used to kill EDR)",
+                  Detail = strcat(Name, " ", Path, " [", strcat_array(Seen, ", "), "]");
+    let oddPaths = modules
+        | extend P = NormPath(Path)
+        | where isnotempty(Path) and not(P matches regex @"^c:\\windows\\(system32|syswow64)\\") and not(P matches regex @"\\(driverstore|drivers)\\")
+              and not(Name startswith "dump_")
+        | project PID = long(null), Process = "", Severity = iff(P matches regex StagingDirHigh or P matches regex StagingDirMedium, "High", "Medium"),
+                  Finding = "Kernel module loaded from an unusual path", Detail = strcat(Name, " ", Path);
+    let attached = devicetree
+        | where Type == "ATT" and tolower(DriverName) has_any ("tcpip", "kbdclass", "ntfs", "fastfat") and DriverNameOfAttDevice !has "FltMgr"
+        | project PID = long(null), Process = "", Severity = "Medium", Finding = "Filter driver attached to the network/keyboard/file-system stack",
+                  Detail = strcat(DriverNameOfAttDevice, " attached to ", DriverName, " ", DeviceName);
+    union callbacksUnknown, ssdtHooks, irpHooks, timersUnknown, orphanThreads, driverNoModule, hiddenModules, vulnerable, oddPaths, attached
+    | extend Category = "Kernel"
+};

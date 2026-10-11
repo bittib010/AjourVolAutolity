@@ -1,0 +1,10 @@
+// Title: Local account hashes (SAM)
+// Why: Local accounts and their NT hashes recovered from the SAM hive in memory. Look for unexpected accounts (new RIDs >= 1000, names mimicking admin accounts or ending in $), stored LM hashes and the same hash on several accounts (password reuse).
+// FalsePositives: The "empty" NT hash (31d6cfe0...) is substituted when no hash is stored, so it does not prove a blank password; Guest (501) and DefaultAccount (503) are normally empty and disabled.
+// MITRE: T1003.002, T1136.001
+hashdump
+| extend NtEmpty = nthash == "31d6cfe0d16ae931b73c59d7e0c089c0", LmStored = lmhash != "aad3b435b51404eeaad3b435b51404ee" and isnotempty(lmhash),
+         SuspiciousName = User matches regex @"(?i)^(administrat[o0]r.+|admin[0-9]+|support_[0-9a-f]{8}|helpassistant|guest.+|defaultaccount.+)$|\$$"
+| join kind=leftouter (hashdump | where nthash != "31d6cfe0d16ae931b73c59d7e0c089c0" | summarize SharedWith = make_set(User) by nthash | where array_length(SharedWith) > 1) on nthash
+| project User, rid, NtEmpty, LmStored, SuspiciousName, PasswordReusedBy = SharedWith, nthash, lmhash
+| order by rid asc

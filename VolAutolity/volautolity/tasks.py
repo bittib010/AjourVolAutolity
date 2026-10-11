@@ -332,7 +332,7 @@ def _read_columns(csv_path: Path, *wanted: str):
         return re.sub(r"[^a-z0-9]", "", name.lower())
 
     with csv_path.open("r", encoding="utf-8", errors="replace", newline="") as handle:
-        reader = csv.reader(handle)
+        reader = csv.reader(handle, escapechar="\\")  # Volatility escapes backslashes in its CSV output
         header = next((row for row in reader if row and row[0].strip() == "TreeDepth"), None)
         if header is None:
             return

@@ -1,0 +1,11 @@
+// Title: Registry persistence findings
+// Severity: High
+// Why: ~35 autostart and hijack locations (Autoruns, Hexacorn, Sigma, Elastic): Run keys with suspicious commands, Winlogon Shell/Userinit changes, IFEO debuggers (Critical on sethc/utilman = sticky-keys backdoor), SilentProcessExit, AppInit/AppCert DLLs, LSA authentication/security/notification packages (mimilib = Mimikatz SSP), BootExecute, ServiceDll outside System32, print monitors, time providers, netsh helpers, Office test DLL, logon scripts, COR_PROFILER, per-user shell open-command hijacks (UAC bypass), hidden accounts.
+// FalsePositives: Vendor print monitors, credential providers and password filters (Specops, Azure AD Password Protection), APM profilers, kiosk shells. Several entries with close LastWriteTime raise confidence.
+// MITRE: T1547.001, T1547.004, T1546.012, T1546.010, T1547.005, T1543.003, T1548.002
+// Refs: https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns ; https://www.hexacorn.com/blog/2017/01/28/beyond-good-ol-run-key-all-parts/ ; https://raw.githubusercontent.com/elastic/detection-rules/main/rules/windows/persistence_registry_uncommon.toml
+Det_Persistence()
+| where Severity != "Info"
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

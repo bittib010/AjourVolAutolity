@@ -22,9 +22,13 @@ class RecordingSink(ResultSink):
     def __init__(self):
         self.tables = {}
         self.functions = {}
+        self.created = {}
 
     def open(self, dump: DumpName) -> str:
         return dump.database_name
+
+    def create_tables(self, tables):
+        self.created.update(tables)
 
     def ingest(self, normalized):
         rows = []
@@ -70,11 +74,11 @@ class PipelineTests(unittest.TestCase):
 
         # bootstrap ran first and its saved config was handed to every later plugin
         self.assertEqual(status["info"], TaskStatus.OK)
-        self.assertEqual(sink.tables["probe"][1], [["0", "True"]])
+        self.assertEqual(sink.tables["probe"][1], [["0", "True", "1"]])
 
         # columns cleaned the way the workbook expects; types normalised
         columns, rows = sink.tables["pslist"]
-        self.assertEqual(columns, ["TreeDepth", "PID", "Process", "OffsetV", "CreateTime"])
+        self.assertEqual(columns, ["TreeDepth", "PID", "Process", "OffsetV", "CreateTime", "VolRow"])
         self.assertEqual(rows[0][4], "2023-04-24T14:41:32.000000Z")
         self.assertEqual(rows[1][4], "")
 
@@ -93,6 +97,12 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(image_row[:3], ["win_case1.raw", str(self.image.stat().st_size), report.sha256])
 
         self.assertIn("taskhost_triage", sink.functions)
+
+        # every catalog table exists up front with Volatility's declared types, even if never run
+        self.assertIn("malfind", sink.created)
+        self.assertNotIn("printkey_*", sink.created)
+        declared = {c.name: c.type.value for c in sink.created["pslist"]}
+        self.assertEqual((declared["PID"], declared["CreateTime"], declared["Wow64"]), ("long", "datetime", "bool"))
 
     def test_only_filter(self):
         sink = RecordingSink()

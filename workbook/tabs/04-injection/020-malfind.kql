@@ -1,0 +1,7 @@
+// Title: malfind regions (hexdump and disassembly)
+// Size: large
+// Why: The raw evidence behind the malfind findings. "4d 5a" (MZ) = PE image; "fc 48 83 e4 f0" = x64 stager; "4d 5a 41 52 55 48" (MZARUH) = Cobalt Strike reflective DLL; a region of zeros disassembling as "add byte ptr [rax], al" is usually benign JIT/AV scratch memory. Dump the region (malfind --dump) for deeper analysis.
+malfind
+| extend FirstBytes = extract(@"((?:[0-9a-f]{2} ){8})", 1, tolower(Hexdump))
+| project PID, Process, StartVPN, EndVPN, Protection, Tag, PrivateMemory, Notes, FirstBytes, Hexdump, Disasm
+| order by PID asc, StartVPN asc

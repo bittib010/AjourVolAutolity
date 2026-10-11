@@ -1,0 +1,58 @@
+// Registry autostart locations (Sysinternals Autoruns, Hexacorn "Beyond good ol' Run key", Sigma registry
+// rules, Elastic persistence_registry_uncommon). "Info" rows list every autorun for review; the Overview only
+// counts Low and above.
+let Det_Persistence = () {
+    let accessibility = dynamic(["sethc.exe", "utilman.exe", "osk.exe", "magnify.exe", "narrator.exe", "displayswitch.exe", "atbroker.exe", "helppane.exe"]);
+    let securityPackages = dynamic(["kerberos", "msv1_0", "schannel", "wdigest", "tspkg", "pku2u", "cloudap", "negoexts", "negotiate", "livessp", "aadp", "mskdc", "kdc"]);
+    let notificationPackages = dynamic(["scecli", "rassfm", "kdcsvc", "fpnwclnt"]);
+    let printMonitors = dynamic(["localspl.dll", "tcpmon.dll", "usbmon.dll", "wsdmon.dll", "appmon.dll", "fxsmon.dll"]);
+    let netshHelpers = dynamic(["ifmon.dll", "rasmontr.dll", "wcnnetsh.dll", "authfwcfg.dll", "dhcpcmonitor.dll", "dot3cfg.dll", "fwcfg.dll",
+                                "hnetmon.dll", "napmontr.dll", "netiohlp.dll", "nettrace.dll", "nshhttp.dll", "nshipsec.dll", "nshwfp.dll",
+                                "p2pnetsh.dll", "peerdistsh.dll", "rpcnsh.dll", "whhelper.dll", "wlancfg.dll", "wshelper.dll", "wwancfg.dll"]);
+    RegValues()
+    | where LKey matches regex @"(currentversion|winlogon|image file execution options|silentprocessexit|session manager|\\lsa|safeboot|terminal server|\\services\\|\\print\\|timeproviders|\\netsh|active setup|office test|environment|command processor|control panel\\desktop|shell\\(open|runas)\\command|appcertdlls|specialaccounts)"
+    | extend KeyLeaf = tostring(split(LKey, @"\")[-1]), D = tolower(trim(@"[\s""]", Data)), Bad = SuspiciousData(Data)
+    | extend Packages = extract_all(@"([a-z0-9_.:\\-]+)", D)
+    | extend Rule = case(
+        LKey matches regex @"\\currentversion\\policies\\explorer\\run$", "High|Policy-based Run key entry [T1547.001]",
+        LKey matches regex @"\\currentversion\\(run|runonce|runonceex(\\[^\\]+)*|runservices|runservicesonce)$" and Bad, "High|Run key starts a suspicious command [T1547.001]",
+        LKey matches regex @"\\currentversion\\(run|runonce|runonceex(\\[^\\]+)*|runservices|runservicesonce)$" and LName startswith "*", "High|RunOnce entry that also runs in Safe Mode [T1547.001]",
+        LKey matches regex @"\\currentversion\\(run|runonce|runonceex(\\[^\\]+)*|runservices|runservicesonce)$", "Info|Run key entry [T1547.001]",
+        LKey matches regex @"\\windows nt\\currentversion\\windows$" and LName in ("load", "run") and isnotempty(D), "High|Windows\\Load/Run autostart [T1547.001]",
+        LKey matches regex @"\\windows nt\\currentversion\\windows$" and LName == "appinit_dlls" and isnotempty(D), "High|AppInit_DLLs configured [T1546.010]",
+        LKey matches regex @"\\windows nt\\currentversion\\winlogon$" and LName == "shell" and D != "explorer.exe", "High|Winlogon Shell is not explorer.exe [T1547.004]",
+        LKey matches regex @"\\windows nt\\currentversion\\winlogon$" and LName == "userinit" and not(D matches regex @"^c:\\windows\\system32\\userinit\.exe,?$"), "High|Winlogon Userinit runs extra programs [T1547.004]",
+        LKey matches regex @"\\windows nt\\currentversion\\winlogon$" and LName == "taskman", "High|Winlogon Taskman configured [T1547.004]",
+        LKey matches regex @"\\winlogon\\specialaccounts\\userlist$" and D == "0", "High|Account hidden from the logon screen [T1564.002]",
+        LKey matches regex @"\\image file execution options\\[^\\]+$" and LName == "debugger" and KeyLeaf in (accessibility), "Critical|IFEO Debugger on an accessibility binary (sticky-keys backdoor) [T1546.008]",
+        LKey matches regex @"\\image file execution options\\[^\\]+$" and LName == "debugger", "High|IFEO Debugger hijack [T1546.012]",
+        LKey matches regex @"\\image file execution options\\[^\\]+$" and LName == "verifierdlls", "High|IFEO VerifierDlls injection [T1546.012]",
+        LKey matches regex @"\\silentprocessexit\\[^\\]+$" and LName == "monitorprocess", "High|SilentProcessExit monitor process [T1546.012]",
+        LKey matches regex @"\\session manager\\appcertdlls$", "High|AppCertDlls configured [T1546.009]",
+        LKey matches regex @"\\control\\lsa$" and LName == "authentication packages" and array_length(set_difference(Packages, dynamic(["msv1_0"]))) > 0, "High|Unexpected LSA authentication package [T1547.002]",
+        LKey matches regex @"\\control\\lsa(\\osconfig)?$" and LName == "security packages" and D has_any ("mimilib", "memssp"), "Critical|Mimikatz SSP registered as LSA security package [T1547.005]",
+        LKey matches regex @"\\control\\lsa(\\osconfig)?$" and LName == "security packages" and array_length(set_difference(Packages, securityPackages)) > 0, "High|Unexpected LSA security package [T1547.005]",
+        LKey matches regex @"\\control\\lsa$" and LName == "notification packages" and array_length(set_difference(Packages, notificationPackages)) > 0, "High|Unexpected password filter (Notification Packages) [T1556.002]",
+        LKey matches regex @"\\control\\session manager$" and LName == "bootexecute" and not(D matches regex @"^autocheck autochk( /k:\S+)? \*$"), "High|Unexpected BootExecute entry [T1547.001]",
+        LKey matches regex @"\\control\\safeboot$" and LName == "alternateshell" and D != "cmd.exe", "High|Safe Mode AlternateShell changed [T1562.009]",
+        LKey matches regex @"\\terminal server\\winstations\\rdp-tcp$" and LName == "initialprogram" and isnotempty(D), "High|RDP InitialProgram configured [T1547]",
+        LKey matches regex @"\\services\\[^\\]+(\\parameters)?$" and LName == "servicedll" and not(D matches regex @"^(%systemroot%|%windir%|c:\\windows)\\system32\\") and D !contains "printconfig.dll", "High|ServiceDll outside System32 [T1543.003]",
+        LKey matches regex @"\\services\\[^\\]+$" and LName == "imagepath" and Bad, "High|Service ImagePath runs a suspicious command [T1543.003]",
+        LKey matches regex @"\\services\\[^\\]+$" and LName == "failurecommand" and isnotempty(D), "High|Service FailureCommand configured [T1543.003]",
+        LKey matches regex @"\\control\\print\\monitors\\[^\\]+$" and LName == "driver" and D !in (printMonitors), "High|Unexpected print monitor DLL [T1547.010]",
+        LKey matches regex @"\\timeproviders\\[^\\]+$" and LName == "dllname" and not(D matches regex @"(w32time|vmictimeprovider)\.dll$"), "High|Unexpected time provider DLL [T1547.003]",
+        LKey matches regex @"\\microsoft\\netsh$" and Leaf(D) !in (netshHelpers), "High|Unexpected netsh helper DLL [T1546.007]",
+        LKey matches regex @"\\active setup\\installed components\\[^\\]+$" and LName == "stubpath" and Bad, "Medium|Active Setup StubPath runs a suspicious command [T1547.014]",
+        LKey matches regex @"\\office test\\special\\perf$", "High|Office test DLL persistence [T1137.002]",
+        LKey matches regex @"\\environment$" and LName == "userinitmprlogonscript", "High|Logon script via UserInitMprLogonScript [T1037.001]",
+        LKey matches regex @"\\environment$" and LName in ("cor_enable_profiling", "coreclr_enable_profiling") and D == "1", "High|.NET profiler enabled system/user-wide [T1574.012]",
+        LKey matches regex @"\\environment$" and LName == "windir" and Hive startswith "ntuser", "High|Per-user windir override (SilentCleanup UAC bypass) [T1548.002]",
+        LKey matches regex @"\\command processor$" and LName == "autorun" and isnotempty(D), "High|cmd.exe AutoRun configured [T1546]",
+        LKey matches regex @"\\control panel\\desktop$" and LName == "scrnsave.exe" and (not(D endswith ".scr") or Bad), "High|Screensaver points to a non-screensaver / suspicious file [T1546.002]",
+        LKey matches regex @"\\(ms-settings|mscfile|exefile|folder)\\shell\\(open|runas)\\command$" and Hive matches regex @"(?i)^(usrclass|ntuser)", "High|Per-user shell open command hijack (UAC bypass) [T1548.002]",
+        "")
+    | where isnotempty(Rule)
+    | parse Rule with Severity "|" Finding
+    | project PID = long(null), Process = "", Severity, Category = "Persistence", Finding,
+              Detail = strcat(Hive, " ", Key, " | ", Name, " = ", substring(Data, 0, 400), " (written ", LastWriteTime, ")")
+};

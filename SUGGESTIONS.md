@@ -180,12 +180,18 @@ To go even leaner, see suggestions 4 and 5 below.
    - VM `encryption_at_host_enabled` (needs the `EncryptionAtHost` feature registered).
 8. **Private endpoints** for storage and ADX, plus ADX `allowed_ip_ranges`, if the threat model
    includes the public endpoints.
-9. **Workbook.**
-   - Add tabs for the new tables: consoles/cmdscan, amcache, scheduled_tasks, svcdiff, pebmasquerade,
-     system-call checks, etwpatch.
-   - Keep the KQL in `.kql` files in the repo and template them in. That's easier to review than
-     the escaped JSON.
-   - A `volautolity_runs` health tab.
+9. **Workbook next steps.** The rebuild itself is done (see section 4).
+   - **Materialise findings.** After ingestion, the worker could run `.set-or-replace findings <|
+     AllFindings()`. The Overview would then read a small table instead of re-running every detector
+     (faster to load, and a much smaller workbook: three items currently embed the full detector library).
+     It also enables cross-image hunting with `union database("*").findings`.
+   - **Fleet baselines.** Many rules say "a single outlier is the signal". A cross-database view (same
+     value on N images vs one) would turn those into real baselines. This needs question 2 below.
+   - **Execute every query against real data.** Run the
+     [Kusto emulator](https://learn.microsoft.com/azure/data-explorer/kusto-emulator-overview) in CI
+     with the test image's tables loaded. Docker Desktop was installed here but its engine wouldn't
+     start, so the queries are validated semantically, and the main detectors were replayed in Python
+     against the real image.
 10. **YARA rules.** A single Konni backdoor rule isn't much coverage. Use a maintained pack (e.g.
     YARA Forge "core", Elastic protections-artifacts), pinned by commit and SHA-256 like now.
 11. **IoC regexes.** A configurable pattern list for `windows.vadregexscan` / `regexscan` (C2
@@ -195,8 +201,13 @@ To go even leaner, see suggestions 4 and 5 below.
     - An ADX retention policy per database.
 
     Memory images contain personal data and credentials.
-13. **Shipping the app.** It travels inline in cloud-init (~46 KB of the 64 KB limit; a precondition
-    guards it). If it grows, publish a release artifact and download it with a pinned hash.
+13. **Shipping the app: now a priority.**
+    - It travels inline in cloud-init: about 57 KB of the 64 KB limit, with `schemas.json` added. A
+      precondition guards the limit.
+    - The next feature will not fit. Upload the app as a blob (an `archive_file` zip plus
+      `azurerm_storage_blob`), pass its SHA-256 in the env file, and have `setup.sh` download it with
+      the managed identity (IMDS token + blob GET) and verify the hash.
+    - Bonus: code changes would no longer replace the VM.
 14. **Housekeeping:**
     - Move `sample_vol_ouput/` (typo) to `VolAutolity/tests/fixtures/`, or delete it.
     - Add Dependabot/Renovate for pip, GitHub Actions and providers.
@@ -206,9 +217,8 @@ To go even leaner, see suggestions 4 and 5 below.
 
 ## 3. Open questions (I continued with the defaults in brackets)
 
-1. **Backslashes.** Volatility's CSV writer doubles them (`C:\\Windows`), and the workbook's
-   registry tree query depends on that. Normalise to single backslashes and update the workbook?
-   [kept doubled]
+1. **Backslashes.** *Resolved:* the worker now decodes Volatility's escaping, and the new workbook
+   expects single backslashes. Databases from the old bash runner still have doubled ones.
 2. **One database per image or one database overall?** A single database with a `DumpName` column
    allows cross-image queries ("which hosts ran this binary?") and the worker would need no ARM
    rights. [kept per image, as in the README]
@@ -224,7 +234,9 @@ To go even leaner, see suggestions 4 and 5 below.
    access, and for how long?
 10. **macOS:** keep it in scope? Upstream has stopped maintaining it, and acquisition on modern Macs
     is impractical.
-11. **Workbook:** should I extend it with the new tables (suggestion 9)?
+11. **Workbook:** *Done* (section 4). Open follow-ups:
+    - Which detectors are too noisy or too quiet in your environment?
+    - Should Info-level review lists (all Run keys, all tasks) count towards the process score?
 12. **The work is on a local branch** `refactor/opentofu-python-pipeline` with conventional, atomic
     commits. Nothing is pushed. Want a PR?
 13. **Community plugin:** the Immersive Labs `cobaltstrike.py` no longer loads on Volatility 2.28
@@ -233,20 +245,68 @@ To go even leaner, see suggestions 4 and 5 below.
 
 ---
 
+## 4. The workbook rebuild
+
+**Research.** Two research passes went into it. They drew on these sources:
+- SANS Hunt Evil, Sigma, Elastic, LOLBAS, MITRE ATT&CK, The DFIR Report;
+- CISA ransomware advisories, loldrivers.io, Microsoft documentation;
+- the Volatility plugin sources.
+
+The result is 15 tabs and 67 queries, built from 15 detectors. Details are in
+[README → The triage workbook](README.md#the-triage-workbook) and [workbook/README.md](workbook/README.md).
+
+**Real-data run.** The pipeline ran end to end against the Volatility project's own Windows 10 (19041)
+test image. That surfaced two production bugs, both now fixed:
+- **Missing cache directory.** `--cache-path` must exist. Without it every image would have failed at
+  bootstrap on the VM.
+- **Doubled backslashes.** Volatility's CSV escaping was not decoded.
+
+**False-positive calibration on that clean image.** These cases are now handled:
+- **Look-alike process names.** 20 legitimate Windows binaries look like core process names under the
+  similarity metric (logonui ~ winlogon, synchost ~ svchost, ...). They are now allowlisted, using a list
+  measured against every `.exe` in `C:\Windows`. Similarity also only counts outside system directories,
+  and an explicit typosquat list covers the 7 known typos the metric misses.
+- **Early-boot parentage.** The Registry process is created 7 s *before* System's recorded CreateTime, so
+  PID 4 is always accepted as a parent.
+- **lsass handles.** System holds full-access handles to lsass, so it is allowlisted.
+- **ldrmodules.** Processes with unreadable loader lists (SearchApp, msedgewebview2) report almost every
+  DLL as unlinked; they are skipped. Resource-only DLLs are Low.
+- **System calls.** All 156 direct-syscall hits came from msedge (Chromium). Browsers and JIT/AV
+  processes are down-ranked.
+
+After calibration the clean image yields **no Medium-or-higher findings** in the replayed detectors.
+
+**Data model.**
+- **Declared types.** Tables now use Volatility's declared column types (`schemas.json`, generated and
+  checked against the installed Volatility in the tests).
+- **Tables always exist.** They are created up front, so failed plugins never break workbook queries.
+- **Row order.** Every row carries `VolRow` (Volatility's output order).
+
+**Removed on purpose.** The old Passwords tab built links that sent NT hashes to a third-party website
+(ntlm.pw). Customer credentials must not leave the investigation.
+
+**Size.** The workbook JSON is 723 KB, because each query is self-contained. Azure's exact limit for
+workbook content could not be verified (the web search budget for this session ran out). Materialising
+findings (suggestion 9) would shrink it a lot.
+
+---
+
 ## Verification
 - `tofu validate` passes for `cfg` and `cfg/bootstrap` with azurerm 5.x. `tofu fmt` is clean.
-- The cloud-init template was rendered and parsed as YAML (45.7 KB decoded; limit 64 KB), and the
-  embedded files decode back intact.
-- There are 27 Python tests, including:
-  - an end-to-end pipeline run against a fake `vol` binary: saved-config reuse, hive fan-out,
-    retry, status tables, SHA-256;
-  - watcher behaviour on hash mismatch, interruption and crashes;
-  - the catalog check against the real Volatility 2.28.2, with `[full]` extras.
-
-  They pass with and without the Azure SDKs installed.
+- The cloud-init template was rendered and parsed as YAML, and the embedded files decode back intact.
+  It is ~57 KB with schemas; the limit is 64 KB.
+- There are 34 Python tests, including:
+  - an end-to-end pipeline run against a fake `vol` binary;
+  - watcher behaviour;
+  - the catalog and `schemas.json` checks against the real Volatility 2.28.2.
+- The pipeline ran against a real Windows 10 memory image. All produced tables matched the generated
+  schemas.
+- All 69 workbook queries (67 plus 2 parameter queries) pass Microsoft's KQL semantic analyzer against
+  the table schemas. CI repeats this.
 - **Not done:**
-  - no `tofu plan`/`apply` against Azure,
-  - no run against a real memory image,
+  - no `tofu plan`/`apply` against Azure;
+  - the workbook queries were not *executed* (no ADX or emulator available here);
   - no shellcheck locally (CI runs it).
 
-  The first real deployment should be watched with `journalctl -u volautolity -f`.
+  Watch the first real deployment with `journalctl -u volautolity -f`, and open the workbook on the
+  first processed image.

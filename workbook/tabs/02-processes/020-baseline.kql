@@ -1,0 +1,10 @@
+// Title: Core processes deviating from the known-good baseline
+// Severity: Critical
+// Why: lsass, services, wininit, csrss, winlogon, smss and friends with the wrong parent, path, session, token user, start time or instance count. Malware commonly names itself after a core process and runs from another directory, or a second lsass appears (credential theft tools, masquerading).
+// FalsePositives: Multi-session hosts (RDP/terminal servers) have one csrss/winlogon/dwm per session; VMs restored from snapshots can show late start times; third-party tools occasionally ship their own copy of a Windows binary.
+// MITRE: T1036.005
+// Refs: https://www.sans.org/posters/hunt-evil/ ; https://learn.microsoft.com/en-us/windows/application-management/svchost-service-refactoring ; https://echotrail.io/insights/lsass.exe/
+Det_ProcessBaseline()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc, Process asc
+| project-away SeverityRank

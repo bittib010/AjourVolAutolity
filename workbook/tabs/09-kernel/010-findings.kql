@@ -1,0 +1,10 @@
+// Title: Kernel findings
+// Severity: High
+// Why: Callbacks, IRP handlers and timer DPCs pointing into no module; SSDT entries outside the kernel; system threads starting outside any driver (orphan kernel threads); driver objects with no module; drivers found by pool scan but not loaded (unlinked/hidden); known vulnerable drivers abused to kill EDR (RTCore64, gdrv, dbutil_2_3, procexp152, aswArPot, zamguard64, mhyprot2, iqvw64e, truesight ...); kernel modules loaded from unusual paths; filter drivers attached to the TCP/IP, keyboard or file-system stack.
+// FalsePositives: Memory smear in large images; procexp152.sys whenever Process Explorer runs; anti-cheat and legacy AV filters; renamed vulnerable drivers are not caught by name.
+// MITRE: T1014, T1068, T1562.001, T1543.003
+// Refs: https://www.loldrivers.io/ ; https://www.sophos.com/en-us/blog/blackbyte-ransomware-returns ; https://www.welivesecurity.com/en/eset-research/edr-killers-explained-beyond-the-drivers/ ; https://github.com/volatilityfoundation/volatility/wiki/Command-Reference-Mal
+Det_Kernel()
+| extend SeverityRank = SevRank(Severity)
+| order by SeverityRank desc
+| project-away SeverityRank

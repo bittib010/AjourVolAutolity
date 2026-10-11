@@ -1,0 +1,10 @@
+// Registry values from every recursively printed hive (printkey_<HIVE> tables), with the hive name.
+// Key holds the full path including a hive prefix that varies (\REGISTRY\MACHINE\SYSTEM, \SystemRoot\System32\
+// Config\SOFTWARE, \??\C:\Users\x\ntuser.dat ...), so rules match on the path suffix. REG_DWORD prints as decimal.
+// registry_printkey (top-level keys only) is included empty so the union always has a table to resolve.
+let RegValues = () {
+    union withsource = SourceTable isfuzzy=true (registry_printkey | take 0), printkey_*
+    | where Type != "Key"
+    | extend Hive = replace_string(SourceTable, "printkey_", ""), LKey = tolower(Key), LName = tolower(Name)
+    | project-away SourceTable
+};

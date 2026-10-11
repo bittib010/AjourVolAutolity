@@ -1,0 +1,13 @@
+// Title: Ransomware: extensions appearing across many folders
+// Why: Encryption renames files to a new extension in many directories (.akira, .basta, .royal, .lockbit ...). Extensions present on many files across many folders that are not common system extensions are worth checking, as are document names with an extra extension (report.pdf.xyz123).
+// FalsePositives: Caches, logs, ETL/PF/MUI files, GUID-named temp files.
+// MITRE: T1486
+filescan
+| extend N = tolower(Name)
+| extend Ext = extract(@"\.([^.\\]{2,12})$", 1, N), Dir = extract(@"^(.*)\\[^\\]+$", 1, N),
+         DoubleExt = N matches regex @"\.(docx?|xlsx?|pptx?|pdf|jpe?g|png|txt|zip)\.[a-z0-9]{3,12}$"
+| where isnotempty(Ext)
+| summarize Files = dcount(N), Folders = dcount(Dir), DoubleExtFiles = countif(DoubleExt), Example = take_any(Name) by Ext
+| where Ext !in ("dll", "exe", "sys", "mui", "dat", "log", "etl", "pf", "tmp", "xml", "json", "txt", "ini", "inf", "cat", "manifest", "lnk", "db", "png", "jpg", "ico", "ttf", "ttc", "fon", "js", "css", "html", "pak", "bin", "regtrans-ms", "blf", "evtx", "edb", "jrs", "chk", "sdb", "nls", "mum", "cab", "msi", "ps1", "psd1", "psm1", "winmd", "pri", "config", "aux", "cdxml", "mof", "tlb", "ocx", "cpl", "drv", "efi", "wim", "vhdx", "pdb", "zip", "docx", "xlsx", "pdf")
+| where Files >= 20 and Folders >= 3
+| order by DoubleExtFiles desc, Folders desc

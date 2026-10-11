@@ -1,0 +1,11 @@
+// Title: Process tree
+// Visualization: tree
+// Tree: id=ProcKey parent=ParentKey label=Process
+// Size: full
+// Why: Every process instance from pslist and psscan, nested under its verified parent. "Found by" shows which plugin saw it (psscan-only + no exit time = unlinked from the process list). Processes whose parent is gone are shown at the root - normal for csrss, wininit, winlogon and explorer.
+ProcTree()
+| extend ParentKey = iff(ParentState == "found", ParentKey, "")
+| project ProcKey, ParentKey, Process = Name, PID, PPID, Parent = coalesce(ParentName, strcat("(", ParentState, ")")),
+          CreateTime, ExitTime, SessionId, Wow64, Threads, Handles, UserSid, ImagePath, CommandLine,
+          FoundBy = strcat_array(pack_array(iff(InPslist, "pslist", ""), iff(InPsscan, "psscan", "")), " ")
+| order by CreateTime asc
